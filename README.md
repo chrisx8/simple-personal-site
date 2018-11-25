@@ -1,4 +1,4 @@
-# Easy Personal Site
+# Simple Personal Site
 
 Create your personal website in minutes!
 

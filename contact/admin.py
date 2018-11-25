@@ -1,5 +1,5 @@
 from django.contrib import admin
-from chrisxtk.site_config import SITE_NAME
+from simple_personal_site.site_config import SITE_NAME
 from .models import Message
 
 # set admin site titles

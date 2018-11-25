@@ -2,7 +2,7 @@ from django.shortcuts import render, HttpResponseRedirect
 from sg_client.sendgrid import sg_client
 from .forms import ContactForm
 from .models import Message
-from chrisxtk.site_config import CONTACT_EMAIL
+from simple_personal_site.site_config import CONTACT_EMAIL
 
 def contact(request):
     if request.method == 'POST':

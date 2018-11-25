@@ -1,7 +1,7 @@
 import sendgrid
 import os
 from sendgrid.helpers.mail import Email, Content, Mail
-from chrisxtk.site_config import SENDGRID_APIKEY
+from simple_personal_site.site_config import SENDGRID_APIKEY
 
 class SendgridClient(object):
     def __init__(self, apikey):
