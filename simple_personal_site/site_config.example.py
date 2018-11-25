@@ -4,8 +4,10 @@ Settings for this site
 Rename this file to 'site_config.py' and edit settings accordingly
 """
 
-# Site name
+# Site info
 SITE_NAME = 'My Personal Site'
+SITE_DESCRIPTION = 'Describe My Personal Site'
+SITE_URL = 'https://www.example.com'
 
 # Allowed hostnames
 ALLOWED_HOSTS = ['example.com', 'www.example.com']

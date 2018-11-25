@@ -1,5 +1,11 @@
+{% extends 'base.html' %}
+{% block pagetitle %} Contact Me {% endblock %}
+{% block ogtitle %} Contact Me {% endblock %}
+{% block body %}
+<h1>Contact Me</h1>
 <form method="POST">
-    {% csrf_token %}
-    {{ form }}
-    <button type="submit">Send</button>
+{% csrf_token %}
+{{ form }}
+<button type="submit">Send</button>
 </form>
+{% endblock %}

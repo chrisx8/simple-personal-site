@@ -17,6 +17,6 @@ from django.urls import include, path
 from . import views
 
 urlpatterns = [
-    path('', views.contact),
-    path('success/', views.success),
+    path('', views.contact, name='contact'),
+    path('success/', views.success, name='contact_success'),
 ]

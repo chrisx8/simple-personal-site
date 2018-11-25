@@ -1,4 +1,5 @@
 from django.shortcuts import render, HttpResponseRedirect
+from django.urls import reverse
 from sg_client.sendgrid import sg_client
 from .forms import ContactForm
 from .models import Message
@@ -21,11 +22,11 @@ def contact(request):
             mail_content = render(request, 'contact_email.html', context=mail_context).content.decode("utf-8")
             # send email
             sg_client.send_html(CONTACT_EMAIL['from'], new_msg.email, CONTACT_EMAIL['subject'], mail_content)
-        return HttpResponseRedirect('http://example.com')
+        return HttpResponseRedirect(reverse('contact_success'))
     else:
         context = {'form': ContactForm()}
         return render(request, 'contact.html', context=context)
 
 
 def success(request):
-    return request
+    return render(request, 'contact_success.html')
