@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 import dj_database_url
 import os
 from .site_config import ALLOWED_HOSTS, DATABASE_URL
+from .site_config import RECAPTCHA_DEFAULT_ACTION, RECAPTCHA_PRIVATE_KEY, RECAPTCHA_PUBLIC_KEY
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

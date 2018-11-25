@@ -2,6 +2,9 @@
 {% block pagetitle %} Contact Me {% endblock %}
 {% block ogtitle %} Contact Me {% endblock %}
 {% block body %}
+{% load recaptcha3 %}
+{% recaptcha_init %}
+{% recaptcha_ready action_name='contact' %}
 <h1>Contact Me</h1>
 <form method="POST">
 {% csrf_token %}
