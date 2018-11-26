@@ -4,34 +4,32 @@
 {% block body %}
 <style>
 .video-container {
-  position: relative;
-  padding-bottom: 56.25%; /*16:9*/
-  padding-top: 30px; 
-  height: 0; 
-  overflow: hidden;
+position: relative;
+padding-bottom: 56.25%;
+height: 0;
+overflow: hidden;
 }
- 
 .video-container iframe,
 .video-container object,
 .video-container embed {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
 }
 </style>
 <div class="container" style="padding-left:15px; padding-right:15px">
 <h1 class="title">My Projects</h1>
 <div class="columns">
 {% for project in projects %}
+{% if not project.hide %}
 <div class="column is-half">
 <div class="card">
-{% if project.image %}
+{% if project.youtube_id %}
+<div class="video-container"><iframe src="https://www.youtube-nocookie.com/embed/{{ project.youtube_id }}" frameborder="0" allowfullscreen></iframe></div>
+{% elif project.image %}
 <div class="card-image"><figure class="image is-16by9" ><img src="{{ project.image.url }}" alt="{{ project.title }}"></figure></div>
-{% elif project.youtube_id %}
-<div class="video-container"><iframe width="640" height="360" src="https://www.youtube-nocookie.com/embed/{{ project.youtube_id }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-<!-- <div class="card-image"><iframe class="is-16by9" width="100%" height="auto" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div> -->
 {% endif %}
 <div class="card-content">
 <p class="title">{{ project.title }}</p>
@@ -40,6 +38,7 @@
 </div>
 </div>
 </div>
+{% endif %}
 {% endfor %}
 </div>
 </div>

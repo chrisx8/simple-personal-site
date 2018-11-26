@@ -9,5 +9,17 @@ admin.site.site_header = SITE_NAME
 
 @admin.register(Message)
 class MessageAdmin(admin.ModelAdmin):
-    list_display = ('name', 'email', 'read', 'timestamp')
-    list_filter = ('read', 'timestamp')
+    # mark selected as read
+    def mark_read(self, request, queryset):
+        queryset.update(read=True)
+
+    # mark selected as unread
+    def mark_unread(self, request, queryset):
+        queryset.update(read=False)
+
+    mark_read.short_description = 'Mark selected messages as read'
+    mark_unread.short_description = 'Mark selected messages as unread'
+
+    list_display = ['name', 'email', 'read', 'timestamp']
+    list_filter = ['read', 'timestamp']
+    actions = [mark_read, mark_unread]
