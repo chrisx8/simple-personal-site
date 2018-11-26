@@ -2,7 +2,13 @@
 Settings for this site
 
 Rename this file to 'site_config.py' and edit settings accordingly
+
+All fields are REQUIRED, unless otherwise noted
 """
+
+# ------------------------------------------------
+# GENERAL SITE CONFIG
+# ------------------------------------------------
 
 # Site info
 SITE_NAME = 'My Personal Site'
@@ -19,16 +25,29 @@ ALLOWED_HOSTS = ['example.com', 'www.example.com']
 # SQLite URL scheme: sqlite:///ABSOLUTE_PATH [OR] sqlite://RELATIVE_PATH
 DATABASE_URL = ''
 
-# ReCaptcha settings
-# REQUIRED for contact forms. Get your ReCaptcha v3 key at https://www.google.com/recaptcha/admin
+# ReCaptcha credentials
+# REQUIRED for forms. Get your ReCaptcha v3 key at https://www.google.com/recaptcha/admin
 RECAPTCHA_PRIVATE_KEY = 'your private key'
 RECAPTCHA_PUBLIC_KEY = 'your public key'
 RECAPTCHA_DEFAULT_ACTION = 'generic'
 
-# Contact email settings
-# NOT REQUIRED. If you don't want to use email, leave SENDGRID_APIKEY blank
+# Sendgrid API credentials [OPTIONAL]
+# NOT REQUIRED. If you don't want to send emails, leave SENDGRID_APIKEY blank
 SENDGRID_APIKEY = ''
+
+# ------------------------------------------------
+# PROJECTS PAGE PREFERENCES
+# ------------------------------------------------
+
+# Number of projects on Projects page
+PROJECTS_PER_PAGE = 6
+
+# ------------------------------------------------
+# CONTACT PAGE PREFERENCES
+# ------------------------------------------------
+
+# Contact email settings
 CONTACT_EMAIL = {
     'subject': 'Thanks for contacting me!',
-    'from': 'Name <noreply@example.com>',
+    'from': 'Sender Name <noreply@example.com>',
 }

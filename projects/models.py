@@ -15,15 +15,17 @@ class Project(models.Model):
     url_description = models.CharField(verbose_name='URL Description', max_length=50, default='Website', null=False)
     fa_icon = models.CharField(verbose_name='Font Awesome icon class', max_length=50, default='', 
                                null=False, blank=True)
-    hide = models.BooleanField(verbose_name='Hide on Projects page', default=False, null=False)
+    show = models.BooleanField(verbose_name='Show on Projects page', default=True, null=False)
 
     def delete(self, *args, **kwargs):
-        # You have to prepare what you need before delete the model
-        storage, path = self.image.storage, self.image.path
+        # Delete the file if it exists
+        try:
+            storage, path = self.image.storage, self.image.path
+            storage.delete(path)
+        except ValueError:
+            pass
         # Delete the model
         super(Project, self).delete(*args, **kwargs)
-        # Delete the file
-        storage.delete(path)
 
     def __str__(self):
         return self.title

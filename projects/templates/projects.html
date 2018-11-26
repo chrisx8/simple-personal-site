@@ -21,9 +21,10 @@ height: 100%;
 </style>
 <div class="container" style="padding-left:15px; padding-right:15px">
 <h1 class="title">My Projects</h1>
-<div class="columns">
 {% for project in projects %}
-{% if not project.hide %}
+{% if forloop.counter0|divisibleby:2 %}
+<div class="columns">
+{% endif %}
 <div class="column is-half">
 <div class="card">
 {% if project.youtube_id %}
@@ -38,9 +39,32 @@ height: 100%;
 </div>
 </div>
 </div>
+{% if forloop.counter|divisibleby:2 or forloop.last %}
+</div>
 {% endif %}
 {% endfor %}
-</div>
-</div>
+{% if projects.paginator.num_pages > 1 %}
+<nav class="pagination is-centered" role="navigation" aria-label="pagination">
+{% if projects.has_previous %}
+<a href="?page={{ projects.previous_page_number }}" class="pagination-previous">Previous</a>
+{% else %}
+<a class="pagination-previous" disabled>Previous</a>
+{% endif %}
+{% if projects.has_next %}
+<a href="?page={{ projects.next_page_number }}" class="pagination-next">Next</a>
+{% else %}
+<a class="pagination-next" disabled>Next</a>
+{% endif %}
+<ul class="pagination-list">
+{% for page in page_range %}
+{% if projects.number == page %}
+<li><a class="pagination-link is-current" aria-label="Page {{ page }}" aria-current="page">{{ page }}</a></li>
+{% else %}
+<li><a href="?page={{ page }}" class="pagination-link" aria-label="Goto page {{ page }}">{{ page }}</a></li>
+{% endif %}
+{% endfor %}
+{% endif %}
+</ul>
+</nav>
 </div>
 {% endblock %}
