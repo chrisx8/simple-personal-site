@@ -18,10 +18,6 @@ from .site_config import RECAPTCHA_DEFAULT_ACTION, RECAPTCHA_PRIVATE_KEY, RECAPT
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '$lh3vkh&zsv1mqr1k7-&xuqz)*2!9f0gpmg*!qym$5)c*b6lv+'
 
@@ -80,9 +76,7 @@ WSGI_APPLICATION = 'simple_personal_site.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 # Configure DB URL from site_config
-DATABASES = {}
-DATABASES['default'] = dj_database_url.config(default=DATABASE_URL)
-
+DATABASES = {'default': dj_database_url.config(default=DATABASE_URL)}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators

@@ -3,6 +3,7 @@ import os
 from sendgrid.helpers.mail import Email, Content, Mail
 from simple_personal_site.site_config import SENDGRID_APIKEY
 
+
 class SendgridClient(object):
     def __init__(self, apikey):
         self.sg = sendgrid.SendGridAPIClient(apikey=apikey)
@@ -24,5 +25,6 @@ class SendgridClient(object):
         mail = Mail(from_email, subject, to_email, content)
         response = self.sg.client.mail.send.post(request_body=mail.get())
         return response.status_code
+
 
 sg_client = SendgridClient(SENDGRID_APIKEY)

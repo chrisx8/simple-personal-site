@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import Project
 
+
 # all projects
 def projects(request):
     all_projects = Project.objects.all()
