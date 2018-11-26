@@ -119,4 +119,6 @@ dmypy.json
 .vscode/
 .idea/
 */migrations/0*.py
+static/
+uploads/
 site_config.py

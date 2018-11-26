@@ -5,6 +5,8 @@ from .forms import ContactForm
 from .models import Message
 from simple_personal_site.site_config import CONTACT_EMAIL
 
+
+# contact form
 def contact(request):
     if request.method == 'POST':
         # get form data from post
@@ -28,5 +30,6 @@ def contact(request):
         return render(request, 'contact.html', context=context)
 
 
+# thank-you page
 def success(request):
     return render(request, 'contact_success.html')

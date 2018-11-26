@@ -7,7 +7,8 @@ RUN apk add python3 py3-psycopg2 curl && \
     pip3 install --upgrade pip setuptools && \
     pip3 install --no-cache -r requirements.txt && \
     rm /app/requirements.txt && \
-    chown -R nobody:nogroup /app
+    chown -R nobody:nogroup /app && \
+    python3 manage.py collectstatic
 
 EXPOSE 8000
 

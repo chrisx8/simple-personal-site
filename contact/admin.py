@@ -7,6 +7,6 @@ admin.site.site_title = SITE_NAME
 admin.site.site_header = SITE_NAME
 
 @admin.register(Message)
-class ContactAdmin(admin.ModelAdmin):
+class MessageAdmin(admin.ModelAdmin):
     list_display = ('name', 'email', 'read','timestamp')
     list_filter = ('read', 'timestamp')

@@ -1,4 +1,4 @@
-"""contact URL Configuration
+"""projects URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.1/topics/http/urls/
@@ -17,6 +17,5 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.contact, name='contact'),
-    path('success/', views.success, name='contact_success'),
+    path('', views.projects, name='projects'),
 ]

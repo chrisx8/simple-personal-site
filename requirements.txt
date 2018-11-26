@@ -11,3 +11,4 @@ pytz>=2018.7
 requests>=2.20.1
 sendgrid>=5.6.0
 urllib3>=1.24.1
+whitenoise>=4.1.2
