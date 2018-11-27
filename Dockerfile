@@ -10,13 +10,13 @@ RUN apk add --no-cache python3 py3-psycopg2 curl && \
     echo 'nameserver 1.1.1.1' >> /etc/resolv.conf && \
     echo 'nameserver 8.8.8.8' >> /etc/resolv.conf && \
     rm /app/requirements.txt && \
-    chown -R nobody:nogroup /app && \
-    python3 manage.py collectstatic && \
-    python3 manage.py makemigrations && \
-    python3 manage.py migrate --run-syncdb
+    chown -R nobody:nogroup /app
 
 EXPOSE 8000
 
 USER nobody
 
-CMD gunicorn simple_personal_site.wsgi:application -b 0.0.0.0:8000
+CMD python3 manage.py collectstatic && \
+    python3 manage.py makemigrations && \
+    python3 manage.py migrate --run-syncdb && \
+    gunicorn simple_personal_site.wsgi:application -b 0.0.0.0:8000
