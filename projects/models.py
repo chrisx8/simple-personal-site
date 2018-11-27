@@ -11,8 +11,8 @@ class Project(models.Model):
                                   help_text='Video ID is the 11-character string after ?v=. For example, if your '
                                             'YouTube video URL is https://www.youtube.com/watch?v=dQw4w9WgXcQ, '
                                             'the Video ID is dQw4w9WgXcQ')
-    url = models.URLField(verbose_name='Project URL', null=False, default='')
-    url_description = models.CharField(verbose_name='URL Description', max_length=50, default='Website', null=False)
+    url = models.URLField(verbose_name='Project URL', null=False, blank=True)
+    url_description = models.CharField(verbose_name='URL Description', max_length=50, default='Website', blank=True)
     fa_icon = models.CharField(verbose_name='Font Awesome icon class', max_length=50, default='', 
                                null=False, blank=True)
     show = models.BooleanField(verbose_name='Show on Projects page', default=True, null=False)

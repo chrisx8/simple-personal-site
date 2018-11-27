@@ -35,7 +35,11 @@ height: 100%;
 <div class="card-content">
 <p class="title">{{ project.title }}</p>
 <div class="content">{{ project.description }}</div>
-<a class="button is-link" href="{{ project.url }}">{% if project.fa_icon %}<i class="{{ project.fa_icon }}"></i>&nbsp;{% endif %} {{ project.url_description}}</a>
+{% if project.url %}
+<a class="button is-link" href="{{ project.url }}" target="_blank">
+{% if project.fa_icon %}<i class="{{ project.fa_icon }}"></i>&nbsp;{% endif %}{{ project.url_description}} <i class="fas fa-external-link-alt"></i>
+</a>
+{% endif %}
 </div>
 </div>
 </div>
