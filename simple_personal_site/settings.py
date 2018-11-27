@@ -12,15 +12,14 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 import dj_database_url
 import os
-from .site_config import ALLOWED_HOSTS, DATABASE_URL
-from .site_config import RECAPTCHA_DEFAULT_ACTION, RECAPTCHA_PRIVATE_KEY, RECAPTCHA_PUBLIC_KEY, SECRET_KEY
+from .site_config import ALLOWED_HOSTS, DATABASE_URL, RECAPTCHA_PRIVATE_KEY, RECAPTCHA_PUBLIC_KEY, SECRET_KEY, SITE_NAME
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-
 
 # Application definition
 
@@ -31,7 +30,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'snowpenguin.django.recaptcha3',
+    'snowpenguin.django.recaptcha2',
     'contact.apps.ContactConfig',
     'projects.apps.ProjectsConfig',
 ]
@@ -99,7 +98,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'America/Los_Angeles'
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
@@ -115,8 +114,3 @@ STATIC_URL = '/static/'
 STATIC_ROOT = 'static'
 MEDIA_URL = '/uploads/'
 MEDIA_ROOT = 'uploads'
-
-# Serve static with whitenoise
-# http://whitenoise.evans.io/en/stable/
-
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

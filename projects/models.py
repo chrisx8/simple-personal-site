@@ -34,17 +34,18 @@ class Project(models.Model):
 # delete old upload on save
 @receiver(models.signals.pre_save)
 def auto_delete_file_on_change(sender, instance, **kwargs):
-    # check instance existence
-    if not instance.pk:
-        return False
-    # get old file
-    try:
-        old_file = sender.objects.get(pk=instance.pk).image
-    except sender.DoesNotExist:
-        return False
-    # get new file
-    new_file = instance.image
-    # remove if files are changed
-    if old_file != new_file:
-        if os.path.isfile(old_file.path):
-            os.remove(old_file.path)
+    if isinstance(instance, Project):
+        # check instance existence
+        if not instance.pk:
+            return False
+        # get old file
+        try:
+            old_file = sender.objects.get(pk=instance.pk).image
+        except sender.DoesNotExist:
+            return False
+        # get new file
+        new_file = instance.image
+        # remove if files are changed
+        if old_file != new_file:
+            if os.path.isfile(old_file.path):
+                os.remove(old_file.path)

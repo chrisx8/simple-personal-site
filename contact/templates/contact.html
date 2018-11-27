@@ -2,9 +2,8 @@
 {% block pagetitle %} Contact Me {% endblock %}
 {% block ogtitle %} Contact Me {% endblock %}
 {% block body %}
-{% load recaptcha3 %}
+{% load recaptcha2 %}
 {% recaptcha_init %}
-{% recaptcha_ready action_name='contact' %}
 
 <div class="container" style="padding-left:15px; padding-right:15px">
 <h1 class="title">Contact Me</h1>
@@ -15,6 +14,7 @@
 <label class="label">{{ form.name.label }}</label>
 <div class="control has-icons-left">
 {{ form.name }}
+{% if form.name.errors %}<article class="message is-danger"><div class="message-body"><strong>{{ form.name.errors }}</strong></div></article>{% endif %}
 <span class="icon is-small is-left"><i class="fas fa-user"></i></span>
 </div>
 </div>
@@ -22,6 +22,7 @@
 <label class="label">{{ form.email.label }}</label>
 <div class="control has-icons-left">
 {{ form.email }}
+{% if form.email.errors %}<article class="message is-danger"><div class="message-body"><strong>{{ form.email.errors }}</strong></div></article>{% endif %}
 <span class="icon is-small is-left"><i class="fas fa-envelope"></i></span>
 </div>
 </div>
@@ -29,9 +30,13 @@
 <label class="label">Message</label>
 <div class="control">
 {{ form.message }}
+{% if form.message.errors %}<article class="message is-danger"><div class="message-body"><strong>{{ form.message.errors }}</strong></div></article>{% endif %}
 </div>
 </div>
-{{ form.captcha }}
+<div class="field">
+<div class="control">{{ form.captcha }}</div>
+{% if form.captcha.errors %}<article class="message is-danger"><div class="message-body"><strong>Please complete the CAPTCHA</strong></div></article>{% endif %}
+</div>
 <div class="field is-grouped">
 <div class="control"><button class="button is-link" type="submit">Send</button></div>
 </div>

@@ -30,10 +30,9 @@ SECRET_KEY = 'SUPER_SECURE_KEY'
 DATABASE_URL = ''
 
 # ReCaptcha credentials
-# REQUIRED for forms. Get your ReCaptcha v3 key at https://www.google.com/recaptcha/admin
+# REQUIRED for forms. Get your ReCaptcha v2 key at https://www.google.com/recaptcha/admin
 RECAPTCHA_PRIVATE_KEY = 'your private key'
-RECAPTCHA_PUBLIC_KEY = 'your public key'
-RECAPTCHA_DEFAULT_ACTION = 'generic'
+RECAPTCHA_PUBLIC_KEY = 'your site key'
 
 # Sendgrid API credentials [OPTIONAL]
 # NOT REQUIRED. If you don't want to send emails, leave SENDGRID_APIKEY blank

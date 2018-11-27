@@ -24,7 +24,10 @@ def contact(request):
             mail_content = render(request, 'contact_email.html', context=mail_context).content.decode("utf-8")
             # send email
             sg_client.send_html(CONTACT_EMAIL['from'], new_msg.email, CONTACT_EMAIL['subject'], mail_content)
-        return HttpResponseRedirect(reverse('contact_success'))
+            return HttpResponseRedirect(reverse('contact_success'))
+        else:
+            context = {'form': form}
+            return render(request, 'contact.html', context=context)
     else:
         context = {'form': ContactForm()}
         return render(request, 'contact.html', context=context)
