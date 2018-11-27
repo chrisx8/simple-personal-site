@@ -10,6 +10,7 @@ RUN apk add --no-cache python3 py3-psycopg2 curl && \
     echo 'nameserver 1.1.1.1' >> /etc/resolv.conf && \
     echo 'nameserver 8.8.8.8' >> /etc/resolv.conf && \
     rm /app/requirements.txt && \
+    mkdir uploads && \
     chown -R nobody:nogroup /app
 
 EXPOSE 8000
