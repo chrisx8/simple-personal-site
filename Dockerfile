@@ -3,15 +3,17 @@ COPY . /app/
 
 WORKDIR /app
 
-RUN apk add python3 py3-psycopg2 curl && \
-    pip3 install --upgrade pip setuptools && \
+RUN apk add --no-cache python3 py3-psycopg2 curl && \
+    pip3 install --no-cache --upgrade pip setuptools && \
     pip3 install --no-cache -r requirements.txt && \
     rm /app/requirements.txt && \
     chown -R nobody:nogroup /app && \
-    python3 manage.py collectstatic
+    python3 manage.py collectstatic && \
+    python3 manage.py makemigrations && \
+    python3 manage.py migrate --run-syncdb
 
 EXPOSE 8000
 
 USER nobody
 
-CMD gunicorn wsgi:app -b 0.0.0.0:8000
+CMD gunicorn simple_personal_site.wsgi:application -b 0.0.0.0:8000

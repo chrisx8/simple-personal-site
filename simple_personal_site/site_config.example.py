@@ -18,6 +18,10 @@ SITE_URL = 'https://www.example.com'
 # Allowed hostnames
 ALLOWED_HOSTS = ['example.com', 'www.example.com']
 
+# Generate a nice random key at http://www.allkeysgenerator.com/Random/Security-Encryption-Key-Generator.aspx
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = 'SUPER_SECURE_KEY'
+
 # Database credentials
 # Supported databases: PostgresSQL, MySQL, SQLite
 # MySQL URL scheme: mysql://USER:PASSWORD@HOST:PORT/NAME

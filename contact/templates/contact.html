@@ -10,6 +10,7 @@
 <h1 class="title">Contact Me</h1>
 <p class="subtitle">Send me a message, and I'll get back to you soon!</p>
 <form method="POST">
+{% csrf_token %}
 <div class="field">
 <label class="label">{{ form.name.label }}</label>
 <div class="control has-icons-left">
