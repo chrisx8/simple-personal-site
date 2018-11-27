@@ -119,6 +119,9 @@ dmypy.json
 .vscode/
 .idea/
 */migrations/0*.py
-static/
+static/admin/
+static/staticfiles.json
 uploads/
+
+# Personal config
 site_config.py
