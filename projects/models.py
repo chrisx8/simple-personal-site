@@ -5,7 +5,8 @@ from django.dispatch import receiver
 
 class Project(models.Model):
     title = models.CharField(verbose_name='Project Name', max_length=100, default='', null=False)
-    description = models.TextField(verbose_name='Project Description', default='', null=False)
+    description = models.TextField(verbose_name='Project Description', default='', null=False,
+                                   help_text="Write in Markdown format")
     image = models.FileField(verbose_name='Project Image', upload_to='projects', blank=True)
     youtube_id = models.CharField(verbose_name='Youtube Video ID', max_length=15, blank=True,
                                   help_text='Video ID is the 11-character string after ?v=. For example, if your '

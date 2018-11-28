@@ -14,7 +14,6 @@ admin.site.login_template = 'login.html'
 admin.site.logout_template = 'logout.html'
 
 
-
 @admin.register(Message)
 class MessageAdmin(admin.ModelAdmin):
     # mark selected as read

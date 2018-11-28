@@ -39,7 +39,8 @@ height: 100%;
 {% endif %}
 <div class="card-content">
 <p class="title">{{ project.title }}</p>
-<div class="content">{{ project.description }}</div>
+{% load markup_tags %}
+<div class="content">{{ project.description|apply_markup:"markdown" }}</div>
 {% if project.url %}
 <a class="button is-link" href="{{ project.url }}" target="_blank">
 {% if project.fa_icon %}<i class="{{ project.fa_icon }}"></i>&nbsp;{% endif %}{{ project.url_description}} <i class="fas fa-external-link-alt"></i>

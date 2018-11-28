@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_markup',
     'snowpenguin.django.recaptcha2',
     'contact.apps.ContactConfig',
     'projects.apps.ProjectsConfig',
