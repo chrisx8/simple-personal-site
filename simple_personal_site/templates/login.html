@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block pagetitle %} Log in {% endblock %}
+{% block body %}
+{% load recaptcha2 %}
+{% recaptcha_init %}
+
+<div class="container" style="padding-left:15px; padding-right:15px">
+<h1 class="title">Log in</h1>
+<form method="POST">
+{% csrf_token %}
+<div class="field">
+<label class="label">{{ form.username.label }}</label>
+<div class="control has-icons-left">
+{{ form.username }}
+{% if form.username.errors %}<article class="message is-danger"><div class="message-body"><strong>{{ form.name.errors }}</strong></div></article>{% endif %}
+<span class="icon is-small is-left"><i class="fas fa-user"></i></span>
+</div>
+</div>
+<div class="field">
+<label class="label">{{ form.password.label }}</label>
+<div class="control has-icons-left">
+{{ form.password }}
+{% if form.password.errors %}<article class="message is-danger"><div class="message-body"><strong>{{ form.password.errors }}</strong></div></article>{% endif %}
+<span class="icon is-small is-left"><i class="fas fa-key"></i></span>
+</div>
+</div>
+<div class="field">
+<div class="control">{{ form.captcha }}</div>
+{% if form.captcha.errors %}<article class="message is-danger"><div class="message-body"><strong>Please complete the CAPTCHA</strong></div></article>{% endif %}
+</div>
+<div class="field is-grouped">
+<div class="control"><button class="button is-link" type="submit">Log in</button></div>
+</div>
+</form>
+</div>
+{% endblock %}

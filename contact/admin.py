@@ -1,10 +1,18 @@
 from django.contrib import admin
-from simple_personal_site.site_config import SITE_NAME
 from .models import Message
+from simple_personal_site.forms import AuthFormCaptcha
+from simple_personal_site.site_config import SITE_NAME
 
-# set admin site titles
+# Customize admin page
+# set admin site title
 admin.site.site_title = SITE_NAME
 admin.site.site_header = SITE_NAME
+
+# admin login form with captcha
+admin.site.login_form = AuthFormCaptcha
+admin.site.login_template = 'login.html'
+admin.site.logout_template = 'logout.html'
+
 
 
 @admin.register(Message)
