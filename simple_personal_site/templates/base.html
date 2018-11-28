@@ -20,22 +20,36 @@
 <script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js"></script>
 </head>
 <body>
-<nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+<nav class="navbar is-dark">
+<div class="container is-fluid">
 <div class="navbar-brand">
-<a class="navbar-item" href="/"><img src="/static/images/logo.png" alt="" width="28" height="28"> &nbsp; {{ SITE_NAME }}</a>
-<a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbar">
-<span aria-hidden="true"></span>
-<span aria-hidden="true"></span>
-<span aria-hidden="true"></span>
-</a>
+<a class="navbar-item" href="/"><img src="/static/images/logo.png" alt=""> &nbsp; {{ SITE_NAME }}</a>
+<span class="navbar-burger burger" data-target="navMenu">
+<span></span>
+<span></span>
+<span></span>
+</span>
 </div>
+<div id="navMenu" class="navbar-menu">
 <div class="navbar-end">
 <a class="navbar-item" href="/">Home</a>
 <a class="navbar-item" href="{% url 'projects' %}">Projects</a>
 <a class="navbar-item" href="{% url 'contact' %}">Contact</a>
 </div>
+</div>
+</div>
 </nav>
 <div style="margin-top: 50px"></div>
 {% block body %}{% endblock %}
+<script type="text/javascript">
+(function() {
+var burger = document.querySelector('.burger');
+var nav = document.querySelector('#'+burger.dataset.target);
+burger.addEventListener('click', function(){
+burger.classList.toggle('is-active');
+nav.classList.toggle('is-active');
+});
+})();
+</script>
 </body>
 </html>
