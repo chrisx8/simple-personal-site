@@ -26,7 +26,6 @@ def projects(request):
         display_page_range = paginator.page_range[int(page)-3:int(page)+2]
     else:
         display_page_range = paginator.page_range[:int(page)+2]
-    print(display_page_range)
     context = {
         'projects': projects_on_page,
         'page_range': display_page_range

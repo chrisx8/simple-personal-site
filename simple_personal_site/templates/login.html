@@ -8,11 +8,11 @@
 <h1 class="title">Log in</h1>
 <form method="POST">
 {% csrf_token %}
+{% if form.non_field_errors %}<article class="message is-danger"><div class="message-body"><strong>{{ form.non_field_errors }}</strong></div></article>{% endif %}
 <div class="field">
 <label class="label">{{ form.username.label }}</label>
 <div class="control has-icons-left">
 {{ form.username }}
-{% if form.username.errors %}<article class="message is-danger"><div class="message-body"><strong>{{ form.name.errors }}</strong></div></article>{% endif %}
 <span class="icon is-small is-left"><i class="fas fa-user"></i></span>
 </div>
 </div>
@@ -20,7 +20,6 @@
 <label class="label">{{ form.password.label }}</label>
 <div class="control has-icons-left">
 {{ form.password }}
-{% if form.password.errors %}<article class="message is-danger"><div class="message-body"><strong>{{ form.password.errors }}</strong></div></article>{% endif %}
 <span class="icon is-small is-left"><i class="fas fa-key"></i></span>
 </div>
 </div>
