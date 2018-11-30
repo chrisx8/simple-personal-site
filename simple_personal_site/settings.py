@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'snowpenguin.django.recaptcha2',
     'contact.apps.ContactConfig',
     'projects.apps.ProjectsConfig',
+    'shorturl.apps.ShorturlConfig',
 ]
 
 MIDDLEWARE = [

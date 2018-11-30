@@ -1,4 +1,4 @@
-"""simple_personal_site URL Configuration
+"""projects URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.1/topics/http/urls/
@@ -13,15 +13,10 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import include, path
-from contact import urls as contact_urls
-from shorturl import urls as shorturl_urls
-from projects import urls as projects_urls
+from django.urls import path
+from . import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('contact/', include(contact_urls)),
-    path('go/', include(shorturl_urls)),
-    path('projects/', include(projects_urls)),
+    path('', views.go_home),
+    path('<str:alias>', views.redirect),
 ]
