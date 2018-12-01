@@ -119,3 +119,9 @@ STATIC_URL = '/static/'
 STATIC_ROOT = 'static'
 MEDIA_URL = '/uploads/'
 MEDIA_ROOT = 'uploads'
+
+
+# Session times out in 15 minutes or on browser close
+
+SESSION_COOKIE_AGE = 900
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
