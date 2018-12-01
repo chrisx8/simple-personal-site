@@ -2,6 +2,23 @@
 {% block pagetitle %} Home {% endblock %}
 {% block ogtitle %} Home {% endblock %}
 {% block body %}
+<style>
+.video-container {
+position: relative;
+padding-bottom: 56.25%;
+height: 0;
+overflow: hidden;
+}
+.video-container iframe,
+.video-container object,
+.video-container embed {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+}
+</style>
 <div class="container" style="padding-left:15px; padding-right:15px">
 {% load markup_tags %}
 <div class="content">{{ home.about_me|apply_markup:"markdown" }}</div>
