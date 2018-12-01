@@ -36,7 +36,8 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 </head>
 <body>
-<nav class="navbar is-dark">
+<section class="hero is-dark is-bold">
+<nav class="navbar is-transparent">
 <div class="container is-fluid">
 <div class="navbar-brand">
 <a class="navbar-item" href="/"><img src="/static/images/logo.png" alt=""> &nbsp; {{ SITE_NAME }}</a>
@@ -55,6 +56,13 @@
 </div>
 </div>
 </nav>
+<div class="hero-body has-text-centered">
+<div class="container">
+<h1 class="title is-2">{{ HEADER_TITLE }}</h1>
+<h2 class="subtitle">{{ HEADER_SUBTITLE }}</h2>
+</div>
+</div>
+</section>
 <div style="margin-top: 50px"></div>
 {% block body %}{% endblock %}
 <div style="margin-top: 50px"></div>

@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 from django.urls import include, path
 from django.views.generic.base import RedirectView
 
@@ -32,13 +32,9 @@ urlpatterns = [
 
 # 404 error page
 def handler404(request, *args, **argv):
-    response = render_to_response('404.html')
-    response.status_code = 404
-    return response
+    return render(request, '404.html', status=404)
 
 
 # 500 error page
 def handler500(request, *args, **argv):
-    response = render_to_response('500.html')
-    response.status_code = 500
-    return response
+    return render(request, '500.html', status=500)

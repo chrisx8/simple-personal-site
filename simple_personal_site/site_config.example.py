@@ -15,6 +15,10 @@ SITE_NAME = 'My Personal Site'
 SITE_DESCRIPTION = 'Describe My Personal Site'
 SITE_URL = 'https://www.example.com'
 
+# Site header on every page
+HEADER_TITLE = 'My Name'
+HEADER_SUBTITLE = 'Describe Myself'
+
 # Allowed hostnames
 ALLOWED_HOSTS = ['example.com', 'www.example.com']
 
