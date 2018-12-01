@@ -17,18 +17,16 @@ from django.contrib import admin
 from django.shortcuts import render_to_response
 from django.urls import include, path
 from django.views.generic.base import RedirectView
+
 from simple_personal_site import settings
-from contact import urls as contact_urls
-from shorturl import urls as shorturl_urls
-from projects import urls as projects_urls
 
 urlpatterns = [
-    # serve favicon
     path('favicon.ico', RedirectView.as_view(url=settings.STATIC_URL + 'icons/favicon.ico')),
     path('admin/', admin.site.urls),
-    path('contact/', include(contact_urls)),
-    path('go/', include(shorturl_urls)),
-    path('projects/', include(projects_urls)),
+    path('', include('homepage.urls')),
+    path('contact/', include('contact.urls')),
+    path('go/', include('shorturl.urls')),
+    path('projects/', include('projects.urls')),
 ]
 
 

@@ -1,7 +1,8 @@
 from django.contrib import admin
-from .models import Message
+
 from simple_personal_site.forms import AuthFormCaptcha
 from simple_personal_site.site_config import SITE_NAME
+from .models import Message
 
 # Customize admin page
 # set admin site title
@@ -27,6 +28,7 @@ class MessageAdmin(admin.ModelAdmin):
     mark_read.short_description = 'Mark selected messages as read'
     mark_unread.short_description = 'Mark selected messages as unread'
 
+    ordering = ['read', 'timestamp', 'name']
     list_display = ['name', 'email', 'read', 'timestamp']
     list_filter = ['read', 'timestamp']
     actions = [mark_read, mark_unread]

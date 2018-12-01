@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block pagetitle %} Home {% endblock %}
+{% block ogtitle %} Home {% endblock %}
+{% block body %}
+<div class="container" style="padding-left:15px; padding-right:15px">
+{% load markup_tags %}
+<div class="content">{{ home.about_me|apply_markup:"markdown" }}</div>
+<h1 class="title">Featured Projects</h1>
+{% for project in home.featured_projects.all %}
+{% if forloop.counter0|divisibleby:2 %}
+<div class="columns">
+{% endif %}
+<div class="column is-half">
+<div class="card">
+{% if project.youtube_id %}
+<div class="video-container"><iframe src="https://www.youtube-nocookie.com/embed/{{ project.youtube_id }}" frameborder="0" allowfullscreen></iframe></div>
+{% elif project.image %}
+<div class="card-image"><figure class="image is-16by9" ><img src="{{ project.image.url }}" alt="{{ project.title }}"></figure></div>
+{% endif %}
+<div class="card-content">
+<p class="title">{{ project.title }}</p>
+{% load markup_tags %}
+<div class="content">{{ project.description|apply_markup:"markdown" }}</div>
+{% if project.url %}
+<a class="button is-link" href="{{ project.url }}" target="_blank">
+{% if project.fa_icon %}<i class="{{ project.fa_icon }}"></i>&nbsp;{% endif %}{{ project.url_description}} &nbsp;<i class="fas fa-external-link-alt"></i>
+</a>
+{% endif %}
+</div>
+</div>
+</div>
+{% if forloop.counter|divisibleby:2 or forloop.last %}
+</div>
+{% endif %}
+{% endfor %}
+
+</div>
+{% endblock %}
