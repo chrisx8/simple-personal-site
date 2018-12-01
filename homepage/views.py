@@ -1,12 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import HttpResponse, render
 
 from .models import Homepage
 
 
 # homepage
 def home(request):
-    home_obj = Homepage.objects.latest('id')
-    context = {
-        'home': home_obj
-    }
-    return render(request, 'home.html', context=context)
+    try:
+        home_obj = Homepage.objects.latest('id')
+        context = {'home': home_obj}
+        return render(request, 'home.html', context=context)
+    except:
+        return HttpResponse('<h1>Please create a homepage in the <a href="/admin/">management portal</a>.<h1>')
