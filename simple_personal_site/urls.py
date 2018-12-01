@@ -22,7 +22,7 @@ from simple_personal_site import settings
 
 urlpatterns = [
     path('favicon.ico', RedirectView.as_view(url=settings.STATIC_URL + 'icons/favicon.ico')),
-    path('admin/', admin.site.urls),
+    path('manage/', admin.site.urls),
     path('', include('homepage.urls')),
     path('contact/', include('contact.urls')),
     path('go/', include('shorturl.urls')),

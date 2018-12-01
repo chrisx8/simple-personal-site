@@ -12,6 +12,9 @@
 <meta property="og:site_name" content="{{ SITE_NAME }}" />
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="en_US" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="{{ SITE_NAME }}">
 <link rel="apple-touch-icon" sizes="57x57" href="/static/icons/apple-icon-57x57.png">
 <link rel="apple-touch-icon" sizes="60x60" href="/static/icons/apple-icon-60x60.png">
 <link rel="apple-touch-icon" sizes="72x72" href="/static/icons/apple-icon-72x72.png">
@@ -41,7 +44,7 @@
 <div class="container is-fluid">
 <div class="navbar-brand">
 <a class="navbar-item" href="/"><img src="/static/images/logo.png" alt=""> &nbsp; {{ SITE_NAME }}</a>
-<span class="navbar-burger burger" data-target="navMenu">
+<span class="navbar-burger burger" data-target="navMenu" style="color:lightgray">
 <span></span>
 <span></span>
 <span></span>

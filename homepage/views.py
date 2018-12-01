@@ -10,4 +10,4 @@ def home(request):
         context = {'home': home_obj}
         return render(request, 'home.html', context=context)
     except:
-        return HttpResponse('<h1>Please create a homepage in the <a href="/admin/">management portal</a>.<h1>')
+        return HttpResponse('<h1>Please create a homepage in the <a href="/manage/">management portal</a>.<h1>')
