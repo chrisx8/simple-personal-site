@@ -4,6 +4,8 @@ Create your personal website in minutes!
 
 ## Install
 
+Generate your own icons [here](https://www.favicon-generator.org)
+
 TODO
 
 ## License

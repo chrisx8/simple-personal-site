@@ -1,6 +1,6 @@
 import sendgrid
-import os
 from sendgrid.helpers.mail import Email, Content, Mail
+
 from simple_personal_site.site_config import SENDGRID_APIKEY
 
 
