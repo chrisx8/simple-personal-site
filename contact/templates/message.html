@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block pagetitle %} Send Message {% endblock %}
+{% block ogtitle %} Send Message {% endblock %}
+{% block body %}
+{% load recaptcha2 %}
+{% recaptcha_init %}
+<div class="container" style="padding-left:15px; padding-right:15px">
+<h1 class="title">Send Message</h1>
+<p class="subtitle">Send me a message, and I'll get back to you soon!</p>
+<form method="POST">
+{% csrf_token %}
+<div class="field">
+<label class="label">{{ form.name.label }}</label>
+<div class="control has-icons-left">
+{{ form.name }}
+{% if form.name.errors %}<article class="message is-danger"><div class="message-body"><strong>{{ form.name.errors }}</strong></div></article>{% endif %}
+<span class="icon is-small is-left"><i class="fas fa-user"></i></span>
+</div>
+</div>
+<div class="field">
+<label class="label">{{ form.email.label }}</label>
+<div class="control has-icons-left">
+{{ form.email }}
+{% if form.email.errors %}<article class="message is-danger"><div class="message-body"><strong>{{ form.email.errors }}</strong></div></article>{% endif %}
+<span class="icon is-small is-left"><i class="fas fa-envelope"></i></span>
+</div>
+</div>
+<div class="field">
+<label class="label">Message</label>
+<div class="control">
+{{ form.message }}
+{% if form.message.errors %}<article class="message is-danger"><div class="message-body"><strong>{{ form.message.errors }}</strong></div></article>{% endif %}
+</div>
+</div>
+<div class="field">
+<div class="control">{{ form.captcha }}</div>
+{% if form.captcha.errors %}<article class="message is-danger"><div class="message-body"><strong>Please complete the CAPTCHA</strong></div></article>{% endif %}
+</div>
+<div class="field is-grouped">
+<div class="control"><button class="button is-link" type="submit">Send</button></div>
+</div>
+</form>
+</div>
+{% endblock %}
