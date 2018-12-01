@@ -33,7 +33,7 @@ height: 100%;
 <div class="column is-half">
 <div class="card">
 {% if project.youtube_id %}
-<div class="video-container"><iframe src="https://www.youtube-nocookie.com/embed/{{ project.youtube_id }}" frameborder="0" allowfullscreen></iframe></div>
+<div class="video-container"><iframe title="{{ project.title }}" src="https://www.youtube-nocookie.com/embed/{{ project.youtube_id }}" frameborder="0" allowfullscreen></iframe></div>
 {% elif project.image %}
 <div class="card-image"><figure class="image is-16by9" ><img src="{{ project.image.url }}" alt="{{ project.title }}"></figure></div>
 {% endif %}
@@ -42,7 +42,7 @@ height: 100%;
 {% load markup_tags %}
 <div class="content">{{ project.description|apply_markup:"markdown" }}</div>
 {% if project.url %}
-<a class="button is-link" href="{{ project.url }}" target="_blank">
+<a class="button is-link" href="{{ project.url }}" target="_blank" rel="noopener noreferrer">
 {% if project.fa_icon %}<i class="{{ project.fa_icon }}"></i>&nbsp;{% endif %}{{ project.url_description}} &nbsp;<i class="fas fa-external-link-alt"></i>
 </a>
 {% endif %}

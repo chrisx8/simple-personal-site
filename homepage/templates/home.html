@@ -31,7 +31,7 @@ height: 100%;
 <div class="column is-half">
 <div class="card">
 {% if project.youtube_id %}
-<div class="video-container"><iframe src="https://www.youtube-nocookie.com/embed/{{ project.youtube_id }}" frameborder="0" allowfullscreen></iframe></div>
+<div class="video-container"><iframe title="{{ project.title }}" src="https://www.youtube-nocookie.com/embed/{{ project.youtube_id }}" frameborder="0" allowfullscreen></iframe></div>
 {% elif project.image %}
 <div class="card-image"><figure class="image is-16by9" ><img src="{{ project.image.url }}" alt="{{ project.title }}"></figure></div>
 {% endif %}
