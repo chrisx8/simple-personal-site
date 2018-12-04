@@ -38,7 +38,28 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 </head>
+<style>
+.main {
+min-height: 100vh;
+overflow: hidden;
+display: block;
+position: relative;
+padding-bottom: 3em;
+}
+.custom-footer {
+background-color: #363636;
+color: white;
+position:absolute;
+clear: both;
+width:100%;
+bottom:0px;
+height: 4em;
+padding-top: 1.5rem;
+padding-bottom: 1.5rem;
+}
+</style>
 <body>
+<div class="main">
 <section class="hero is-dark is-bold">
 <nav class="navbar is-transparent">
 <div class="container is-fluid">
@@ -66,9 +87,15 @@
 </div>
 </div>
 </section>
-<div style="margin-top: 50px"></div>
+<div style="height: 50px"></div>
 {% block body %}{% endblock %}
-<div style="margin-top: 50px"></div>
+<div style="height: 50px"></div>
+<footer class="custom-footer">
+<div class="content has-text-centered">
+<p>&copy; {{ YEAR }} {{ FOOTER_COPYRIGHT }}</p>
+</div>
+</footer>
+</div>
 <script type="text/javascript">
 (function() {
 var burger = document.querySelector('.burger');

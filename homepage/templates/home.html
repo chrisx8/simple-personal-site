@@ -23,6 +23,7 @@ height: 100%;
 <h1 class="title">About Me</h1>
 {% load markup_tags %}
 <div class="content">{{ home.about_me|apply_markup:"markdown" }}</div>
+{% if home.featured_projects.all %}
 <h1 class="title">Featured Projects</h1>
 {% for project in home.featured_projects.all %}
 {% if forloop.counter0|divisibleby:2 %}
@@ -51,6 +52,6 @@ height: 100%;
 </div>
 {% endif %}
 {% endfor %}
-
+{% endif %}
 </div>
 {% endblock %}

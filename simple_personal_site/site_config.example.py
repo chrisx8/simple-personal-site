@@ -15,10 +15,6 @@ SITE_NAME = 'My Personal Site'
 SITE_DESCRIPTION = 'Describe My Personal Site'
 SITE_URL = 'https://www.example.com'
 
-# Site header on every page
-HEADER_TITLE = 'My Name'
-HEADER_SUBTITLE = 'Describe Myself'
-
 # Allowed hostnames
 ALLOWED_HOSTS = ['example.com', 'www.example.com']
 
@@ -41,6 +37,22 @@ RECAPTCHA_PUBLIC_KEY = 'your site key'
 # Sendgrid API credentials [OPTIONAL]
 # NOT REQUIRED. If you don't want to send emails, leave SENDGRID_APIKEY blank
 SENDGRID_APIKEY = ''
+
+# ------------------------------------------------
+# PAGE HEADERS
+# ------------------------------------------------
+
+# Site header on every page
+HEADER_TITLE = 'My Name'
+HEADER_SUBTITLE = 'Describe Myself'
+
+# ------------------------------------------------
+# PAGE FOOTERS
+# ------------------------------------------------
+
+# Copyright footer on every page
+# "(C) year " always shows. Set this to be the text after "(C) year "
+FOOTER_COPYRIGHT = 'MyName. All rights reserved.'
 
 # ------------------------------------------------
 # PROJECTS PAGE PREFERENCES
