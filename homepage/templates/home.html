@@ -41,7 +41,7 @@ height: 100%;
 {% load markup_tags %}
 <div class="content">{{ project.description|apply_markup:"markdown" }}</div>
 {% if project.url %}
-<a class="button is-link" href="{{ project.url }}" target="_blank">
+<a class="button is-link" href="{{ project.url }}" target="_blank" rel="noopener noreferrer">
 {% if project.fa_icon %}<i class="{{ project.fa_icon }}"></i>&nbsp;{% endif %}{{ project.url_description}} &nbsp;<i class="fas fa-external-link-alt"></i>
 </a>
 {% endif %}
