@@ -27,32 +27,21 @@
 <meta name="msapplication-TileColor" content="#363636">
 <meta name="msapplication-TileImage" content="/static/icons/mstile-150x150.png">
 <meta name="theme-color" content="#363636">
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ GA_TRACKING_ID }}"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '{{ GA_TRACKING_ID }}');
+</script>
 <!--[if lt IE 9]>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
 <![endif]-->
+<link rel="stylesheet" href="/static/css/sps.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 </head>
-<style>
-.main {
-min-height: 100vh;
-overflow: hidden;
-display: block;
-position: relative;
-padding-bottom: 3em;
-}
-.custom-footer {
-background-color: #363636;
-color: white;
-position:absolute;
-clear: both;
-width:100%;
-bottom:0px;
-height: 4em;
-padding-top: 1.5rem;
-padding-bottom: 1.5rem;
-}
-</style>
 <body>
 <div class="main">
 <section class="hero is-dark is-bold">

@@ -1,17 +1,18 @@
 import datetime
-from .site_config import SITE_NAME, SITE_DESCRIPTION, SITE_URL, HEADER_SUBTITLE, HEADER_TITLE, FOOTER_COPYRIGHT
+from . import site_config
 
 
 # global site information
 def site_info(request):
     time = datetime.datetime.now()
     context = {
-        'SITE_NAME': SITE_NAME,
-        'SITE_DESCRIPTION': SITE_DESCRIPTION,
-        'SITE_URL': SITE_URL,
-        'HEADER_TITLE': HEADER_TITLE,
-        'HEADER_SUBTITLE': HEADER_SUBTITLE,
-        'FOOTER_COPYRIGHT': FOOTER_COPYRIGHT,
+        'SITE_NAME': site_config.SITE_NAME,
+        'SITE_DESCRIPTION': site_config.SITE_DESCRIPTION,
+        'SITE_URL': site_config.SITE_URL,
+        'GA_TRACKING_ID': site_config.GA_TRACKING_ID,
+        'HEADER_TITLE': site_config.HEADER_TITLE,
+        'HEADER_SUBTITLE': site_config.HEADER_SUBTITLE,
+        'FOOTER_COPYRIGHT': site_config.FOOTER_COPYRIGHT,
         'YEAR': time.year,
     }
     return context

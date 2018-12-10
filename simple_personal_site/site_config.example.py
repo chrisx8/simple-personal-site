@@ -34,6 +34,10 @@ DATABASE_URL = ''
 RECAPTCHA_PRIVATE_KEY = 'your private key'
 RECAPTCHA_PUBLIC_KEY = 'your site key'
 
+# Google Analytics credentials
+# NOT REQUIRED. If you don't want to use Google Analytics on the site, leave this blank
+GA_TRACKING_ID = ''
+
 # Sendgrid API credentials [OPTIONAL]
 # NOT REQUIRED. If you don't want to send emails, leave SENDGRID_APIKEY blank
 SENDGRID_APIKEY = ''
