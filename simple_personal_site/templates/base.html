@@ -27,6 +27,7 @@
 <meta name="msapplication-TileColor" content="#363636">
 <meta name="msapplication-TileImage" content="/static/icons/mstile-150x150.png">
 <meta name="theme-color" content="#363636">
+{% if GA_TRACKING_ID %}
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id={{ GA_TRACKING_ID }}"></script>
 <script>
@@ -35,6 +36,7 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', '{{ GA_TRACKING_ID }}');
 </script>
+{% endif %}
 <!--[if lt IE 9]>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
 <![endif]-->
