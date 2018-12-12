@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  personal-site:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    volumes:
+      - uploads:/app/uploads/
+      - static:/app/static/
+    depends_on:
+      - db
+    container_name: personal-site
+    restart: unless-stopped
+  db:
+    image: postgres:alpine
+    volumes:
+      - db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: personalsite
+      POSTGRES_USER: personalsite
+      POSTGRES_PASSWORD: YOUR_PASSWORD
+    restart: unless-stopped
+  nginx:
+    build: ./nginx
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ~/ssl/:/etc/nginx/ssl/
+      - uploads:/usr/share/nginx/www/uploads/
+      - static:/usr/share/nginx/www/static/
+    restart: unless-stopped
+
+volumes:
+  db:
+  static:
+  uploads:
