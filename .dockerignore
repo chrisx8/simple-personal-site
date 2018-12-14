@@ -119,4 +119,7 @@ dmypy.json
 .idea/
 Dockerfile
 .gitignore
+static/admin/
+static/staticfiles.json
+uploads/
 */migrations/0*.py

@@ -3,7 +3,7 @@ COPY . /app/
 
 WORKDIR /app
 
-RUN apk add --no-cache python3 build-base postgresql-dev gcc python3-dev musl-dev mariadb-connector-c-dev && \
+RUN apk add --no-cache python3 build-base postgresql-dev gcc python3-dev musl-dev mariadb-connector-c-dev jpeg-dev zlib-dev && \
     pip3 install --no-cache --upgrade pip setuptools && \
     pip3 install --no-cache -r requirements.txt && \
     echo 'nameserver 127.0.0.11' > /etc/resolv.conf && \
