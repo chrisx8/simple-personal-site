@@ -7,14 +7,14 @@ class Project(models.Model):
     title = models.CharField(verbose_name='Project Name', max_length=100, default='', null=False)
     description = models.TextField(verbose_name='Project Description', default='', null=False,
                                    help_text="Write in Markdown format")
-    image = models.FileField(verbose_name='Project Image', upload_to='projects', blank=True)
+    image = models.ImageField(verbose_name='Project Image', upload_to='projects', blank=True)
     youtube_id = models.CharField(verbose_name='Youtube Video ID', max_length=15, blank=True,
                                   help_text='Video ID is the 11-character string after ?v=. For example, if your '
                                             'YouTube video URL is https://www.youtube.com/watch?v=dQw4w9WgXcQ, '
                                             'the Video ID is dQw4w9WgXcQ')
     url = models.URLField(verbose_name='Project URL', null=False, blank=True)
     url_description = models.CharField(verbose_name='URL Description', max_length=50, default='Website', blank=True)
-    fa_icon = models.CharField(verbose_name='Font Awesome icon class', max_length=50, default='', 
+    fa_icon = models.CharField(verbose_name='Font Awesome icon class', max_length=50, default='',
                                null=False, blank=True)
     show = models.BooleanField(verbose_name='Show on Projects page', default=True, null=False)
 
