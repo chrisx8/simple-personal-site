@@ -1,5 +1,6 @@
 User-agent: *
 Disallow: /admin/
+Disallow: /go/
 Disallow: /manage/
 Disallow: /static/
 Disallow: /uploads/
