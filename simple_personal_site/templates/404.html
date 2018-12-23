@@ -33,12 +33,22 @@
 </nav>
 <div class="hero-body has-text-centered">
 <div class="container">
-<h1 class="title is-spaced" style="font-size: 10em">Oops!</h1>
-<h2 class="subtitle is-4 is-spaced">The page you're looking for doesn't exist.</h2>
+<h1 class="title is-1 is-spaced">Oops!</h1>
+<h2 class="subtitle is-5 is-spaced">The page you're looking for doesn't exist.</h2>
 <hr>
 <p>Error code: <code>404</code></p>
 </div>
 </div>
 </section>
+<script type="text/javascript">
+(function() {
+var burger = document.querySelector('.burger');
+var nav = document.querySelector('#'+burger.dataset.target);
+burger.addEventListener('click', function(){
+burger.classList.toggle('is-active');
+nav.classList.toggle('is-active');
+});
+})();
+</script>
 </body>
 </html>
