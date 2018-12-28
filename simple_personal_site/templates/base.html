@@ -28,7 +28,17 @@
 <meta name="msapplication-TileImage" content="/static/icons/mstile-150x150.png">
 <meta name="theme-color" content="#363636">
 {% if GA_TRACKING_ID %}
-<!-- Global site tag (gtag.js) - Google Analytics -->
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
+<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
+<script>
+window.addEventListener("load", function(){
+window.cookieconsent.initialise({
+"palette": {"popup": {"background": "#363636"},"button": {"background": "#3273dc"}},
+"theme": "classic",
+"position": "bottom-right",
+"content": {"message": "This website uses cookies to analyze site traffic."}
+})});
+</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id={{ GA_TRACKING_ID }}"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
