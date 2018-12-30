@@ -24,6 +24,7 @@ urlpatterns = [
     path('favicon.ico', RedirectView.as_view(url=settings.STATIC_URL + 'icons/favicon.ico')),
     path('manage/', admin.site.urls),
     path('', include('homepage.urls')),
+    path('blog/', include('blog.urls')),
     path('contact/', include('contact.urls')),
     path('go/', include('shorturl.urls')),
     path('projects/', include('projects.urls')),

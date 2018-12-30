@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block pagetitle %} {{ article }} {% endblock %}
+{% block ogtitle %} {{ article }} {% endblock %}
+{% block body %}
+<div class="container" style="padding-left:15px; padding-right:15px">
+<h1 class="title">{{ article }}</h1>
+{% if article.subtitle %}
+<h2 class="subtitle">{{ article.subtitle }}</h2>
+{% else %}
+<h2 class="subtitle">&nbsp;</h2>
+{% endif %}
+<article class="message">
+{% if article.time_posted == article.last_edited %}
+<p>Posted at <strong>{{ article.time_posted }} {{ TIMEZONE }}</strong></p>
+{% else %}
+<p>Last edited at <strong>{{ article.last_edited }} {{ TIMEZONE }}</strong></p>
+{% endif %}
+</article>
+{% load markup_tags %}
+<div class="content">
+{{ article.content|apply_markup:"markdown" }}
+</div>
+</div>
+{% endblock %}

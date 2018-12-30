@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block pagetitle %} Blog {% endblock %}
+{% block ogtitle %} Blog {% endblock %}
+{% block body %}
+<div class="container" style="padding-left:15px; padding-right:15px">
+<h1 class="title">Blog</h1>
+{% if not articles %}
+<article class="message">
+<div class="message-body">The site owner hasn't posted any articles yet.</div>
+</article>
+{% endif %}
+{% for article in articles %}
+<div class="card">
+<div class="card-content">
+<h2 class="title is-4"><a href="{% url 'view_article' id=article.id %}">{{ article }}</a></h2>
+{% if article.subtitle %}
+<h3 class="subtitle is-6">{{ article.subtitle }}</h3>
+{% else %}
+<h3 class="subtitle is-6">&nbsp;</h3>
+{% endif %}
+{% if article.time_posted == article.last_edited %}
+<p>Posted at <strong>{{ article.time_posted }} {{ TIMEZONE }}</strong></p>
+{% else %}
+<p>Last edited at <strong>{{ article.last_edited }} {{ TIMEZONE }}</strong></p>
+{% endif %}
+</div>
+</div>
+{% endfor %}
+{% if articles.paginator.num_pages > 1 %}
+<nav class="pagination is-centered" role="navigation" aria-label="pagination">
+{% if articles.has_previous %}
+<a href="?page={{ articles.previous_page_number }}" class="pagination-previous">Previous</a>
+{% else %}
+<a class="pagination-previous" disabled>Previous</a>
+{% endif %}
+{% if articles.has_next %}
+<a href="?page={{ articles.next_page_number }}" class="pagination-next">Next</a>
+{% else %}
+<a class="pagination-next" disabled>Next</a>
+{% endif %}
+<ul class="pagination-list">
+{% for page in page_range %}
+{% if articles.number == page %}
+<li><a class="pagination-link is-current" aria-label="Page {{ page }}" aria-current="page">{{ page }}</a></li>
+{% else %}
+<li><a href="?page={{ page }}" class="pagination-link" aria-label="Goto page {{ page }}">{{ page }}</a></li>
+{% endif %}
+{% endfor %}
+{% endif %}
+</ul>
+</nav>
+</div>
+{% endblock %}

@@ -1,5 +1,5 @@
 import datetime
-from . import site_config
+from . import site_config, settings
 
 
 # global site information
@@ -14,5 +14,6 @@ def site_info(request):
         'HEADER_SUBTITLE': site_config.HEADER_SUBTITLE,
         'FOOTER_COPYRIGHT': site_config.FOOTER_COPYRIGHT,
         'YEAR': time.year,
+        'TIMEZONE': settings.TIME_ZONE
     }
     return context

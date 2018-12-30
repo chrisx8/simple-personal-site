@@ -6,9 +6,37 @@
 <h1 class="title">About Me</h1>
 {% load markup_tags %}
 <div class="content">{{ home.about_me|apply_markup:"markdown" }}</div>
-{% if home.featured_projects.all %}
+{% if featured_articles %}
+<h1 class="title">Featured Articles</h1>
+{% for article in featured_articles %}
+{% if forloop.counter0|divisibleby:2 %}
+<div class="columns">
+{% endif %}
+<div class="column is-half">
+<div class="card">
+<div class="card-content">
+<h2 class="title is-4"><a href="{% url 'view_article' id=article.id %}">{{ article }}</a></h2>
+{% if article.subtitle %}
+<h3 class="subtitle is-6">{{ article.subtitle }}</h3>
+{% else %}
+<h3 class="subtitle is-6">&nbsp;</h3>
+{% endif %}
+{% if article.time_posted == article.last_edited %}
+<p>Posted at <strong>{{ article.time_posted }} {{ TIMEZONE }}</strong></p>
+{% else %}
+<p>Last edited at <strong>{{ article.last_edited }} {{ TIMEZONE }}</strong></p>
+{% endif %}
+</div>
+</div>
+</div>
+{% if forloop.counter|divisibleby:2 or forloop.last %}
+</div>
+{% endif %}
+{% endfor %}
+{% endif %}
+{% if featured_projects %}
 <h1 class="title">Featured Projects</h1>
-{% for project in home.featured_projects.all %}
+{% for project in featured_projects %}
 {% if forloop.counter0|divisibleby:2 %}
 <div class="columns">
 {% endif %}

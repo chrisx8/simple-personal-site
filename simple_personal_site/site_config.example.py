@@ -59,6 +59,13 @@ HEADER_SUBTITLE = 'Describe Myself'
 FOOTER_COPYRIGHT = 'MyName. All rights reserved.'
 
 # ------------------------------------------------
+# BLOG PAGE PREFERENCES
+# ------------------------------------------------
+
+# Number of articles on blog page
+ARTICLES_PER_PAGE = 10
+
+# ------------------------------------------------
 # PROJECTS PAGE PREFERENCES
 # ------------------------------------------------
 

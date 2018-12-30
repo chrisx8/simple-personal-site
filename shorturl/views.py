@@ -11,8 +11,9 @@ def go_home(request):
 def redirect(request, alias):
     # redirect if url exists
     try:
-        full_url = ShortURL.objects.get(alias=alias).full_url
-        return HttpResponseRedirect(full_url)
+        url_obj = ShortURL.objects.get(alias=alias)
+        assert url_obj.enabled
+        return HttpResponseRedirect(url_obj.full_url)
     # 404 if url doesn't exist
-    except:
+    except (AssertionError, ShortURL.DoesNotExist):
         raise Http404(request)

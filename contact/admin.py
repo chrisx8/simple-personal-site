@@ -48,8 +48,8 @@ class SocialMediaLinkAdmin(admin.ModelAdmin):
     def hide(self, request, queryset):
         queryset.update(show=False)
 
-    show.short_description = 'Show selected social media links on Projects page'
-    show.short_description = 'Hide selected social media links on Projects page'
+    show.short_description = 'Show selected social media links'
+    hide.short_description = 'Hide selected social media links'
 
     ordering = ['platform']
     list_display = ['platform', 'username', 'show']

@@ -5,11 +5,11 @@ from .models import Project
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
-    # show selected on projects page
+    # show selected
     def show(self, request, queryset):
         queryset.update(show=True)
 
-    # hide selected on projects page
+    # hide selected
     def hide(self, request, queryset):
         queryset.update(show=False)
 
@@ -18,8 +18,8 @@ class ProjectAdmin(admin.ModelAdmin):
         for obj in queryset:
             obj.delete()
 
-    show.short_description = 'Show selected projects on Projects page'
-    hide.short_description = 'Hide selected projects on Projects page'
+    show.short_description = 'Show selected projects'
+    hide.short_description = 'Hide selected projects'
 
     ordering = ['title']
     list_display = ['title', 'show']

@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_markup',
     'snowpenguin.django.recaptcha2',
+    'blog.apps.BlogConfig',
     'contact.apps.ContactConfig',
     'homepage.apps.HomepageConfig',
     'projects.apps.ProjectsConfig',
