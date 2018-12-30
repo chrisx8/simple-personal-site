@@ -7,7 +7,7 @@ from simple_personal_site.site_config import SENDGRID_APIKEY
 class SendgridClient(object):
     def __init__(self, apikey):
         self.sg = sendgrid.SendGridAPIClient(apikey=apikey)
-    
+
     # Send plaintext email with Sendgrid
     def send_plaintext(self, from_address, to_address, subject, text):
         from_email = Email(from_address)
@@ -27,4 +27,7 @@ class SendgridClient(object):
         return response.status_code
 
 
-sg_client = SendgridClient(SENDGRID_APIKEY)
+if SENDGRID_APIKEY:
+    sg_client = SendgridClient(SENDGRID_APIKEY)
+else:
+    sg_client = None

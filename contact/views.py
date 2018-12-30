@@ -25,14 +25,15 @@ def message(request):
             # create message object
             new_msg = Message(name=form_data['name'], email=form_data['email'], message=form_data['message'])
             new_msg.save()
-            # render email content
-            mail_context = {
-                'name': new_msg.name,
-                'msg': new_msg.message
-            }
-            mail_content = render(request, 'message_email.html', context=mail_context).content.decode("utf-8")
-            # send email
-            sg_client.send_html(CONTACT_EMAIL['from'], new_msg.email, CONTACT_EMAIL['subject'], mail_content)
+            if sg_client:
+                # render email content
+                mail_context = {
+                    'name': new_msg.name,
+                    'msg': new_msg.message
+                }
+                mail_content = render(request, 'message_email.html', context=mail_context).content.decode("utf-8")
+                # send email
+                sg_client.send_html(CONTACT_EMAIL['from'], new_msg.email, CONTACT_EMAIL['subject'], mail_content)
             return HttpResponseRedirect(reverse('message_success'))
         else:
             context = {'form': form}
