@@ -11,9 +11,9 @@
 {% endif %}
 <article class="message">
 {% if article.time_posted == article.last_edited %}
-<p>Posted at <strong>{{ article.time_posted }} {{ TIMEZONE }}</strong></p>
+<p>Posted on <strong>{{ article.time_posted }}</strong></p>
 {% else %}
-<p>Last edited at <strong>{{ article.last_edited }} {{ TIMEZONE }}</strong></p>
+<p>Last edited on <strong>{{ article.last_edited }}</strong></p>
 {% endif %}
 </article>
 {% if article.images.all|length > 1 %}

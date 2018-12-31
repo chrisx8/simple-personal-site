@@ -27,8 +27,8 @@ class Article(models.Model):
 	images = models.ManyToManyField(Image, blank=True)
 	content = models.TextField(default='', null=False, help_text='Write in Markdown')
 	show = models.BooleanField(default=True, null=False, help_text='Show article on blog')
-	time_posted = models.DateTimeField(auto_now_add=True)
-	last_edited = models.DateTimeField(auto_now=True)
+	time_posted = models.DateField(auto_now_add=True)
+	last_edited = models.DateField(auto_now=True)
 
 	def __str__(self):
 		return self.title
