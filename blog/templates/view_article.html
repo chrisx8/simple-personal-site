@@ -42,7 +42,7 @@
 </div>
 <script>showSlides(1);</script>
 {% elif article.images.all|length == 1 %}
-<div class="center"><img src="{{ article.images.first.image.url }}" alt="" style="width:100%"></div>
+<div class="center"><img src="{{ article.images.first.image.url }}" alt=""></div>
 {% endif %}
 {% load markup_tags %}
 <div class="content">
