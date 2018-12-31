@@ -16,6 +16,34 @@
 <p>Last edited at <strong>{{ article.last_edited }} {{ TIMEZONE }}</strong></p>
 {% endif %}
 </article>
+{% if article.images.all|length > 1 %}
+<link rel="stylesheet" type="text/css" href="/static/css/slideshow.css"/>
+<script src="/static/js/slideshow.js"></script>
+<div class="center">
+<div class="slideshow-container">
+{% for i in article.images.all %}
+<div class="mySlides fade">
+<img src="{{ i.image.url }}" alt="" style="width:100%">
+<div class="text">
+{{ i.caption }}<br>
+{{ forloop.counter }} / {{ article.images.all|length }}
+</div>
+</div>
+{% endfor %}
+<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+<a class="next" onclick="plusSlides(1)">&#10095;</a>
+</div>
+<br>
+<div style="text-align:center">
+{% for i in article.images.all %}
+<span class="dot" onclick="currentSlide({{ forloop.counter }})"></span>
+{% endfor %}
+</div>
+</div>
+<script>showSlides(1);</script>
+{% elif article.images.all|length == 1 %}
+<div class="center"><img src="{{ article.images.first.image.url }}" alt="" style="width:100%"></div>
+{% endif %}
 {% load markup_tags %}
 <div class="content">
 {{ article.content|apply_markup:"markdown" }}
