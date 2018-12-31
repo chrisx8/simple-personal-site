@@ -24,10 +24,7 @@
 {% for i in article.images.all %}
 <div class="mySlides fade">
 <img src="{{ i.image.url }}" alt="" style="width:100%">
-<div class="text">
-{{ i.caption }}<br>
-{{ forloop.counter }} / {{ article.images.all|length }}
-</div>
+<div class="text">({{ forloop.counter }} / {{ article.images.all|length }})&nbsp; {{ i.caption }}</div>
 </div>
 {% endfor %}
 <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
