@@ -11,6 +11,7 @@ Create your personal website in minutes! Follow instructions below to set up.
 	- [Configure site](#configure-site)
 	- [SSL Certificate](#ssl-certificate)
 - [Install](#install)
+	- [Install directly](#install-directly)
 	- [Install with Docker](#install-with-docker)
 - [Manage content](#manage-content)
 - [License](#license)
@@ -54,6 +55,65 @@ chmod 700 ~/ssl
 - Put the certificate at `~/ssl/cert.pem`, and put the private key at `~/ssl/key.pem`
 
 ## Install
+
+### Install directly
+
+- Make sure `python3` is installed on your VPS.
+If you're on CentOS, install Python 3.6
+```bash
+sudo yum install rh-python36
+```
+- Check if `pip` is installed for Python 3.
+```bash
+python3 -m pip
+```
+If running this returns `No module named pip`, install `pip`.
+```bash
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+sudo python3 get-pip.py
+```
+- Make sure you're corrently in the project directory `simple-personal-site/`.
+- Install project dependencies.
+```bash
+# On Ubuntu/Debian
+sudo apt-get install python3-dev libmysqlclient-dev
+sudo python3 -m pip install -r requirements.txt
+# On CentOS
+sudo yum install rh-python36-python-devel mariadb-libs
+sudo python3 -m pip install -r requirements.txt
+```
+- Create system service
+Create service file with `nano` or another text editor
+```bash
+sudo nano /etc/systemd/system/multi-user.target.wants/personal-site.service
+```
+Paste in the following, and edit accordingly
+```
+[Unit]
+Description=Simple Personal Site
+After=network.target
+
+[Service]
+Type=simple
+User=[YOUR USERNAME]
+WorkingDirectory=[PROJECT DIRECTORY]
+ExecStart=gunicorn simple_personal_site.wsgi:application -b 127.0.0.1:8000
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+```
+- Activate and start service
+```bash
+sudo systemctl daemon-reload
+sudo systemctl enable personal-site
+sudo systemctl start personal-site
+```
+- Create an admin account.
+```bash
+python3 manage.py createsuperuser
+```
+- Configure Nginx to reverse-proxy this application with `proxy_pass http://localhost:8000;`. Sample config is available at `docker/nginx/personal-site.conf`.
 
 ### Install with Docker
 
