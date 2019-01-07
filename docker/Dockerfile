@@ -10,9 +10,13 @@ RUN apk add --no-cache python3 build-base postgresql-dev gcc python3-dev musl-de
     echo 'nameserver 1.1.1.1' >> /etc/resolv.conf && \
     echo 'nameserver 8.8.8.8' >> /etc/resolv.conf && \
     rm /app/requirements.txt && \
+    mkdir /app/uploads && \
+    chown nobody:nogroup -R /app && \
     apk del build-base gcc python3-dev musl-dev
 
 EXPOSE 8000
+
+USER nobody
 
 CMD python3 manage.py collectstatic --noinput && \
     python3 manage.py makemigrations && \
