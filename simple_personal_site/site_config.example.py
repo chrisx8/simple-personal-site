@@ -38,9 +38,15 @@ RECAPTCHA_PUBLIC_KEY = 'your site key'
 # NOT REQUIRED. If you don't want to use Google Analytics on the site, leave this blank
 GA_TRACKING_ID = ''
 
-# Sendgrid API credentials [OPTIONAL]
-# NOT REQUIRED. If you don't want to send emails, leave SENDGRID_APIKEY blank
-SENDGRID_APIKEY = ''
+# SMTP Server credentials [OPTIONAL]
+# NOT REQUIRED. If you don't want to send emails, leave all of these blank
+
+EMAIL_HOST = 'smtp.example.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'user@example.com'
+EMAIL_HOST_PASSWORD = 'your password'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
 
 # ------------------------------------------------
 # PAGE HEADERS

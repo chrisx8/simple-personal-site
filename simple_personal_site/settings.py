@@ -14,7 +14,8 @@ import os
 
 import dj_database_url
 
-from .site_config import DATABASE_URL, ALLOWED_HOSTS, SECRET_KEY, RECAPTCHA_PRIVATE_KEY, RECAPTCHA_PUBLIC_KEY
+from .site_config import DATABASE_URL, ALLOWED_HOSTS, SECRET_KEY, RECAPTCHA_PRIVATE_KEY, RECAPTCHA_PUBLIC_KEY, \
+    EMAIL_HOST, EMAIL_PORT, EMAIL_HOST_USER, EMAIL_HOST_PASSWORD, EMAIL_USE_SSL, EMAIL_USE_TLS
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 

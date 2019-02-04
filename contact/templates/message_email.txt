@@ -1,0 +1,8 @@
+Hi {{ name }},
+
+Thanks for contacting me! I'll get back to you soon.
+
+Here's a copy of your message:
+{% autoescape off %}
+{{ msg }}
+{% endautoescape %}

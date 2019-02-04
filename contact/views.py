@@ -1,7 +1,6 @@
+from django.core.mail import send_mail
 from django.shortcuts import render, HttpResponseRedirect
 from django.urls import reverse
-
-from simple_personal_site.sendgrid import sg_client
 from simple_personal_site.site_config import CONTACT_EMAIL
 from .forms import ContactForm
 from .models import Message, SocialMediaLink
@@ -25,15 +24,14 @@ def message(request):
             # create message object
             new_msg = Message(name=form_data['name'], email=form_data['email'], message=form_data['message'])
             new_msg.save()
-            if sg_client:
-                # render email content
-                mail_context = {
-                    'name': new_msg.name,
-                    'msg': new_msg.message
-                }
-                mail_content = render(request, 'message_email.html', context=mail_context).content.decode("utf-8")
-                # send email
-                sg_client.send_html(CONTACT_EMAIL['from'], new_msg.email, CONTACT_EMAIL['subject'], mail_content)
+            # build html email content
+            mail_context = {'name': new_msg.name, 'msg': new_msg.message}
+            mail_html = render(request, 'message_email.html', context=mail_context).content.decode("utf-8")
+            # build text email content
+            mail_text = render(request, 'message_email.txt', context=mail_context).content.decode("utf-8")
+            # send email
+            send_mail(CONTACT_EMAIL['subject'], mail_text, CONTACT_EMAIL['from'],
+                      [new_msg.email], html_message=mail_html, fail_silently=True)
             return HttpResponseRedirect(reverse('message_success'))
         else:
             context = {'form': form}
