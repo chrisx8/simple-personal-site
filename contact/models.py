@@ -25,7 +25,15 @@ class SocialMediaLink(models.Model):
     color = models.CharField(max_length=6, default='3273DC', null=False, help_text='Color of social media logo.')
     fa_icon = models.CharField(verbose_name='Font Awesome icon class', max_length=50, default='',
                                null=False, blank=True)
+    display_at = models.BooleanField(verbose_name='Display "@" before username', default=False, null=False)
     show = models.BooleanField(verbose_name='Show on Home and Contact page', default=True, null=False)
 
+    # Metadata
+    class Meta: 
+        ordering = ['platform', 'username']
+
     def __str__(self):
-        return f'{self.platform} @{self.username}'
+        if self.display_at:
+            return f'{self.platform} @{self.username}'
+        else:
+            return f'{self.platform} - {self.username}'

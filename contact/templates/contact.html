@@ -15,7 +15,7 @@
 <div class="column is-half">
 <a class="button is-fullwidth is-medium" style="color: white;background-color: #{{ link.color }}" href="{{ link.url }}" title="{{ link }}" target="_blank" rel="noopener noreferrer">
 {% if link.fa_icon %}
-<i class="{{ link.fa_icon }}"></i>&nbsp; @{{ link.username }}
+<i class="{{ link.fa_icon }}"></i>&nbsp; {% if link.display_at %}@{% endif %}{{ link.username }}
 {% else %}
 {{ link }}
 {% endif %}
