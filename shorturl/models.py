@@ -7,5 +7,9 @@ class ShortURL(models.Model):
     full_url = models.URLField(default='', null=False)
     enabled = models.BooleanField(default=True, null=False)
 
+    # Metadata
+    class Meta: 
+        ordering = ['alias']
+
     def __str__(self):
         return self.alias
