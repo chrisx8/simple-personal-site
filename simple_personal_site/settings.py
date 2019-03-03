@@ -22,7 +22,7 @@ from .site_config import DATABASE_URL, ALLOWED_HOSTS, SECRET_KEY, RECAPTCHA_PRIV
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 # Application definition
 
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'contact.apps.ContactConfig',
     'homepage.apps.HomepageConfig',
+    'media.apps.MediaConfig',
     'projects.apps.ProjectsConfig',
     'shorturl.apps.ShorturlConfig',
 ]
@@ -123,7 +124,5 @@ MEDIA_URL = '/uploads/'
 MEDIA_ROOT = 'uploads'
 
 
-# Session times out in 15 minutes or on browser close
-
-SESSION_COOKIE_AGE = 900
+# Session times out on browser close
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True

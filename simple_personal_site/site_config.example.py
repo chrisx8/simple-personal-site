@@ -26,7 +26,7 @@ SECRET_KEY = 'SUPER_SECURE_KEY'
 # Supported databases: PostgresSQL, MySQL, SQLite
 # MySQL URL scheme: mysql://USER:PASSWORD@HOST:PORT/NAME
 # Postgres URL scheme: postgres://USER:PASSWORD@HOST:PORT/NAME
-# SQLite URL scheme: sqlite:///ABSOLUTE_PATH [OR] sqlite://RELATIVE_PATH
+# SQLite URL scheme: sqlite:///PATH
 DATABASE_URL = ''
 
 # ReCaptcha credentials

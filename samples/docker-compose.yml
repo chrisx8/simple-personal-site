@@ -4,7 +4,6 @@ services:
   personal-site:
     build:
       context: ..
-      dockerfile: docker/Dockerfile
     volumes:
       - uploads:/app/uploads/
       - static:/app/static/

@@ -19,13 +19,3 @@ class ArticleAdmin(admin.ModelAdmin):
     list_display = ['title', 'time_posted', 'last_edited', 'show']
     list_filter = ['show']
     actions = [show, hide]
-
-
-@admin.register(Image)
-class ImageAdmin(admin.ModelAdmin):
-    ordering = ['image']
-
-    # delete objects and uploaded files
-    def delete_queryset(self, request, queryset):
-        for obj in queryset:
-            obj.delete()

@@ -6,8 +6,8 @@ Create your personal website in minutes! Follow instructions below to set up.
 
 <!-- MarkdownTOC -->
 
+- [Features](#features)
 - [Get started](#get-started)
-- [Configure](#configure)
 	- [Configure site](#configure-site)
 	- [SSL Certificate](#ssl-certificate)
 - [Install](#install)
@@ -18,18 +18,22 @@ Create your personal website in minutes! Follow instructions below to set up.
 
 <!-- /MarkdownTOC -->
 
+## Features
+
+- Easy to manage site content 
+- Markdown support throughout the site
+- Post blog articles
+- Create project cards 
+- Supports video embed and images in blog articles and project cards
+- Contact page with social media links and a message form
+
 ## Get started
 
-- If you don't have a VPS already, get one. You can get one from [DigitalOcean (referral link)](https://m.do.co/c/4409c0c26a9c) for as low as $5/month.
-- If you don't have a domain name, get one.
-- SSH into your VPS and install all updates.
-- Clone this project and enter project directory.
+Clone this project and enter project directory.
 ```bash
 git clone https://github.com/chrisx8/simple-personal-site.git
 cd simple-personal-site
 ```
-
-## Configure
 
 ### Configure site
 
@@ -38,41 +42,35 @@ cd simple-personal-site
 ```bash
 cp simple_personal_site/site_config.example.py simple_personal_site/site_config.py
 ```
-- Edit it with your favorite text editor (such as `vim` or `nano`). Please read descriptions in the file.<br>
-  Enter `postgres://personalsite:YOUR_PASSWORD@db:5432/personalsite` for the database URL if you're installing with Docker.
+- Edit it, following instructions in the file.
 - Generate your own icons [here](https://realfavicongenerator.net). Download the generated Favicon package.
-- Unzip the downloaded package, and upload everything to `simple-personal-site/static/icons/` with an SFTP client (such as Filezilla or WinSCP), replacing ALL existing placeholder icon files.
+- Unzip the downloaded package, and upload everything to `simple-personal-site/static/icons/`, replacing ALL existing placeholder icon files.
 - Upload a logo (in `.png` format) to `simple-personal-site/static/images/`, replacing the existing `logo.png`
-
-### SSL Certificate
-
-- Get a free SSL certificate [here](https://www.sslforfree.com). Select `Manually Verify Domain (DNS)` as the validation method.
-- Create a folder for certificates and set permission
-```bash
-mkdir ~/ssl
-chmod 700 ~/ssl
-```
-- Put the certificate at `~/ssl/cert.pem`, and put the private key at `~/ssl/key.pem`
 
 ## Install
 
+### Install with Docker
+
+- Make sure you're in the project directory `simple-personal-site/`.
+- Make sure you have a database accessible from inside the container  
+- Build your image
+```bash
+docker build -t simple-personal-site .
+```
+- Run Docker container.
+```bash
+docker run -d -p 80:8000 -v uploads:/app/uploads/ -v static:/app/static/ --name simple-personal-site simple-personal-site:latest
+```
+- Create an admin account.
+```bash
+docker exec -it simple-personal-site python3 manage.py createsuperuser
+```
+- See `samples/` for sample Nginx configurations and `docker-compose.yml`
+
 ### Install directly
 
-- Make sure `python3` is installed on your VPS.
-If you're on CentOS, install Python 3.6
-```bash
-sudo yum install rh-python36
-```
-- Check if `pip` is installed for Python 3.
-```bash
-python3 -m pip
-```
-If running this returns `No module named pip`, install `pip`.
-```bash
-curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-sudo python3 get-pip.py
-```
-- Make sure you're corrently in the project directory `simple-personal-site/`.
+- Make sure `python3` and `pip` is installed.
+- Make sure you're in the project directory `simple-personal-site/`.
 - Install project dependencies.
 ```bash
 # On Ubuntu/Debian
@@ -113,32 +111,12 @@ sudo systemctl start personal-site
 ```bash
 python3 manage.py createsuperuser
 ```
-- Configure Nginx to reverse-proxy this application with `proxy_pass http://localhost:8000;`. Sample config is available at `docker/nginx/personal-site.conf`.
-
-### Install with Docker
-
-- [Install Docker](https://docs.docker.com/install/linux/docker-ce/ubuntu/#upgrade-docker-ce-1).
-- [Install Docker Compose](https://docs.docker.com/compose/install/)
-- Make sure you're corrently in the project directory `simple-personal-site/`.
-- Open `docker/docker-compose.yml` with a text editor, such as `nano` or `vim`, and the password you generated earlier in `POSTGRES_PASSWORD`
-- Build images.
-```bash
-docker-compose -f docker/docker-compose.yml build
-```
-- Run Docker container.
-```bash
-docker-compose -f docker/docker-compose.yml up -d
-```
-- Create an admin account.
-```bash
-docker exec -it personal-site python3 manage.py createsuperuser
-```
+- Configure Nginx to reverse-proxy this application with `proxy_pass http://localhost:8000;`. Sample config is available at `samples/nginx/personal-site.conf`.
 
 ## Manage content
 
 - Make sure port 80 and 443 are allowed in firewall settings.
-- Access the management portal at `https://URL/manage/`
-- Navigate to your VPS's IP or URL in a browser. You'll be prompted to enter the management portal.
+- Access the management portal at `/manage/`
 - Log in with the admin account you just created.
 - Create a homepage by clicking `Add` next to `Homepages` on the management portal. Fill out the About Me section and save.<br>
   **NOTICE: Only the latest homepage object is recognized.**
@@ -153,4 +131,4 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 [GNU General Public License](LICENSE) for more details.
 
-Copyright (C) 2018 [Chris Xiao](https://github.com/chrisx8)
+Copyright (C) 2019 [Chris Xiao](https://github.com/chrisx8)
