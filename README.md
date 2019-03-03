@@ -9,10 +9,9 @@ Create your personal website in minutes! Follow instructions below to set up.
 - [Features](#features)
 - [Get started](#get-started)
 	- [Configure site](#configure-site)
-	- [SSL Certificate](#ssl-certificate)
 - [Install](#install)
-	- [Install directly](#install-directly)
 	- [Install with Docker](#install-with-docker)
+	- [Install directly](#install-directly)
 - [Manage content](#manage-content)
 - [License](#license)
 
