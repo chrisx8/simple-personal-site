@@ -22,7 +22,7 @@ from .site_config import DATABASE_URL, ALLOWED_HOSTS, SECRET_KEY, RECAPTCHA_PRIV
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # Application definition
 
