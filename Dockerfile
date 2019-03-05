@@ -19,6 +19,5 @@ EXPOSE 8000
 USER nobody
 
 CMD python3 manage.py collectstatic --noinput && \
-    python3 manage.py makemigrations && \
     python3 manage.py migrate --run-syncdb && \
     gunicorn simple_personal_site.wsgi:application -b 0.0.0.0:8000

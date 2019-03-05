@@ -122,4 +122,3 @@ Dockerfile
 static/admin/
 static/staticfiles.json
 uploads/
-*/migrations/0*.py

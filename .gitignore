@@ -118,7 +118,6 @@ dmypy.json
 # Dev
 .vscode/
 .idea/
-*/migrations/0*.py
 static/admin/
 static/staticfiles.json
 uploads/
