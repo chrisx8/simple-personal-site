@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from media.models import Image, Video
 
 
@@ -13,6 +14,9 @@ class Article(models.Model):
 	show = models.BooleanField(default=True, null=False, help_text='Show article on blog')
 	time_posted = models.DateField(auto_now_add=True)
 	last_edited = models.DateField(auto_now=True)
+
+	def get_absolute_url(self):
+		return reverse('view_article', kwargs={'id': self.id})
 
 	def __str__(self):
 		return self.title
