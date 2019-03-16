@@ -9,6 +9,7 @@ django-recaptcha2>=1.4.1
 gunicorn>=19.9.0
 idna>=2.8
 Markdown>=3.0.1
+mysqlclient>=1.4.2
 Pillow>=5.4.1
 psycopg2>=2.7.7
 pytz>=2018.9
