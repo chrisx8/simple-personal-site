@@ -2,14 +2,14 @@ version: '3'
 
 services:
   personal-site:
-    build:
-      context: ..
+    image: chrisx8/simple-personal-site:latest
+    env_file: site_config.env
     volumes:
       - uploads:/app/uploads/
       - static:/app/static/
     depends_on:
       - db
-    container_name: personal-site
+    container_name: simple-personal-site
     restart: unless-stopped
   db:
     image: postgres:alpine

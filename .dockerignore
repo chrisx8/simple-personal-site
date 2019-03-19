@@ -114,11 +114,20 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# Dev/No need in production
+# Dev
+.git/
 .vscode/
 .idea/
-Dockerfile
-.gitignore
 static/admin/
 static/staticfiles.json
 uploads/
+cfiles.json
+uploads/
+
+# Sample/build files
+samples/
+Dockerfile
+.dockerignore
+.gitignore
+site_config.env
+site_config.example.env
