@@ -26,6 +26,11 @@ Create your personal website in minutes! Follow instructions below to set up.
 
 ## Before installing
 
+- Clone this project and enter project directory.
+```bash
+git clone https://github.com/chrisx8/simple-personal-site.git
+cd simple-personal-site
+```
 - Generate a strong password [here](https://strongpasswordgenerator.com/) for database. Save it, as you'll need it during the setup process.
 - Create your site config. 
 ```bash
@@ -37,11 +42,14 @@ cp site_config.example.env site_config.env
 - Upload a logo (in `.png` format) to `simple-personal-site/static/images/`, replacing the existing `logo.png`
 
 ## Install with Docker
-- Make sure you're in the project directory `simple-personal-site/`.
-- Make sure you have a database accessible from inside the container  
+- Make sure your database is accessible from inside the container  
+- Set permission 
+```bash
+sudo chown -R 65534:65534 static
+```
 - Run Docker container.
 ```bash
-docker run -d -p 80:8000 --env-file=site_config.env -v uploads:/app/uploads/ -v static:/app/static/ --name simple-personal-site chrisx8/simple-personal-site:latest
+docker run -d -p 80:8000 --env-file=site_config.env -v uploads:/app/uploads/ -v $(pwd)/static:/app/static/ --restart unless-stopped --name simple-personal-site chrisx8/simple-personal-site:latest
 ```
 - Create an admin account.
 ```bash
@@ -50,13 +58,7 @@ docker exec -it simple-personal-site python3 manage.py createsuperuser
 - See `samples/` for sample Nginx configurations and `docker-compose.yml`
 
 ## Install directly
-
 - Make sure `python3` and `pip` is installed.
-- Clone this project and enter project directory.
-```bash
-git clone https://github.com/chrisx8/simple-personal-site.git
-cd simple-personal-site
-```
 - Install project dependencies.
 ```bash
 # On Ubuntu/Debian
