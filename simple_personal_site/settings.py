@@ -127,3 +127,11 @@ MEDIA_ROOT = 'uploads'
 
 # Session times out on browser close
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+# Enable Markdown TOC support
+MARKUP_SETTINGS = {
+    'markdown': {
+        'safe_mode': True,
+        'extensions': ['toc']
+    }
+}

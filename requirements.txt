@@ -1,5 +1,5 @@
 bleach==3.1.0
-bleach-whitelist==0.0.9
+git+https://github.com/chrisx8/bleach-whitelist.git
 certifi==2019.3.9
 chardet==3.0.4
 dj-database-url==0.5.0
