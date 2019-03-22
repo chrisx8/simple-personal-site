@@ -49,7 +49,8 @@ sudo chown -R 65534:65534 static
 ```
 - Run Docker container.
 ```bash
-docker run -d -p 80:8000 --env-file=site_config.env -v uploads:/app/uploads/ -v $(pwd)/static:/app/static/ --restart unless-stopped --name simple-personal-site chrisx8/simple-personal-site:latest
+# Replace 0.0.0.0:80 with whereever you want the container to listen at
+docker run -d -p 0.0.0.0:80:8000 --env-file=site_config.env -v uploads:/app/uploads/ -v $(pwd)/static:/app/static/ --restart unless-stopped --name simple-personal-site chrisx8/simple-personal-site:latest
 ```
 - Create an admin account.
 ```bash
@@ -82,7 +83,8 @@ After=network.target
 Type=simple
 User=[YOUR USERNAME]
 WorkingDirectory=[PROJECT DIRECTORY]
-ExecStart=gunicorn simple_personal_site.wsgi:application -b 127.0.0.1:8000
+# Replace 0.0.0.0:80 with whereever you want the container to listen at
+ExecStart=gunicorn simple_personal_site.wsgi:application -b 0.0.0.0:80
 Restart=on-failure
 
 [Install]
@@ -98,7 +100,7 @@ sudo systemctl start personal-site
 ```bash
 python3 manage.py createsuperuser
 ```
-- Configure Nginx to reverse-proxy this application with `proxy_pass http://localhost:8000;`. Sample config is available at `samples/nginx/personal-site.conf`.
+- See `samples/` for sample Nginx configurations and `docker-compose.yml`
 
 ## Manage content
 
