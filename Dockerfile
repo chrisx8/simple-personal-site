@@ -9,10 +9,10 @@ RUN apk add --no-cache python3 postgresql-dev mariadb-connector-c-dev jpeg-dev z
 
 # Install project dependencies
 COPY requirements.txt /tmp/requirements.txt
-RUN apk add build-base gcc python3-dev musl-dev && \
+RUN apk add build-base gcc python3-dev musl-dev git && \
 	pip3 install --no-cache -r /tmp/requirements.txt && \
     rm /tmp/requirements.txt && \
-    apk del build-base gcc python3-dev musl-dev 
+    apk del build-base gcc python3-dev musl-dev git
 
 # Copy code
 COPY . /app/
