@@ -1,7 +1,7 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render, Http404, HttpResponseRedirect
 from django.urls import reverse
-from simple_personal_site.site_config import ARTICLES_PER_PAGE
+from simple_personal_site.site_config import ARTICLES_PER_PAGE, BLOG_DESCRIPTION
 from .models import Article
 
 
@@ -27,7 +27,8 @@ def blog(request):
         display_page_range = paginator.page_range[:int(page)+2]
     context = {
         'articles': articles_on_page,
-        'page_range': display_page_range
+        'page_range': display_page_range,
+        'SITE_DESCRIPTION': f'{BLOG_DESCRIPTION} Check out my latest article: "{articles.first().title}"'
     }
     return render(request, 'blog.html', context=context)
 
@@ -39,5 +40,5 @@ def view_article(request, id):
         raise Http404
     if not article.show:
         raise Http404
-    context = {'article': article}
+    context = {'article': article, 'SITE_DESCRIPTION': article.subtitle}
     return render(request, 'view_article.html', context=context)

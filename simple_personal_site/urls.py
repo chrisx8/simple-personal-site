@@ -19,11 +19,10 @@ from django.shortcuts import render
 from django.urls import include, path
 from django.views.generic.base import RedirectView
 from blog.sitemaps import ArticleSitemap
-from simple_personal_site.sitemaps import HomepageSitemap, SiteSitemap
+from simple_personal_site.sitemaps import SiteSitemap
 from simple_personal_site import settings
 
 sitemaps = {
-    'homepage': HomepageSitemap,
     'site': SiteSitemap,
     'articles': ArticleSitemap,
 }

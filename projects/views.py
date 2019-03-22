@@ -1,7 +1,7 @@
 from django.core.paginator import Paginator
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, reverse
-from simple_personal_site.site_config import PROJECTS_PER_PAGE
+from simple_personal_site.site_config import PROJECTS_PER_PAGE, PROJECTS_DESCRIPTION
 from .models import Project
 
 
@@ -28,6 +28,7 @@ def projects(request):
         display_page_range = paginator.page_range[:int(page)+2]
     context = {
         'projects': projects_on_page,
-        'page_range': display_page_range
+        'page_range': display_page_range,
+        'SITE_DESCRIPTION': {PROJECTS_DESCRIPTION}
     }
     return render(request, 'projects.html', context=context)
