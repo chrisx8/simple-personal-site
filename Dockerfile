@@ -1,4 +1,4 @@
-FROM alpine:3.8
+FROM alpine:3.9
 
 # Install system packages
 RUN apk add --no-cache python3 postgresql-dev mariadb-connector-c-dev jpeg-dev zlib-dev && \
