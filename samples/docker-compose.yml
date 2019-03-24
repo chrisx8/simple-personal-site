@@ -6,7 +6,7 @@ services:
     env_file: site_config.env
     volumes:
       - uploads:/app/uploads/
-      - static:/app/static/
+      - ./static/:/app/static/
     depends_on:
       - db
     container_name: simple-personal-site
@@ -26,12 +26,11 @@ services:
       - 80:80
       - 443:443
     volumes:
-      - ~/ssl/:/etc/nginx/ssl/
+      - ~/.ssl/:/etc/nginx/ssl/
       - uploads:/usr/share/nginx/www/uploads/
-      - static:/usr/share/nginx/www/static/
+      - ./static/:/usr/share/nginx/www/static/
     restart: unless-stopped
 
 volumes:
   db:
-  static:
   uploads:
