@@ -28,32 +28,12 @@
 <meta name="msapplication-TileColor" content="#363636">
 <meta name="msapplication-TileImage" content="/static/icons/mstile-150x150.png">
 <meta name="theme-color" content="#363636">
-{% if GA_TRACKING_ID %}
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
-<script>
-window.addEventListener("load", function(){
-window.cookieconsent.initialise({
-"palette": {"popup": {"background": "#363636"},"button": {"background": "#3273dc"}},
-"theme": "classic",
-"position": "bottom-right",
-"content": {"message": "This website uses cookies to analyze site traffic and improve your experience."}
-})});
-</script>
-<script async src="https://www.googletagmanager.com/gtag/js?id={{ GA_TRACKING_ID }}"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', '{{ GA_TRACKING_ID }}');
-</script>
-{% endif %}
-<!--[if lt IE 9]>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
-<![endif]-->
+<!--[if lt IE 9]><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script><![endif]-->
 <link rel="stylesheet" href="/static/css/sps.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<script>window.lazyLoadOptions = {elements_selector: ".lazy"};</script>
+<script async src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@11.0.6/dist/lazyload.min.js"></script>
 </head>
 <body>
 <div class="main">
@@ -104,5 +84,40 @@ nav.classList.toggle('is-active');
 });
 })();
 </script>
+{% if GA_TRACKING_ID or FATHOM_URL and FATHOM_SITE_ID %}
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
+<script>
+window.addEventListener("load", function(){
+window.cookieconsent.initialise({
+"palette": {"popup": {"background": "#363636"},"button": {"background": "#3273dc"}},
+"theme": "classic",
+"position": "bottom-right",
+"content": {"message": "This website uses cookies to analyze site traffic and improve your experience."}
+})});
+</script>
+{% endif %}
+{% if FATHOM_URL and FATHOM_SITE_ID %}
+<script>
+(function(f, a, t, h, o, m){
+a[h]=a[h]||function(){(a[h].q=a[h].q||[]).push(arguments)};
+o=f.createElement('script'),
+m=f.getElementsByTagName('script')[0];
+o.async=1; o.src=t; o.id='fathom-script';
+m.parentNode.insertBefore(o,m)
+})(document, window, '{{ FATHOM_URL }}', 'fathom');
+fathom('set', 'siteId', '{{ FATHOM_SITE_ID }}');
+fathom('trackPageview');
+</script>
+{% endif %}
+{% if GA_TRACKING_ID %}
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ GA_TRACKING_ID }}"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '{{ GA_TRACKING_ID }}');
+</script>
+{% endif %}
 </body>
 </html>
