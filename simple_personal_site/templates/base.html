@@ -32,8 +32,6 @@
 <link rel="stylesheet" href="/static/css/sps.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-<script>window.lazyLoadOptions = {elements_selector: ".lazy"};</script>
-<script async src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@11.0.6/dist/lazyload.min.js"></script>
 </head>
 <body>
 <div class="main">
@@ -74,6 +72,7 @@
 </div>
 </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@11.0.6/dist/lazyload.min.js"></script>
 <script type="text/javascript">
 (function() {
 var burger = document.querySelector('.burger');
@@ -83,6 +82,7 @@ burger.classList.toggle('is-active');
 nav.classList.toggle('is-active');
 });
 })();
+var lazyLoadInstance = new LazyLoad({elements_selector: ".lazy"});
 </script>
 {% if GA_TRACKING_ID or FATHOM_URL and FATHOM_SITE_ID %}
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />

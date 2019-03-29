@@ -17,7 +17,7 @@
 {% endif %}
 </article>
 {% if article.video %}
-<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="{{ article.video.embed_url }}" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
+<div style="padding:56.25% 0 0 0;position:relative;"><iframe class="lazy" src="{{ article.video.embed_url }}" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
 <div></div>
 {% elif article.images %}
 {% if article.images.all|length > 1 %}
@@ -27,7 +27,7 @@
 <div class="slideshow-container">
 {% for i in article.images.all %}
 <div class="mySlides fade">
-<img src="{{ i.image.url }}" alt="" style="width:100%">
+<img alt="" class="lazy" data-src="{{ i.image.url }}" style="width:100%">
 <div class="text">({{ forloop.counter }} / {{ article.images.all|length }})&nbsp; {{ i.caption }}</div>
 </div>
 {% endfor %}
@@ -44,7 +44,7 @@
 <script>showSlides(1);</script>
 {% elif article.images.all|length == 1 %}
 <div class="center">
-<img src="{{ article.images.first.image.url }}" alt="" style="width:100%">
+<img alt="" class="lazy" data-src="{{ article.images.first.image.url }}" style="width:100%">
 <div style="text-align:center;">{{ article.images.first.caption }}</div>
 </div>
 {% endif %}

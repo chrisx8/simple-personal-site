@@ -32,10 +32,12 @@
 {% if form.message.errors %}<article class="message is-danger"><div class="message-body"><strong>{{ form.message.errors }}</strong></div></article>{% endif %}
 </div>
 </div>
+{% if form.captcha %}
 <div class="field">
 <div class="control">{{ form.captcha }}</div>
 {% if form.captcha.errors %}<article class="message is-danger"><div class="message-body"><strong>Please complete the CAPTCHA</strong></div></article>{% endif %}
 </div>
+{% endif %}
 <div class="field is-grouped">
 <div class="control"><button class="button is-link" type="submit">Send</button></div>
 </div>
