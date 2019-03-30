@@ -39,21 +39,21 @@
 {% if projects.paginator.num_pages > 1 %}
 <nav class="pagination is-centered" role="navigation" aria-label="pagination">
 {% if projects.has_previous %}
-<a href="?page={{ projects.previous_page_number }}" class="pagination-previous">Previous</a>
+<a href="?page={{ projects.previous_page_number }}" class="button pagination-previous">Prev</a>
 {% else %}
-<a class="pagination-previous" disabled>Previous</a>
+<a class="button pagination-previous" disabled>Prev</a>
 {% endif %}
 {% if projects.has_next %}
-<a href="?page={{ projects.next_page_number }}" class="pagination-next">Next</a>
+<a href="?page={{ projects.next_page_number }}" class="button pagination-next">Next</a>
 {% else %}
-<a class="pagination-next" disabled>Next</a>
+<a class="button pagination-next" disabled>Next</a>
 {% endif %}
 <ul class="pagination-list">
 {% for page in page_range %}
 {% if projects.number == page %}
-<li><a class="pagination-link is-current" aria-label="Page {{ page }}" aria-current="page">{{ page }}</a></li>
+<li><a class="button pagination-link is-current" aria-label="Page {{ page }}" aria-current="page">{{ page }}</a></li>
 {% else %}
-<li><a href="?page={{ page }}" class="pagination-link" aria-label="Goto page {{ page }}">{{ page }}</a></li>
+<li><a href="?page={{ page }}" class="button pagination-link" aria-label="Goto page {{ page }}">{{ page }}</a></li>
 {% endif %}
 {% endfor %}
 {% endif %}

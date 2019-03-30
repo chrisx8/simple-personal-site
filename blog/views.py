@@ -20,11 +20,11 @@ def blog(request):
     except (AssertionError, ValueError):
         return HttpResponseRedirect(reverse('blog'))
     articles_on_page = paginator.get_page(page)
-    # two page numbers before/after current
-    if int(page)-3 >= 0:
-        display_page_range = paginator.page_range[int(page)-3:int(page)+2]
+    # one page number before/after current
+    if int(page)-2 >= 0:
+        display_page_range = paginator.page_range[int(page)-2:int(page)+1]
     else:
-        display_page_range = paginator.page_range[:int(page)+2]
+        display_page_range = paginator.page_range[:int(page)+1]
     context = {
         'articles': articles_on_page,
         'page_range': display_page_range,

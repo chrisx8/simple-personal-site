@@ -1,38 +1,53 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Oops!</title>
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>500 // {{ SITE_NAME }}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!--[if lt IE 9]>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
-<![endif]-->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
 </head>
+<style>
+body {
+background-color: #363636;
+}
+.container {
+color: white;
+text-align: center;
+width: 100%;
+transform: translate(-50%, -50%);
+position: absolute;
+top: 50%;
+left: 50%;
+overflow: auto;
+}
+.errorcode {
+font-family: monospace;
+font-size: 8em;
+}
+.msg {
+font-family: sans-serif;
+font-size: 1.3em;
+line-height: 130%;
+}
+.button {
+background-color: #0d8aee;
+border: none;
+border-radius: 4px;
+color: white;
+padding: 10px 24px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-family: sans-serif;
+font-size: 1em;
+}
+</style>
 <body>
-<section class="hero is-fullheight is-bold is-dark">
-<nav class="navbar is-transparent">
-<div class="container is-fluid"><div class="navbar-brand"><a class="navbar-item" href="/"><img src="/static/images/logo.png" alt=""> &nbsp; {{ SITE_NAME }}</a></div></div>
-</nav>
-<div class="hero-body has-text-centered">
 <div class="container">
-<h1 class="title is-1 is-spaced">Oops!</h1>
-<h2 class="subtitle is-5 is-spaced">The server encountered an error and could not complete your request. Please try again later.</h2>
-<hr>
-<p>Error code: <code>500</code></p>
+<div class="errorcode">500</div>
+<div class="msg">Sorry, an error has occurred.</div>
+<div style="padding-top:1.5em;"><a class="button" href="/">Homepage</a></div>
 </div>
-</div>
-</section>
-<script type="text/javascript">
-(function() {
-var burger = document.querySelector('.burger');
-var nav = document.querySelector('#'+burger.dataset.target);
-burger.addEventListener('click', function(){
-burger.classList.toggle('is-active');
-nav.classList.toggle('is-active');
-});
-})();
-</script>
 </body>
 </html>
+
