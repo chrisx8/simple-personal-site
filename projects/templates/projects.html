@@ -16,7 +16,7 @@
 <div class="column is-half">
 <div class="card">
 {% if project.video %}
-<div style="padding:56.25% 0 0 0;position:relative;"><iframe class="lazy" src="{{ project.video.embed_url }}" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
+<div style="padding:56.25% 0 0 0;position:relative;"><iframe class="lazy" title="{{ project.title }}" src="{{ project.video.embed_url }}" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
 {% elif project.image %}
 <div class="card-image"><figure class="image is-16by9" ><img class="lazy" data-src="{{ project.image.image.url }}" alt="{{ project.title }}"></figure></div>
 {% endif %}
@@ -25,7 +25,7 @@
 {% load markup_tags %}
 <div class="content">{{ project.description|apply_markup:"markdown" }}</div>
 {% if project.url %}
-<a class="button is-link" href="{{ project.url }}" target="_blank" rel="noopener noreferrer">
+<a class="button is-primary" href="{{ project.url }}" target="_blank" rel="noopener noreferrer">
 {% if project.fa_icon %}<i class="{{ project.fa_icon }}"></i>&nbsp;{% endif %}{{ project.url_description}} &nbsp;<i class="fas fa-external-link-alt"></i>
 </a>
 {% endif %}

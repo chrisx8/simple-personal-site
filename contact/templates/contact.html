@@ -3,11 +3,8 @@
 {% block ogtitle %} Contact Me {% endblock %}
 {% block body %}
 <div class="container" style="padding-left:15px; padding-right:15px">
-<h1 class="title">Contact Me</h1>
-<p class="subtitle">Want to get in touch? <a href="{% url 'message' %}"><i class="fas fa-envelope"></i> Send me a message</a> </p>
 {% if social_links %}
-<p></p>
-<h1 class="title">Follow me on social media</h1>
+<h1 class="title" style="padding-top:25px;">Follow me on social media</h1>
 {% for link in social_links %}
 {% if forloop.counter0|divisibleby:2 %}
 <div class="columns">
@@ -26,5 +23,7 @@
 {% endif %}
 {% endfor %}
 {% endif %}
+<h1 class="title">Contact me diretly</h1>
+<p><a class="button is-primary" href="{% url 'message' %}"><i class="fas fa-envelope"></i>&nbsp; Send me a message</a> </p>
 </div>
 {% endblock %}

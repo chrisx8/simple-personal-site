@@ -7,10 +7,11 @@
 </head>
 <body>
 <h1>{{ SITE_NAME }}</h1>
-<p>Hi {{ name }}, </p>
-<p>Thanks for contacting me! I'll get back to you soon.</p>
-<p>Here's a copy of your message:</p>
+<p>You've received a message from {{ msg.name }}. Here are the details:</p>
+From: {{ msg.name }} ({{ msg.email }})<br>
+Received at {{ msg.timestamp }}<br>
+Message content:
 {% load markup_tags %}
-<blockquote>{{ msg|apply_markup:"linebreaks" }}</blockquote>
+<blockquote>{{ msg.message|apply_markup:"linebreaks" }}</blockquote>
 </body>
 </html>
