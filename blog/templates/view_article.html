@@ -4,51 +4,24 @@
 {% block body %}
 <div class="container" style="padding-left:15px; padding-right:15px">
 <h1 class="title">{{ article }}</h1>
-{% if article.subtitle %}
-<h2 class="subtitle">{{ article.subtitle }}</h2>
-{% else %}
-<h2 class="subtitle">&nbsp;</h2>
-{% endif %}
-<article class="message">
+<h2 class="subtitle" style="font-size:18px;">{{ article.subtitle }}</h2>
+<div class="content" {% if not article.subtitle %}style="padding-top:25px"{% endif %}>
+Tags: {% for tag in article.tag.all %}<a href="{% url 'filter_by_tag' tag=tag %}">#{{ tag }}</a> {% endfor %}
 {% if article.time_posted == article.last_edited %}
 <p>Posted on <strong>{{ article.time_posted }}</strong></p>
 {% else %}
 <p>Last edited on <strong>{{ article.last_edited }}</strong></p>
 {% endif %}
-</article>
+</div>
 {% if article.video %}
+<div class="center">
 <div style="padding:56.25% 0 0 0;position:relative;"><iframe class="lazy" src="{{ article.video.embed_url }}" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
-<div></div>
-{% elif article.images %}
-{% if article.images.all|length > 1 %}
-<link rel="stylesheet" type="text/css" href="/static/css/slideshow.css"/>
-<script src="/static/js/slideshow.js"></script>
+</div>
+{% elif article.image %}
 <div class="center">
-<div class="slideshow-container">
-{% for i in article.images.all %}
-<div class="mySlides fade">
-<img alt="" class="lazy" data-src="{{ i.image.url }}" style="width:100%">
-<div class="text">({{ forloop.counter }} / {{ article.images.all|length }})&nbsp; {{ i.caption }}</div>
+<img alt="" class="lazy" data-src="{{ article.image.image.url }}" style="width:100%">
+<div style="text-align:center;">{{ article.image.image.caption }}</div>
 </div>
-{% endfor %}
-<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-<a class="next" onclick="plusSlides(1)">&#10095;</a>
-</div>
-<br>
-<div style="text-align:center">
-{% for i in article.images.all %}
-<span class="dot" onclick="currentSlide({{ forloop.counter }})"></span>
-{% endfor %}
-</div>
-</div>
-<script>showSlides(1);</script>
-{% elif article.images.all|length == 1 %}
-<div class="center">
-<img alt="" class="lazy" data-src="{{ article.images.first.image.url }}" style="width:100%">
-<div style="text-align:center;">{{ article.images.first.caption }}</div>
-</div>
-{% endif %}
-<div>&nbsp;</div>
 {% endif %}
 {% load markup_tags %}
 <div class="content">

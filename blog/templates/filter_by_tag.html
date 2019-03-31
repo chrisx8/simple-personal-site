@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
-{% block pagetitle %} Blog {% endblock %}
-{% block ogtitle %} Blog {% endblock %}
+{% block pagetitle %} #{{ tag }} {% endblock %}
+{% block ogtitle %} #{{ tag }} {% endblock %}
 {% block body %}
 <div class="container" style="padding-left:15px; padding-right:15px">
-<h1 class="title">Blog</h1>
+<h1 class="title">#{{ tag }}</h1>
+<p class="subtitle is-6"><a href="{% url 'blog' %}">Show all articles</a></p>
 {% if not articles %}
 <article class="message">
-<div class="message-body">The site owner hasn't posted any articles yet.</div>
+<div class="message-body">There's no article with this tag.</div>
 </article>
 {% endif %}
 {% for article in articles %}

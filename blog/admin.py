@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Article, Image
+from .models import Article, Tag
 
 
 @admin.register(Article)
@@ -19,3 +19,9 @@ class ArticleAdmin(admin.ModelAdmin):
     list_display = ['title', 'time_posted', 'last_edited', 'show']
     list_filter = ['show']
     actions = [show, hide]
+
+
+@admin.register(Tag)
+class TagAdmin(admin.ModelAdmin):
+    ordering = ['tag']
+    list_display = ['tag']
