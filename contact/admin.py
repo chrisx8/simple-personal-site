@@ -6,7 +6,7 @@ from .models import Message, SocialMediaLink
 # Customize admin page
 # set admin site title
 admin.site.site_title = SITE_NAME
-admin.site.site_header = SITE_NAME
+admin.site.site_header = 'Admin Panel // ' + SITE_NAME
 
 # admin login form with captcha
 admin.site.login_form = AuthFormCaptcha
