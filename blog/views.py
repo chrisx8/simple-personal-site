@@ -2,7 +2,7 @@ from django.core.paginator import Paginator
 from django.shortcuts import render, Http404, HttpResponseRedirect
 from django.urls import reverse
 from simple_personal_site.site_config import ARTICLES_PER_PAGE, BLOG_DESCRIPTION
-from .models import Article
+from .models import Article, Tag
 
 
 def blog(request):
@@ -38,8 +38,13 @@ def blog(request):
 
 
 def filter_by_tag(request, tag):
+    # query tag
+    try:
+        tag_obj = Tag.objects.get(tag=tag)
+    except:
+        raise Http404
     # find by tag and exclude hidden articles
-    articles = Article.objects.filter(tag__in=tag, show=True).order_by('-time_posted')
+    articles = Article.objects.filter(tag=tag_obj, show=True).order_by('-time_posted')
     paginator = Paginator(articles, ARTICLES_PER_PAGE)
     # get page numbers as url param. Default to page 1
     page = request.GET.get('page')

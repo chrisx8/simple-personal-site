@@ -13,20 +13,20 @@
 <div class="columns">
 {% endif %}
 <div class="column is-half">
-<div class="card">
-<div class="card-content">
-<h2 class="title is-4"><a href="{% url 'view_article' id=article.id %}">{{ article }}</a></h2>
-{% if article.subtitle %}
-<h3 class="subtitle is-6">{{ article.subtitle }}</h3>
-{% else %}
-<h3 class="subtitle is-6">&nbsp;</h3>
-{% endif %}
-{% if article.time_posted == article.last_edited %}
-<p>Posted on <strong>{{ article.time_posted }}</strong></p>
-{% else %}
-<p>Last edited on <strong>{{ article.last_edited }}</strong></p>
-{% endif %}
+<div class="box">
+<article class="media">
+<div class="media-content">
+<div class="content">
+<p class="title">{{ article.title }}</p>
+<p class="subtitle" style="font-size:18px;">{{ article.subtitle }}</p>
+Tags: {% for tag in article.tag.all %}<a href="{% url 'filter_by_tag' tag=tag %}">#{{ tag }}</a> {% endfor %}
 </div>
+<nav class="level">
+<div class="level-left"><a class="level-item button is-dark" href="{% url 'view_article' id=article.id %}">Read article</a></div>
+<div class="level-right" style="text-transform:uppercase;font-size:16px;"><span class="level-item">{{ article.last_edited }}</span></div>
+</nav>
+</div>
+</article>
 </div>
 </div>
 {% if forloop.counter|divisibleby:2 or forloop.last %}
