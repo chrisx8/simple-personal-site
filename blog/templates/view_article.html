@@ -6,7 +6,7 @@
 <h1 class="title">{{ article }}</h1>
 <h2 class="subtitle" style="font-size:18px;">{{ article.subtitle }}</h2>
 <div class="content" {% if not article.subtitle %}style="padding-top:25px"{% endif %}>
-Tags: {% for tag in article.tag.all %}<a href="{% url 'filter_by_tag' tag=tag %}">#{{ tag }}</a> {% endfor %}
+{% for tag in article.tag.all %}<a href="{% url 'filter_by_tag' tag=tag %}">#{{ tag }}</a> {% endfor %}
 {% if article.time_posted == article.last_edited %}
 <p>Posted on <strong>{{ article.time_posted }}</strong></p>
 {% else %}

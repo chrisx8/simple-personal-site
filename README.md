@@ -67,7 +67,7 @@ docker exec -it simple-personal-site python3 manage.py createsuperuser
 
 ## Install directly
 
-- Make sure `python3` and `pip` is installed.
+- Make sure Python 3.6 (or newer) and `pip` is installed.
 - Install project dependencies.
 
 ```bash

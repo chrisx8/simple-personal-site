@@ -19,7 +19,7 @@
 <div class="content">
 <p class="title">{{ article.title }}</p>
 <p class="subtitle" style="font-size:18px;">{{ article.subtitle }}</p>
-Tags: {% for tag in article.tag.all %}<a href="{% url 'filter_by_tag' tag=tag %}">#{{ tag }}</a> {% endfor %}
+{% for tag in article.tag.all %}<a href="{% url 'filter_by_tag' tag=tag %}">#{{ tag }}</a> {% endfor %}
 </div>
 <nav class="level">
 <div class="level-left"><a class="level-item button is-dark" href="{% url 'view_article' id=article.id %}">Read article</a></div>
