@@ -18,14 +18,17 @@ from .site_config import DATABASE_URL, ALLOWED_HOSTS, SECRET_KEY, RECAPTCHA_PRIV
     EMAIL_HOST, EMAIL_PORT, EMAIL_HOST_USER, EMAIL_HOST_PASSWORD, EMAIL_USE_SSL, EMAIL_USE_TLS
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# DEBUG defaults to False.
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-# Application definition
+# Set environment variable DEBUG=True to enable debug
+if os.environ.get('DEBUG') == 'True':
+    DEBUG = True
 
+# Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -76,7 +79,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'simple_personal_site.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
@@ -101,7 +103,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
@@ -115,15 +116,14 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+
 STATIC_URL = '/static/'
-STATIC_ROOT = 'static'
 MEDIA_URL = '/uploads/'
 MEDIA_ROOT = 'uploads'
-
 
 # Session times out on browser close
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True

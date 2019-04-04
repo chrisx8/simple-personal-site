@@ -52,9 +52,7 @@
 {% load markup_tags %}
 <div class="content">{{ project.description|apply_markup:"markdown" }}</div>
 {% if project.url %}
-<a class="button is-primary" href="{{ project.url }}" target="_blank" rel="noopener noreferrer">
-{% if project.fa_icon %}<i class="{{ project.fa_icon }}"></i>&nbsp;{% endif %}{{ project.url_description}} &nbsp;<i class="fas fa-external-link-alt"></i>
-</a>
+<a class="button is-primary" href="{{ project.url }}" target="_blank" rel="noopener noreferrer">{% if project.fa_icon %}<i class="{{ project.fa_icon }}"></i>{% endif %}{{ project.url_description}}</a>
 {% endif %}
 </div>
 </div>
@@ -66,3 +64,4 @@
 {% endif %}
 </div>
 {% endblock %}
+
