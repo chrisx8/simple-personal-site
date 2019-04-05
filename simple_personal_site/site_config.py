@@ -11,6 +11,7 @@ env_vars = os.environ
 SITE_NAME = env_vars['SITE_NAME']
 SITE_DESCRIPTION = env_vars['SITE_DESCRIPTION']
 SITE_URL = env_vars['SITE_URL']
+SITE_PROTOCOL = SITE_URL.split('://')[0]
 ALLOWED_HOSTS = env_vars['ALLOWED_HOSTS'].split(',')
 SECRET_KEY = env_vars['SECRET_KEY']
 DATABASE_URL = env_vars['DATABASE_URL']
