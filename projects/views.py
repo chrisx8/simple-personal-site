@@ -29,6 +29,6 @@ def projects(request):
     context = {
         'projects': projects_on_page,
         'page_range': display_page_range,
-        'SITE_DESCRIPTION': {PROJECTS_DESCRIPTION}
+        'SITE_DESCRIPTION': PROJECTS_DESCRIPTION
     }
     return render(request, 'projects.html', context=context)

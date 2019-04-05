@@ -18,13 +18,14 @@ from django.contrib.sitemaps.views import sitemap
 from django.shortcuts import render
 from django.urls import include, path
 from django.views.generic.base import RedirectView
-from blog.sitemaps import ArticleSitemap
+from blog.sitemaps import ArticleSitemap, TagSitemap
 from simple_personal_site.sitemaps import SiteSitemap
 from simple_personal_site import settings
 
 sitemaps = {
     'site': SiteSitemap,
     'articles': ArticleSitemap,
+    'tags': TagSitemap,
 }
 
 urlpatterns = [
