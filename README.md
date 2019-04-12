@@ -7,7 +7,9 @@ Create your personal website in minutes! Follow instructions below to set up.
 - [Features](#features)
 - [Before installing](#before-installing)
 - [Install with Docker](#install-with-docker)
-- [Install directly](#install-directly)
+- [Install in a virtualenv](#install-in-a-virtualenv)
+- [Upgrading Docker container](#upgrading-docker-container)
+- [Upgrading in a virtualenv](#upgrading-in-a-virtualenv)
 - [Manage content](#manage-content)
 - [License](#license)
 
@@ -38,8 +40,8 @@ cp site_config.example.env site_config.env
 
 - Edit `site_config.env`, following instructions in the file.
 - Generate your own icons [here](https://realfavicongenerator.net). Download the generated Favicon package.
-- Unzip the downloaded package, and upload everything to `simple-personal-site/static/icons/`, replacing ALL existing placeholder icon files.
-- Upload a logo (in `.png` format) to `simple-personal-site/static/images/`, replacing the existing `logo.png`
+- Unzip the downloaded package, and upload everything to `static/icons/`, replacing ALL existing placeholder icon files.
+- Upload a logo (in `.png` format) to `static/images/`, replacing the existing `logo.png`
 
 ## Install with Docker
 
@@ -65,7 +67,7 @@ docker exec -it simple-personal-site python3 manage.py createsuperuser
 
 - See `samples/` for sample Nginx configurations and `docker-compose.yml`
 
-## Install directly
+## Install in a virtualenv
 
 - Make sure Python 3.6 (or newer) and `pip` is installed.
 - Install project dependencies.
@@ -73,10 +75,17 @@ docker exec -it simple-personal-site python3 manage.py createsuperuser
 ```bash
 # On Ubuntu/Debian
 sudo apt-get install python3-dev libmysqlclient-dev
-sudo python3 -m pip install -r requirements.txt
+
 # On CentOS
 sudo yum install rh-python36-python-devel mariadb-libs
-sudo python3 -m pip install -r requirements.txt
+
+# Create virtualenv
+sudo pip3 install virtualenv
+virtualenv -p $(which python3) venv
+
+# Activate virtualenv and install dependencies
+source venv/bin/activate
+pip install -r requirements.txt
 ```
 
 - Create system service
@@ -97,7 +106,7 @@ Type=simple
 User=[YOUR USERNAME]
 WorkingDirectory=[PROJECT DIRECTORY]
 # Replace 0.0.0.0:80 with whereever you want the container to listen at
-ExecStart=gunicorn simple_personal_site.wsgi:application -b 0.0.0.0:80
+ExecStart=[PROJECT DIRECTORY]/venv/bin/gunicorn simple_personal_site.wsgi:application -b 0.0.0.0:80
 Restart=on-failure
 
 [Install]
@@ -119,6 +128,52 @@ python3 manage.py createsuperuser
 ```
 
 - See `samples/` for sample Nginx configurations and `docker-compose.yml`
+
+## Upgrading Docker container
+
+**WARNING: If you're upgrading to commits made after April 11, 2019, you need to back up and delete the database before upgrading. The database schema needs to be rebuilt.**
+
+Do the following in the project directory
+
+- Pull the latest image
+
+```bash
+git pull
+docker pull chrisx8/simple-personal-site:latest
+```
+
+- Recreate container
+
+```bash
+# Replace 0.0.0.0:80 with wherever you want the container to listen at
+docker run -d -p 0.0.0.0:80:8000 --env-file=site_config.env -v uploads:/app/uploads/ -v $(pwd)/static:/app/static/ --restart unless-stopped --name simple-personal-site chrisx8/simple-personal-site:latest
+```
+
+## Upgrading in a virtualenv
+
+**WARNING: If you're upgrading to commits made after April 11, 2019, you need to back up and delete the database before upgrading. The database schema needs to be rebuilt.**
+
+Do the following in the project directory
+
+- Pull from repo
+
+```bash 
+git pull
+```
+
+- Upgrade project dependencies.
+
+```bash
+# Activate virtualenv and upgrade dependencies
+source venv/bin/activate
+pip install -U -r requirements.txt
+```
+
+- Restart service
+
+```bash
+sudo systemctl restart personal-site
+```
 
 ## Manage content
 
