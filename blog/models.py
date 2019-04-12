@@ -32,11 +32,10 @@ class Article(models.Model):
         return reverse('view_article', kwargs={'id': self.id})
 
     def get_article_id(self):
-        # first 40 characters
-        first_40 = self.title[:40].lower()
+        title = self.title.lower()
         article_id = ''
         # only include numbers and letters and replace space with -
-        for char in first_40:
+        for char in title:
             if char in string.ascii_letters or char in string.digits:
                 article_id += char
             elif char in string.whitespace:
@@ -49,7 +48,10 @@ class Article(models.Model):
         # delete old if id changed
         if old_id != new_id:
             self.id = new_id
-            Article.delete(Article.objects.get(id=old_id))
+            try:
+                Article.delete(Article.objects.get(id=old_id))
+            except:
+                pass
         super(Article, self).save()
 
     def __str__(self):

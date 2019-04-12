@@ -21,6 +21,7 @@ from django.views.generic.base import RedirectView
 from blog.sitemaps import ArticleSitemap, TagSitemap
 from simple_personal_site.sitemaps import SiteSitemap
 from simple_personal_site import settings
+import os
 
 sitemaps = {
     'site': SiteSitemap,
@@ -31,13 +32,16 @@ sitemaps = {
 urlpatterns = [
     path('favicon.ico', RedirectView.as_view(url=settings.STATIC_URL + 'icons/favicon.ico')),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
-    path('manage/', admin.site.urls),
     path('', include('homepage.urls')),
     path('blog/', include('blog.urls')),
     path('contact/', include('contact.urls')),
     path('go/', include('shorturl.urls')),
     path('projects/', include('projects.urls')),
 ]
+
+# enable admin if DISABLE_ADMIN env variable isn't True
+if os.environ.get('DISABLE_ADMIN') != 'True':
+    urlpatterns.append(path('manage/', admin.site.urls))
 
 
 # 404 error page
