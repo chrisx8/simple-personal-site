@@ -8,14 +8,14 @@ class Tag(models.Model):
     tag = models.CharField(max_length=50, default='', null=False, primary_key=True)
 
     def get_absolute_url(self):
-        return reverse('view_article', kwargs={'tag': self.tag})
+        return reverse('filter_by_tag', kwargs={'tag': self.tag})
 
     def __str__(self):
         return self.tag
 
 
 class Article(models.Model):
-    id = models.CharField(primary_key=True, max_length=30, verbose_name='Article ID')
+    id = models.CharField(primary_key=True, max_length=40, verbose_name='Article ID')
     title = models.CharField(max_length=100, default='', null=False)
     subtitle = models.CharField(max_length=100, default='', null=False, blank=True)
     image = models.ForeignKey(Image, blank=True, null=True, on_delete=models.CASCADE,
