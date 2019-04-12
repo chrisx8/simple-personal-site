@@ -32,11 +32,11 @@ class Article(models.Model):
         return reverse('view_article', kwargs={'id': self.id})
 
     def get_article_id(self):
-        # first 30 characters
-        first_30 = self.title[:30].lower()
+        # first 40 characters
+        first_40 = self.title[:40].lower()
         article_id = ''
         # only include numbers and letters and replace space with -
-        for char in first_30:
+        for char in first_40:
             if char in string.ascii_letters or char in string.digits:
                 article_id += char
             elif char in string.whitespace:
