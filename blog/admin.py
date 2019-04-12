@@ -18,6 +18,7 @@ class ArticleAdmin(admin.ModelAdmin):
     ordering = ['-time_posted', 'title']
     list_display = ['title', 'time_posted', 'last_edited', 'show']
     list_filter = ['show']
+    readonly_fields = ["id", "time_posted", "last_edited"]
     actions = [show, hide]
 
 
