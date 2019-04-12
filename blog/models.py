@@ -15,7 +15,7 @@ class Tag(models.Model):
 
 
 class Article(models.Model):
-    id = models.AutoField(primary_key=True, max_length=100, verbose_name='Article ID')
+    id = models.CharField(primary_key=True, max_length=100, verbose_name='Article ID')
     title = models.CharField(max_length=100, default='', null=False)
     subtitle = models.CharField(max_length=100, default='', null=False, blank=True)
     image = models.ForeignKey(Image, blank=True, null=True, on_delete=models.CASCADE,
