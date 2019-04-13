@@ -30,23 +30,11 @@ class MessageAdmin(admin.ModelAdmin):
     ordering = ['read', 'timestamp', 'name']
     list_display = ['name', 'email', 'read', 'timestamp']
     list_filter = ['read', 'timestamp']
+    readonly_fields = ["name", "email", "message", "timestamp"]
     actions = [mark_read, mark_unread]
 
 
 @admin.register(SocialMediaLink)
 class SocialMediaLinkAdmin(admin.ModelAdmin):
-    # show selected on home/contact page
-    def show(self, request, queryset):
-        queryset.update(show=True)
-
-    # hide selected on home/contact page
-    def hide(self, request, queryset):
-        queryset.update(show=False)
-
-    show.short_description = 'Show selected social media links'
-    hide.short_description = 'Hide selected social media links'
-
     ordering = ['platform']
-    list_display = ['platform', 'username', 'show']
-    list_filter = ['show']
-    actions = [show, hide]
+    list_display = ['platform', 'username']

@@ -16,5 +16,8 @@ class Project(models.Model):
                                null=False, blank=True)
     posted = models.DateField(auto_now_add=True)
 
+    class Meta:
+        ordering = ['-posted', 'title']
+
     def __str__(self):
         return self.title

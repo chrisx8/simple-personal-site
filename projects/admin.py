@@ -10,6 +10,6 @@ class ProjectAdmin(admin.ModelAdmin):
         for obj in queryset:
             obj.delete()
 
-    ordering = ['-posted', 'title']
     list_display = ['title', 'posted']
     list_filter = ['posted']
+    readonly_fields = ["id", "posted"]

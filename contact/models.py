@@ -9,8 +9,7 @@ class Message(models.Model):
     read = models.BooleanField(null=False, default=False)
     timestamp = models.DateTimeField(auto_now_add=True, null=False)
 
-    # Metadata
-    class Meta: 
+    class Meta:
         ordering = ['read', 'timestamp']
 
     def __str__(self):
@@ -26,10 +25,8 @@ class SocialMediaLink(models.Model):
     fa_icon = models.CharField(verbose_name='Font Awesome icon class', max_length=50, default='',
                                null=False, blank=True)
     display_at = models.BooleanField(verbose_name='Display "@" before username', default=False, null=False)
-    show = models.BooleanField(verbose_name='Show on Home and Contact page', default=True, null=False)
 
-    # Metadata
-    class Meta: 
+    class Meta:
         ordering = ['platform', 'username']
 
     def __str__(self):

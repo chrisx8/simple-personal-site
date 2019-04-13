@@ -7,6 +7,9 @@ import string
 class Tag(models.Model):
     tag = models.CharField(max_length=50, default='', null=False, primary_key=True)
 
+    class Meta:
+        ordering = ['tag']
+
     def get_absolute_url(self):
         return reverse('filter_by_tag', kwargs={'tag': self.tag})
 
@@ -25,6 +28,9 @@ class Article(models.Model):
                               help_text="When both image and video are selected, only video will show.")
     content = models.TextField(default='', null=False, help_text='Write in Markdown')
     last_edited = models.DateField(auto_now=True)
+
+    class Meta:
+        ordering = ['-last_edited', 'title']
 
     def get_absolute_url(self):
         return reverse('view_article', kwargs={'id': self.id})

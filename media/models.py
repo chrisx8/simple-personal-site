@@ -7,6 +7,9 @@ class Image(models.Model):
     image = models.ImageField(verbose_name='Image', blank=False)
     caption = models.CharField(max_length=50, blank=True)
 
+    class Meta:
+        ordering = ['image']
+
     def delete(self, *args, **kwargs):
         # Delete the file if it exists
         try:
@@ -35,6 +38,9 @@ class Video(models.Model):
     video_id = models.CharField(max_length=15, blank=False, default='',
                                 help_text='YouTube video ID is the 11-character string after "watch?v=". '
                                           'Vimeo video ID is the numbers after "vimeo.com/"')
+
+    class Meta:
+        ordering = ['name']
 
     def embed_url(self):
         return self.BASE_URLS[str(self.video_source)] + str(self.video_id)
