@@ -15,10 +15,10 @@ class ArticleAdmin(admin.ModelAdmin):
     show.short_description = 'Show selected articles'
     hide.short_description = 'Hide selected articles'
 
-    ordering = ['-time_posted', 'title']
-    list_display = ['title', 'time_posted', 'last_edited', 'show']
-    list_filter = ['show']
-    readonly_fields = ["id", "time_posted", "last_edited"]
+    ordering = ['-last_edited', 'title']
+    list_display = ['title', 'last_edited']
+    list_filter = ['last_edited']
+    readonly_fields = ["id", "last_edited"]
     actions = [show, hide]
 
 

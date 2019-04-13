@@ -7,7 +7,7 @@ from .models import Homepage
 def home(request):
     try:
         home_obj = Homepage.objects.latest('id')
-        featured_articles = home_obj.featured_articles.filter(show=True)
+        featured_articles = home_obj.featured_articles.order_by('-last_edited')
         featured_projects = home_obj.featured_projects.filter(show=True)
         context = {
             'home': home_obj,
@@ -16,4 +16,4 @@ def home(request):
         }
         return render(request, 'home.html', context=context)
     except Homepage.DoesNotExist:
-        return HttpResponse('<h1>Please create a homepage in the <a href="/manage/">management portal</a>.<h1>')
+        return HttpResponse('<h1>Please create a homepage in the <a href="/manage/">admin portal</a>.<h1>')
