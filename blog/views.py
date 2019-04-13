@@ -41,10 +41,11 @@ def filter_by_tag(request, tag):
     # query tag
     try:
         tag_obj = Tag.objects.get(tag=tag)
-    except Tag.DoesNotExist:
+        articles = Article.objects.filter(tag=tag_obj).order_by('-last_edited', 'title')
+        assert len(articles)
+    except (Tag.DoesNotExist, AssertionError):
         raise Http404
     # find by tag and exclude hidden articles
-    articles = Article.objects.filter(tag=tag_obj).order_by('-last_edited', 'title')
     paginator = Paginator(articles, ARTICLES_PER_PAGE)
     # get page numbers as url param. Default to page 1
     page = request.GET.get('page')

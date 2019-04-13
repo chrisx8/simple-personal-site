@@ -6,11 +6,6 @@
 <h1 class="title">Blog</h1>
 <h3 class="subtitle">#{{ tag }}</h3>
 <p class="subtitle is-6"><a href="{% url 'blog' %}">Show all articles</a></p>
-{% if not articles %}
-<article class="message">
-<div class="message-body">There's no article with this tag.</div>
-</article>
-{% endif %}
 {% for article in articles %}
 {% if forloop.counter0|divisibleby:2 %}
 <div class="columns">
