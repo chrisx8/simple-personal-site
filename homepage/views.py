@@ -8,8 +8,8 @@ from .models import Homepage
 def home(request):
     try:
         home_obj = Homepage.objects.latest('id')
-        latest_articles = Article.objects.order_by('-last_edited')[:2]
-        latest_projects = Project.objects.order_by('-id')[:2]
+        latest_articles = Article.objects.order_by('-last_edited', 'title')[:2]
+        latest_projects = Project.objects.order_by('-posted', 'title')[:2]
         context = {
             'home': home_obj,
             'latest_articles': latest_articles,

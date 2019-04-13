@@ -8,7 +8,7 @@ from .models import Project
 # all projects
 def projects(request):
     # exclude hidden projects
-    all_projects = Project.objects.filter(show=True).order_by('title')
+    all_projects = Project.objects.order_by('-posted', 'title')
     paginator = Paginator(all_projects, PROJECTS_PER_PAGE)
     # get page numbers as url param. Default to page 1
     page = request.GET.get('page')
