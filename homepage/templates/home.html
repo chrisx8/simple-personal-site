@@ -5,10 +5,14 @@
 <div class="container" style="padding-left:15px; padding-right:15px">
 <h1 class="title">About Me</h1>
 {% load markup_tags %}
-<div class="content">{{ home.about_me|apply_markup:"markdown" }}</div>
-{% if featured_articles %}
-<h1 class="title">Featured Articles</h1>
-{% for article in featured_articles %}
+<div class="content">
+{{ home.about_me|apply_markup:"markdown" }}
+{% if home.resume %}<p><a class="button is-primary" href="{{ home.resume.url }}" target="_blank" rel="noopener noreferrer"><i class="fas fa-download"></i>&nbsp;Resume </a></p>{% endif %}
+</div>
+{% if latest_articles %}
+<h1 class="title">Blog</h1>
+<p class="subtitle is-5"><a href="{% url 'blog' %}">View all articles</a></p>
+{% for article in latest_articles %}
 {% if forloop.counter0|divisibleby:2 %}
 <div class="columns">
 {% endif %}
@@ -34,9 +38,10 @@
 {% endif %}
 {% endfor %}
 {% endif %}
-{% if featured_projects %}
-<h1 class="title">Featured Projects</h1>
-{% for project in featured_projects %}
+{% if latest_projects %}
+<h1 class="title">My Projects</h1>
+<p class="subtitle is-5"><a href="{% url 'projects' %}">View all projects</a></p>
+{% for project in latest_projects %}
 {% if forloop.counter0|divisibleby:2 %}
 <div class="columns">
 {% endif %}

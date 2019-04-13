@@ -1,5 +1,6 @@
 from django.shortcuts import HttpResponse, render
-
+from blog.models import Article
+from projects.models import Project
 from .models import Homepage
 
 
@@ -7,12 +8,12 @@ from .models import Homepage
 def home(request):
     try:
         home_obj = Homepage.objects.latest('id')
-        featured_articles = home_obj.featured_articles.order_by('-last_edited')
-        featured_projects = home_obj.featured_projects.filter(show=True)
+        latest_articles = Article.objects.order_by('-last_edited')[:2]
+        latest_projects = Project.objects.order_by('-id')[:2]
         context = {
             'home': home_obj,
-            'featured_articles': featured_articles,
-            'featured_projects': featured_projects
+            'latest_articles': latest_articles,
+            'latest_projects': latest_projects
         }
         return render(request, 'home.html', context=context)
     except Homepage.DoesNotExist:
