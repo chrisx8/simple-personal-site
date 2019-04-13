@@ -7,6 +7,9 @@ import string
 class Tag(models.Model):
     tag = models.CharField(max_length=50, default='', null=False, primary_key=True)
 
+    class Meta:
+        ordering = ['tag']
+
     def get_absolute_url(self):
         return reverse('filter_by_tag', kwargs={'tag': self.tag})
 
@@ -18,21 +21,22 @@ class Article(models.Model):
     id = models.CharField(primary_key=True, max_length=100, verbose_name='Article ID')
     title = models.CharField(max_length=100, default='', null=False)
     subtitle = models.CharField(max_length=100, default='', null=False, blank=True)
+    tag = models.ManyToManyField(Tag, blank=True)
     image = models.ForeignKey(Image, blank=True, null=True, on_delete=models.CASCADE,
                               help_text="When both image and video are selected, only video will show.")
     video = models.ForeignKey(Video, blank=True, null=True, on_delete=models.CASCADE,
                               help_text="When both image and video are selected, only video will show.")
     content = models.TextField(default='', null=False, help_text='Write in Markdown')
-    tag = models.ManyToManyField(Tag, blank=True)
-    show = models.BooleanField(default=True, null=False, help_text='Show article on blog')
-    time_posted = models.DateField(auto_now_add=True)
     last_edited = models.DateField(auto_now=True)
+
+    class Meta:
+        ordering = ['-last_edited', 'title']
 
     def get_absolute_url(self):
         return reverse('view_article', kwargs={'id': self.id})
 
     def get_article_id(self):
-        title = self.title.lower()
+        title = str(self.title).lower()
         article_id = ''
         # only include numbers and letters and replace space with -
         for char in title:
@@ -50,7 +54,7 @@ class Article(models.Model):
             self.id = new_id
             try:
                 Article.delete(Article.objects.get(id=old_id))
-            except:
+            except self.DoesNotExist:
                 pass
         super(Article, self).save()
 

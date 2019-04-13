@@ -1,10 +1,20 @@
 from django.db import models
-from blog.models import Article
-from projects.models import Project
 
 
 class Homepage(models.Model):
     about_me = models.TextField(verbose_name='About Me section', default='', null=False,
                                 help_text='Write in Markdown format')
-    featured_articles = models.ManyToManyField(Article, blank=True)
-    featured_projects = models.ManyToManyField(Project, blank=True)
+    resume = models.FileField(blank=True, help_text='Upload resume as a PDF for best compatibility')
+
+    class Meta:
+        ordering = ['-id']
+
+    def delete(self, *args, **kwargs):
+        # Delete the file if it exists
+        try:
+            storage, path = self.resume.storage, self.resume.path
+            storage.delete(path)
+        except ValueError:
+            pass
+        # Delete the model
+        super(Homepage, self).delete(*args, **kwargs)

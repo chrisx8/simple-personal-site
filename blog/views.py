@@ -7,7 +7,7 @@ from .models import Article, Tag
 
 def blog(request):
     # exclude hidden articles
-    articles = Article.objects.filter(show=True).order_by('-time_posted')
+    articles = Article.objects.order_by('-last_edited', 'title')
     paginator = Paginator(articles, ARTICLES_PER_PAGE)
     # get page numbers as url param. Default to page 1
     page = request.GET.get('page')
@@ -41,10 +41,10 @@ def filter_by_tag(request, tag):
     # query tag
     try:
         tag_obj = Tag.objects.get(tag=tag)
-    except:
+    except Tag.DoesNotExist:
         raise Http404
     # find by tag and exclude hidden articles
-    articles = Article.objects.filter(tag=tag_obj, show=True).order_by('-time_posted')
+    articles = Article.objects.filter(tag=tag_obj).order_by('-last_edited', 'title')
     paginator = Paginator(articles, ARTICLES_PER_PAGE)
     # get page numbers as url param. Default to page 1
     page = request.GET.get('page')
@@ -79,8 +79,6 @@ def view_article(request, id):
     try:
         article = Article.objects.get(id=id)
     except Article.DoesNotExist:
-        raise Http404
-    if not article.show:
         raise Http404
     context = {'article': article, 'SITE_DESCRIPTION': article.subtitle}
     return render(request, 'view_article.html', context=context)

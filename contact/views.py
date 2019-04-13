@@ -9,7 +9,7 @@ from .models import Message, SocialMediaLink
 # contact page
 def contact(request):
     # get social media links
-    social_links = SocialMediaLink.objects.filter(show=True).order_by('platform')
+    social_links = SocialMediaLink.objects.order_by('platform')
     context = {'social_links': social_links}
     return render(request, 'contact.html', context=context)
 

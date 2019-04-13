@@ -3,7 +3,7 @@ from media.models import Image, Video
 
 
 class Project(models.Model):
-    title = models.CharField(verbose_name='Project Name', max_length=100, default='', null=False)
+    title = models.CharField(verbose_name='Project Name', max_length=100, default='', null=False, unique=True)
     description = models.TextField(verbose_name='Project Description', default='', null=False,
                                    help_text="Write in Markdown format")
     image = models.ForeignKey(Image, verbose_name='Project Image', on_delete=models.CASCADE, null=True, blank=True,
@@ -14,7 +14,10 @@ class Project(models.Model):
     url_description = models.CharField(verbose_name='URL Label', max_length=50, default='View Project', blank=True)
     fa_icon = models.CharField(verbose_name='Font Awesome icon class', max_length=50, default='',
                                null=False, blank=True)
-    show = models.BooleanField(verbose_name='Show on Projects page', default=True, null=False)
+    posted = models.DateField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-posted', 'title']
 
     def __str__(self):
         return self.title

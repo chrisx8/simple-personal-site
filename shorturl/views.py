@@ -12,8 +12,7 @@ def redirect(request, alias):
     # redirect if url exists
     try:
         url_obj = ShortURL.objects.get(alias=alias)
-        assert url_obj.enabled
         return HttpResponseRedirect(url_obj.full_url)
     # 404 if url doesn't exist
-    except (AssertionError, ShortURL.DoesNotExist):
+    except ShortURL.DoesNotExist:
         raise Http404(request)
