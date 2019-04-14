@@ -8,7 +8,7 @@ class ArticleSitemap(Sitemap):
     protocol = SITE_PROTOCOL
 
     def items(self):
-        return Article.objects.filter(show=True)
+        return Article.objects.all()
 
     def lastmod(self, obj):
         return obj.last_edited
