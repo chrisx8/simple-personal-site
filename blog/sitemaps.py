@@ -16,6 +16,7 @@ class ArticleSitemap(Sitemap):
 
 class TagSitemap(Sitemap):
     priority = 0.8
+    changefreq = 'daily'
     protocol = SITE_PROTOCOL
 
     def items(self):

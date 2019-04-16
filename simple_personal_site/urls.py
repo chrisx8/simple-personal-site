@@ -19,6 +19,7 @@ from django.shortcuts import render
 from django.urls import include, path
 from django.views.generic.base import RedirectView
 from blog.sitemaps import ArticleSitemap, TagSitemap
+from simple_personal_site.site_config import MANAGEMENT_URL
 from simple_personal_site.sitemaps import SiteSitemap
 from simple_personal_site import settings
 import os
@@ -39,9 +40,9 @@ urlpatterns = [
     path('projects/', include('projects.urls')),
 ]
 
-# enable admin if DISABLE_ADMIN env variable isn't True
-if os.environ.get('DISABLE_ADMIN') != 'True':
-    urlpatterns.append(path('manage/', admin.site.urls))
+# get admin url from config
+if len(MANAGEMENT_URL) > 0:
+    urlpatterns.append(path(MANAGEMENT_URL, admin.site.urls))
 
 
 # 404 error page
