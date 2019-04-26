@@ -22,12 +22,16 @@ class SocialMediaLink(models.Model):
     username = models.CharField(max_length=100, default='', null=False, help_text='Omit @ symbol')
     url = models.URLField(default='', null=False, help_text='Link to profile page')
     color = models.CharField(max_length=6, default='3273DC', null=False, help_text='Color of social media logo.')
-    fa_icon = models.CharField(verbose_name='Font Awesome icon class', max_length=50, default='',
-                               null=False, blank=True)
     display_at = models.BooleanField(verbose_name='Display "@" before username', default=False, null=False)
 
     class Meta:
         ordering = ['platform', 'username']
+
+    def display_username(self):
+        if self.display_at:
+            return '@' + str(self.username)
+        else:
+            return self.username
 
     def __str__(self):
         if self.display_at:

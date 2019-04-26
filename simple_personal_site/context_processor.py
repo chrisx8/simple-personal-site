@@ -1,10 +1,12 @@
 import datetime
+from contact.models import SocialMediaLink
 from . import site_config
 
 
 # global site information
 def site_info(request):
     time = datetime.datetime.now()
+    social_links = SocialMediaLink.objects.order_by('platform')
     context = {
         'SITE_NAME': site_config.SITE_NAME,
         'SITE_DESCRIPTION': site_config.SITE_DESCRIPTION,
@@ -16,5 +18,6 @@ def site_info(request):
         'HEADER_SUBTITLE': site_config.HEADER_SUBTITLE,
         'FOOTER_COPYRIGHT': site_config.FOOTER_COPYRIGHT,
         'YEAR': time.year,
+        'social_links': social_links,
     }
     return context

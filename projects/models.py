@@ -12,8 +12,6 @@ class Project(models.Model):
                               help_text="When both image and video are selected, only video will show.")
     url = models.URLField(verbose_name='Project URL', null=False, blank=True)
     url_description = models.CharField(verbose_name='URL Label', max_length=50, default='View Project', blank=True)
-    fa_icon = models.CharField(verbose_name='Font Awesome icon class', max_length=50, default='',
-                               null=False, blank=True)
     posted = models.DateField(auto_now_add=True)
 
     class Meta:

@@ -7,7 +7,7 @@
 {% load markup_tags %}
 <div class="content">
 {{ home.about_me|apply_markup:"markdown" }}
-{% if home.resume %}<p><a class="button is-primary" href="{{ home.resume.url }}" target="_blank" rel="noopener noreferrer"><i class="fas fa-download"></i>&nbsp;Resume </a></p>{% endif %}
+{% if home.resume %}<p><a class="button is-dark" href="{{ home.resume.url }}" target="_blank" rel="noopener noreferrer">Resume&nbsp;<i class="material-icons">launch</i></a></p>{% endif %}
 </div>
 {% if latest_articles %}
 <h1 class="title">Blog</h1>
@@ -26,7 +26,7 @@
 {% for tag in article.tag.all %}<a href="{% url 'filter_by_tag' tag=tag %}">#{{ tag }}</a> {% endfor %}
 </div>
 <nav class="level">
-<div class="level-left"><a class="level-item button is-dark" href="{% url 'view_article' id=article.id %}"><i class="fas fa-book-open"></i>&nbsp;Read article</a></div>
+<div class="level-left"><a class="level-item button is-dark" href="{% url 'view_article' id=article.id %}">Read article</a></div>
 <div class="level-right" style="text-transform:uppercase;font-size:16px;"><span class="level-item">{{ article.last_edited }}</span></div>
 </nav>
 </div>
@@ -57,7 +57,7 @@
 {% load markup_tags %}
 <div class="content">{{ project.description|apply_markup:"markdown" }}</div>
 {% if project.url %}
-<a class="button is-primary" href="{{ project.url }}" target="_blank" rel="noopener noreferrer">{% if project.fa_icon %}<i class="{{ project.fa_icon }}"></i>&nbsp;{% endif %}{{ project.url_description}}</a>
+<a class="button is-dark" href="{{ project.url }}" target="_blank" rel="noopener noreferrer">{{ project.url_description }}&nbsp;<i class="material-icons">launch</i></a>
 {% endif %}
 </div>
 </div>

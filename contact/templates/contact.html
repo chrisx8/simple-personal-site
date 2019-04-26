@@ -2,28 +2,45 @@
 {% block pagetitle %} Contact Me {% endblock %}
 {% block ogtitle %} Contact Me {% endblock %}
 {% block body %}
+
 <div class="container" style="padding-left:15px; padding-right:15px">
-{% if social_links %}
-<h1 class="title">Follow me on social media</h1>
-{% for link in social_links %}
-{% if forloop.counter0|divisibleby:2 %}
-<div class="columns">
-{% endif %}
-<div class="column is-half">
-<a class="button is-fullwidth is-medium" style="color: white;background-color: #{{ link.color }};text-transform: none;" href="{{ link.url }}" title="{{ link }}" target="_blank" rel="noopener noreferrer">
-{% if link.fa_icon %}
-<i class="{{ link.fa_icon }}"></i>&nbsp; {% if link.display_at %}@{% endif %}{{ link.username }}
-{% else %}
-{{ link }}
-{% endif %}
-</a>
+<h1 class="title">Contact Me</h1>
+<p class="subtitle">Send me a message, and I'll get back to you soon!</p>
+<form method="POST">
+{% csrf_token %}
+<div class="field">
+<label class="label">{{ form.name.label }}</label>
+<div class="control has-icons-left">
+{{ form.name }}
+{% if form.name.errors %}<article class="message is-danger"><div class="message-body"><strong>{{ form.name.errors }}</strong></div></article>{% endif %}
+<span class="icon is-small is-left"><i class="material-icons">person</i></span>
 </div>
-{% if forloop.counter|divisibleby:2 or forloop.last %}
+</div>
+<div class="field">
+<label class="label">{{ form.email.label }}</label>
+<div class="control has-icons-left">
+{{ form.email }}
+{% if form.email.errors %}<article class="message is-danger"><div class="message-body"><strong>{{ form.email.errors }}</strong></div></article>{% endif %}
+<span class="icon is-small is-left"><i class="material-icons">email</i></span>
+</div>
+</div>
+<div class="field">
+<label class="label">Message</label>
+<div class="control">
+{{ form.message }}
+{% if form.message.errors %}<article class="message is-danger"><div class="message-body"><strong>{{ form.message.errors }}</strong></div></article>{% endif %}
+</div>
+</div>
+{% if form.captcha %}
+<div class="field">
+<div class="control">{{ form.captcha }}</div>
+{% if form.captcha.errors %}<article class="message is-danger"><div class="message-body"><strong>Please complete the CAPTCHA</strong></div></article>{% endif %}
 </div>
 {% endif %}
-{% endfor %}
-{% endif %}
-<h1 class="title">Contact me diretly</h1>
-<p><a class="button is-primary" href="{% url 'message' %}"><i class="fas fa-envelope"></i>&nbsp; Send me a message</a> </p>
+<div class="field is-grouped">
+<div class="control"><button class="button is-primary" type="submit">Send</button></div>
 </div>
+</form>
+</div>
+
 {% endblock %}

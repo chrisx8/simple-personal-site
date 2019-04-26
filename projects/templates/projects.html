@@ -25,7 +25,7 @@
 {% load markup_tags %}
 <div class="content">{{ project.description|apply_markup:"markdown" }}</div>
 {% if project.url %}
-<a class="button is-primary" href="{{ project.url }}" target="_blank" rel="noopener noreferrer">{% if project.fa_icon %}<i class="{{ project.fa_icon }}"></i>&nbsp;{% endif %}{{ project.url_description }}</a>
+<a class="button is-dark" href="{{ project.url }}" target="_blank" rel="noopener noreferrer">{{ project.url_description }}&nbsp;<i class="material-icons">launch</i></a>
 {% endif %}
 </div>
 </div>

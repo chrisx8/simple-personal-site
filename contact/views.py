@@ -3,15 +3,7 @@ from django.shortcuts import render, HttpResponseRedirect
 from django.urls import reverse
 from simple_personal_site.site_config import CONTACT_EMAIL, SITE_OWNER_EMAIL, SITE_NAME
 from .forms import ContactForm
-from .models import Message, SocialMediaLink
-
-
-# contact page
-def contact(request):
-    # get social media links
-    social_links = SocialMediaLink.objects.order_by('platform')
-    context = {'social_links': social_links}
-    return render(request, 'contact.html', context=context)
+from .models import Message
 
 
 # message form
@@ -52,10 +44,10 @@ def message(request):
             return HttpResponseRedirect(reverse('message_success'))
         else:
             context = {'form': form}
-            return render(request, 'message.html', context=context)
+            return render(request, 'contact.html', context=context)
     else:
         context = {'form': ContactForm()}
-        return render(request, 'message.html', context=context)
+        return render(request, 'contact.html', context=context)
 
 
 # thank-you page

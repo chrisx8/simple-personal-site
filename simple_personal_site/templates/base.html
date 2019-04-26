@@ -33,7 +33,7 @@
 <!--[if lt IE 9]><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script><![endif]-->
 <link rel="stylesheet" href="/static/css/sps.css">
 <link rel="stylesheet" href="/static/css/bulmaswatch-materia.css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
 <div class="main">
@@ -68,9 +68,10 @@
 <div style="height: 50px"></div>
 {% block body %}{% endblock %}
 <div style="height: 50px"></div>
-<footer class="custom-footer">
+<footer class="sps-footer">
 <div class="content has-text-centered">
-<p>&copy; {{ YEAR }} {{ FOOTER_COPYRIGHT }}</p>
+{% for link in social_links %}{% if forloop.counter != 1 %}&nbsp;{% endif %}<a href="{{ link.url }}" title="{{ link.display_username }}">{{ link.platform }}</a>{% endfor %}<br>
+&copy; {{ YEAR }} {{ FOOTER_COPYRIGHT }}
 </div>
 </footer>
 </div>
