@@ -1,6 +1,7 @@
 from django.shortcuts import HttpResponse, render
 from blog.models import Article
 from projects.models import Project
+from simple_personal_site.site_config import MANAGEMENT_URL
 from .models import Homepage
 
 
@@ -17,4 +18,4 @@ def home(request):
         }
         return render(request, 'home.html', context=context)
     except Homepage.DoesNotExist:
-        return HttpResponse('<h1>Please create a homepage in the <a href="/manage/">admin portal</a>.<h1>')
+        return HttpResponse(f'<h1>Please create a homepage in the <a href="/{MANAGEMENT_URL}">admin portal</a>.<h1>')
