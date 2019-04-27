@@ -1,5 +1,8 @@
 import os
+
+from django.db import OperationalError
 from dotenv import load_dotenv
+from global_config.models import EmailConfig, ReCaptcha
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -12,30 +15,36 @@ SITE_NAME = env_vars['SITE_NAME']
 SITE_DESCRIPTION = env_vars['SITE_DESCRIPTION']
 SITE_URL = env_vars['SITE_URL']
 SITE_PROTOCOL = SITE_URL.split('://')[0]
-ALLOWED_HOSTS = env_vars['ALLOWED_HOSTS'].split(',')
-SECRET_KEY = env_vars['SECRET_KEY']
-DATABASE_URL = env_vars['DATABASE_URL']
-RECAPTCHA_PRIVATE_KEY = env_vars['RECAPTCHA_PRIVATE_KEY']
-RECAPTCHA_PUBLIC_KEY = env_vars['RECAPTCHA_PUBLIC_KEY']
-EMAIL_HOST = env_vars['EMAIL_HOST']
-EMAIL_PORT = int(env_vars['EMAIL_PORT'])
-EMAIL_HOST_USER = env_vars['EMAIL_HOST_USER']
-EMAIL_HOST_PASSWORD = env_vars['EMAIL_HOST_PASSWORD']
-EMAIL_USE_TLS = env_vars['EMAIL_USE_TLS'] == 'True'
-EMAIL_USE_SSL = env_vars['EMAIL_USE_SSL'] == 'True'
-GA_TRACKING_ID = env_vars['GA_TRACKING_ID']
-FATHOM_URL = env_vars['FATHOM_URL']
-FATHOM_SITE_ID = env_vars['FATHOM_SITE_ID']
-MANAGEMENT_URL = env_vars['MANAGEMENT_URL']
-HEADER_TITLE = env_vars['HEADER_TITLE']
-HEADER_SUBTITLE = env_vars['HEADER_SUBTITLE']
-FOOTER_COPYRIGHT = env_vars['FOOTER_COPYRIGHT']
+
+
 BLOG_DESCRIPTION = env_vars['BLOG_DESCRIPTION']
 PROJECTS_DESCRIPTION = env_vars['PROJECTS_DESCRIPTION']
 ARTICLES_PER_PAGE = int(env_vars['ARTICLES_PER_PAGE'])
 PROJECTS_PER_PAGE = int(env_vars['PROJECTS_PER_PAGE'])
-SITE_OWNER_EMAIL = env_vars['SITE_OWNER_EMAIL']
-CONTACT_EMAIL = {
-    'subject': env_vars['CONTACT_EMAIL_SUBJECT'],
-    'from': env_vars['CONTACT_EMAIL_FROM'],
-}
+
+
+# Load email config from DB
+try:
+    email_conf = EmailConfig.objects.get()
+    EMAIL_HOST = email_conf.host
+    EMAIL_PORT = email_conf.port
+    EMAIL_HOST_USER = email_conf.username
+    EMAIL_HOST_PASSWORD = email_conf.password
+    EMAIL_USE_TLS = email_conf.use_tls
+    EMAIL_USE_SSL = email_conf.use_ssl
+except (OperationalError, EmailConfig.DoesNotExist):
+    EMAIL_HOST = None
+    EMAIL_PORT = None
+    EMAIL_HOST_USER = None
+    EMAIL_HOST_PASSWORD = None
+    EMAIL_USE_TLS = None
+    EMAIL_USE_SSL = None
+
+# Load ReCaptcha config from DB
+try:
+    recaptcha_conf = ReCaptcha.objects.get()
+    RECAPTCHA_PRIVATE_KEY = recaptcha_conf.private_key
+    RECAPTCHA_PUBLIC_KEY = recaptcha_conf.public_key
+except (OperationalError, ReCaptcha.DoesNotExist):
+    RECAPTCHA_PRIVATE_KEY = None
+    RECAPTCHA_PUBLIC_KEY = None

@@ -10,15 +10,22 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
-import os
-
 import dj_database_url
-
-from .site_config import DATABASE_URL, ALLOWED_HOSTS, SECRET_KEY, RECAPTCHA_PRIVATE_KEY, RECAPTCHA_PUBLIC_KEY, \
-    EMAIL_HOST, EMAIL_PORT, EMAIL_HOST_USER, EMAIL_HOST_PASSWORD, EMAIL_USE_SSL, EMAIL_USE_TLS
+import django
+import os
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# Load config into system env
+load_dotenv(dotenv_path=os.path.join(BASE_DIR, 'site_config.env'))
+env_vars = os.environ
+
+ALLOWED_HOSTS = env_vars['ALLOWED_HOSTS'].split(',')
+SECRET_KEY = env_vars['SECRET_KEY']
+DATABASE_URL = env_vars['DATABASE_URL']
+MANAGEMENT_URL = env_vars['MANAGEMENT_URL']
 
 # DEBUG defaults to False.
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -70,7 +77,7 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
-                'simple_personal_site.context_processor.site_info',
+                'simple_personal_site.context_processor.global_tags',
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
@@ -137,3 +144,10 @@ MARKUP_SETTINGS = {
         'extensions': ['toc']
     }
 }
+
+# set up apps
+django.setup()
+
+# load config from db
+from .site_config import RECAPTCHA_PRIVATE_KEY, RECAPTCHA_PUBLIC_KEY, EMAIL_HOST, EMAIL_PORT, EMAIL_HOST_USER, \
+    EMAIL_HOST_PASSWORD, EMAIL_USE_SSL, EMAIL_USE_TLS

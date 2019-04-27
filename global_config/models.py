@@ -4,7 +4,8 @@ from solo.models import SingletonModel
 
 class SiteInfo(SingletonModel):
     site_name = models.CharField(max_length=50, default='My Site', blank=False)
-    site_url = models.URLField(default='', blank=False, verbose_name='Site URL')
+    site_url = models.URLField(default='', blank=False, verbose_name='Site URL',
+                               help_text='Include "http://" or "https://"')
     # meta description
     description = models.CharField(max_length=250, default='', blank=True,
                                    help_text='This field sets the global Meta Description tag.')

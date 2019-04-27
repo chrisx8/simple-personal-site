@@ -177,11 +177,9 @@ sudo systemctl restart personal-site
 
 ## Manage content
 
-- Access the management portal at the URL you set in `site_config.env`
+- Access the site and you'll be prompted to enter the Admin Panel
 - Log in with the admin account you just created.
-- Create a homepage by clicking `Add` next to `Homepages` on the management portal. Fill out the About Me section and save.
-
-  **NOTICE: Only the latest homepage object is recognized.**
+- Create a homepage by clicking `Change` next to `Homepage` on the Admin Panel. Fill out the About Me section and save.
 - Create other items as needed.
 
 **Congratulations! Now you have your personal site!**

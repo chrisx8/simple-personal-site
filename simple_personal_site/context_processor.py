@@ -1,23 +1,39 @@
 import datetime
 from global_config.models import SocialMediaLink
-from . import site_config
+from global_config.models import Fathom, GoogleAnalytics, SiteInfo
 
 
 # global site information
-def site_info(request):
-    time = datetime.datetime.now()
+def global_tags(request):
+    context = {}
+    try:
+        fathom = Fathom.objects.get()
+        context.update({'FATHOM_URL': fathom.fathom_url, 'FATHOM_SITE_ID': fathom.site_id})
+    except Fathom.DoesNotExist:
+        pass
+    try:
+        google_analytics = GoogleAnalytics.objects.get()
+        context.update({'GA_TRACKING_ID': google_analytics.ga_tracking_id})
+    except GoogleAnalytics.DoesNotExist:
+        pass
+    try:
+        site_info = SiteInfo.objects.get()
+        site_info_dict = {
+            'SITE_NAME': site_info.site_name,
+            'SITE_DESCRIPTION': site_info.description,
+            'SITE_URL': site_info.site_url,
+            'HEADER_TITLE': site_info.header_title,
+            'HEADER_SUBTITLE': site_info.header_subtitle,
+            'FOOTER_COPYRIGHT': site_info.footer_copyright
+        }
+        context.update(site_info_dict)
+    except SiteInfo.DoesNotExist:
+        pass
     social_links = SocialMediaLink.objects.order_by('platform')
-    context = {
-        'SITE_NAME': site_config.SITE_NAME,
-        'SITE_DESCRIPTION': site_config.SITE_DESCRIPTION,
-        'SITE_URL': site_config.SITE_URL,
-        'GA_TRACKING_ID': site_config.GA_TRACKING_ID,
-        'FATHOM_URL': site_config.FATHOM_URL,
-        'FATHOM_SITE_ID': site_config.FATHOM_SITE_ID,
-        'HEADER_TITLE': site_config.HEADER_TITLE,
-        'HEADER_SUBTITLE': site_config.HEADER_SUBTITLE,
-        'FOOTER_COPYRIGHT': site_config.FOOTER_COPYRIGHT,
+    time = datetime.datetime.now()
+    context.update({
+
         'YEAR': time.year,
         'social_links': social_links,
-    }
+    })
     return context

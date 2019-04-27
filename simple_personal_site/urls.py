@@ -19,10 +19,8 @@ from django.shortcuts import render
 from django.urls import include, path
 from django.views.generic.base import RedirectView
 from blog.sitemaps import ArticleSitemap, TagSitemap
-from simple_personal_site.site_config import MANAGEMENT_URL
-from simple_personal_site.sitemaps import SiteSitemap
-from simple_personal_site import settings
-import os
+from .settings import MANAGEMENT_URL, STATIC_URL
+from .sitemaps import SiteSitemap
 
 sitemaps = {
     'site': SiteSitemap,
@@ -31,7 +29,7 @@ sitemaps = {
 }
 
 urlpatterns = [
-    path('favicon.ico', RedirectView.as_view(url=settings.STATIC_URL + 'icons/favicon.ico')),
+    path('favicon.ico', RedirectView.as_view(url=STATIC_URL + 'icons/favicon.ico')),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
     path('', include('homepage.urls')),
     path('blog/', include('blog.urls')),

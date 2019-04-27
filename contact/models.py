@@ -4,10 +4,12 @@ from django.db import models
 class ContactConfig(models.Model):
     site_owner_email = models.EmailField(blank=True, verbose_name='Site owner\'s email address.',
                                          help_text='Leaving blank disables notification emails to site owner')
-    from_name = models.CharField(max_length=50, blank=True, verbose_name='Name shown on outgoing emails.',
+    from_name = models.CharField(max_length=50, blank=True, verbose_name='Name shown on outgoing emails',
                                  help_text='Leaving blank disables emails to message sender')
-    from_email = models.EmailField(blank=True, verbose_name='Email address shown on outgoing emails.',
+    from_email = models.EmailField(blank=True, verbose_name='Email address shown on outgoing emails',
                                    help_text='Leaving blank disables emails to message sender')
+    subject = models.CharField(max_length=250, blank=True, verbose_name='Subject of outgoing emails',
+                               help_text='Leaving blank disables emails to message sender')
 
     class Meta:
         verbose_name = '# Contact Config #'
