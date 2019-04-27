@@ -21,38 +21,6 @@ class SiteInfo(SingletonModel):
         verbose_name = '# Site Info #'
 
 
-class ReCaptcha(SingletonModel):
-    private_key = models.CharField(max_length=50, blank=True,
-                                   help_text='Recommended for spam prevention. Leaving blank disables '
-                                             'ReCaptcha. <strong>Effective after restart</strong> '
-                                             '<a href="https://www.google.com/recaptcha/admin">Get ReCAPTCHA key</a>')
-    public_key = models.CharField(max_length=50, blank=True,
-                                  help_text='Recommended for spam prevention. Leaving blank disables '
-                                            'ReCaptcha. <strong>Effective after restart</strong> '
-                                            '<a href="https://www.google.com/recaptcha/admin">Get ReCAPTCHA key</a>')
-
-    class Meta:
-        verbose_name = 'ReCaptcha v2'
-
-
-class GoogleAnalytics(SingletonModel):
-    ga_tracking_id = models.CharField(max_length=15, blank=True, verbose_name='Tracking ID',
-                                      help_text='Google Analytics Tracking ID. Leaving blank disables Google Analytics')
-
-    class Meta:
-        verbose_name = 'Google Analytics'
-
-
-class Fathom(SingletonModel):
-    fathom_url = models.URLField(blank=True, verbose_name='Fathom URL', help_text='Full URL to Fathom\'s "tracker.js". '
-                                                                                  'Leaving blank disables Fathom.')
-    site_id = models.CharField(max_length=5, blank=True, verbose_name='Site ID',
-                               help_text='Fathom Site ID. Leaving blank disables Fathom')
-
-    class Meta:
-        verbose_name = 'Fathom Analytics'
-
-
 class EmailConfig(SingletonModel):
     host = models.CharField(max_length=500, blank=True, help_text='URL to SMTP server. Leaving blank disables email. '
                                                                   '<strong>Effective after restart</strong>')
@@ -69,6 +37,38 @@ class EmailConfig(SingletonModel):
 
     class Meta:
         verbose_name = 'Email Config'
+
+
+class Fathom(SingletonModel):
+    fathom_url = models.URLField(blank=True, verbose_name='Fathom URL', help_text='Full URL to Fathom\'s "tracker.js". '
+                                                                                  'Leaving blank disables Fathom.')
+    site_id = models.CharField(max_length=5, blank=True, verbose_name='Site ID',
+                               help_text='Fathom Site ID. Leaving blank disables Fathom')
+
+    class Meta:
+        verbose_name = 'Fathom Analytics'
+
+
+class GoogleAnalytics(SingletonModel):
+    ga_tracking_id = models.CharField(max_length=15, blank=True, verbose_name='Tracking ID',
+                                      help_text='Google Analytics Tracking ID. Leaving blank disables Google Analytics')
+
+    class Meta:
+        verbose_name = 'Google Analytics'
+
+
+class ReCaptcha(SingletonModel):
+    private_key = models.CharField(max_length=50, blank=True,
+                                   help_text='Recommended for spam prevention. Leaving blank disables '
+                                             'ReCaptcha. <strong>Effective after restart</strong> '
+                                             '<a href="https://www.google.com/recaptcha/admin">Get ReCAPTCHA key</a>')
+    public_key = models.CharField(max_length=50, blank=True,
+                                  help_text='Recommended for spam prevention. Leaving blank disables '
+                                            'ReCaptcha. <strong>Effective after restart</strong> '
+                                            '<a href="https://www.google.com/recaptcha/admin">Get ReCAPTCHA key</a>')
+
+    class Meta:
+        verbose_name = 'ReCaptcha v2'
 
 
 class SocialMediaLink(models.Model):

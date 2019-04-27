@@ -26,14 +26,14 @@ def global_tags(request):
             'HEADER_SUBTITLE': site_info.header_subtitle,
             'FOOTER_COPYRIGHT': site_info.footer_copyright
         }
-        context.update(site_info_dict)
     except SiteInfo.DoesNotExist:
-        pass
+        site_info_dict = {
+            'SITE_NAME': 'Simple Personal Site',
+            'HEADER_TITLE': 'Simple Personal Site',
+            'FOOTER_COPYRIGHT': 'chrisx8. Licenced under GNU GPL 3.0.'
+        }
+    context.update(site_info_dict)
     social_links = SocialMediaLink.objects.order_by('platform')
     time = datetime.datetime.now()
-    context.update({
-
-        'YEAR': time.year,
-        'social_links': social_links,
-    })
+    context.update({'YEAR': time.year, 'social_links': social_links})
     return context

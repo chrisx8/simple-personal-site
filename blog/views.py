@@ -1,14 +1,18 @@
 from django.core.paginator import Paginator
-from django.shortcuts import render, Http404, HttpResponseRedirect
+from django.shortcuts import render, Http404, HttpResponse, HttpResponseRedirect
 from django.urls import reverse
-from simple_personal_site.site_config import ARTICLES_PER_PAGE, BLOG_DESCRIPTION
-from .models import Article, Tag
+from .models import Article, BlogConfig, Tag
 
 
 def blog(request):
+    # get blog config
+    try:
+        blog_config = BlogConfig.objects.get()
+    except BlogConfig.DoesNotExist:
+        return HttpResponse('Blog module is not configured. Please edit # Blog Config # in the Admin Panel.')
     # exclude hidden articles
     articles = Article.objects.order_by('-last_edited', 'title')
-    paginator = Paginator(articles, ARTICLES_PER_PAGE)
+    paginator = Paginator(articles, blog_config.articles_per_page)
     # get page numbers as url param. Default to page 1
     page = request.GET.get('page')
     if page is None:
@@ -32,12 +36,17 @@ def blog(request):
     context = {
         'articles': articles_on_page,
         'page_range': display_page_range,
-        'SITE_DESCRIPTION': f'{BLOG_DESCRIPTION} {latest_article}'
+        'SITE_DESCRIPTION': f'{blog_config.description} {latest_article}'
     }
     return render(request, 'blog.html', context=context)
 
 
 def filter_by_tag(request, tag):
+    # get blog config
+    try:
+        blog_config = BlogConfig.objects.get()
+    except BlogConfig.DoesNotExist:
+        return HttpResponse('Blog module is not configured. Please edit # Blog Config # in the Admin Panel.')
     # query tag
     try:
         tag_obj = Tag.objects.get(tag=tag)
@@ -46,7 +55,7 @@ def filter_by_tag(request, tag):
     except (Tag.DoesNotExist, AssertionError):
         raise Http404
     # find by tag and exclude hidden articles
-    paginator = Paginator(articles, ARTICLES_PER_PAGE)
+    paginator = Paginator(articles, blog_config.articles_per_page)
     # get page numbers as url param. Default to page 1
     page = request.GET.get('page')
     if page is None:
@@ -71,7 +80,7 @@ def filter_by_tag(request, tag):
         'articles': articles_on_page,
         'page_range': display_page_range,
         'tag': tag,
-        'SITE_DESCRIPTION': f'{BLOG_DESCRIPTION} {latest_article}'
+        'SITE_DESCRIPTION': f'{blog_config.description} {latest_article}'
     }
     return render(request, 'filter_by_tag.html', context=context)
 

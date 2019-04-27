@@ -2,17 +2,12 @@ from django.conf import settings
 from django.db import OperationalError
 from global_config.models import EmailConfig, ReCaptcha, SiteInfo
 
-BLOG_DESCRIPTION = ''
-PROJECTS_DESCRIPTION = ''
-ARTICLES_PER_PAGE = 2
-PROJECTS_PER_PAGE = 2
-
 # Load site info from DB
 try:
     site_info = SiteInfo.objects.get()
     SITE_NAME = site_info.site_name
     SITE_PROTOCOL = site_info.site_url.split('://')[0]
-except SiteInfo.DoesNotExist:
+except (OperationalError, SiteInfo.DoesNotExist):
     SITE_NAME = 'Simple Personal Site'
     SITE_PROTOCOL = 'http'
 

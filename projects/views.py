@@ -1,15 +1,19 @@
 from django.core.paginator import Paginator
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, reverse
-from simple_personal_site.site_config import PROJECTS_PER_PAGE, PROJECTS_DESCRIPTION
-from .models import Project
+from .models import Project, ProjectsConfig
 
 
 # all projects
 def projects(request):
+    # get projects config
+    try:
+        projects_config = ProjectsConfig.objects.get()
+    except ProjectsConfig.DoesNotExist:
+        return HttpResponse('Projects module is not configured. Please edit # Projects Config # in Admin Panel.')
     # exclude hidden projects
     all_projects = Project.objects.order_by('-posted', 'title')
-    paginator = Paginator(all_projects, PROJECTS_PER_PAGE)
+    paginator = Paginator(all_projects, projects_config.projects_per_page)
     # get page numbers as url param. Default to page 1
     page = request.GET.get('page')
     if page is None:
@@ -29,6 +33,6 @@ def projects(request):
     context = {
         'projects': projects_on_page,
         'page_range': display_page_range,
-        'SITE_DESCRIPTION': PROJECTS_DESCRIPTION
+        'SITE_DESCRIPTION': projects_config.description
     }
     return render(request, 'projects.html', context=context)
