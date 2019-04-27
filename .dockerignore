@@ -122,10 +122,9 @@ static/admin/
 static/staticfiles.json
 uploads/
 cfiles.json
-uploads/
 
 # Sample/build files
-samples/
+_samples/
 Dockerfile
 .dockerignore
 .gitignore
