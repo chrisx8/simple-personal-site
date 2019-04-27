@@ -4,8 +4,7 @@
 {% block body %}
 <div class="container" style="padding-left:15px; padding-right:15px">
 <h1 class="title">Blog</h1>
-<h3 class="subtitle">#{{ tag }}</h3>
-<p class="subtitle is-6"><a href="{% url 'blog' %}">Show all articles</a></p>
+<h3 class="subtitle"><span class="tag is-medium">#{{ tag }}&nbsp;<a class="delete is-small" href="{% url 'blog' %}"></a></span></h3>
 {% for article in articles %}
 {% if forloop.counter0|divisibleby:2 %}
 <div class="columns">
@@ -17,10 +16,10 @@
 <div class="content">
 <p class="title">{{ article.title }}</p>
 <p class="subtitle" style="font-size:18px;">{{ article.subtitle }}</p>
-{% for tag in article.tag.all %}<a href="{% url 'filter_by_tag' tag=tag %}">#{{ tag }}</a> {% endfor %}
+{% for tag in article.tag.all %}<a href="{% url 'filter_by_tag' tag=tag %}"><span class="tag is-medium">#{{ tag }}</span>&nbsp;</a>{% endfor %}
 </div>
 <nav class="level">
-<div class="level-left"><a class="level-item button is-dark" href="{% url 'view_article' id=article.id %}"<i class="material-icons">book</i>&nbsp;Read article</a></div>
+<div class="level-left"><a class="level-item button is-primary" href="{% url 'view_article' id=article.id %}">Read article</a></div>
 <div class="level-right" style="text-transform:uppercase;font-size:16px;"><span class="level-item">{{ article.last_edited }}</span></div>
 </nav>
 </div>

@@ -25,7 +25,7 @@
 {% load markup_tags %}
 <div class="content">{{ project.description|apply_markup:"markdown" }}</div>
 {% if project.url %}
-<a class="button is-dark" href="{{ project.url }}" target="_blank" rel="noopener noreferrer">{{ project.url_description }}&nbsp;<i class="material-icons">launch</i></a>
+<a class="button is-primary" href="{{ project.url }}" target="_blank" rel="noopener noreferrer">{{ project.url_description }}&nbsp;<i class="material-icons">launch</i></a>
 {% endif %}
 </div>
 </div>
@@ -49,7 +49,7 @@
 <ul class="pagination-list">
 {% for page in page_range %}
 {% if projects.number == page %}
-<li><a class="button pagination-link is-current" aria-label="Page {{ page }}" aria-current="page">{{ page }}</a></li>
+<li><a class="button pagination-link is-dark" aria-label="Page {{ page }}" aria-current="page">{{ page }}</a></li>
 {% else %}
 <li><a href="?page={{ page }}" class="button pagination-link" aria-label="Goto page {{ page }}">{{ page }}</a></li>
 {% endif %}

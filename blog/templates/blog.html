@@ -20,10 +20,10 @@
 <div class="content">
 <p class="title">{{ article.title }}</p>
 <p class="subtitle" style="font-size:18px;">{{ article.subtitle }}</p>
-{% for tag in article.tag.all %}<a href="{% url 'filter_by_tag' tag=tag %}">#{{ tag }}</a> {% endfor %}
+{% for tag in article.tag.all %}<a href="{% url 'filter_by_tag' tag=tag %}"><span class="tag is-medium">#{{ tag }}</span>&nbsp;</a>{% endfor %}
 </div>
 <nav class="level">
-<div class="level-left"><a class="level-item button is-dark" href="{% url 'view_article' id=article.id %}">Read article</a></div>
+<div class="level-left"><a class="level-item button is-primary" href="{% url 'view_article' id=article.id %}">Read article</a></div>
 <div class="level-right" style="text-transform:uppercase;font-size:16px;"><span class="level-item">{{ article.last_edited }}</span></div>
 </nav>
 </div>
@@ -45,7 +45,7 @@
 <ul class="pagination-list">
 {% for page in page_range %}
 {% if articles.number == page %}
-<li><a class="button pagination-link is-current" aria-label="Page {{ page }}" aria-current="page">{{ page }}</a></li>
+<li><a class="button pagination-link is-dark" aria-label="Page {{ page }}" aria-current="page">{{ page }}</a></li>
 {% else %}
 <li><a href="?page={{ page }}" class="button pagination-link" aria-label="Goto page {{ page }}">{{ page }}</a></li>
 {% endif %}

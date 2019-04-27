@@ -21,7 +21,6 @@ class SocialMediaLink(models.Model):
     platform = models.CharField(max_length=50, default='', null=False, help_text='Name of the social media platform')
     username = models.CharField(max_length=100, default='', null=False, help_text='Omit @ symbol')
     url = models.URLField(default='', null=False, help_text='Link to profile page')
-    color = models.CharField(max_length=6, default='3273DC', null=False, help_text='Color of social media logo.')
     display_at = models.BooleanField(verbose_name='Display "@" before username', default=False, null=False)
 
     class Meta:
