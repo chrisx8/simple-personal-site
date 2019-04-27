@@ -1,7 +1,7 @@
 from django.core.mail import send_mail
 from django.shortcuts import render, HttpResponseRedirect
 from django.urls import reverse
-from simple_personal_site.site_config import SITE_NAME
+from global_config.models import SiteInfo
 from .forms import ContactForm
 from .models import ContactConfig, Message
 

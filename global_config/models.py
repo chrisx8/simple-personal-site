@@ -5,7 +5,7 @@ from solo.models import SingletonModel
 class SiteInfo(SingletonModel):
     site_name = models.CharField(max_length=50, default='My Site', blank=False)
     site_url = models.URLField(default='', blank=False, verbose_name='Site URL',
-                               help_text='Include "http://" or "https://"')
+                               help_text='Include "http://" or "https://". <strong>Effective after restart</strong>')
     # meta description
     description = models.CharField(max_length=250, default='', blank=True,
                                    help_text='This field sets the global Meta Description tag.')
@@ -24,12 +24,12 @@ class SiteInfo(SingletonModel):
 class ReCaptcha(SingletonModel):
     private_key = models.CharField(max_length=50, blank=True,
                                    help_text='Recommended for spam prevention. Leaving blank disables '
-                                             'ReCaptcha. Get your ReCaptcha v2 key at '
-                                             'https://www.google.com/recaptcha/admin')
+                                             'ReCaptcha. <strong>Effective after restart</strong> '
+                                             '<a href="https://www.google.com/recaptcha/admin">Get ReCAPTCHA key</a>')
     public_key = models.CharField(max_length=50, blank=True,
                                   help_text='Recommended for spam prevention. Leaving blank disables '
-                                            'ReCaptcha. Get your ReCaptcha v2 key at '
-                                            'https://www.google.com/recaptcha/admin')
+                                            'ReCaptcha. <strong>Effective after restart</strong> '
+                                            '<a href="https://www.google.com/recaptcha/admin">Get ReCAPTCHA key</a>')
 
     class Meta:
         verbose_name = 'ReCaptcha v2'
@@ -54,12 +54,18 @@ class Fathom(SingletonModel):
 
 
 class EmailConfig(SingletonModel):
-    host = models.CharField(max_length=500, blank=True, help_text='URL to SMTP server. Leaving blank disables email.')
-    port = models.IntegerField(blank=True, null=True, help_text='Port of SMTP server. Leaving blank disables email.')
-    username = models.CharField(max_length=500, blank=True, help_text='SMTP username. Leaving blank disables email.')
-    password = models.CharField(max_length=500, blank=True, help_text='SMTP password. Leaving blank disables email.')
-    use_tls = models.BooleanField(default=False, verbose_name='Use TLS', help_text='Do not enable both SSL and TLS.')
-    use_ssl = models.BooleanField(default=False, verbose_name='Use SSL', help_text='Do not enable both SSL and TLS.')
+    host = models.CharField(max_length=500, blank=True, help_text='URL to SMTP server. Leaving blank disables email. '
+                                                                  '<strong>Effective after restart</strong>')
+    port = models.IntegerField(blank=True, null=True, help_text='Port of SMTP server. Leaving blank disables email. '
+                                                                '<strong>Effective after restart</strong>')
+    username = models.CharField(max_length=500, blank=True, help_text='SMTP username. Leaving blank disables email. '
+                                                                      '<strong>Effective after restart</strong>')
+    password = models.CharField(max_length=500, blank=True, help_text='SMTP password. Leaving blank disables email. '
+                                                                      '<strong>Effective after restart</strong>')
+    use_tls = models.BooleanField(default=False, verbose_name='Use TLS',
+                                  help_text='Do not enable both SSL and TLS. <strong>Effective after restart</strong>')
+    use_ssl = models.BooleanField(default=False, verbose_name='Use SSL',
+                                  help_text='Do not enable both SSL and TLS. <strong>Effective after restart</strong>')
 
     class Meta:
         verbose_name = 'Email Config'

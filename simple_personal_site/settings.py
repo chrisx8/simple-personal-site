@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import dj_database_url
-import django
 import os
 from dotenv import load_dotenv
 
@@ -144,10 +143,3 @@ MARKUP_SETTINGS = {
         'extensions': ['toc']
     }
 }
-
-# set up apps
-django.setup()
-
-# load config from db
-from .site_config import RECAPTCHA_PRIVATE_KEY, RECAPTCHA_PUBLIC_KEY, EMAIL_HOST, EMAIL_PORT, EMAIL_HOST_USER, \
-    EMAIL_HOST_PASSWORD, EMAIL_USE_SSL, EMAIL_USE_TLS
