@@ -65,7 +65,7 @@ docker run -d -p 0.0.0.0:80:8000 --env-file=site_config.env -v uploads:/app/uplo
 docker exec -it simple-personal-site python3 manage.py createsuperuser
 ```
 
-- See `samples/` for sample Nginx configurations and `docker-compose.yml`
+- See `_samples/` for sample Nginx configurations and `docker-compose.yml`
 
 ## Install in a virtualenv
 
@@ -127,7 +127,7 @@ sudo systemctl start personal-site
 python3 manage.py createsuperuser
 ```
 
-- See `samples/` for sample Nginx configurations and `docker-compose.yml`
+- See `_samples/` for sample Nginx configurations and `docker-compose.yml`
 
 ## Upgrading Docker container
 

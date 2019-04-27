@@ -5,7 +5,6 @@ from simple_personal_site.site_config import MANAGEMENT_URL
 from .models import Homepage
 
 
-# homepage
 def home(request):
     try:
         home_obj = Homepage.objects.latest('id')

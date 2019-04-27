@@ -1,7 +1,19 @@
 from django.db import models
 
 
-# contact info
+class ContactConfig(models.Model):
+    site_owner_email = models.EmailField(blank=True, verbose_name='Site owner\'s email address.',
+                                         help_text='Leaving blank disables notification emails to site owner')
+    from_name = models.CharField(max_length=50, blank=True, verbose_name='Name shown on outgoing emails.',
+                                 help_text='Leaving blank disables emails to message sender')
+    from_email = models.EmailField(blank=True, verbose_name='Email address shown on outgoing emails.',
+                                   help_text='Leaving blank disables emails to message sender')
+
+    class Meta:
+        verbose_name = '# Contact Config #'
+
+
+# contact form
 class Message(models.Model):
     name = models.CharField(max_length=100, default='', null=False)
     email = models.EmailField(null=False)
@@ -14,26 +26,3 @@ class Message(models.Model):
 
     def __str__(self):
         return self.name
-
-
-# social media links
-class SocialMediaLink(models.Model):
-    platform = models.CharField(max_length=50, default='', null=False, help_text='Name of the social media platform')
-    username = models.CharField(max_length=100, default='', null=False, help_text='Omit @ symbol')
-    url = models.URLField(default='', null=False, help_text='Link to profile page')
-    display_at = models.BooleanField(verbose_name='Display "@" before username', default=False, null=False)
-
-    class Meta:
-        ordering = ['platform', 'username']
-
-    def display_username(self):
-        if self.display_at:
-            return '@' + str(self.username)
-        else:
-            return self.username
-
-    def __str__(self):
-        if self.display_at:
-            return f'{self.platform} @{self.username}'
-        else:
-            return f'{self.platform} - {self.username}'

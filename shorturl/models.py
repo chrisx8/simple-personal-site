@@ -8,6 +8,7 @@ class ShortURL(models.Model):
 
     class Meta:
         ordering = ['alias']
+        verbose_name = 'Short URL'
 
     def __str__(self):
         return self.alias

@@ -1,5 +1,5 @@
 import datetime
-from contact.models import SocialMediaLink
+from global_config.models import SocialMediaLink
 from . import site_config
 
 

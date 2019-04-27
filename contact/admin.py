@@ -1,17 +1,8 @@
 from django.contrib import admin
-from simple_personal_site.forms import AuthFormCaptcha
-from simple_personal_site.site_config import SITE_NAME
-from .models import Message, SocialMediaLink
+from solo.admin import SingletonModelAdmin
+from .models import ContactConfig, Message
 
-# Customize admin page
-# set admin site title
-admin.site.site_title = SITE_NAME
-admin.site.site_header = 'Admin Panel // ' + SITE_NAME
-
-# admin login form with captcha
-admin.site.login_form = AuthFormCaptcha
-admin.site.login_template = 'login.html'
-admin.site.logout_template = 'logout.html'
+admin.site.register(ContactConfig, SingletonModelAdmin)
 
 
 @admin.register(Message)
@@ -32,9 +23,3 @@ class MessageAdmin(admin.ModelAdmin):
     list_filter = ['read', 'timestamp']
     readonly_fields = ["name", "email", "message", "timestamp"]
     actions = [mark_read, mark_unread]
-
-
-@admin.register(SocialMediaLink)
-class SocialMediaLinkAdmin(admin.ModelAdmin):
-    ordering = ['platform']
-    list_display = ['platform', 'username']

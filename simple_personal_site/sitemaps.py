@@ -9,7 +9,7 @@ class SiteSitemap(Sitemap):
     protocol = SITE_PROTOCOL
 
     def items(self):
-        return ['homepage', 'blog', 'projects', 'contact']
+        return ['global_config', 'blog', 'projects', 'contact']
 
     def location(self, obj):
         return reverse(obj)

@@ -1,7 +1,18 @@
+import string
 from django.db import models
 from django.urls import reverse
 from media.models import Image, Video
-import string
+
+
+class BlogConfig(models.Model):
+    description = models.CharField(max_length=250, default='', blank=True,
+                                   help_text='This field sets the Meta Description tag for /blog/. Always followed by '
+                                             '"Check out my latest article: TITLE". Leave blank to use global Meta '
+                                             'Description tag.')
+    articles_per_page = models.IntegerField(blank=False, default=10)
+
+    class Meta:
+        verbose_name = '# Blog Config #'
 
 
 class Tag(models.Model):
