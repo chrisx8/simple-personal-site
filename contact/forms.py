@@ -1,7 +1,7 @@
 from django import forms
 from snowpenguin.django.recaptcha2.fields import ReCaptchaField
 from snowpenguin.django.recaptcha2.widgets import ReCaptchaWidget
-from simple_personal_site.site_config import RECAPTCHA_PUBLIC_KEY, RECAPTCHA_PRIVATE_KEY
+from global_config.site_config import RECAPTCHA_PUBLIC_KEY, RECAPTCHA_PRIVATE_KEY
 
 
 class ContactForm(forms.Form):

@@ -1,6 +1,6 @@
 from django.contrib.sitemaps import Sitemap
 from .models import Article, Tag
-from simple_personal_site.site_config import SITE_PROTOCOL
+from global_config.site_config import SITE_PROTOCOL
 
 
 class ArticleSitemap(Sitemap):

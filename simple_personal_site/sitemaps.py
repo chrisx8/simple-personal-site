@@ -1,6 +1,6 @@
 from django.contrib.sitemaps import Sitemap
 from django.urls import reverse
-from simple_personal_site.site_config import SITE_PROTOCOL
+from global_config.site_config import SITE_PROTOCOL
 
 
 class SiteSitemap(Sitemap):

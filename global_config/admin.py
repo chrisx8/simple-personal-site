@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.models import Group
-from simple_personal_site.forms import AuthFormCaptcha
-from simple_personal_site.site_config import SITE_NAME
+from global_config.forms import AuthFormCaptcha
+from global_config.site_config import SITE_NAME
 from solo.admin import SingletonModelAdmin
 from .models import SiteInfo, EmailConfig, Fathom, GoogleAnalytics, ReCaptcha, SocialMediaLink
 

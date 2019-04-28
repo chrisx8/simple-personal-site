@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.db import OperationalError
+from django.db import OperationalError, ProgrammingError
 from global_config.models import EmailConfig, ReCaptcha, SiteInfo
 
 # Load site info from DB
@@ -7,7 +7,7 @@ try:
     site_info = SiteInfo.objects.get()
     SITE_NAME = site_info.site_name
     SITE_PROTOCOL = site_info.site_url.split('://')[0]
-except (OperationalError, SiteInfo.DoesNotExist):
+except (OperationalError, ProgrammingError, SiteInfo.DoesNotExist):
     SITE_NAME = 'Simple Personal Site'
     SITE_PROTOCOL = 'http'
 
@@ -20,7 +20,7 @@ try:
     settings.EMAIL_HOST_PASSWORD = email_conf.password
     settings.EMAIL_USE_TLS = email_conf.use_tls
     settings.EMAIL_USE_SSL = email_conf.use_ssl
-except (OperationalError, EmailConfig.DoesNotExist):
+except (OperationalError, ProgrammingError, EmailConfig.DoesNotExist):
     pass
 
 # Load ReCaptcha config from DB
@@ -28,7 +28,7 @@ try:
     recaptcha_conf = ReCaptcha.objects.get()
     RECAPTCHA_PRIVATE_KEY = recaptcha_conf.private_key
     RECAPTCHA_PUBLIC_KEY = recaptcha_conf.public_key
-except (OperationalError, ReCaptcha.DoesNotExist):
+except (OperationalError, ProgrammingError, ReCaptcha.DoesNotExist):
     RECAPTCHA_PRIVATE_KEY = None
     RECAPTCHA_PUBLIC_KEY = None
 
