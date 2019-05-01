@@ -69,7 +69,7 @@
 <div style="height: 50px"></div>
 <footer class="sps-footer">
 <div class="content has-text-centered">
-{% for link in social_links %}{% if forloop.counter != 1 %}&nbsp;{% endif %}<a href="{{ link.url }}" title="{{ link.display_username }}">{{ link.platform }}</a> {% endfor %}<br>
+{% for link in social_links %}{% if forloop.counter != 1 %}&nbsp;{% endif %}<a href="{{ link.url }}" title="{{ link.username }}">{{ link.platform }}</a> {% endfor %}<br>
 &copy; {{ YEAR }} {{ FOOTER_COPYRIGHT }}
 </p></div>
 </footer>

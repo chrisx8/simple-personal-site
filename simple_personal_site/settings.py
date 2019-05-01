@@ -72,7 +72,6 @@ ROOT_URLCONF = 'simple_personal_site.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['simple_personal_site/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

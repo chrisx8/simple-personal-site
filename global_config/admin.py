@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.models import Group
-from global_config.forms import AuthFormCaptcha
+from global_config.forms import AuthFormCaptcha, EmailConfigAdminForm
 from global_config.site_config import SITE_NAME
 from solo.admin import SingletonModelAdmin
 from .models import SiteInfo, EmailConfig, Fathom, GoogleAnalytics, ReCaptcha, SocialMediaLink
@@ -19,8 +19,6 @@ admin.site.logout_template = 'logout.html'
 admin.site.unregister(Group)
 
 # register global config models
-admin.site.register(SiteInfo, SingletonModelAdmin)
-admin.site.register(EmailConfig, SingletonModelAdmin)
 admin.site.register(Fathom, SingletonModelAdmin)
 admin.site.register(GoogleAnalytics, SingletonModelAdmin)
 admin.site.register(ReCaptcha, SingletonModelAdmin)
@@ -30,3 +28,17 @@ admin.site.register(ReCaptcha, SingletonModelAdmin)
 class SocialMediaLinkAdmin(admin.ModelAdmin):
     ordering = ['platform']
     list_display = ['platform', 'username']
+
+
+@admin.register(SiteInfo)
+class SiteInfoAdmin(SingletonModelAdmin):
+    fieldsets = (
+        ('Basic Info', {'fields': ['site_name', 'site_url', 'description']}),
+        ('Header', {'fields': ['header_title', 'header_subtitle']}),
+        ('Footer', {'fields': ['footer_copyright']}),
+    )
+
+
+@admin.register(EmailConfig)
+class EmailConfigAdmin(SingletonModelAdmin):
+    form = EmailConfigAdminForm

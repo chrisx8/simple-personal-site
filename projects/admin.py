@@ -7,6 +7,11 @@ admin.site.register(ProjectsConfig, SingletonModelAdmin)
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
+    fieldsets = (
+        ('Project Info', {'fields': ['title', 'description', 'posted']}),
+        ('Media', {'fields': ['image', 'video']}),
+        ('URL', {'fields': ['url', 'url_description']}),
+    )
     list_display = ['title', 'posted']
     list_filter = ['posted']
     readonly_fields = ["id", "posted"]
