@@ -8,7 +8,7 @@ RUN apk add --no-cache postgresql-dev mariadb-connector-c-dev jpeg-dev zlib-dev 
 
 # Install project dependencies
 COPY requirements.txt /tmp/requirements.txt
-RUN apk add build-base gcc musl-dev git && \
+RUN apk add --no-cache build-base gcc musl-dev git && \
 	pip3 install --no-cache -r /tmp/requirements.txt && \
     rm /tmp/requirements.txt && \
     apk del build-base gcc musl-dev git
