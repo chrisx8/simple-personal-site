@@ -1,18 +1,17 @@
-FROM alpine:3.9
+FROM python:3.7-alpine
 
 # Install system packages
-RUN apk add --no-cache python3 postgresql-dev mariadb-connector-c-dev jpeg-dev zlib-dev && \
-	pip3 install --no-cache --upgrade pip setuptools && \
+RUN apk add --no-cache postgresql-dev mariadb-connector-c-dev jpeg-dev zlib-dev && \
     echo 'nameserver 127.0.0.11' > /etc/resolv.conf && \
     echo 'nameserver 1.1.1.1' >> /etc/resolv.conf && \
     echo 'nameserver 8.8.8.8' >> /etc/resolv.conf
 
 # Install project dependencies
 COPY requirements.txt /tmp/requirements.txt
-RUN apk add build-base gcc python3-dev musl-dev git && \
+RUN apk add build-base gcc musl-dev git && \
 	pip3 install --no-cache -r /tmp/requirements.txt && \
     rm /tmp/requirements.txt && \
-    apk del build-base gcc python3-dev musl-dev git
+    apk del build-base gcc musl-dev git
 
 # Copy code
 COPY . /app/
