@@ -1,6 +1,7 @@
 import string
 from django.db import models
 from django.urls import reverse
+from django.utils.text import slugify
 from media.models import Image, Video
 
 
@@ -29,9 +30,9 @@ class Tag(models.Model):
 
 
 class Article(models.Model):
-    id = models.CharField(primary_key=True, max_length=100, verbose_name='Article ID')
-    title = models.CharField(max_length=100, default='', null=False)
-    subtitle = models.CharField(max_length=100, default='', null=False, blank=True)
+    id = models.SlugField(primary_key=True, verbose_name='Article ID')
+    title = models.CharField(max_length=250, default='', null=False)
+    subtitle = models.CharField(max_length=250, default='', null=False, blank=True)
     tag = models.ManyToManyField(Tag, blank=True)
     image = models.ForeignKey(Image, blank=True, null=True, on_delete=models.CASCADE,
                               help_text="When both image and video are selected, only video will show.")
@@ -46,20 +47,10 @@ class Article(models.Model):
     def get_absolute_url(self):
         return reverse('view_article', kwargs={'id': self.id})
 
-    def get_article_id(self):
-        title = str(self.title).lower()
-        article_id = ''
-        # only include numbers and letters and replace space with -
-        for char in title:
-            if char in string.ascii_letters or char in string.digits:
-                article_id += char
-            elif char in string.whitespace:
-                article_id += '-'
-        return article_id
-
     def save(self):
         old_id = self.id
-        new_id = self.get_article_id()
+        # slugify title, get first 250 characters
+        new_id = slugify(self.title)[:250]
         # delete old if id changed
         if old_id != new_id:
             self.id = new_id
