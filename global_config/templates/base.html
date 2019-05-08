@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>{% block pagetitle %}{% endblock %} // {{ SITE_NAME }}</title>
+<title>{% block pagetitle %}{% endblock %}| {{ SITE_NAME }}</title>
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="{{ SITE_DESCRIPTION }}">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta property="og:url" content="{{ SITE_URL }}" />
-<meta property="og:title" content="{% block ogtitle %}{% endblock %} // {{ SITE_NAME }}" />
+<meta property="og:title" content="{% block ogtitle %}{% endblock %}| {{ SITE_NAME }}" />
 <meta property="og:description" content="{{ SITE_DESCRIPTION }}" />
 <meta property="og:site_name" content="{{ SITE_NAME }}" />
 <meta property="og:type" content="website" />
-<meta property="og:image" content="/static/images/logo.png">
+<meta property="og:image" content="{{ SITE_URL }}/static/images/og-image.png">
 <meta property="og:locale" content="en_US" />
 <link rel="manifest" href="/static/icons/site.webmanifest">
 <meta name="mobile-web-app-capable" content="yes">

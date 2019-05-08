@@ -5,7 +5,8 @@ from solo.models import SingletonModel
 class SiteInfo(SingletonModel):
     site_name = models.CharField(max_length=50, default='My Site', blank=False)
     site_url = models.URLField(default='', blank=False, verbose_name='Site URL',
-                               help_text='Include "http://" or "https://". <strong>Effective after restart</strong>')
+                               help_text='Include "http://" or "https://". No trailing slashes. '
+                                         '<strong>Effective after restart</strong>')
     # meta description
     description = models.CharField(max_length=250, default='', blank=True,
                                    help_text='This field sets the global Meta Description tag.')

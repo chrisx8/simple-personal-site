@@ -41,7 +41,7 @@ cp site_config.example.env site_config.env
 - Edit `site_config.env`, following instructions in the file.
 - Generate your own icons [here](https://realfavicongenerator.net). Download the generated Favicon package.
 - Unzip the downloaded package, and upload everything to `static/icons/`, replacing ALL existing placeholder icon files.
-- Upload a logo (in `.png` format) to `static/images/`, replacing the existing `logo.png`
+- Upload an image for `og:image` (`1280*640`, in `.png` format) to `static/images/`, replacing the existing `og-image.png`
 
 ## Install with Docker
 
