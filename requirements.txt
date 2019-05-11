@@ -14,6 +14,7 @@ mistune==0.8.4
 mysqlclient==1.4.2.post1
 Pillow==6.0.0
 psycopg2==2.8.2
+Pygments==2.4.0
 python-dotenv==0.10.1
 pytz==2019.1
 requests==2.21.0
