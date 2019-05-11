@@ -32,7 +32,7 @@ class SPSRenderer(mistune.Renderer):
         if alt_text is not None:
             alt_text = f'alt="{mistune.escape(alt_text)}"'
         # add lazyload tag
-        return f'<img class="lazy" {alt_text} {title} src="{mistune.escape(src)}">'
+        return f'<img class="lazy" {alt_text} {title} data-src="{mistune.escape(src)}">'
 
 
 @register.filter
