@@ -11,7 +11,6 @@
 From: {{ msg.name }} ({{ msg.email }})<br>
 Received at {{ msg.timestamp }}<br>
 Message content:
-{% load markup_tags %}
-<blockquote>{{ msg.message|apply_markup:"linebreaks" }}</blockquote>
+<blockquote>{{ msg.message|linebreaks }}</blockquote>
 </body>
 </html>

@@ -2,12 +2,13 @@
 {% block pagetitle %} Home {% endblock %}
 {% block ogtitle %} Home {% endblock %}
 {% block body %}
+<link rel="stylesheet" href="/static/css/pygments.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <div class="container" style="padding-left:15px; padding-right:15px">
 <h1 class="title">About Me</h1>
-{% load markup_tags %}
+{% load markdown %}
 <div class="content">
-{{ home.about_me|apply_markup:"markdown" }}
+{{ home.about_me|markdown|safe }}
 {% if home.resume %}<p><a class="button is-primary" href="{{ home.resume.url }}" target="_blank" rel="noopener noreferrer">Resume&nbsp;<i class="material-icons">launch</i></a></p>{% endif %}
 </div>
 {% if latest_articles %}
@@ -55,8 +56,8 @@
 {% endif %}
 <div class="card-content">
 <p class="title">{{ project.title }}</p>
-{% load markup_tags %}
-<div class="content">{{ project.description|apply_markup:"markdown" }}</div>
+{% load markdown %}
+<div class="content">{{ project.description|markdown|safe }}</div>
 {% if project.url %}
 <a class="button is-primary" href="{{ project.url }}" target="_blank" rel="noopener noreferrer">{{ project.url_description }}&nbsp;<i class="material-icons">launch</i></a>
 {% endif %}

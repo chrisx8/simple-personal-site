@@ -10,7 +10,6 @@
 <p>Hi {{ name }}, </p>
 <p>Thanks for contacting me! I'll get back to you soon.</p>
 <p>Here's a copy of your message:</p>
-{% load markup_tags %}
-<blockquote>{{ msg|apply_markup:"linebreaks" }}</blockquote>
+<blockquote>{{ msg|linebreaks }}</blockquote>
 </body>
 </html>

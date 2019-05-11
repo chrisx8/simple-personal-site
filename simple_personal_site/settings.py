@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.sitemaps',
     'django.contrib.staticfiles',
-    'django_markup',
     'snowpenguin.django.recaptcha2',
     'solo',
     'blog.apps.BlogConfig',
@@ -142,11 +141,3 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 X_FRAME_OPTIONS = 'DENY'
-
-# Enable Markdown TOC support
-MARKUP_SETTINGS = {
-    'markdown': {
-        'safe_mode': True,
-        'extensions': ['toc']
-    }
-}
