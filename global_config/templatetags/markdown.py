@@ -54,7 +54,7 @@ def markdown(value):
     ]
     markdown_attrs = {
         "*": ["id", "class"],
-        "img": ["src", "alt", "title"],
+        "img": ["src", "data-src", "alt", "title"],
         "a": ["href", "alt", "title"],
     }
     # clean html
