@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm
-from django.forms import ModelForm
+from django.forms import ModelForm, Form
 from snowpenguin.django.recaptcha2.fields import ReCaptchaField
 from snowpenguin.django.recaptcha2.widgets import ReCaptchaWidget
 from global_config.models import EmailConfig
@@ -19,3 +19,8 @@ class EmailConfigAdminForm(ModelForm):
         model = EmailConfig
         exclude = []
         widgets = {'password': forms.PasswordInput}
+
+
+class RecaptchaForm(Form):
+    if RECAPTCHA_PRIVATE_KEY and RECAPTCHA_PUBLIC_KEY:
+        captcha = ReCaptchaField(widget=ReCaptchaWidget())

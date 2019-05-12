@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block pagetitle %} PGP Public Key {% endblock %}
+{% block ogtitle %} PGP Public Key {% endblock %}
+{% block body %}
+<div class="container" style="padding-left:15px; padding-right:15px">
+<h1 class="title">Get PGP Public Key</h1>
+<h2 class="subtitle">Verification required</h2>
+<form method="POST">
+{% csrf_token %}
+{% if form.captcha %}
+{% load recaptcha2 %}
+{% recaptcha_init %}
+<div class="field">
+<div class="control">{{ form.captcha }}</div>
+{% if form.captcha.errors %}<article class="message is-danger"><div class="message-body"><strong>Please complete the CAPTCHA</strong></div></article>{% endif %}
+</div>
+{% endif %}
+<div class="field is-grouped">
+<div class="control"><button class="button is-primary" type="submit">Continue</button></div>
+</div>
+</form>
+</div>
+{% endblock %}

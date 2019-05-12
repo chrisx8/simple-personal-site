@@ -5,7 +5,7 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <div class="container" style="padding-left:15px; padding-right:15px">
 <h1 class="title">Contact Me</h1>
-<p class="subtitle">Send me a message, and I'll get back to you soon!</p>
+<p class="subtitle">Send me a message, and I'll get back to you soon! {% if has_pgp %}<br><small><a href="{% url 'pgp_pubkey' %}">PGP Public Key</a></small>{% endif %}</p>
 <form method="POST">
 {% csrf_token %}
 <div class="field">

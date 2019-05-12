@@ -18,5 +18,6 @@ from . import views
 
 urlpatterns = [
     path('', views.message, name='contact'),
+    path('pgpkey/', views.show_pgp_pubkey, name='pgp_pubkey'),
     path('success/', views.message_success, name='message_success'),
 ]

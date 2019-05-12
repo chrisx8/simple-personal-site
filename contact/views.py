@@ -1,7 +1,9 @@
 from django.core.mail import send_mail
+from django.http import Http404, HttpResponse
 from django.shortcuts import render, HttpResponseRedirect
 from django.urls import reverse
-from global_config.site_config import SITE_NAME
+from global_config.forms import RecaptchaForm
+from global_config.site_config import RECAPTCHA_PUBLIC_KEY, RECAPTCHA_PRIVATE_KEY, SITE_NAME
 from .forms import ContactForm
 from .models import ContactConfig, Message
 
@@ -11,8 +13,10 @@ def message(request):
     try:
         contact_config = ContactConfig.objects.get()
         from_addr = f'{contact_config.from_name} <{contact_config.from_email}>'
+        has_pgp_pubkey = bool(contact_config.pgp_pubkey)
     except ContactConfig.DoesNotExist:
         contact_config = None
+        has_pgp_pubkey = False
 
     def from_addr_exists():
         return contact_config.from_name and contact_config.from_email
@@ -62,13 +66,40 @@ def message(request):
             email_site_owner()
             return HttpResponseRedirect(reverse('message_success'))
         else:
-            context = {'form': form}
+            context = {'form': form, 'has_pgp': has_pgp_pubkey}
             return render(request, 'contact.html', context=context)
     else:
-        context = {'form': ContactForm()}
+        context = {'form': ContactForm(), 'has_pgp': has_pgp_pubkey}
         return render(request, 'contact.html', context=context)
 
 
 # thank-you page
 def message_success(request):
     return render(request, 'message_success.html')
+
+
+# pgp pubkey
+def show_pgp_pubkey(request):
+    # check if key exists
+    try:
+        contact_config = ContactConfig.objects.get()
+        pgp_pubkey = str(contact_config.pgp_pubkey)
+        assert len(pgp_pubkey) > 0
+    except (AssertionError, ContactConfig.DoesNotExist):
+        raise Http404
+    # give key if recaptcha isn't required
+    if not (RECAPTCHA_PUBLIC_KEY and RECAPTCHA_PRIVATE_KEY):
+        return HttpResponse(pgp_pubkey, content_type='text/plain')
+    # captcha validation
+    if request.method == 'POST':
+        # get form data from post
+        form = RecaptchaForm(request.POST)
+        if form.is_valid():
+            return HttpResponse(pgp_pubkey, content_type='text/plain')
+        else:
+            context = {'form': form}
+            return render(request, 'pgp_pubkey.html', context=context)
+    else:
+        form = RecaptchaForm()
+        context = {'form': form}
+        return render(request, 'pgp_pubkey.html', context=context)

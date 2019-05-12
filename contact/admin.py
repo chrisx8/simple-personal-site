@@ -2,7 +2,13 @@ from django.contrib import admin
 from solo.admin import SingletonModelAdmin
 from .models import ContactConfig, Message
 
-admin.site.register(ContactConfig, SingletonModelAdmin)
+
+@admin.register(ContactConfig)
+class ContactConfigAdmin(SingletonModelAdmin):
+    fieldsets = (
+        ('Email Config', {'fields': ['site_owner_email', 'from_name', 'from_email', 'subject']}),
+        ('PGP Public Key', {'fields': ['pgp_pubkey']})
+    )
 
 
 @admin.register(Message)
