@@ -9,7 +9,7 @@ admin.site.register(ProjectsConfig, SingletonModelAdmin)
 class ProjectAdmin(admin.ModelAdmin):
     fieldsets = (
         ('Project Info', {'fields': ['title', 'description', 'posted']}),
-        ('Media', {'fields': ['image', 'video']}),
+        ('Media', {'fields': ['image', 'embed']}),
         ('URL', {'fields': ['url', 'url_description']}),
     )
     list_display = ['title', 'posted']

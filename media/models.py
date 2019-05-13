@@ -24,26 +24,13 @@ class Image(models.Model):
         return str(self.image)
 
 
-class Video(models.Model):
-    VIDEO_SOURCE_CHOICES = (
-        ('youtube', 'YouTube'),
-        ('vimeo', 'Vimeo'),
-    )
-    BASE_URLS = {
-        'youtube': 'https://www.youtube-nocookie.com/embed/',
-        'vimeo': 'https://player.vimeo.com/video/',
-    }
-    name = models.CharField(max_length=50, blank=False, default='')
-    video_source = models.CharField(max_length=10, blank=False, default='', choices=VIDEO_SOURCE_CHOICES)
-    video_id = models.CharField(max_length=15, blank=False, default='',
-                                help_text='YouTube video ID is the 11-character string after "watch?v=". '
-                                          'Vimeo video ID is the numbers after "vimeo.com/"')
+class Embed(models.Model):
+    name = models.CharField(max_length=50, primary_key=True, blank=False, default='')
+    embed_url = models.URLField(blank=False, default='', verbose_name='Embed URL',
+                                help_text='Enter the EMBED URL, not the URL to a webpage.')
 
     class Meta:
         ordering = ['name']
-
-    def embed_url(self):
-        return self.BASE_URLS[str(self.video_source)] + str(self.video_id)
 
     def __str__(self):
         return self.name

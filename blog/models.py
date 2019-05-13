@@ -1,8 +1,7 @@
-import string
 from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
-from media.models import Image, Video
+from media.models import Embed, Image
 
 
 class BlogConfig(models.Model):
@@ -35,9 +34,9 @@ class Article(models.Model):
     subtitle = models.CharField(max_length=250, default='', null=False, blank=True)
     tag = models.ManyToManyField(Tag, blank=True)
     image = models.ForeignKey(Image, blank=True, null=True, on_delete=models.CASCADE,
-                              help_text="When both image and video are selected, only video will show.")
-    video = models.ForeignKey(Video, blank=True, null=True, on_delete=models.CASCADE,
-                              help_text="When both image and video are selected, only video will show.")
+                              help_text="When both are selected, only embedded media will show.")
+    embed = models.ForeignKey(Embed, blank=True, null=True, on_delete=models.CASCADE,
+                              help_text="When both are selected, only embedded media will show.")
     content = models.TextField(default='', null=False, help_text='Write in Markdown')
     last_edited = models.DateField(auto_now=True)
 

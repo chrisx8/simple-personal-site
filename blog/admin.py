@@ -9,7 +9,7 @@ admin.site.register(BlogConfig, SingletonModelAdmin)
 class ArticleAdmin(admin.ModelAdmin):
     fieldsets = (
         ('Article Info', {'fields': ['title', 'subtitle', 'tag', 'id', 'last_edited']}),
-        ('Media', {'fields': ['image', 'video']}),
+        ('Media', {'fields': ['image', 'embed']}),
         ('Content', {'fields': ['content']})
     )
     list_display = ['title', 'last_edited']

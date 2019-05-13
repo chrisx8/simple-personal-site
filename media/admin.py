@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import Image, Video
+from .models import Embed, Image
 
-admin.site.register(Video)
+admin.site.register(Embed)
 
 
 @admin.register(Image)

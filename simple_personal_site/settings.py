@@ -12,7 +12,12 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 import dj_database_url
 import os
+import secrets
 from dotenv import load_dotenv
+
+# Generate secret key
+key_bytes = 64
+SECRET_KEY = secrets.token_urlsafe(key_bytes)
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -22,7 +27,6 @@ load_dotenv(dotenv_path=os.path.join(BASE_DIR, 'site_config.env'))
 env_vars = os.environ
 
 ALLOWED_HOSTS = env_vars['ALLOWED_HOSTS'].split(',')
-SECRET_KEY = env_vars['SECRET_KEY']
 DATABASE_URL = env_vars['DATABASE_URL']
 MANAGEMENT_URL = env_vars['MANAGEMENT_URL']
 
