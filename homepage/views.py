@@ -7,24 +7,27 @@ from .models import Homepage
 
 
 def home(request):
+    try:
+        home_obj = Homepage.objects.get()
+    # no homepage object if homepage doesn't exist
+    except Homepage.DoesNotExist:
+        home_obj = None
     # get latest projects and articles
     latest_articles = Article.objects.order_by('-last_edited', 'title')[:2]
     latest_projects = Project.objects.order_by('-posted', 'title')[:2]
-    try:
-        home_obj = Homepage.objects.get()
-        assert len(latest_articles) and len(latest_projects)
-        context = {
-            'home': home_obj,
-            'latest_articles': latest_articles,
-            'latest_projects': latest_projects
-        }
-    except Homepage.DoesNotExist and AssertionError:
+    if not home_obj and not len(latest_articles) and not len(latest_projects):
         # go to setup if homepage is empty
         context = {'admin_url': ADMIN_URL}
         return render(request, 'setup.html', context=context)
-    # no homepage object if homepage doesn't exist
-    except Homepage.DoesNotExist:
+    elif not home_obj:
+        # no homepage object if homepage doesn't exist
         context = {
+            'latest_articles': latest_articles,
+            'latest_projects': latest_projects
+        }
+    else:
+        context = {
+            'home': home_obj,
             'latest_articles': latest_articles,
             'latest_projects': latest_projects
         }
