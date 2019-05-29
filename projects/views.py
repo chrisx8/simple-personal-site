@@ -1,16 +1,18 @@
 from django.core.paginator import Paginator
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, reverse
 from .models import Project, ProjectsConfig
 
 
 # all projects
 def projects(request):
-    # get projects config
     try:
+        # get projects config
         projects_config = ProjectsConfig.objects.get()
     except ProjectsConfig.DoesNotExist:
-        return HttpResponse('Projects module is not configured. Please edit # Projects Config # in Admin Panel.')
+        # create blog config with defaults
+        projects_config = ProjectsConfig()
+        projects_config.save()
     # exclude hidden projects
     all_projects = Project.objects.order_by('-posted', 'title')
     paginator = Paginator(all_projects, projects_config.projects_per_page)

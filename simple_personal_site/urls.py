@@ -19,7 +19,7 @@ from django.shortcuts import render
 from django.urls import include, path
 from django.views.generic.base import RedirectView
 from blog.sitemaps import ArticleSitemap, TagSitemap
-from .settings import MANAGEMENT_URL, STATIC_URL
+from .settings import ADMIN_URL, STATIC_URL
 from .sitemaps import SiteSitemap
 
 sitemaps = {
@@ -39,8 +39,8 @@ urlpatterns = [
 ]
 
 # get admin url from config
-if len(MANAGEMENT_URL) > 0:
-    urlpatterns.append(path(MANAGEMENT_URL, admin.site.urls))
+if len(ADMIN_URL) > 0:
+    urlpatterns.append(path(ADMIN_URL, admin.site.urls))
 
 
 # 404 error page

@@ -175,14 +175,11 @@ pip install -U -r requirements.txt
 sudo systemctl restart personal-site
 ```
 
-## Manage content
+## Add content
 
-- Access the site and you'll be prompted to enter the Admin Panel
-- Log in with the admin account you just created.
-- Create a homepage by clicking `Change` next to `Homepage` on the Admin Panel. Fill out the About Me section and save.
-- Create other items as needed.
+Access the site and follow the guides on the Welcome page.
 
-**Congratulations! Now you have your personal site!**
+Congratulations! Now you have your personal site!
 
 ## License
 

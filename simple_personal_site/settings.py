@@ -28,7 +28,7 @@ env_vars = os.environ
 
 ALLOWED_HOSTS = env_vars['ALLOWED_HOSTS'].split(',')
 DATABASE_URL = env_vars['DATABASE_URL']
-MANAGEMENT_URL = env_vars['MANAGEMENT_URL']
+ADMIN_URL = env_vars['ADMIN_URL']
 
 # DEBUG defaults to False.
 # SECURITY WARNING: don't run with debug turned on in production!

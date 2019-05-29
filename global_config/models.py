@@ -4,7 +4,7 @@ from solo.models import SingletonModel
 
 class SiteInfo(SingletonModel):
     site_name = models.CharField(max_length=50, default='My Site', blank=False)
-    site_url = models.URLField(default='', blank=False, verbose_name='Site URL',
+    site_url = models.URLField(default='http://example.com', blank=False, verbose_name='Site URL',
                                help_text='Include "http://" or "https://". No trailing slashes. '
                                          '<strong>Effective after restart</strong>')
     # meta description
@@ -14,9 +14,9 @@ class SiteInfo(SingletonModel):
     header_title = models.CharField(max_length=250, default='My Site', blank=False)
     header_subtitle = models.CharField(max_length=250, blank=True)
     # copyright footer on every page
-    footer_copyright = models.CharField(max_length=250, default='Simple Personal Site by @chrisx8.',
-                                        help_text='"&copy; year " always shows. Set this to be the text after '
-                                                  '"&copy; year "')
+    footer_copyright = models.CharField(max_length=250, default='Simple Personal Site by chrisx8.',
+                                        help_text='"&copy; YEAR " always shows. Set this to be the text after '
+                                                  '"&copy; YEAR "')
 
     class Meta:
         verbose_name = '# Site Info #'

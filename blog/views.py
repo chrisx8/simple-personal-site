@@ -1,15 +1,17 @@
 from django.core.paginator import Paginator
-from django.shortcuts import render, Http404, HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, Http404, HttpResponseRedirect
 from django.urls import reverse
 from .models import Article, BlogConfig, Tag
 
 
 def blog(request):
-    # get blog config
     try:
+        # get blog config
         blog_config = BlogConfig.objects.get()
     except BlogConfig.DoesNotExist:
-        return HttpResponse('Blog module is not configured. Please edit # Blog Config # in the Admin Panel.')
+        # create blog config with defaults
+        blog_config = BlogConfig()
+        blog_config.save()
     # exclude hidden articles
     articles = Article.objects.order_by('-last_edited', 'title')
     paginator = Paginator(articles, blog_config.articles_per_page)
@@ -42,11 +44,13 @@ def blog(request):
 
 
 def filter_by_tag(request, tag):
-    # get blog config
     try:
+        # get blog config
         blog_config = BlogConfig.objects.get()
     except BlogConfig.DoesNotExist:
-        return HttpResponse('Blog module is not configured. Please edit # Blog Config # in the Admin Panel.')
+        # create blog config with defaults
+        blog_config = BlogConfig()
+        blog_config.save()
     # query tag
     try:
         tag_obj = Tag.objects.get(tag=tag)
