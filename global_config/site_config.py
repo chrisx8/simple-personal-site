@@ -1,6 +1,5 @@
 from django.conf import settings
-from django.db import OperationalError, ProgrammingError
-
+from django.db.utils import OperationalError, ProgrammingError
 from global_config.models import EmailConfig, ReCaptcha, SiteInfo
 
 try:
@@ -24,5 +23,5 @@ try:
 	settings.EMAIL_USE_SSL = email_conf.use_ssl
 	settings.RECAPTCHA_PRIVATE_KEY = RECAPTCHA_PRIVATE_KEY
 	settings.RECAPTCHA_PUBLIC_KEY = RECAPTCHA_PUBLIC_KEY
-except OperationalError or ProgrammingError:
+except (OperationalError, ProgrammingError):
 	SITE_NAME, SITE_PROTOCOL, RECAPTCHA_PRIVATE_KEY, RECAPTCHA_PUBLIC_KEY = '', '', '', ''
