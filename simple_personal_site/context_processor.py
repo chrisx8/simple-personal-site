@@ -1,5 +1,6 @@
 import datetime
 from global_config.models import Fathom, GoogleAnalytics, SiteInfo, SocialMediaLink
+from simple_personal_site.settings import NONCE
 
 
 # global site information
@@ -15,6 +16,7 @@ def global_tags(request):
         'FATHOM_URL': fathom.fathom_url,
         'FATHOM_SITE_ID': fathom.site_id,
         'GA_TRACKING_ID': google_analytics.ga_tracking_id,
+        'NONCE': NONCE,
         'SITE_NAME': site_info.site_name,
         'SITE_DESCRIPTION': site_info.description,
         'SITE_URL': site_info.site_url,
