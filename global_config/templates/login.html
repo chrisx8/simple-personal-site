@@ -23,7 +23,7 @@
 </div>
 {% if form.captcha %}
 {% load recaptcha2 %}
-{% recaptcha_init %}
+<script async="" defer="" src="https://google.com/recaptcha/api.js" nonce="{{ NONCE }}"></script>
 <div class="field">
 <div class="control">{{ form.captcha }}</div>
 {% if form.captcha.errors %}<article class="message is-danger"><div class="message-body"><strong>Please complete the CAPTCHA</strong></div></article>{% endif %}
