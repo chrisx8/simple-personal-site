@@ -5,7 +5,6 @@ from django.dispatch import receiver
 
 class Image(models.Model):
     image = models.ImageField(verbose_name='Image', blank=False)
-    caption = models.CharField(max_length=50, blank=True)
 
     class Meta:
         ordering = ['image']

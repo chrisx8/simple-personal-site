@@ -19,4 +19,6 @@ class ArticleAdmin(admin.ModelAdmin):
 
 @admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):
-    list_display = ['tag']
+    # hide from homepage
+    def get_model_perms(self, request):
+        return {}
