@@ -13,7 +13,7 @@
 </div>
 {% endif %}
 {% if home.resume %}
-<div class="content"><a class="button is-primary" href="{{ home.resume.url }}" target="_blank" rel="noopener noreferrer">Resume&nbsp;<i class="material-icons">launch</i></a></div>
+<div class="content"><a class="button is-link" href="{{ home.resume.url }}" target="_blank" rel="noopener noreferrer">Resume&nbsp;<i class="material-icons">launch</i></a></div>
 {% endif %}
 {% if latest_articles %}
 <h1 class="title">Blog</h1>
@@ -32,7 +32,7 @@
 {% for tag in article.tag.all %}<a href="{% url 'filter_by_tag' tag=tag %}"><span class="tag is-medium">{{ tag }}</span>&nbsp;</a>{% endfor %}
 </div>
 <nav class="level">
-<div class="level-left"><a class="level-item button is-primary" href="{% url 'view_article' id=article.id %}">Read article</a></div>
+<div class="level-left"><a class="level-item button is-link" href="{% url 'view_article' id=article.id %}">Read article</a></div>
 <div class="level-right" style="text-transform:uppercase;font-size:16px;"><span class="level-item">{{ article.last_edited }}</span></div>
 </nav>
 </div>
@@ -63,7 +63,7 @@
 {% load markdown %}
 <div class="content">{{ project.description|markdown|safe }}</div>
 {% if project.url %}
-<a class="button is-primary" href="{{ project.url }}" target="_blank" rel="noopener noreferrer">{{ project.url_description }}&nbsp;<i class="material-icons">launch</i></a>
+<a class="button is-link" href="{{ project.url }}" target="_blank" rel="noopener noreferrer">{{ project.url_description }}&nbsp;<i class="material-icons">launch</i></a>
 {% endif %}
 </div>
 </div>

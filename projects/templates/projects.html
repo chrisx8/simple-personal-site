@@ -27,7 +27,7 @@
 {% load markdown %}
 <div class="content">{{ project.description|markdown|safe }}</div>
 {% if project.url %}
-<a class="button is-primary" href="{{ project.url }}" target="_blank" rel="noopener noreferrer">{{ project.url_description }}&nbsp;<i class="material-icons">launch</i></a>
+<a class="button is-link" href="{{ project.url }}" target="_blank" rel="noopener noreferrer">{{ project.url_description }}&nbsp;<i class="material-icons">launch</i></a>
 {% endif %}
 </div>
 </div>

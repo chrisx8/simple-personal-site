@@ -19,7 +19,7 @@
 {% for tag in article.tag.all %}<a href="{% url 'filter_by_tag' tag=tag %}"><span class="tag is-medium">{{ tag }}</span>&nbsp;</a>{% endfor %}
 </div>
 <nav class="level">
-<div class="level-left"><a class="level-item button is-primary" href="{% url 'view_article' id=article.id %}">Read article</a></div>
+<div class="level-left"><a class="level-item button is-link" href="{% url 'view_article' id=article.id %}">Read article</a></div>
 <div class="level-right" style="text-transform:uppercase;font-size:16px;"><span class="level-item">{{ article.last_edited }}</span></div>
 </nav>
 </div>
