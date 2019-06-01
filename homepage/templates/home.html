@@ -4,7 +4,7 @@
 {% block body %}
 <link rel="stylesheet" href="/static/css/pygments.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<div class="container" style="padding-left:15px; padding-right:15px">
+<div class="container side-padding">
 {% if home.about_me %}
 <h1 class="title">About Me</h1>
 <div class="content">
@@ -28,12 +28,12 @@
 <div class="media-content">
 <div class="content">
 <p class="title">{{ article.title }}</p>
-<p class="subtitle" style="font-size:18px;">{{ article.subtitle }}</p>
+<p class="subtitle blog-subtitle">{{ article.subtitle }}</p>
 {% for tag in article.tag.all %}<a href="{% url 'filter_by_tag' tag=tag %}"><span class="tag is-medium">{{ tag }}</span>&nbsp;</a>{% endfor %}
 </div>
 <nav class="level">
 <div class="level-left"><a class="level-item button is-link" href="{% url 'view_article' id=article.id %}">Read article</a></div>
-<div class="level-right" style="text-transform:uppercase;font-size:16px;"><span class="level-item">{{ article.last_edited }}</span></div>
+<div class="level-right blog-date"><span class="level-item">{{ article.last_edited }}</span></div>
 </nav>
 </div>
 </article>
@@ -54,7 +54,7 @@
 <div class="column is-half">
 <div class="card">
 {% if project.embed %}
-<div style="padding:56.25% 0 0 0;position:relative;"><iframe class="lazy" title="{{ project.title }}" data-src="{{ project.embed.embed_url }}" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
+<div class="embed"><iframe class="frame lazy" title="{{ project.title }}" data-src="{{ project.embed.embed_url }}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
 {% elif project.image %}
 <div class="card-image"><figure class="image is-16by9" ><img class="lazy" data-src="{{ project.image.image.url }}" alt="{{ project.title }}"></figure></div>
 {% endif %}

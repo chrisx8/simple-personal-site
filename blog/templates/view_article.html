@@ -3,10 +3,10 @@
 {% block ogtitle %} {{ article }} {% endblock %}
 {% block body %}
 <link rel="stylesheet" href="/static/css/pygments.css">
-<div class="container" style="padding-left:15px; padding-right:15px">
+<div class="container side-padding">
 <h1 class="title">{{ article.title }}</h1>
-<h2 class="subtitle" style="font-size:18px;">{{ article.subtitle }}</h2>
-<div class="content" {% if not article.subtitle %}style="padding-top:25px"{% endif %}>
+<h2 class="subtitle blog-subtitle">{{ article.subtitle }}</h2>
+<div class="content{% if not article.subtitle %} blog-nosub{% endif %}">
 {% if article.tag.all %}
 <p>{% for tag in article.tag.all %}<a href="{% url 'filter_by_tag' tag=tag %}"><span class="tag is-medium">{{ tag }}</span>&nbsp;</a>{% endfor %}<br>Last updated on <strong>{{ article.last_edited }}</strong></p>
 {% else %}
@@ -14,14 +14,9 @@
 {% endif %}
 </div>
 {% if article.embed %}
-<div class="center">
-<div style="padding:56.25% 0 0 0;position:relative;"><iframe class="lazy" data-src="{{ article.embed.embed_url }}" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
-</div>
+<div class="center"><div class="embed"><iframe class="frame lazy" data-src="{{ article.embed.embed_url }}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div></div>
 {% elif article.image %}
-<div class="center">
-<img alt="" class="lazy" data-src="{{ article.image.image.url }}" style="width:100%">
-<div style="text-align:center;">{{ article.image.image.caption }}</div>
-</div>
+<div class="center"><img alt="" class="lazy center" data-src="{{ article.image.image.url }}"></div>
 {% endif %}
 {% load markdown %}
 <div class="content">

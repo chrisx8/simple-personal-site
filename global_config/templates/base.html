@@ -41,7 +41,7 @@
 <div class="container is-fluid">
 <div class="navbar-brand">
 <a class="navbar-item" href="/"><img src="/static/icons/favicon-32x32.png" alt=""> &nbsp; {{ SITE_NAME }}</a>
-<span class="navbar-burger burger" data-target="navMenu" style="color:lightgray">
+<span class="navbar-burger burger" data-target="navMenu" >
 <span></span>
 <span></span>
 <span></span>
@@ -64,9 +64,9 @@
 </div>
 </div>
 </section>
-<div style="height: 50px"></div>
+<div class="space-40"></div>
 {% block body %}{% endblock %}
-<div style="height: 50px"></div>
+<div class="space-40"></div>
 <footer class="sps-footer">
 <div class="content has-text-centered">
 {% for link in social_links %}{% if forloop.counter != 1 %}&nbsp;{% endif %}<a href="{{ link.url }}" title="{{ link.username }}">{{ link.platform }}</a> {% endfor %}<br>

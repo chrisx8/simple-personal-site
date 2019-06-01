@@ -3,7 +3,7 @@
 {% block ogtitle %} Contact Me {% endblock %}
 {% block body %}
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<div class="container" style="padding-left:15px; padding-right:15px">
+<div class="container side-padding">
 <h1 class="title">Contact Me</h1>
 <p class="subtitle">Send me a message, and I'll get back to you soon! {% if has_pgp %}<br><small><a href="{% url 'pgp_pubkey' %}">PGP Public Key</a></small>{% endif %}</p>
 <form method="POST">

@@ -14,8 +14,8 @@
 </head>
 <body>
 <div class="main">
-<div style="height: 50px"></div>
-<div class="container" style="padding-left:15px; padding-right:15px">
+<div class="space-40"></div>
+<div class="container side-padding">
 <h1 class="title">Welcome!</h1>
 <div class="subtitle">Thanks for using Simple Personal Site by chrisx8</div>
 <div class="content">
@@ -23,7 +23,7 @@
 <p>Clicking on the buttons below opens sections of the Admin Panel in a new tab. To log in, you need the admin account created during install.</p>
 <p>First, make sure all the required items are set under <a class="button is-small is-dark" href="{{ admin_url }}global_config/siteinfo/" target="_blank" rel="noopener noreferrer"># Site Info #</a>.</p>
 <p>Then, you should add something to your homepage (it's blank otherwise). You can do this by adding any type of content.</p>
-<p style="line-height: 2.5em;"><a class="button is-small is-dark" href="{{ admin_url }}homepage/homepage/" target="_blank" rel="noopener noreferrer">Write a bio</a>&nbsp;
+<p class="setup-buttons"><a class="button is-small is-dark" href="{{ admin_url }}homepage/homepage/" target="_blank" rel="noopener noreferrer">Write a bio</a>&nbsp;
 <a class="button is-small is-dark" href="{{ admin_url }}blog/article/add/" target="_blank" rel="noopener noreferrer">Add a blog article</a>&nbsp;
 <a class="button is-small is-dark" href="{{ admin_url }}projects/project/add/" target="_blank" rel="noopener noreferrer">Add a project</a></p>
 <p><a href="{% url 'skip_setup' %}">Skip and don't show again</a> </p>
@@ -34,7 +34,7 @@
 <a href="https://github.com/chrisx8" target="_blank" rel="noopener noreferrer">More projects by <strong>chrisx8</strong></a></p>
 </div>
 </div>
-<div style="height: 50px"></div>
+<div class="space-40"></div>
 <footer class="sps-footer">
 <div class="content has-text-centered">
 &copy; {{ YEAR }} {{ FOOTER_COPYRIGHT }}

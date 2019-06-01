@@ -4,7 +4,7 @@
 {% block body %}
 <link rel="stylesheet" href="/static/css/pygments.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<div class="container" style="padding-left:15px; padding-right:15px">
+<div class="container side-padding">
 <h1 class="title">My Projects</h1>
 {% if not projects %}
 <article class="message">
@@ -18,7 +18,7 @@
 <div class="column is-half">
 <div class="card">
 {% if project.embed %}
-<div style="padding:56.25% 0 0 0;position:relative;"><iframe class="lazy" title="{{ project.title }}" data-src="{{ project.embed.embed_url }}" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
+<div class="embed"><iframe class="frame lazy" title="{{ project.title }}" data-src="{{ project.embed.embed_url }}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
 {% elif project.image %}
 <div class="card-image"><figure class="image is-16by9" ><img class="lazy" data-src="{{ project.image.image.url }}" alt="{{ project.title }}"></figure></div>
 {% endif %}
