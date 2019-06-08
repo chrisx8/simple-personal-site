@@ -1,23 +1,12 @@
-dist: xenial
+sudo: required
 language: minimal
 services:
-- docker
-
-env:
-  global:
-  - DOCKER_REPO=chrisx8/simple-personal-site
-
-before_install:
-  - cp site_config.example.env site_config.env
-
-script:
+  - docker
+install:
   - docker build -t $DOCKER_REPO .
-  - docker run -d -p 127.0.0.1:8000:8000 --env-file site_config.env $DOCKER_REPO
-  - sleep 1
-  - docker ps -a
-  - sleep 5
-  - curl 127.0.0.1:8000
-
-deploy:
-  provider: script
-  script: echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin && docker push $DOCKER_REPO:$BRANCH
+script:
+  - docker run --env-file site_config.example.env $DOCKER_REPO python manage.py migrate
+  - docker run --env-file site_config.example.env $DOCKER_REPO python manage.py test
+after_success:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push $DOCKER_REPO
