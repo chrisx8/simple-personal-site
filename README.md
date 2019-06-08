@@ -1,5 +1,8 @@
 # Simple Personal Site <!-- omit in toc -->
 
+[![Build Status](https://travis-ci.com/chrisx8/simple-personal-site.svg?branch=master)](https://travis-ci.com/chrisx8/simple-personal-site "Travis CI Build Status")
+[![Docker Image Size](https://images.microbadger.com/badges/image/chrisx8/simple-personal-site.svg)](https://microbadger.com/images/chrisx8/simple-personal-site "Docker Image Info")
+
 Create your personal website in minutes! Follow instructions below to set up.
 
 ## Table of Contents <!-- omit in toc -->
@@ -56,7 +59,6 @@ sudo chown -R 65534:65534 static
 
 ```bash
 # Replace "0.0.0.0:80" with wherever you want the container to listen at
-# Replace "latest" with "python3.6" or "python3.7" to use a specific Python version
 docker run -d -p 0.0.0.0:80:8000 --env-file=site_config.env -v uploads:/app/uploads/ -v $(pwd)/static:/app/static/ --restart unless-stopped --name simple-personal-site chrisx8/simple-personal-site:latest
 ```
 
