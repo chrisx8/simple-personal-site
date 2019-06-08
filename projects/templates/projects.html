@@ -3,7 +3,6 @@
 {% block ogtitle %} My Projects {% endblock %}
 {% block body %}
 <link rel="stylesheet" href="/static/css/pygments.css">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <div class="container side-padding">
 <h1 class="title">My Projects</h1>
 {% if not projects %}
@@ -23,12 +22,13 @@
 <div class="card-image"><figure class="image is-16by9" ><img class="lazy" data-src="{{ project.image.image.url }}" alt="{{ project.title }}"></figure></div>
 {% endif %}
 <div class="card-content">
+{% if project.url %}
+<p class="title"><a href="{{ project.url }}">{{ project.title }}</a></p>
+{% else %}
 <p class="title">{{ project.title }}</p>
+{% endif %}
 {% load markdown %}
 <div class="content">{{ project.description|markdown|safe }}</div>
-{% if project.url %}
-<a class="button is-link" href="{{ project.url }}" target="_blank" rel="noopener noreferrer">{{ project.url_description }}&nbsp;<i class="material-icons">launch</i></a>
-{% endif %}
 </div>
 </div>
 </div>

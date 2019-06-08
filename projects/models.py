@@ -21,7 +21,6 @@ class Project(models.Model):
     embed = models.ForeignKey(Embed, on_delete=models.CASCADE, null=True, blank=True,
                               help_text="When both are selected, only embedded media will show.")
     url = models.URLField(verbose_name='Project URL', null=False, blank=True)
-    url_description = models.CharField(verbose_name='URL Label', max_length=50, default='View Project', blank=True)
     posted = models.DateField(auto_now_add=True)
 
     class Meta:
