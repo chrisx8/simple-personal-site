@@ -1,26 +1,23 @@
 dist: xenial
-language: python
-python:
-  - "3.6"
-  - "3.7"
+language: minimal
 services:
 - docker
+
 env:
   global:
   - DOCKER_REPO=chrisx8/simple-personal-site
+
 before_install:
-  - pip install -r requirements.txt
   - cp site_config.example.env site_config.env
-  - python manage.py migrate
-  - python manage.py test
+
 script:
   - docker build -t $DOCKER_REPO .
-  - docker run -d -p 127.0.0.1:80:8000 --env-file site_config.env chrisx8/simple-personal-site gunicorn simple_personal_site:wsgi.application
-  - sleep 2
+  - docker run -d -p 127.0.0.1:8000:8000 --env-file site_config.env $DOCKER_REPO
+  - sleep 1
   - docker ps -a
+  - sleep 5
+  - curl 127.0.0.1:8000
+
 deploy:
   provider: script
-  script: echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin && docker push chrisx8/simple-personal-site
-  on:
-    branch: master
-
+  script: echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin && docker push $DOCKER_REPO:$BRANCH

@@ -10,7 +10,7 @@ Create your personal website in minutes! Follow instructions below to set up.
 - [Install in a virtualenv](#install-in-a-virtualenv)
 - [Upgrading Docker container](#upgrading-docker-container)
 - [Upgrading in a virtualenv](#upgrading-in-a-virtualenv)
-- [Manage content](#manage-content)
+- [Add content](#add-content)
 - [License](#license)
 
 ## Features
@@ -55,7 +55,8 @@ sudo chown -R 65534:65534 static
 - Run Docker container.
 
 ```bash
-# Replace 0.0.0.0:80 with wherever you want the container to listen at
+# Replace "0.0.0.0:80" with wherever you want the container to listen at
+# Replace "latest" with "python3.6" or "python3.7" to use a specific Python version
 docker run -d -p 0.0.0.0:80:8000 --env-file=site_config.env -v uploads:/app/uploads/ -v $(pwd)/static:/app/static/ --restart unless-stopped --name simple-personal-site chrisx8/simple-personal-site:latest
 ```
 
@@ -64,8 +65,6 @@ docker run -d -p 0.0.0.0:80:8000 --env-file=site_config.env -v uploads:/app/uplo
 ```bash
 docker exec -it simple-personal-site python3 manage.py createsuperuser
 ```
-
-- See `_samples/` for sample Nginx configurations and `docker-compose.yml`
 
 ## Install in a virtualenv
 
@@ -126,8 +125,6 @@ sudo systemctl start personal-site
 ```bash
 python3 manage.py createsuperuser
 ```
-
-- See `_samples/` for sample Nginx configurations and `docker-compose.yml`
 
 ## Upgrading Docker container
 
