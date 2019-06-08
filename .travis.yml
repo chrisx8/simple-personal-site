@@ -1,12 +1,18 @@
-language: python
+language: python:3.7
 services:
 - docker
 env:
   global:
   - DOCKER_REPO=chrisx8/simple-personal-site
+before_install:
+  - pip install -r requirements.txt
+  - cp site_config.example.env site_config.env
+  - python manage.py migrate
+  - python manage.py test
 script:
   - docker build -t $DOCKER_REPO .
-  - docker run -d -p 127.0.0.1:80:8000 --env-file site_config.example.env chrisx8/simple-personal-site gunicorn simple_personal_site:wsgi.application
+  - docker run -d -p 127.0.0.1:80:8000 --env-file site_config.env chrisx8/simple-personal-site gunicorn simple_personal_site:wsgi.application
+  - sleep 2
   - docker ps -a
 deploy:
   provider: script
