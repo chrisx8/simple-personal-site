@@ -10,7 +10,7 @@ class ProjectAdmin(admin.ModelAdmin):
     fieldsets = (
         ('Project Info', {'fields': ['title', 'description', 'posted']}),
         ('Media', {'fields': ['image', 'embed']}),
-        ('URL', {'fields': ['url', 'url_description']}),
+        ('URL', {'fields': ['url']}),
     )
     list_display = ['title', 'posted']
     list_filter = ['posted']
