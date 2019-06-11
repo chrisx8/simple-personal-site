@@ -4,18 +4,17 @@ language: minimal
 services:
   - docker
 env:
-  - DOCKER_REPO=chrisx8/simple-personal-site
-  - LATEST=python3.7
-matrix:
-  include:
-  - env: BRANCH=python3.6
-  - env: BRANCH=python3.7
+  global:
+    - DOCKER_REPO=chrisx8/simple-personal-site
+  matrix:
+    - BRANCH=python3.6
+    - BRANCH=python3.7
+    - BRANCH=latest
 install:
   - docker build -f docker/$BRANCH/Dockerfile -t $DOCKER_REPO:$BRANCH .
 script:
   - docker run --env-file site_config.example.env $DOCKER_REPO:$BRANCH python manage.py migrate
   - docker run --env-file site_config.example.env $DOCKER_REPO:$BRANCH python manage.py test
 after_success:
-  - docker tag $DOCKER_REPO:$LATEST $DOCKER_REPO:latest
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker push $DOCKER_REPO
+  - docker push $DOCKER_REPO:$BRANCH
