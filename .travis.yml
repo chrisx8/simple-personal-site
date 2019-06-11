@@ -1,12 +1,21 @@
+dist: xenial
 sudo: required
 language: minimal
 services:
   - docker
+env:
+  - DOCKER_REPO=chrisx8/simple-personal-site
+  - LATEST=python3.7
+matrix:
+  include:
+  - env: BRANCH=python3.6
+  - env: BRANCH=python3.7
 install:
-  - docker build -t $DOCKER_REPO .
+  - docker build -f docker/$BRANCH/Dockerfile -t $DOCKER_REPO:$BRANCH .
 script:
-  - docker run --env-file site_config.example.env $DOCKER_REPO python manage.py migrate
-  - docker run --env-file site_config.example.env $DOCKER_REPO python manage.py test
+  - docker run --env-file site_config.example.env $DOCKER_REPO:$BRANCH python manage.py migrate
+  - docker run --env-file site_config.example.env $DOCKER_REPO:$BRANCH python manage.py test
 after_success:
+  - docker tag $DOCKER_REPO:$LATEST $DOCKER_REPO:latest
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker push $DOCKER_REPO
