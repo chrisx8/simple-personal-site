@@ -2,25 +2,37 @@
 {% block pagetitle %} {{ article }} {% endblock %}
 {% block ogtitle %} {{ article }} {% endblock %}
 {% block body %}
-<link rel="stylesheet" href="/static/css/pygments.css">
-<div class="container side-padding">
-<h1 class="title">{{ article.title }}</h1>
-<h2 class="subtitle blog-subtitle">{{ article.subtitle }}</h2>
-<div class="content{% if not article.subtitle %} blog-nosub{% endif %}">
+<link rel="stylesheet" type="text/css" href="/static/css/view_article.css">
+<div class="container">
+<section class="articles">
+<div class="column is-8 is-offset-2">
+<div class="card article">
+<div class="card-content">
+<div class="media">
+<div class="media-content has-text-centered">
+<p class="title article-title">{{ article.title }}</p>
+<p class="subtitle article-subtitle">{{ article.subtitle }}</p>
+<p class="subtitle is-6 article-subtitle">
 {% if article.tag.all %}
-<p>{% for tag in article.tag.all %}<a href="{% url 'filter_by_tag' tag=tag %}"><span class="tag is-medium">{{ tag }}</span>&nbsp;</a>{% endfor %}<br>Last updated on <strong>{{ article.last_edited }}</strong></p>
+{% for tag in article.tag.all %}<a href="{% url 'filter_by_tag' tag=tag %}"><span class="tag is-medium">{{ tag }}</span>&nbsp;</a>{% endfor %}<br>Last updated on {{ article.last_edited }}
 {% else %}
-<p>Last updated on <strong>{{ article.last_edited }}</strong></p>
+Last updated on {{ article.last_edited }}
 {% endif %}
+</p>
+</div>
 </div>
 {% if article.embed %}
 <div class="center"><div class="embed"><iframe class="frame lazy" data-src="{{ article.embed.embed_url }}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div></div>
 {% elif article.image %}
 <div class="center"><img alt="" class="lazy center" data-src="{{ article.image.image.url }}"></div>
 {% endif %}
+<div class="content article-body">
 {% load markdown %}
-<div class="content">
 {{ article.content|markdown|safe }}
 </div>
+</div>
+</div>
+</div>
+</section>
 </div>
 {% endblock %}
