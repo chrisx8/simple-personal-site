@@ -11,7 +11,7 @@ env:
     - BRANCH=python3.7
     - BRANCH=latest
 install:
-  - docker build -f docker/$BRANCH/Dockerfile -t $DOCKER_REPO:$BRANCH .
+  - docker build --build-arg VCS_REF=`git rev-parse --short HEAD` --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` -f docker/$BRANCH/Dockerfile -t $DOCKER_REPO:$BRANCH .
 script:
   - docker run --env-file site_config.example.env $DOCKER_REPO:$BRANCH python manage.py migrate
   - docker run --env-file site_config.example.env $DOCKER_REPO:$BRANCH python manage.py test
