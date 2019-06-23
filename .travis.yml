@@ -3,21 +3,19 @@ sudo: required
 language: minimal
 services:
   - docker
-branches:
-  only:
-    - master
 env:
   global:
     - DOCKER_REPO=chrisx8/simple-personal-site
-  matrix:
-    - BRANCH=python3.6
-    - BRANCH=python3.7
     - BRANCH=latest
-install:
-  - docker build --build-arg VCS_REF=`git rev-parse --short HEAD` --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` -f docker/$BRANCH/Dockerfile -t $DOCKER_REPO:$BRANCH .
-script:
-  - docker run --env-file site_config.example.env $DOCKER_REPO:$BRANCH python manage.py migrate
-  - docker run --env-file site_config.example.env $DOCKER_REPO:$BRANCH python manage.py test
-after_success:
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker push $DOCKER_REPO:$BRANCH
+jobs:
+  - stage: build and test
+    install:
+      - docker build --build-arg VCS_REF=`git rev-parse --short HEAD` --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` -f docker/$BRANCH/Dockerfile -t $DOCKER_REPO:$BRANCH .
+    script:
+      - docker run --env-file site_config.example.env $DOCKER_REPO:$BRANCH python manage.py migrate
+      - docker run --env-file site_config.example.env $DOCKER_REPO:$BRANCH python manage.py test
+  - stage: push
+    if: branch = master
+    script:
+      - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+      - docker push $DOCKER_REPO:$BRANCH
