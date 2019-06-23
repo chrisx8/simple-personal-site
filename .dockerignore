@@ -124,7 +124,6 @@ uploads/
 cfiles.json
 
 # Sample/build files
-_samples/
 Dockerfile
 .dockerignore
 .gitignore

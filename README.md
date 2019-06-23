@@ -1,20 +1,21 @@
 # Simple Personal Site <!-- omit in toc -->
 
 [![Build Status](https://travis-ci.com/chrisx8/simple-personal-site.svg?branch=master)](https://travis-ci.com/chrisx8/simple-personal-site "Travis CI Build Status")
-[![Docker Image Size](https://images.microbadger.com/badges/image/chrisx8/simple-personal-site.svg)](https://microbadger.com/images/chrisx8/simple-personal-site "Docker Image Info")
+[![Docker Image Commit](https://images.microbadger.com/badges/commit/chrisx8/simple-personal-site.svg)](https://microbadger.com/images/chrisx8/simple-personal-site "Docker Image Commit")
+[![Docker Image Size](https://images.microbadger.com/badges/image/chrisx8/simple-personal-site.svg)](https://microbadger.com/images/chrisx8/simple-personal-site "Docker Image Size")
 
 Create your personal website in minutes! Follow instructions below to set up.
 
 ## Table of Contents <!-- omit in toc -->
 
-- [Features](#features)
-- [Before installing](#before-installing)
-- [Install with Docker](#install-with-docker)
-- [Install in a virtualenv](#install-in-a-virtualenv)
-- [Upgrading Docker container](#upgrading-docker-container)
-- [Upgrading in a virtualenv](#upgrading-in-a-virtualenv)
-- [Add content](#add-content)
-- [License](#license)
+- [Features](#Features)
+- [Before installing](#Before-installing)
+- [Install with Docker](#Install-with-Docker)
+- [Install in a virtualenv](#Install-in-a-virtualenv)
+- [Upgrading Docker container](#Upgrading-Docker-container)
+- [Upgrading in a virtualenv](#Upgrading-in-a-virtualenv)
+- [Add content](#Add-content)
+- [License](#License)
 
 ## Features
 
