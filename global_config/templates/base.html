@@ -66,12 +66,17 @@
 </section>
 <div class="space-40"></div>
 {% block body %}{% endblock %}
+<div class="container sps-print-footer"><small>
+<hr>
+<i>Printed from <a href="{{ SITE_URL }}">{{ SITE_URL }}</a></i><br>
+&copy; {{ YEAR }} {{ FOOTER_COPYRIGHT }}
+</small></div>
 <div class="space-40"></div>
 <footer class="sps-footer">
 <div class="content has-text-centered">
 {% for link in social_links %}{% if forloop.counter != 1 %}&nbsp;{% endif %}<a href="{{ link.url }}" title="{{ link.username }}">{{ link.platform }}</a> {% endfor %}<br>
 &copy; {{ YEAR }} {{ FOOTER_COPYRIGHT }}
-</p></div>
+</div>
 </footer>
 </div>
 <script src="/static/js/lazyload.js" nonce="{{ NONCE }}"></script>
