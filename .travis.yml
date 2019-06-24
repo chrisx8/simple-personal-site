@@ -1,21 +1,22 @@
 dist: xenial
 sudo: required
-language: minimal
-services:
-  - docker
-env:
-  global:
-    - DOCKER_REPO=chrisx8/simple-personal-site
-    - BRANCH=latest
+language: python
+python:
+  - "3.7"
+  - "3.6"
+cache: pip
+install:
+  - cp site_config.example.env site_config.env
+  - pip install -r requirements.txt
+script:
+  - python3 manage.py migrate
+  - python3 manage.py test
 jobs:
-  - stage: build and test
-    install:
-      - docker build --build-arg VCS_REF=`git rev-parse --short HEAD` --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` -f docker/$BRANCH/Dockerfile -t $DOCKER_REPO:$BRANCH .
-    script:
-      - docker run --env-file site_config.example.env $DOCKER_REPO:$BRANCH python manage.py migrate
-      - docker run --env-file site_config.example.env $DOCKER_REPO:$BRANCH python manage.py test
-  - stage: push
-    if: branch = master
-    script:
-      - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-      - docker push $DOCKER_REPO:$BRANCH
+  include:
+    - stage: build docker image
+      if: branch = master
+      env: DOCKER_REPO=chrisx8/simple-personal-site:latest
+      script:
+        - docker build --build-arg VCS_REF=`git rev-parse --short HEAD` --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` -t $DOCKER_REPO .
+        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+        - docker push $DOCKER_REPO

@@ -60,7 +60,6 @@ sudo chown -R 65534:65534 static
 
 ```bash
 # Replace "0.0.0.0:80" with wherever you want the container to listen at
-# Replace "latest" with "python3.6" or "python3.7" to use a specific Python version
 docker run -d -p 0.0.0.0:80:8000 --env-file=site_config.env -v uploads:/app/uploads/ -v $(pwd)/static:/app/static/ --restart unless-stopped --name simple-personal-site chrisx8/simple-personal-site:latest
 ```
 
