@@ -26,6 +26,8 @@ class SPSRenderer(mistune.Renderer):
         # return header html with id
         return f'\n<h{level} id="{id_tag}">{text}</h{level}>\n'
 
+
+class SPSRendererLazy(SPSRenderer):
     def image(self, src, title, alt_text):
         if title is not None:
             title = f'title="{mistune.escape(title)}"'
@@ -35,12 +37,7 @@ class SPSRenderer(mistune.Renderer):
         return f'<img class="lazy" {alt_text} {title} data-src="{mistune.escape(src)}">'
 
 
-@register.filter
-def markdown(value):
-    # parse markdown
-    renderer = SPSRenderer()
-    md = mistune.Markdown(renderer=renderer)
-    html = md(value)
+def clean_html(html):
     # define allowed html tags and attributes
     markdown_tags = [
         "h1", "h2", "h3", "h4", "h5", "h6",
@@ -58,5 +55,27 @@ def markdown(value):
         "a": ["href", "alt", "title"],
     }
     # clean html
-    html = clean(html, markdown_tags, markdown_attrs)
-    return html
+    cleaned = clean(html, markdown_tags, markdown_attrs)
+    return cleaned
+
+
+@register.filter
+def markdown(value):
+    # parse markdown
+    renderer = SPSRendererLazy()
+    md = mistune.Markdown(renderer=renderer)
+    raw_html = md(value)
+    # clean html
+    cleaned_html = clean_html(raw_html)
+    return cleaned_html
+
+
+@register.filter
+def markdown_nolazy(value):
+    # parse markdown
+    renderer = SPSRenderer()
+    md = mistune.Markdown(renderer=renderer)
+    raw_html = md(value)
+    # clean html
+    cleaned_html = clean_html(raw_html)
+    return cleaned_html

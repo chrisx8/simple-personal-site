@@ -4,7 +4,7 @@
 {% block body %}
 <link rel="stylesheet" href="/static/css/pygments.css">
 <div class="container side-padding">
-<div class="column article is-10 is-offset-1">
+<div class="column article is-10 is-offset-1" id="article">
 <h1 class="title">{{ article.title }}</h1>
 <h2 class="subtitle blog-subtitle">{{ article.subtitle }}</h2>
 <div class="content{% if not article.subtitle %} blog-nosub{% endif %}">
@@ -17,11 +17,29 @@
 {% if article.embed %}
 <div class="center"><div class="embed"><iframe class="frame lazy" data-src="{{ article.embed.embed_url }}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div></div>
 {% elif article.image %}
-<div class="center"><img alt="" class="lazy center" data-src="{{ article.image.image.url }}"></div>
+<div class="center"><img alt="{{ article.title }}" class="lazy center" data-src="{{ article.image.image.url }}"></div>
 {% endif %}
 {% load markdown %}
 <div class="content">
 {{ article.content|markdown|safe }}
+</div>
+</div>
+<div id="article-print">
+<h1 class="title">{{ article.title }}</h1>
+<h2 class="subtitle blog-subtitle">{{ article.subtitle }}</h2>
+<div class="content{% if not article.subtitle %} blog-nosub{% endif %}">
+{% if article.tag.all %}
+<p>{% for tag in article.tag.all %}<span class="tag">{{ tag }}</span>&nbsp;{% endfor %}<br>Last updated on <strong>{{ article.last_edited }}</strong></p>
+{% else %}
+<p>Last updated on <strong>{{ article.last_edited }}</strong></p>
+{% endif %}
+</div>
+{% if not article.embed and article.image %}
+<div class="center"><img alt="{{ article.title }}" class="center" src="{{ article.image.image.url }}"></div>
+{% endif %}
+{% load markdown %}
+<div class="content">
+{{ article.content|markdown_nolazy|safe }}
 </div>
 </div>
 </div>
