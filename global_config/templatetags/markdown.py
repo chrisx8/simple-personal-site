@@ -26,8 +26,6 @@ class SPSRenderer(mistune.Renderer):
         # return header html with id
         return f'\n<h{level} id="{id_tag}">{text}</h{level}>\n'
 
-
-class SPSRendererLazy(SPSRenderer):
     def image(self, src, title, alt_text):
         if title is not None:
             title = f'title="{mistune.escape(title)}"'
@@ -61,17 +59,6 @@ def clean_html(html):
 
 @register.filter
 def markdown(value):
-    # parse markdown
-    renderer = SPSRendererLazy()
-    md = mistune.Markdown(renderer=renderer)
-    raw_html = md(value)
-    # clean html
-    cleaned_html = clean_html(raw_html)
-    return cleaned_html
-
-
-@register.filter
-def markdown_nolazy(value):
     # parse markdown
     renderer = SPSRenderer()
     md = mistune.Markdown(renderer=renderer)
