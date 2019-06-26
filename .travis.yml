@@ -4,10 +4,7 @@ language: python
 python:
   - "3.7"
   - "3.6"
-cache: 
-  - pip
-  - directories:
-      - site.db
+cache: pip
 install:
   - cp site_config.example.env site_config.env
   - pip install -r requirements.txt
