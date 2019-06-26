@@ -8,9 +8,11 @@ cache: pip
 install:
   - cp site_config.example.env site_config.env
   - pip install -r requirements.txt
+  - cp $HOME/.cache/pip/site.db site.db | true
 script:
-  - python3 manage.py migrate
+  - python3 manage.py migrate --run-syncdb
   - python3 manage.py test
+  - cp site.db $HOME/.cache/pip/site.db
 jobs:
   include:
     - stage: build docker image
