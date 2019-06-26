@@ -16,10 +16,11 @@ class Project(models.Model):
     title = models.CharField(verbose_name='Project Name', max_length=100, default='', null=False, unique=True)
     description = models.TextField(verbose_name='Project Description', default='', null=False,
                                    help_text="Write in Markdown format")
-    image = models.ForeignKey(Image, on_delete=models.CASCADE, null=True, blank=True,
-                              help_text="When both are selected, only embedded media will show.")
-    embed = models.ForeignKey(Embed, on_delete=models.CASCADE, null=True, blank=True,
-                              help_text="When both are selected, only embedded media will show.")
+    image = models.ForeignKey(Image, blank=True, null=True, on_delete=models.CASCADE,
+                              help_text="If both are selected, only embedded media will show on screen.")
+    embed = models.ForeignKey(Embed, blank=True, null=True, on_delete=models.CASCADE,
+                              help_text="<strong>When printing, only image will show.</strong><br>"
+                                        "If both are selected, only embedded media will show on screen.")
     url = models.URLField(verbose_name='Project URL', null=False, blank=True)
     posted = models.DateField(auto_now_add=True)
 

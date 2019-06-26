@@ -34,7 +34,7 @@
 <p>Last updated on <strong>{{ article.last_edited }}</strong></p>
 {% endif %}
 </div>
-{% if not article.embed and article.image %}
+{% if article.image %}
 <div class="center"><img alt="{{ article.title }}" class="center" src="{{ article.image.image.url }}"></div>
 {% endif %}
 {% load markdown %}

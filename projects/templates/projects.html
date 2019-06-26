@@ -18,6 +18,9 @@
 <div class="card">
 {% if project.embed %}
 <div class="embed"><iframe class="frame lazy" title="{{ project.title }}" data-src="{{ project.embed.embed_url }}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
+{% if project.image %}
+<div class="card-image" id="printonly"><figure class="image is-16by9" ><img src="{{ project.image.image.url }}" alt="{{ project.title }}"></figure></div>
+{% endif %}
 {% elif project.image %}
 <div class="card-image"><figure class="image is-16by9" ><img class="lazy" data-src="{{ project.image.image.url }}" alt="{{ project.title }}"></figure></div>
 {% endif %}
