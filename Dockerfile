@@ -10,10 +10,10 @@ RUN apk add --no-cache postgresql-dev mariadb-connector-c-dev jpeg-dev zlib-dev 
     echo 'nameserver 8.8.8.8' >> /etc/resolv.conf
 
 COPY requirements.txt /tmp/requirements.txt
-RUN apk add --no-cache build-base gcc musl-dev git && \
+RUN apk add --no-cache build-base gcc musl-dev && \
 	pip3 install --no-cache -r /tmp/requirements.txt && \
     rm /tmp/requirements.txt && \
-    apk del build-base gcc musl-dev git
+    apk del build-base gcc musl-dev
 
 COPY . /app/
 WORKDIR /app
