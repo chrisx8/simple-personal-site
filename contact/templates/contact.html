@@ -9,7 +9,7 @@
 <form method="POST">
 {% csrf_token %}
 <div class="field">
-<label class="label">{{ form.name.label }}</label>
+<label class="label" for="id_name">{{ form.name.label }}</label>
 <div class="control has-icons-left">
 {{ form.name }}
 {% if form.name.errors %}<article class="message is-danger"><div class="message-body"><strong>{{ form.name.errors }}</strong></div></article>{% endif %}
@@ -17,7 +17,7 @@
 </div>
 </div>
 <div class="field">
-<label class="label">{{ form.email.label }}</label>
+<label class="label" for="id_email">{{ form.email.label }}</label>
 <div class="control has-icons-left">
 {{ form.email }}
 {% if form.email.errors %}<article class="message is-danger"><div class="message-body"><strong>{{ form.email.errors }}</strong></div></article>{% endif %}
@@ -25,7 +25,7 @@
 </div>
 </div>
 <div class="field">
-<label class="label">Message</label>
+<label class="label" for="id_message">Message</label>
 <div class="control">
 {{ form.message }}
 {% if form.message.errors %}<article class="message is-danger"><div class="message-body"><strong>{{ form.message.errors }}</strong></div></article>{% endif %}
