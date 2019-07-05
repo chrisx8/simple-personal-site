@@ -7,14 +7,10 @@
 <h2 class="subtitle">Verification required</h2>
 <form method="POST">
 {% csrf_token %}
-{% if form.captcha %}
-{% load recaptcha2 %}
-<script async="" defer="" src="https://google.com/recaptcha/api.js" nonce="{{ NONCE }}"></script>
 <div class="field">
 <div class="control">{{ form.captcha }}</div>
-{% if form.captcha.errors %}<article class="message is-danger"><div class="message-body"><strong>Please complete the CAPTCHA</strong></div></article>{% endif %}
+{% if form.captcha.errors %}<article class="message is-danger"><div class="form-error"><strong>{{ form.captcha.errors }}</strong></div></article>{% endif %}
 </div>
-{% endif %}
 <div class="field is-grouped">
 <div class="control"><button class="button is-link" type="submit">Continue</button></div>
 </div>

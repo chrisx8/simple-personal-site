@@ -3,7 +3,7 @@ from django.contrib.auth.models import Group
 from global_config.forms import AuthFormCaptcha, EmailConfigAdminForm
 from global_config.site_config import SITE_NAME
 from solo.admin import SingletonModelAdmin
-from .models import SiteInfo, EmailConfig, Fathom, GoogleAnalytics, ReCaptcha, SocialMediaLink
+from .models import SiteInfo, EmailConfig, Fathom, GoogleAnalytics, SocialMediaLink
 
 # Customize admin page
 # set admin site title
@@ -21,7 +21,6 @@ admin.site.unregister(Group)
 # register global config models
 admin.site.register(Fathom, SingletonModelAdmin)
 admin.site.register(GoogleAnalytics, SingletonModelAdmin)
-admin.site.register(ReCaptcha, SingletonModelAdmin)
 
 
 @admin.register(SocialMediaLink)

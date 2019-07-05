@@ -16,7 +16,7 @@ import secrets
 from dotenv import load_dotenv
 
 # Generate secret key
-key_bytes = 64
+key_bytes = 128
 SECRET_KEY = secrets.token_urlsafe(key_bytes)
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.sitemaps',
     'django.contrib.staticfiles',
-    'snowpenguin.django.recaptcha2',
+    'simplemathcaptcha',
     'solo',
     'blog.apps.BlogConfig',
     'contact.apps.ContactConfig',

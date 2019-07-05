@@ -58,20 +58,6 @@ class GoogleAnalytics(SingletonModel):
         verbose_name = 'Google Analytics'
 
 
-class ReCaptcha(SingletonModel):
-    private_key = models.CharField(max_length=50, blank=True,
-                                   help_text='Recommended for spam prevention. Leaving blank disables '
-                                             'ReCaptcha. <strong>Effective after restart</strong> '
-                                             '<a href="https://www.google.com/recaptcha/admin">Get ReCAPTCHA key</a>')
-    public_key = models.CharField(max_length=50, blank=True,
-                                  help_text='Recommended for spam prevention. Leaving blank disables '
-                                            'ReCaptcha. <strong>Effective after restart</strong> '
-                                            '<a href="https://www.google.com/recaptcha/admin">Get ReCAPTCHA key</a>')
-
-    class Meta:
-        verbose_name = 'ReCaptcha v2'
-
-
 class SocialMediaLink(models.Model):
     platform = models.CharField(max_length=50, default='', null=False, help_text='Name of the social media platform')
     username = models.CharField(max_length=100, default='', null=False)
