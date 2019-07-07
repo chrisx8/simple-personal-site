@@ -83,29 +83,10 @@
 &copy; {{ YEAR }} {{ FOOTER_COPYRIGHT }}
 </small></footer>
 <script src="/static/js/lazyload.js" nonce="{{ NONCE }}"></script>
-<script type="text/javascript" nonce="{{ NONCE }}">
-(function() {
-var burger = document.querySelector('.burger');
-var nav = document.querySelector('#'+burger.dataset.target);
-burger.addEventListener('click', function(){
-burger.classList.toggle('is-active');
-nav.classList.toggle('is-active');
-});
-})();
-var lazyLoadInstance = new LazyLoad({elements_selector: ".lazy"});
-window.onload=function() {lazyLoadInstance.loadAll();};
-</script>
+<script async src="/static/js/sps.js" nonce="{{ NONCE }}"></script>
 {% if GA_TRACKING_ID or FATHOM_URL and FATHOM_SITE_ID %}
 <link rel="stylesheet" type="text/css" href="/static/css/cookieconsent.css" />
 <script async src="/static/js/cookieconsent.js" nonce="{{ NONCE }}"></script>
-<script nonce="{{ NONCE }}">
-window.addEventListener("load", function(){
-window.cookieconsent.initialise({
-"palette": {"popup": {"background": "#363636"},"button": {"background": "#3273dc"}},
-"theme": "edgeless", "position": "bottom-right",
-"content": {"message": "This website uses cookies to analyze site traffic and improve your experience."}
-})});
-</script>
 {% endif %}
 {% if FATHOM_URL and FATHOM_SITE_ID %}
 <script nonce="{{ NONCE }}">

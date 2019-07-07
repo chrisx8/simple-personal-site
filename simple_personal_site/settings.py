@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.sitemaps',
     'django.contrib.staticfiles',
-    'simplemathcaptcha',
+    'captcha',
     'solo',
     'blog.apps.BlogConfig',
     'contact.apps.ContactConfig',
@@ -146,3 +146,8 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 X_FRAME_OPTIONS = 'DENY'
+
+# Captcha settings
+CAPTCHA_FOREGROUND_COLOR = '#202020'
+CAPTCHA_LETTER_ROTATION = (-20, 20)
+CAPTCHA_NOISE_FUNCTIONS = ['captcha.helpers.noise_dots']
