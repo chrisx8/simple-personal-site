@@ -31,8 +31,12 @@ class SPSRenderer(mistune.Renderer):
             title = f'title="{mistune.escape(title)}"'
         if alt_text is not None:
             alt_text = f'alt="{mistune.escape(alt_text)}"'
-        # add lazyload tag
-        return f'<img class="lazy" {alt_text} {title} data-src="{mistune.escape(src)}">'
+        # lazyload version
+        lazyload = f'<img class="lazy" {alt_text} {title} data-src="{mistune.escape(src)}"' + \
+                   'src="/static/images/1x1.png" >'
+        # noscript fallback
+        noscript = f'<noscript><img {alt_text} {title} src="{mistune.escape(src)}"></noscript>'
+        return noscript + lazyload
 
 
 def clean_html(html):
@@ -46,6 +50,7 @@ def clean_html(html):
         "img",
         "a",
         "sub", "sup",
+        "noscript"
     ]
     markdown_attrs = {
         "*": ["id", "class"],

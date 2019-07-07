@@ -45,6 +45,7 @@
 <span></span>
 <span></span>
 <span></span>
+<noscript><a href="{% url 'nav_noscript' %}"><span></span><span></span><span></span></a></noscript>
 </span>
 </div>
 <div id="navMenu" class="navbar-menu">
@@ -82,7 +83,6 @@
 <i>Printed from <a href="{{ SITE_URL }}">{{ SITE_URL }}</a></i><br>
 &copy; {{ YEAR }} {{ FOOTER_COPYRIGHT }}
 </small></footer>
-<script src="/static/js/lazyload.js" nonce="{{ NONCE }}"></script>
 <script async src="/static/js/sps.js" nonce="{{ NONCE }}"></script>
 {% if GA_TRACKING_ID or FATHOM_URL and FATHOM_SITE_ID %}
 <link rel="stylesheet" type="text/css" href="/static/css/cookieconsent.css" />

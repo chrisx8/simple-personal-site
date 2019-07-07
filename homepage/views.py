@@ -42,3 +42,7 @@ def skip_setup(request):
         return HttpResponseRedirect('/')
     else:
         raise Http404
+
+
+def nav_noscript(request):
+    return render(request, 'nav_noscript.html')

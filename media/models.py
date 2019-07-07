@@ -31,6 +31,13 @@ class Embed(models.Model):
     class Meta:
         ordering = ['name']
 
+    def html(self):
+        lazyload = f'<iframe class="frame lazy" title="{self.name}" data-src="{self.embed_url}"' + \
+                   'frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>'
+        noscript = f'<noscript><iframe class="frame lazy" title="{self.name}" src="{self.embed_url}"' + \
+                   ' frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></noscript>'
+        return '<div class="embed">' + noscript + lazyload + '</div>'
+
     def __str__(self):
         return self.name
 
