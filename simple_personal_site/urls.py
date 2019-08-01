@@ -40,7 +40,7 @@ urlpatterns = [
 ]
 
 # get admin url from config
-if len(ADMIN_URL) > 0:
+if ADMIN_URL:
     urlpatterns.append(path(ADMIN_URL, admin.site.urls))
 
 

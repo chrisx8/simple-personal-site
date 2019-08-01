@@ -16,7 +16,6 @@ def global_tags(request):
         'FATHOM_URL': fathom.fathom_url,
         'FATHOM_SITE_ID': fathom.site_id,
         'GA_TRACKING_ID': google_analytics.ga_tracking_id,
-        'NONCE': NONCE,
         'SITE_NAME': site_info.site_name,
         'SITE_DESCRIPTION': site_info.description,
         'SITE_URL': site_info.site_url,
@@ -26,4 +25,6 @@ def global_tags(request):
         'YEAR': time.year,
         'social_links': social_links
     }
+    if NONCE:
+        context['NONCE'] = NONCE
     return context

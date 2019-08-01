@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 import dj_database_url
 import os
 import secrets
+from django.core.exceptions import ImproperlyConfigured
 from dotenv import load_dotenv
 
 # Generate secret key
@@ -24,12 +25,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Load config into system env
 load_dotenv(dotenv_path=os.path.join(BASE_DIR, 'site_config.env'))
-env_vars = os.environ
 
-ALLOWED_HOSTS = env_vars['ALLOWED_HOSTS'].split(',')
-DATABASE_URL = env_vars['DATABASE_URL']
-ADMIN_URL = env_vars['ADMIN_URL']
-NONCE = env_vars['NONCE']
+try:
+    ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(',')
+except AttributeError:
+    raise ImproperlyConfigured('ALLOWED_HOSTS is not configured')
 
 # DEBUG defaults to False.
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -96,10 +96,13 @@ WSGI_APPLICATION = 'simple_personal_site.wsgi.application'
 
 HTML_MINIFY = True
 
+ADMIN_URL = os.environ.get('ADMIN_URL')
+
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 # Configure DB URL from site_config
+DATABASE_URL = os.environ.get('DATABASE_URL')
 DATABASES = {'default': dj_database_url.config(default=DATABASE_URL)}
 
 # Password validation
@@ -142,6 +145,7 @@ MEDIA_URL = '/uploads/'
 MEDIA_ROOT = 'uploads'
 
 # Security settings
+NONCE = os.environ.get('NONCE')
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
