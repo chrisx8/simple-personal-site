@@ -19,18 +19,14 @@ def home(request):
         # go to setup if homepage is empty
         context = {'admin_url': ADMIN_URL}
         return render(request, 'setup.html', context=context)
-    elif not home_obj:
+    else:
         # no homepage object if homepage doesn't exist
         context = {
             'latest_articles': latest_articles,
             'latest_projects': latest_projects
         }
-    else:
-        context = {
-            'home': home_obj,
-            'latest_articles': latest_articles,
-            'latest_projects': latest_projects
-        }
+        if home_obj:
+            context['home'] = home_obj
     return render(request, 'home.html', context=context)
 
 
@@ -42,7 +38,3 @@ def skip_setup(request):
         return HttpResponseRedirect('/')
     else:
         raise Http404
-
-
-def nav_noscript(request):
-    return render(request, 'nav_noscript.html')
