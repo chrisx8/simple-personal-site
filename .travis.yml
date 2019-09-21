@@ -6,7 +6,7 @@ python:
   - "3.6"
 cache: pip
 install:
-  - cp site_config.example.env site_config.env
+  - cp config.example.env config.env
   - pip install -r requirements.txt
   - cp $HOME/.cache/pip/site.db site.db | true
 script:
