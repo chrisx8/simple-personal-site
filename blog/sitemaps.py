@@ -5,6 +5,7 @@ from global_config.site_config import SITE_PROTOCOL
 
 class ArticleSitemap(Sitemap):
     priority = 0.8
+    changefreq = 'daily'
     protocol = SITE_PROTOCOL
 
     def items(self):
