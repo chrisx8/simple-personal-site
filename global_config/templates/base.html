@@ -2,26 +2,26 @@
 <html lang="en">
 <head>
 <title>{% block pagetitle %}{% endblock %}| {{ SITE_NAME }}</title>
-<meta charset="utf-8" />
+<meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="{{ SITE_DESCRIPTION }}">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta property="og:url" content="{{ SITE_URL }}" />
-<meta property="og:title" content="{% block ogtitle %}{% endblock %}| {{ SITE_NAME }}" />
-<meta property="og:description" content="{{ SITE_DESCRIPTION }}" />
-<meta property="og:site_name" content="{{ SITE_NAME }}" />
-<meta property="og:type" content="website" />
+<meta property="og:url" content="{{ SITE_URL }}">
+<meta property="og:title" content="{% block ogtitle %}{% endblock %}| {{ SITE_NAME }}">
+<meta property="og:description" content="{{ SITE_DESCRIPTION }}">
+<meta property="og:site_name" content="{{ SITE_NAME }}">
+<meta property="og:type" content="website">
 <meta property="og:image" content="{{ SITE_URL }}/static/images/og-image.png">
-<meta property="og:locale" content="en_US" />
+<meta property="og:locale" content="en_US">
 <link rel="manifest" href="/static/icons/site.webmanifest">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="application-name" content="{{ SITE_NAME }}">
 <link rel="icon" type="image/png" sizes="32x32" href="/static/icons/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/static/icons/favicon-16x16.png">
-<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
-<meta name="apple-mobile-web-app-title" content="{{ SITE_NAME }}" />
-<link rel="apple-touch-icon" href="/static/icons/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="{{ SITE_NAME }}">
+<link rel="apple-touch-icon" href="/static/icons/apple-touch-icon.png">
 <link rel="apple-touch-startup-image" href="/static/icons/apple-touch-icon.png"/>
 <link rel="mask-icon" href="/static/icons/safari-pinned-tab.svg" color="#363636">
 <meta name="msapplication-config" content="/static/icons/browserconfig.xml">
@@ -84,7 +84,7 @@
 </small></footer>
 <script async src="/static/js/sps.js" nonce="{{ NONCE }}"></script>
 {% if GA_TRACKING_ID or FATHOM_URL and FATHOM_SITE_ID %}
-<link rel="stylesheet" type="text/css" href="/static/css/cookieconsent.css" />
+<link rel="stylesheet" type="text/css" href="/static/css/cookieconsent.css">
 <script async src="/static/js/cookieconsent.js" nonce="{{ NONCE }}"></script>
 {% endif %}
 {% if FATHOM_URL and FATHOM_SITE_ID %}
