@@ -24,7 +24,7 @@ SECRET_KEY = secrets.token_urlsafe(key_bytes)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Load config into system env
-load_dotenv(dotenv_path=os.path.join(BASE_DIR, 'site_config.env'))
+load_dotenv(dotenv_path=os.path.join(BASE_DIR, 'config.env'))
 
 try:
     ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(',')
@@ -101,7 +101,7 @@ ADMIN_URL = os.environ.get('ADMIN_URL')
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-# Configure DB URL from site_config
+# Configure DB URL from config.env
 DATABASE_URL = os.environ.get('DATABASE_URL')
 DATABASES = {'default': dj_database_url.config(default=DATABASE_URL)}
 
@@ -143,6 +143,22 @@ STATIC_URL = '/static/'
 STATIC_ROOT = 'static'
 MEDIA_URL = '/uploads/'
 MEDIA_ROOT = 'uploads'
+
+# Configure SMTP server from config.env
+try:
+    EMAIL_HOST = str(os.environ.get('EMAIL_HOST'))
+    EMAIL_PORT = int(os.environ.get('EMAIL_PORT'))
+    EMAIL_HOST_USER = str(os.environ.get('EMAIL_HOST_USER'))
+    EMAIL_HOST_PASSWORD = str(os.environ.get('EMAIL_HOST_PASSWORD'))
+    if os.environ.get('EMAIL_USE_TLS') == 'True':
+        EMAIL_USE_TLS = True
+    elif os.environ.get('EMAIL_USE_SSL') == 'True':
+        EMAIL_USE_SSL = True
+    else:
+        EMAIL_USE_TLS = False
+        EMAIL_USE_SSL = False
+except (TypeError, ValueError):
+    pass
 
 # Security settings
 NONCE = os.environ.get('NONCE')

@@ -22,24 +22,6 @@ class SiteInfo(SingletonModel):
         verbose_name = '# Site Info #'
 
 
-class EmailConfig(SingletonModel):
-    host = models.CharField(max_length=500, blank=True, help_text='URL to SMTP server. Leaving blank disables email. '
-                                                                  '<strong>Effective after restart</strong>')
-    port = models.IntegerField(blank=True, null=True, help_text='Port of SMTP server. Leaving blank disables email. '
-                                                                '<strong>Effective after restart</strong>')
-    username = models.CharField(max_length=500, blank=True, help_text='SMTP username. Leaving blank disables email. '
-                                                                      '<strong>Effective after restart</strong>')
-    password = models.CharField(max_length=500, blank=True, help_text='SMTP password. Leaving blank disables email. '
-                                                                      '<strong>Effective after restart</strong>')
-    use_tls = models.BooleanField(default=False, verbose_name='Use TLS',
-                                  help_text='Do not enable both SSL and TLS. <strong>Effective after restart</strong>')
-    use_ssl = models.BooleanField(default=False, verbose_name='Use SSL',
-                                  help_text='Do not enable both SSL and TLS. <strong>Effective after restart</strong>')
-
-    class Meta:
-        verbose_name = 'Email Config'
-
-
 class Fathom(SingletonModel):
     fathom_url = models.URLField(blank=True, verbose_name='Fathom URL', help_text='Full URL to Fathom\'s "tracker.js". '
                                                                                   'Leaving blank disables Fathom.')

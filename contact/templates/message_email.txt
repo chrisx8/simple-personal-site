@@ -3,7 +3,7 @@
 
 Hi {{ name }},
 
-Thanks for contacting me! I'll get back to you soon.
+Thanks for contacting me!
 
 Here's a copy of your message:
 

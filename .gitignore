@@ -118,9 +118,7 @@ dmypy.json
 # Dev
 .vscode/
 .idea/
+config.env
 static/admin/
 static/staticfiles.json
 uploads/
-
-# Personal config
-site_config.env

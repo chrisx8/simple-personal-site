@@ -1,9 +1,9 @@
 from django.contrib import admin
 from django.contrib.auth.models import Group
-from global_config.forms import AuthFormCaptcha, EmailConfigAdminForm
+from global_config.forms import AuthFormCaptcha
 from global_config.site_config import SITE_NAME
 from solo.admin import SingletonModelAdmin
-from .models import SiteInfo, EmailConfig, Fathom, GoogleAnalytics, SocialMediaLink
+from .models import SiteInfo, Fathom, GoogleAnalytics, SocialMediaLink
 
 # Customize admin page
 # set admin site title
@@ -36,8 +36,3 @@ class SiteInfoAdmin(SingletonModelAdmin):
         ('Header', {'fields': ['header_title', 'header_subtitle']}),
         ('Footer', {'fields': ['footer_copyright']}),
     )
-
-
-@admin.register(EmailConfig)
-class EmailConfigAdmin(SingletonModelAdmin):
-    form = EmailConfigAdminForm
