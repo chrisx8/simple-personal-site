@@ -34,10 +34,12 @@ except AttributeError:
 # DEBUG defaults to False.
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
+HTML_MINIFY = True
 
 # Set environment variable DEBUG=True to enable debug
 if os.environ.get('DEBUG') == 'True':
     DEBUG = True
+    HTML_MINIFY = False
 
 # Application definition
 INSTALLED_APPS = [
@@ -93,8 +95,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'simple_personal_site.wsgi.application'
-
-HTML_MINIFY = True
 
 ADMIN_URL = os.environ.get('ADMIN_URL')
 
