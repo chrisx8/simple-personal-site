@@ -19,7 +19,7 @@
 {% if project.embed %}
 {{ project.embed.html|safe }}
 {% if project.image %}
-<div class="card-image" id="printonly"><figure class="image is-16by9" ><img src="{{ project.image.image.url }}" alt="{{ project.title }}"></figure></div>
+<div class="card-image printonly"><figure class="image is-16by9" ><img src="{{ project.image.image.url }}" alt="{{ project.title }}"></figure></div>
 {% endif %}
 {% elif project.image %}
 <div class="card-image"><figure class="image is-16by9" >
