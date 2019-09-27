@@ -21,12 +21,6 @@
 <span class="icon is-small is-left"><i class="material-icons">lock</i></span>
 </div>
 </div>
-<div class="field">
-<label class="label" for="id_captcha">Verification</label>
-<div class="control">{{ form.captcha }}</div>
-<button class="button" id="get-new-captcha"><span class="icon is-small is-left"><i class="material-icons">refresh</i></span></button>
-{% if form.captcha.errors %}<article class="message is-danger"><div class="form-error"><strong>{{ form.captcha.errors }}</strong></div></article>{% endif %}
-</div>
 <div class="field is-grouped">
 <div class="control"><button class="button is-link" type="submit">Log in</button></div>
 </div>

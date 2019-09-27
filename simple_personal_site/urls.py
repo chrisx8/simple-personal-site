@@ -29,7 +29,6 @@ sitemaps = {
 }
 
 urlpatterns = [
-    path('captcha/', include('captcha.urls')),
     path('favicon.ico', RedirectView.as_view(url=STATIC_URL + 'icons/favicon.ico')),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
     path('', include('homepage.urls')),

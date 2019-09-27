@@ -51,7 +51,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.sitemaps',
     'django.contrib.staticfiles',
-    'captcha',
+    'snowpenguin.django.recaptcha2',
     'solo',
     'blog.apps.BlogConfig',
     'contact.apps.ContactConfig',
@@ -167,7 +167,7 @@ SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 X_FRAME_OPTIONS = 'DENY'
 
-# Captcha settings
-CAPTCHA_FOREGROUND_COLOR = '#001600'
-CAPTCHA_LETTER_ROTATION = (-25, 25)
-CAPTCHA_LENGTH = 6
+# ReCaptcha settings
+RECAPTCHA_PRIVATE_KEY = str(os.environ.get('RECAPTCHA_PRIVATE_KEY'))
+RECAPTCHA_PUBLIC_KEY = str(os.environ.get('RECAPTCHA_PUBLIC_KEY'))
+RECAPTCHA_PROXY_HOST = 'https://recaptcha.net'
