@@ -1,10 +1,1 @@
-{{ SITE_NAME }}
--------------------------------------------------------
-
-You've received a message from {{ msg.name }}.
-
-From: {{ msg.name }} ({{ msg.email }})
-Received at {{ msg.timestamp }}
-Message content:
-
 {{ msg.message }}
