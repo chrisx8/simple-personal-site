@@ -17,9 +17,9 @@
 <div class="column is-half">
 <div class="card">
 {% if project.embed %}
-{{ project.embed.html|safe }}
+<div class="noprint">{{ project.embed.html|safe }}</div>
 {% if project.image %}
-<div class="card-image printonly"><figure class="image is-16by9" ><img src="{{ project.image.image.url }}" alt="{{ project.title }}"></figure></div>
+<div class="printonly"><div class="card-image"><figure class="image is-16by9" ><img src="{{ project.image.image.url }}" alt="{{ project.title }}"></figure></div></div>
 {% endif %}
 {% elif project.image %}
 <div class="card-image"><figure class="image is-16by9" >
