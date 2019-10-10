@@ -9,6 +9,11 @@
 <form method="POST">
 {% csrf_token %}
 <div class="field">
+<noscript>
+<article class="message is-link">
+<div class="message-header"><p>Please enable JavaScript to complete verification.</p></div>
+</article>
+</noscript>
 {% load recaptcha2 %}
 {% recaptcha_init %}
 {{ form.captcha }}
