@@ -60,7 +60,7 @@ sudo chown -R 65534:65534 static
 
 ```bash
 # Replace "0.0.0.0:80" with wherever you want the container to listen at
-docker run -d -p 0.0.0.0:80:8000 --env-file=config.env -v uploads:/app/uploads/ -v $(pwd)/static:/app/static/ --restart unless-stopped --name simple-personal-site chrisx8/simple-personal-site:latest
+docker run -d -p 0.0.0.0:80:8000 --env-file=config.env -v media_files:/app/media_files/ -v $(pwd)/static:/app/static/ --restart unless-stopped --name simple-personal-site chrisx8/simple-personal-site:latest
 ```
 
 - Create an admin account.

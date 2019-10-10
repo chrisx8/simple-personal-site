@@ -18,7 +18,7 @@ RUN apk add --no-cache build-base gcc musl-dev && \
 COPY . /app/
 WORKDIR /app
 
-RUN mkdir /app/uploads && \
+RUN mkdir /app/media_files && \
     chown nobody:nogroup -R /app
 
 EXPOSE 8000
