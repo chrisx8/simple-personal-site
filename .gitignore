@@ -121,4 +121,4 @@ dmypy.json
 config.env
 static/admin/
 static/staticfiles.json
-uploads/
+media_files/

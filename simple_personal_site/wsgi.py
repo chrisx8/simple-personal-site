@@ -19,4 +19,4 @@ application = get_wsgi_application()
 
 # serve static with whitenoise
 application = WhiteNoise(application, root=os.path.join(BASE_DIR, 'static'))
-application.add_files(os.path.join(BASE_DIR, 'uploads'), prefix='uploads/')
+application.add_files(os.path.join(BASE_DIR, 'media_files'), prefix='media/')
