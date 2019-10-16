@@ -1,22 +1,24 @@
 dist: xenial
-sudo: required
-language: python
-python:
-  - "3.7"
-  - "3.6"
-cache: pip
-install:
-  - cp config.example.env config.env
-  - pip install -r requirements.txt
-  - cp $HOME/.cache/pip/site.db site.db | true
-script:
-  - python3 manage.py migrate --run-syncdb
-  - python3 manage.py test
-  - cp site.db $HOME/.cache/pip/site.db
+
 jobs:
   include:
+    - stage: test
+      language: python
+      python:
+        - "3.7"
+      cache: pip      
+      install:
+        - cp config.example.env config.env
+        - pip install -r requirements.txt
+        - cp $HOME/.cache/pip/site.db site.db | true
+      script:
+        - python3 manage.py migrate --run-syncdb
+        - python3 manage.py test
+        - cp site.db $HOME/.cache/pip/site.db
     - stage: build docker image
       if: branch = master
+      sudo: required
+      language: minimal
       env: DOCKER_REPO=chrisx8/simple-personal-site:latest
       script:
         - docker build --build-arg VCS_REF=`git rev-parse --short HEAD` --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` -t $DOCKER_REPO .
