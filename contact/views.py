@@ -35,7 +35,7 @@ def message(request):
         # build text email content
         mail_text = render(request, 'notification_email.txt', context=mail_context).content.decode("utf-8")
         # send email to form submitter
-        notification_subj = '[%s] New message from %s' % (SITE_NAME, new_msg.name)
+        notification_subj = 'New message from %s' % new_msg.name
         send_mail(notification_subj, mail_text, from_addr,
                   [contact_config.site_owner_email], html_message=mail_html, fail_silently=True)
 
