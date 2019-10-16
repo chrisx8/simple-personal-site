@@ -43,7 +43,7 @@ def message(request):
         if not contact_config or not from_addr_exists() or not subject_exists():
             return
         # build html email content
-        mail_context = {'name': new_msg.name, 'msg': new_msg.message}
+        mail_context = {'msg': new_msg}
         mail_html = render(request, 'message_email.html', context=mail_context).content.decode("utf-8")
         # build text email content
         mail_text = render(request, 'message_email.txt', context=mail_context).content.decode("utf-8")

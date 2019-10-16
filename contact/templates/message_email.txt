@@ -1,10 +1,8 @@
 {{ SITE_NAME }}
 -------------------------------------------------------
 
-Hi {{ name }},
+Hi {{ msg.name }},
 
-Thanks for contacting me!
+Thanks for contacting me! Here's a copy of your message:
 
-Here's a copy of your message:
-
-{{ msg }}
+{{ msg.message|linebreaks }}

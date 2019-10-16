@@ -7,9 +7,8 @@
 </head>
 <body>
 <h1>{{ SITE_NAME }}</h1>
-<p>Hi {{ name }}, </p>
-<p>Thanks for contacting me!</p>
-<p>Here's a copy of your message:</p>
-<blockquote>{{ msg|linebreaks }}</blockquote>
+<p>Hi {{ msg.name }}, </p>
+<p>Thanks for contacting me! Here's a copy of your message:</p>
+<blockquote>{{ msg.message|linebreaks }}</blockquote>
 </body>
 </html>

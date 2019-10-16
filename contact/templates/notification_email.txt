@@ -1,1 +1,6 @@
-{{ msg.message }}
+{{ SITE_NAME }}
+-------------------------------------------------------
+
+New message from {{ msg.name }} ({{ msg.email }}):
+
+{{ msg.message|linebreaks }}

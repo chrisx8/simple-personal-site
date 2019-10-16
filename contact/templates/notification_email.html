@@ -6,6 +6,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-<div>{{ msg.message|linebreaks }}</div>
+<h1>{{ SITE_NAME }}</h1>
+<p>New message from {{ msg.name }} ({{ msg.email }}):</p>
+<blockquote>{{ msg.message|linebreaks }}</blockquote>
 </body>
 </html>
