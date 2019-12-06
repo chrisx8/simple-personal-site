@@ -13,13 +13,13 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf import settings
 from django.contrib import admin
 from django.contrib.sitemaps.views import sitemap
 from django.shortcuts import render
 from django.urls import include, path
 from django.views.generic.base import RedirectView
 from blog.sitemaps import ArticleSitemap, TagSitemap
-from .settings import ADMIN_URL, STATIC_URL
 from .sitemaps import SiteSitemap
 
 sitemaps = {
@@ -29,17 +29,18 @@ sitemaps = {
 }
 
 urlpatterns = [
-    path('favicon.ico', RedirectView.as_view(url=STATIC_URL + 'icons/favicon.ico')),
+    path('favicon.ico', RedirectView.as_view(url=settings.STATIC_URL + 'icons/favicon.ico')),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
     path('', include('homepage.urls')),
     path('blog/', include('blog.urls')),
     path('contact/', include('contact.urls')),
+    path('go/', include('url_shortener.urls')),
     path('projects/', include('projects.urls')),
 ]
 
 # get admin url from config
-if ADMIN_URL:
-    urlpatterns.append(path(ADMIN_URL, admin.site.urls))
+if settings.ADMIN_URL:
+    urlpatterns.append(path(settings.ADMIN_URL, admin.site.urls))
 
 
 # 404 error page

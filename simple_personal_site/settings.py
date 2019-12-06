@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'homepage.apps.HomepageConfig',
     'media.apps.MediaConfig',
     'projects.apps.ProjectsConfig',
+    'url_shortener.apps.UrlShortenerConfig',
 ]
 
 MIDDLEWARE = [
