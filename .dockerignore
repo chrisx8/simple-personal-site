@@ -84,4 +84,3 @@ Dockerfile
 .gitignore
 .travis.yml
 config.example.env
-requirements.txt
