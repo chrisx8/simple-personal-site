@@ -18,17 +18,16 @@ def message(request):
         contact_config = None
         has_pgp_pubkey = False
 
-    def from_addr_exists():
-        return contact_config.from_name and contact_config.from_email
-
-    def site_owner_email_exists():
-        return bool(contact_config.site_owner_email)
-
-    def subject_exists():
-        return bool(contact_config.subject)
+    # check if configs for sending emails exist
+    def can_email():
+        smtp_configured = settings.EMAIL_HOST and settings.EMAIL_PORT and \
+                          settings.EMAIL_HOST_USER and settings.EMAIL_HOST_PASSWORD
+        contact_configured = contact_config and contact_config.from_name and contact_config.from_email
+        return smtp_configured and contact_configured
 
     def email_site_owner():
-        if not contact_config or not from_addr_exists() or not site_owner_email_exists():
+        # check prereqs for emailing site owner
+        if not can_email() or not contact_config.site_owner_email:
             return
         # build html email content
         mail_context = {'msg': new_msg}
@@ -40,8 +39,9 @@ def message(request):
         send_mail(notification_subj, mail_text, from_addr,
                   [contact_config.site_owner_email], html_message=mail_html, fail_silently=True)
 
-    def email_submitter():
-        if not contact_config or not from_addr_exists() or not subject_exists():
+    def email_sender():
+        # check prereqs for emailing sender
+        if not can_email() or not contact_config.subject:
             return
         # build html email content
         mail_context = {'msg': new_msg}
@@ -61,8 +61,7 @@ def message(request):
             new_msg = Message(name=form_data['name'], email=form_data['email'], message=form_data['message'])
             new_msg.save()
             # send emails
-            email_submitter()
-            # send email to site owner
+            email_sender()
             email_site_owner()
             return HttpResponseRedirect(reverse('message_success'))
         else:
