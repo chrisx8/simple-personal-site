@@ -34,7 +34,6 @@ urlpatterns = [
     path('', include('homepage.urls')),
     path('blog/', include('blog.urls')),
     path('contact/', include('contact.urls')),
-    path('go/', include('shorturl.urls')),
     path('projects/', include('projects.urls')),
 ]
 

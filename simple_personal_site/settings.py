@@ -36,8 +36,9 @@ except AttributeError:
 DEBUG = False
 HTML_MINIFY = True
 
-# Set environment variable DEBUG=True to enable debug
-if os.environ.get('DEBUG') == 'True':
+# Set environment variable DEBUG=TRUE to enable debug
+debug_env = os.environ.get('DEBUG')
+if isinstance(debug_env, str) and debug_env.upper == 'TRUE':
     DEBUG = True
     HTML_MINIFY = False
 
@@ -59,7 +60,6 @@ INSTALLED_APPS = [
     'homepage.apps.HomepageConfig',
     'media.apps.MediaConfig',
     'projects.apps.ProjectsConfig',
-    'shorturl.apps.ShorturlConfig',
 ]
 
 MIDDLEWARE = [
@@ -109,18 +109,10 @@ DATABASES = {'default': dj_database_url.config(default=DATABASE_URL)}
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
 # Internationalization
