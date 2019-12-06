@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.core.mail import send_mail
 from django.http import Http404, HttpResponse
 from django.shortcuts import render, HttpResponseRedirect
@@ -79,6 +80,9 @@ def message_success(request):
 
 # pgp pubkey
 def show_pgp_pubkey(request):
+    def has_recaptcha():
+        return settings.RECAPTCHA_PRIVATE_KEY and settings.RECAPTCHA_PUBLIC_KEY
+
     # check if key exists
     try:
         contact_config = ContactConfig.objects.get()
@@ -86,8 +90,8 @@ def show_pgp_pubkey(request):
         assert len(pgp_pubkey) > 0
     except (AssertionError, ContactConfig.DoesNotExist):
         raise Http404
-    # captcha validation
-    if request.method == 'POST':
+    # captcha validation, if configured
+    if request.method == 'POST' and has_recaptcha():
         # get form data from post
         form = CaptchaForm(request.POST)
         if form.is_valid():
@@ -95,7 +99,11 @@ def show_pgp_pubkey(request):
         else:
             context = {'form': form}
             return render(request, 'pgp_pubkey.html', context=context)
-    else:
+    # show captcha, if configured
+    elif has_recaptcha():
         form = CaptchaForm()
         context = {'form': form}
         return render(request, 'pgp_pubkey.html', context=context)
+    # give pgp key directly if no captcha is configured
+    else:
+        return HttpResponse(pgp_pubkey, content_type='text/plain')
