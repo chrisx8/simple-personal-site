@@ -12,8 +12,6 @@ Create your personal website in minutes! Follow instructions below to set up.
 - [Before installing](#before-installing)
 - [Install with Docker](#install-with-docker)
 - [Install in a virtualenv](#install-in-a-virtualenv)
-- [Upgrading Docker container](#upgrading-docker-container)
-- [Upgrading in a virtualenv](#upgrading-in-a-virtualenv)
 - [Add content](#add-content)
 - [License](#license)
 
@@ -127,52 +125,6 @@ sudo systemctl start personal-site
 
 ```bash
 python3 manage.py createsuperuser
-```
-
-## Upgrading Docker container
-
-**WARNING: If you're upgrading to commits made after April 11, 2019, you need to back up and delete the database before upgrading. The database schema needs to be rebuilt.**
-
-Do the following in the project directory
-
-- Pull the latest image
-
-```bash
-git pull
-docker pull chrisx8/simple-personal-site:latest
-```
-
-- Recreate container
-
-```bash
-# Replace 0.0.0.0:80 with wherever you want the container to listen at
-docker run -d -p 0.0.0.0:80:8000 --env-file=config.env -v uploads:/app/uploads/ -v $(pwd)/static:/app/static/ --restart unless-stopped --name simple-personal-site chrisx8/simple-personal-site:latest
-```
-
-## Upgrading in a virtualenv
-
-**WARNING: If you're upgrading to commits made after April 11, 2019, you need to back up and delete the database before upgrading. The database schema needs to be rebuilt.**
-
-Do the following in the project directory
-
-- Pull from repo
-
-```bash 
-git pull
-```
-
-- Upgrade project dependencies.
-
-```bash
-# Activate virtualenv and upgrade dependencies
-source venv/bin/activate
-pip install -U -r requirements.txt
-```
-
-- Restart service
-
-```bash
-sudo systemctl restart personal-site
 ```
 
 ## Add content
