@@ -38,7 +38,8 @@ HTML_MINIFY = True
 
 # Set environment variable DEBUG=TRUE to enable debug
 debug_env = os.environ.get('DEBUG')
-if isinstance(debug_env, str) and debug_env.upper == 'TRUE':
+if isinstance(debug_env, str) and debug_env.upper() == 'TRUE':
+    print('WARNING: Debug mode is enabled!')
     DEBUG = True
     HTML_MINIFY = False
 
