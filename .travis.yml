@@ -3,6 +3,7 @@ dist: bionic
 jobs:
   include:
     - stage: test
+      if: branch != master
       language: python
       python:
         - "3.8"
@@ -15,7 +16,7 @@ jobs:
         - python3 manage.py migrate --run-syncdb
         - python3 manage.py test
         - cp site.db $HOME/.cache/pip/site.db
-    - stage: build docker image
+    - stage: build and test docker image
       if: branch = master
       language: minimal
       sudo: required
@@ -24,5 +25,8 @@ jobs:
       env: DOCKER_REPO=chrisx8/simple-personal-site:latest
       script:
         - docker build --build-arg VCS_REF=`git rev-parse --short HEAD` --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` -t $DOCKER_REPO .
+        - docker run --rm --env-file config.example.env "$DOCKER_REPO" python3 manage.py test
+        - docker run --rm --env-file config.example.env "$DOCKER_REPO" &
+        - sleep 1
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
         - docker push $DOCKER_REPO
