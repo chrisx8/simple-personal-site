@@ -3,7 +3,6 @@ dist: bionic
 jobs:
   include:
     - stage: test
-      if: branch != master
       language: python
       python:
         - "3.8"
