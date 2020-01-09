@@ -51,7 +51,7 @@ cp config.example.env config.env
 - Set permission
 
 ```bash
-sudo chown -R 65534:65534 static
+sudo chown -R nobody:nogroup static
 ```
 
 - Run Docker container.
@@ -140,4 +140,4 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 [GNU General Public License](LICENSE) for more details.
 
-Copyright (C) 2019 [Chris Xiao](https://github.com/chrisx8)
+Copyright (C) 2020 [Chris Xiao](https://github.com/chrisx8)
