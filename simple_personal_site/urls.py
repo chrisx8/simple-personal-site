@@ -20,6 +20,7 @@ from django.shortcuts import render
 from django.urls import include, path
 from django.views.generic.base import RedirectView
 from blog.sitemaps import ArticleSitemap, TagSitemap
+from url_shortener.views import redirect
 from .sitemaps import SiteSitemap
 
 sitemaps = {
@@ -28,14 +29,15 @@ sitemaps = {
     'tags': TagSitemap,
 }
 
+# url search order: favicon, sitemap, homepage, modules, shortener, admin
 urlpatterns = [
     path('favicon.ico', RedirectView.as_view(url=settings.STATIC_URL + 'icons/favicon.ico')),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
     path('', include('homepage.urls')),
     path('blog/', include('blog.urls')),
     path('contact/', include('contact.urls')),
-    path('go/', include('url_shortener.urls')),
     path('projects/', include('projects.urls')),
+    path('', include('url_shortener.urls')),
 ]
 
 # get admin url from config

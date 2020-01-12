@@ -16,7 +16,6 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.go_home),
     path('<str:alias>', views.redirect),
     path('<str:alias>/', views.redirect),
 ]

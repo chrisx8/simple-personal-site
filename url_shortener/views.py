@@ -1,10 +1,5 @@
-from django.shortcuts import Http404, HttpResponseRedirect
+from django.shortcuts import Http404, HttpResponseRedirect, HttpResponse
 from .models import URL
-
-
-# redirect to home when no url is provided
-def go_home(request):
-    return HttpResponseRedirect('/')
 
 
 # redirect to desired url
@@ -12,7 +7,15 @@ def redirect(request, alias):
     # redirect if url exists
     try:
         url_obj = URL.objects.get(alias=alias)
-        return HttpResponseRedirect(url_obj.full_url)
-    # 404 if url doesn't exist
+        target = url_obj.full_url
+    # try 'alias/' if url doesn't exist
     except URL.DoesNotExist:
-        raise Http404(request)
+        # get relative uri
+        request_uri = request.META['PATH_INFO'] + request.META['QUERY_STRING']
+        # try '<alias/>' if request uri is '<alias>'
+        if request_uri.count('/') == 1:
+            target = request.build_absolute_uri() + '/'
+        # throw 404 otherwise
+        else:
+            raise Http404
+    return HttpResponseRedirect(target)
