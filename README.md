@@ -17,12 +17,15 @@ Create your personal website in minutes! Follow instructions below to set up.
 
 ## Features
 
-- Easy to manage site content
+- Easy-to-manage and site content
 - Markdown support throughout the site
 - Post blog articles
 - Create project cards
-- Supports video embed and images in blog articles and project cards
-- Contact page with social media links and a message form
+- Video embed and images in blog articles and project cards
+- Show social media links in footer
+- Serve PGP public key
+- Contact form and notification email
+- URL shortener
 
 ## Before installing
 
@@ -47,7 +50,7 @@ cp config.example.env config.env
 
 ## Install with Docker
 
-- Make sure your database is accessible from inside the container  
+- Make sure your database is accessible from inside the container
 - Set permission
 
 ```bash

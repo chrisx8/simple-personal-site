@@ -29,7 +29,7 @@ sitemaps = {
     'tags': TagSitemap,
 }
 
-# url search order: favicon, sitemap, homepage, modules, shortener, admin
+# url search order: favicon, sitemap, homepage, modules, admin, shortener
 urlpatterns = [
     path('favicon.ico', RedirectView.as_view(url=settings.STATIC_URL + 'icons/favicon.ico')),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
@@ -42,7 +42,7 @@ urlpatterns = [
 
 # get admin url from config
 if settings.ADMIN_URL:
-    urlpatterns.append(path(settings.ADMIN_URL, admin.site.urls))
+    urlpatterns.insert(-2, path(settings.ADMIN_URL, admin.site.urls))
 
 
 # 404 error page

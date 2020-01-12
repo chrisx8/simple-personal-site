@@ -3,7 +3,7 @@ from django.db import models
 
 class URL(models.Model):
     alias = models.CharField(primary_key=True, max_length=50, default='', null=False,
-                             help_text='Example: XYZ is the alias in shortened URL example.com/go/XYZ')
+                             help_text='Example: XYZ is the alias in shortened URL example.com/XYZ')
     full_url = models.URLField(default='', null=False)
 
     class Meta:
