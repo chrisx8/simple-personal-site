@@ -1,31 +1,33 @@
 dist: bionic
+language: python
+cache: pip
+sudo: required
+python:
+  - "3.8"
+services:
+  - docker
+env:
+  - DOCKER_REPO=chrisx8/simple-personal-site:latest
 
-jobs:
-  include:
-    - stage: test
-      language: python
-      python:
-        - "3.8"
-      cache: pip      
-      install:
-        - cp config.example.env config.env
-        - pip install -r requirements.txt
-        - cp $HOME/.cache/pip/site.db site.db | true
-      script:
-        - python3 manage.py migrate --run-syncdb
-        - python3 manage.py test
-        - cp site.db $HOME/.cache/pip/site.db
-    - stage: build and test docker image
-      if: branch = master
-      language: minimal
-      sudo: required
-      services:
-        - docker
-      env: DOCKER_REPO=chrisx8/simple-personal-site:latest
-      script:
-        - docker build --build-arg VCS_REF=`git rev-parse --short HEAD` -t $DOCKER_REPO .
-        - docker run -p 127.0.0.1:8000:8000 --env-file config.example.env "$DOCKER_REPO" &
-        - sleep 5
-        - curl -Lf localhost:8000
-        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-        - docker push $DOCKER_REPO
+install:
+  - cp config.example.env config.env
+  - pip install -r requirements.txt
+  - cp $HOME/.cache/pip/site.db site.db | true
+
+before_script:
+  - python3 manage.py migrate --run-syncdb || travis_terminate 1
+  - python3 manage.py test || travis_terminate 1
+  - cp site.db $HOME/.cache/pip/site.db
+      
+script:
+  - docker build --build-arg VCS_REF=`git rev-parse --short HEAD` -t $DOCKER_REPO . || travis_terminate 1
+  - docker run -p 127.0.0.1:8000:8000 --env-file config.example.env "$DOCKER_REPO" &
+  - sleep 5
+  - curl -Lf localhost:8000 || travis_terminate 1
+
+deploy:
+  on:
+    branch: master
+  script:
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+    - docker push $DOCKER_REPO

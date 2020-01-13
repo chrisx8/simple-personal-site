@@ -20,7 +20,9 @@ WORKDIR /app
 
 RUN mkdir /app/media_files && \
     chown nobody:nogroup -R /app && \
-    python3 manage.py test
+    cp config.example.env config.env && \
+    python3 manage.py test && \
+    rm config.env
 
 EXPOSE 8000
 USER nobody
