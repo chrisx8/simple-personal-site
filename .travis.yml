@@ -11,19 +11,20 @@ services:
 
 before_install:
   - docker load -i docker_images/images.tar || true
-  
-before_cache:
-  - docker save -o docker_images/images.tar $(docker images -a -q)
 
 install:
-  - docker build --build-arg VCS_REF=`git rev-parse --short HEAD` -t $DOCKER_REPO . || travis_terminate 1
+  - docker build --build-arg VCS_REF=`git rev-parse --short HEAD` -t $DOCKER_REPO .
       
 script:
   - docker run -p 127.0.0.1:8000:8000 --env-file config.example.env "$DOCKER_REPO" &
   - sleep 5
-  - curl -Lf localhost:8000 || travis_terminate 1
+  - curl -Lf localhost:8000
+  
+before_cache:
+  - docker save -o docker_images/images.tar $(docker images -a -q)
 
 deploy:
+  provider: script
   on:
     branch: master
   script:
