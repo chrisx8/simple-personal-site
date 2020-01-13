@@ -19,7 +19,8 @@ COPY . /app/
 WORKDIR /app
 
 RUN mkdir /app/media_files && \
-    chown nobody:nogroup -R /app
+    chown nobody:nogroup -R /app && \
+    python3 manage.py test
 
 EXPOSE 8000
 USER nobody
