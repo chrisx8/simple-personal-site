@@ -22,7 +22,7 @@ RUN mkdir /app/media_files && \
     chown nobody:nogroup -R /app && \
     cp config.example.env config.env && \
     python3 manage.py test && \
-    rm config.env
+    rm config.env config.example.env
 
 EXPOSE 8000
 USER nobody

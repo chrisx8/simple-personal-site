@@ -1,26 +1,24 @@
 dist: bionic
-language: python
-cache: pip
+language: minimal
 sudo: required
-python:
-  - "3.8"
-services:
-  - docker
+cache:
+  directories:
+    - docker_images
 env:
   - DOCKER_REPO=chrisx8/simple-personal-site:latest
+services:
+  - docker
+
+before_install:
+  - docker load -i docker_images/images.tar || true
+  
+before_cache:
+  - docker save -o docker_images/images.tar $(docker images -a -q)
 
 install:
-  - cp config.example.env config.env
-  - pip install -r requirements.txt
-  - cp $HOME/.cache/pip/site.db site.db | true
-
-before_script:
-  - python3 manage.py migrate --run-syncdb || travis_terminate 1
-  - python3 manage.py test || travis_terminate 1
-  - cp site.db $HOME/.cache/pip/site.db
+  - docker build --build-arg VCS_REF=`git rev-parse --short HEAD` -t $DOCKER_REPO . || travis_terminate 1
       
 script:
-  - docker build --build-arg VCS_REF=`git rev-parse --short HEAD` -t $DOCKER_REPO . || travis_terminate 1
   - docker run -p 127.0.0.1:8000:8000 --env-file config.example.env "$DOCKER_REPO" &
   - sleep 5
   - curl -Lf localhost:8000 || travis_terminate 1
