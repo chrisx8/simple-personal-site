@@ -3,14 +3,14 @@ language: minimal
 sudo: required
 cache:
   directories:
-    - docker_images
+    - ~/docker_images
 env:
   - DOCKER_REPO=chrisx8/simple-personal-site:latest
 services:
   - docker
 
 before_install:
-  - docker load -i docker_images/images.tar || true
+  - docker load -i ~/docker_images/images.tar || true
 
 install:
   - docker build --build-arg VCS_REF=`git rev-parse --short HEAD` -t $DOCKER_REPO .
@@ -21,10 +21,9 @@ script:
   - curl -Lf localhost:8000
   
 before_cache:
-  - docker save -o docker_images/images.tar $(docker images -a -q)
+  - docker save -o ~/docker_images/images.tar $(docker images -a -q)
 
-deploy:
-  provider: script
+after_success:
   on:
     branch: master
   script:
