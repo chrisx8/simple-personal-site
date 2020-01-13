@@ -24,7 +24,7 @@ jobs:
       env: DOCKER_REPO=chrisx8/simple-personal-site:latest
       script:
         - docker build --build-arg VCS_REF=`git rev-parse --short HEAD` -t $DOCKER_REPO .
-        - docker run --rm --env-file config.example.env "$DOCKER_REPO" &
+        - docker run -p 127.0.0.1:8000:8000 --env-file config.example.env "$DOCKER_REPO" &
         - sleep 5
         - curl -Lf localhost:8000
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
