@@ -21,21 +21,14 @@ jobs:
       env: DOCKER_REPO=chrisx8/simple-personal-site:latest
       language: minimal
       sudo: required
-      cache:
-        directories:
-          - ~/docker_images
       services:
         - docker
-      before_install:
-        - docker load -i ~/docker_images/images.tar || true
       install:
         - docker build --build-arg VCS_REF=`git rev-parse --short HEAD` -t $DOCKER_REPO .
       script:
         - docker run -p 127.0.0.1:8000:8000 --env-file config.example.env "$DOCKER_REPO" &
         - sleep 5
         - curl -Lf localhost:8000
-      before_cache:
-        - docker save -o ~/docker_images/images.tar $(docker images -a -q)
       after_success:
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
         - docker push $DOCKER_REPO
