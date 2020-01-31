@@ -55,8 +55,11 @@ def message(request):
     if request.method == 'POST':
         # get form data from post
         form = ContactForm(request.POST)
+        # check honeypot
         if form.is_valid():
             form_data = form.cleaned_data
+            if form_data['url']:
+                return HttpResponse(status=400)
             # create message object
             new_msg = Message(name=form_data['name'], email=form_data['email'], message=form_data['message'])
             new_msg.save()
@@ -79,30 +82,11 @@ def message_success(request):
 
 # pgp pubkey
 def show_pgp_pubkey(request):
-    def has_recaptcha():
-        return settings.RECAPTCHA_PRIVATE_KEY and settings.RECAPTCHA_PUBLIC_KEY
-
     # check if key exists
     try:
         contact_config = ContactConfig.objects.get()
         pgp_pubkey = str(contact_config.pgp_pubkey)
         assert len(pgp_pubkey) > 0
+        return HttpResponse(pgp_pubkey, content_type='text/plain')
     except (AssertionError, ContactConfig.DoesNotExist):
         raise Http404
-    # captcha validation, if configured
-    if request.method == 'POST' and has_recaptcha():
-        # get form data from post
-        form = CaptchaForm(request.POST)
-        if form.is_valid():
-            return HttpResponse(pgp_pubkey, content_type='text/plain')
-        else:
-            context = {'form': form}
-            return render(request, 'pgp_pubkey.html', context=context)
-    # show captcha, if configured
-    elif has_recaptcha():
-        form = CaptchaForm()
-        context = {'form': form}
-        return render(request, 'pgp_pubkey.html', context=context)
-    # give pgp key directly if no captcha is configured
-    else:
-        return HttpResponse(pgp_pubkey, content_type='text/plain')

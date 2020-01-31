@@ -30,15 +30,8 @@
 {% if form.message.errors %}<article class="message is-danger"><div class="form-error"><strong>{{ form.message.errors }}</strong></div></article>{% endif %}
 </div>
 <div class="field">
-<noscript>
-<article class="message is-link">
-<div class="message-header"><p>Please enable JavaScript to send a message.</p></div>
-</article>
-</noscript>
-{% load recaptcha2 %}
-{% recaptcha_init %}
-{{ form.captcha }}
-{% if form.captcha.errors %}<article class="message is-danger"><div class="form-error"><strong>Please try again.</strong></div></article>{% endif %}
+<label class="contacturl" for="id_url">URL</label>
+{{ form.url }}
 </div>
 <div class="field is-grouped">
 <div class="control"><button class="button is-link" type="submit">Send</button></div>
