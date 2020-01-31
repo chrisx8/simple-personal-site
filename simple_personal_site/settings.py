@@ -10,7 +10,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
-import dj_database_url
 import os
 import secrets
 from django.core.exceptions import ImproperlyConfigured
