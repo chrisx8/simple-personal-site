@@ -9,7 +9,7 @@ jobs:
       python:
         - "3.8"
       install:
-        - cp config.example.env config.env
+        - cp example.env .env
         - pip install -r requirements.txt
       script:
         - python3 manage.py migrate --run-syncdb
@@ -23,7 +23,7 @@ jobs:
       install:
         - docker build --build-arg VCS_REF=`git rev-parse --short HEAD` -t $DOCKER_REPO .
       script:
-        - docker run -p 127.0.0.1:8000:8000 --env-file config.example.env "$DOCKER_REPO" &
+        - docker run -p 127.0.0.1:8000:8000 --env-file example.env "$DOCKER_REPO" &
         - sleep 5
         - curl -Lf localhost:8000
       after_success:
