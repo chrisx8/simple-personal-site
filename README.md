@@ -35,13 +35,13 @@ cd simple-personal-site
 ```
 
 - Generate a strong password [here](https://strongpasswordgenerator.com/) for database. Save it, as you'll need it during the setup process.
-- Create your site config.
+- Create your env file for site config.
 
 ```bash
-cp config.example.env config.env
+cp example.env .env
 ```
 
-- Edit `config.env`, following instructions in the file.
+- Edit `.env`, following instructions in the file.
 - Generate your own icons [here](https://realfavicongenerator.net). Download the generated Favicon package.
 - Unzip the downloaded package, and upload everything to `static/icons/`, replacing ALL existing placeholder icon files.
 - Upload an image for `og:image` (`1280*640`, in `.png` format) to `static/images/`, replacing the existing `og-image.png`
@@ -59,7 +59,7 @@ sudo chown -R nobody:nogroup static
 
 ```bash
 # Replace "0.0.0.0:80" with wherever you want the container to listen at
-docker run -d -p 0.0.0.0:80:8000 --env-file=config.env -v media_files:/app/media_files/ -v $(pwd)/static:/app/static/ --restart unless-stopped --name simple-personal-site chrisx8/simple-personal-site:latest
+docker run -d -p 0.0.0.0:80:8000 --env-file=.env -v media_files:/app/media_files/ -v $(pwd)/static:/app/static/ --restart unless-stopped --name simple-personal-site chrisx8/simple-personal-site:latest
 ```
 
 - Create an admin account.

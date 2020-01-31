@@ -4,7 +4,7 @@ from django.http import Http404, HttpResponse
 from django.shortcuts import render, HttpResponseRedirect
 from django.urls import reverse
 from global_config.site_config import SITE_NAME
-from .forms import ContactForm, CaptchaForm
+from .forms import ContactForm
 from .models import ContactConfig, Message
 
 
