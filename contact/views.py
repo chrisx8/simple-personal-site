@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.core.mail import send_mail
+from django.core.mail import EmailMultiAlternatives
 from django.http import Http404, HttpResponse, HttpResponseBadRequest, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
@@ -34,11 +34,11 @@ def message(request):
         mail_html = render(request, 'notification_email.html', context=mail_context).content.decode("utf-8")
         # build text email content
         mail_text = render(request, 'notification_email.txt', context=mail_context).content.decode("utf-8")
-        # send email to form submitter
-        notification_subj = 'New message from %s' % new_msg.name
-        send_mail(notification_subj, mail_text, from_addr,
-                  [contact_config.site_owner_email], reply_to=[msg_sender], 
-                  html_message=mail_html, fail_silently=True)
+        # send email to site owner
+        email = EmailMultiAlternatives('New message from %s' % new_msg.name, mail_text, from_addr,
+                                       [contact_config.site_owner_email], reply_to=[msg_sender])
+        email.attach_alternative(mail_html, "text/html")
+        email.send(fail_silently=True)
 
     def email_sender():
         # check prereqs for emailing sender
@@ -50,8 +50,9 @@ def message(request):
         # build text email content
         mail_text = render(request, 'message_email.txt', context=mail_context).content.decode("utf-8")
         # send email to form submitter
-        send_mail(contact_config.subject, mail_text, from_addr,
-                  [new_msg.email], html_message=mail_html, fail_silently=True)
+        email = EmailMultiAlternatives(contact_config.subject, mail_text, from_addr, [new_msg.email])
+        email.attach_alternative(mail_html, "text/html")
+        email.send(fail_silently=True)
 
     if request.method == 'POST':
         # get form data from post
