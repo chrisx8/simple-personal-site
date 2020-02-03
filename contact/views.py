@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.core.mail import send_mail
-from django.http import Http404, HttpResponse
-from django.shortcuts import render, HttpResponseRedirect
+from django.http import Http404, HttpResponse, HttpResponseBadRequest, HttpResponseRedirect
+from django.shortcuts import render
 from django.urls import reverse
 from global_config.site_config import SITE_NAME
 from .forms import ContactForm
@@ -25,7 +25,7 @@ def message(request):
         contact_configured = contact_config and contact_config.from_name and contact_config.from_email
         return smtp_configured and contact_configured
 
-    def email_site_owner():
+    def email_site_owner(msg_sender):
         # check prereqs for emailing site owner
         if not can_email() or not contact_config.site_owner_email:
             return
@@ -37,7 +37,8 @@ def message(request):
         # send email to form submitter
         notification_subj = 'New message from %s' % new_msg.name
         send_mail(notification_subj, mail_text, from_addr,
-                  [contact_config.site_owner_email], html_message=mail_html, fail_silently=True)
+                  [contact_config.site_owner_email], reply_to=[msg_sender], 
+                  html_message=mail_html, fail_silently=True)
 
     def email_sender():
         # check prereqs for emailing sender
@@ -59,13 +60,13 @@ def message(request):
         if form.is_valid():
             form_data = form.cleaned_data
             if form_data['url']:
-                return HttpResponse(status=400)
+                return HttpResponseBadRequest()
             # create message object
             new_msg = Message(name=form_data['name'], email=form_data['email'], message=form_data['message'])
             new_msg.save()
             # send emails
             email_sender()
-            email_site_owner()
+            email_site_owner(form_data['email'])
             return HttpResponseRedirect(reverse('message_success'))
         else:
             context = {'form': form, 'has_pgp': has_pgp_pubkey}
