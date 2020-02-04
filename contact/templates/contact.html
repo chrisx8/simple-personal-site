@@ -5,7 +5,7 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <div class="container side-padding">
 <h1 class="title">Contact Me</h1>
-<p class="subtitle">Send me a message, and I'll get back to you soon! {% if has_pgp %}<br><small><a href="{% url 'pgp_pubkey' %}">PGP Public Key</a></small>{% endif %}</p>
+<p class="subtitle">Send me a message, and I'll get back to you soon!</p>
 <form method="POST">
 {% csrf_token %}
 <div class="field">
@@ -37,5 +37,12 @@
 <div class="control"><button class="button is-link" type="submit">Send</button></div>
 </div>
 </form>
+{% if pgp_fingerprint and pgp_url %}
+<div class="space-20"></div>
+<div class="box">
+<a href="{{ pgp_url }}">PGP Public Key</a><br>
+Fingerprint: <code>{{ pgp_fingerprint }}</code>
+</div>
+{% endif %}
 </div>
 {% endblock %}

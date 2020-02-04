@@ -10,7 +10,8 @@ class ContactConfig(models.Model):
                                    help_text='Leaving blank disables emails to message sender')
     subject = models.CharField(max_length=250, blank=True, verbose_name='Subject of outgoing emails',
                                help_text='Leaving blank disables emails to message sender')
-    pgp_pubkey = models.TextField(blank=True, verbose_name='PGP Public key', help_text='Paste your PGP public key here')
+    pgp_fingerprint = models.CharField(max_length=50, blank=True, verbose_name='Public key fingerprint')
+    pgp_url = models.URLField(blank=True, verbose_name='Public key URL')
 
     class Meta:
         verbose_name = '# Contact Config #'

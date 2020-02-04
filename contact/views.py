@@ -13,10 +13,12 @@ def message(request):
     try:
         contact_config = ContactConfig.objects.get()
         from_addr = f'{contact_config.from_name} <{contact_config.from_email}>'
-        has_pgp_pubkey = bool(contact_config.pgp_pubkey)
+        pgp_fingerprint = contact_config.pgp_fingerprint
+        pgp_url = contact_config.pgp_url
     except ContactConfig.DoesNotExist:
         contact_config = None
-        has_pgp_pubkey = False
+        pgp_fingerprint = None
+        pgp_url = None
 
     # check if configs for sending emails exist
     def can_email():
@@ -69,26 +71,18 @@ def message(request):
             email_sender()
             email_site_owner(form_data['email'])
             return HttpResponseRedirect(reverse('message_success'))
-        else:
-            context = {'form': form, 'has_pgp': has_pgp_pubkey}
-            return render(request, 'contact.html', context=context)
     else:
-        context = {'form': ContactForm(), 'has_pgp': has_pgp_pubkey}
-        return render(request, 'contact.html', context=context)
+        form = ContactForm()
+
+    # render form
+    context = {
+        'form': form, 
+        'pgp_fingerprint': pgp_fingerprint, 
+        'pgp_url': pgp_url
+    }
+    return render(request, 'contact.html', context=context)
 
 
 # thank-you page
 def message_success(request):
     return render(request, 'message_success.html')
-
-
-# pgp pubkey
-def show_pgp_pubkey(request):
-    # check if key exists
-    try:
-        contact_config = ContactConfig.objects.get()
-        pgp_pubkey = str(contact_config.pgp_pubkey)
-        assert len(pgp_pubkey) > 0
-        return HttpResponse(pgp_pubkey, content_type='text/plain')
-    except (AssertionError, ContactConfig.DoesNotExist):
-        raise Http404
