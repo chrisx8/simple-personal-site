@@ -1,6 +1,7 @@
 from django.core.paginator import Paginator
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, reverse
+from global_config.models import SiteInfo
 from .models import Project, ProjectsConfig
 
 
@@ -32,9 +33,14 @@ def projects(request):
         display_page_range = paginator.page_range[int(page)-2:int(page)+1]
     else:
         display_page_range = paginator.page_range[:int(page)+1]
+    # use global description if description for project page isn't set
+    if projects_config.description:
+        description = projects_config.description
+    else:
+        description = SiteInfo.objects.get().description
     context = {
         'projects': projects_on_page,
         'page_range': display_page_range,
-        'SITE_DESCRIPTION': projects_config.description
+        'SITE_DESCRIPTION': description
     }
     return render(request, 'projects.html', context=context)

@@ -33,7 +33,7 @@
 <!--[if lt IE 9]><script type="text/javascript" src="/static/js/html5shiv.min.js" nonce="{{ NONCE }}"></script><![endif]-->
 <link rel="stylesheet" href="/static/css/sps.css">
 <link rel="stylesheet" href="/static/css/bulma/bulma.min.css">
-<link rel="stylesheet" href="/static/css/bulma/bulma-prefers-dark.css">
+<link rel="stylesheet" href="/static/css/bulma/bulma-prefers-dark.min.css">
 </head>
 <body>
 <div class="main">
@@ -85,8 +85,8 @@
 </small></footer>
 <script async src="/static/js/sps.js" nonce="{{ NONCE }}"></script>
 {% if GA_TRACKING_ID or FATHOM_URL and FATHOM_SITE_ID %}
-<link rel="stylesheet" type="text/css" href="/static/css/extras/cookieconsent.css">
-<script async src="/static/js/cookieconsent.js" nonce="{{ NONCE }}"></script>
+<link rel="stylesheet" type="text/css" href="/static/css/extras/cookieconsent.min.css">
+<script async src="/static/js/cookieconsent.min.js" nonce="{{ NONCE }}"></script>
 {% endif %}
 {% if FATHOM_URL and FATHOM_SITE_ID %}
 <script nonce="{{ NONCE }}">

@@ -7,4 +7,4 @@ Thanks for contacting me! Here's a copy of your message:
 
 {{ msg.message|linebreaks }}
 
-Reply to this email to send a follow-up message.
+To send a follow-up message, simply reply to this email.
