@@ -43,8 +43,8 @@ cp example.env .env
 
 - Edit `.env`, following instructions in the file.
 - Generate your own icons [here](https://realfavicongenerator.net). Download the generated Favicon package.
-- Unzip the downloaded package, and upload everything to `static/icons/`, replacing ALL existing placeholder icon files.
-- Upload an image for `og:image` (`1280*640`, in `.png` format) to `static/images/`, replacing the existing `og-image.png`
+- Unzip the downloaded package, and upload everything to `static/img/`, replacing ALL existing placeholder icon files.
+- Upload an image for `og:image` (`1280*640`, in `.png` format) to `static/img/`, replacing the existing `og-image.png`
 
 ## Install with Docker
 

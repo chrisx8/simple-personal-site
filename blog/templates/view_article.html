@@ -19,7 +19,7 @@
 <div class="center">{{ article.embed.html|safe }}</div>
 {% elif article.image %}
 <div class="center">
-<img class="lazy" src="/static/images/1x1.png" data-src="{{ article.image.image.url }}" alt="{{ article.title }}">
+<img src="{{ article.image.image.url }}" alt="{{ article.title }}">
 <noscript><img src="{{ article.image.image.url }}" alt="{{ article.title }}"></noscript>
 </div>
 {% endif %}

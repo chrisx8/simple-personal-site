@@ -58,8 +58,7 @@
 {% endif %}
 {% elif project.image %}
 <div class="card-image"><figure class="image is-16by9" >
-<img class="lazy" data-src="{{ project.image.image.url }}" alt="{{ project.title }}">
-<noscript><img src="{{ project.image.image.url }}" alt="{{ project.title }}"></noscript>
+<img src="{{ project.image.image.url }}" alt="{{ project.title }}">
 </figure></div>
 {% endif %}
 <div class="card-content">

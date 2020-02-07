@@ -30,12 +30,7 @@ class SPSRenderer(mistune.Renderer):
             title = f'title="{mistune.escape(title)}"'
         if alt_text is not None:
             alt_text = f'alt="{mistune.escape(alt_text)}"'
-        # lazyload version
-        lazyload = f'<img class="lazy" {alt_text} {title} data-src="{mistune.escape(src)}"' + \
-                   'src="/static/images/1x1.png" >'
-        # noscript fallback
-        noscript = f'<noscript><img {alt_text} {title} src="{mistune.escape(src)}"></noscript>'
-        return noscript + lazyload
+        return f'<img {alt_text} {title} src="{mistune.escape(src)}">'
 
 
 class SPSPrintRenderer(SPSRenderer):
@@ -54,12 +49,11 @@ def clean_html(html):
         "ul", "ol", "li", "dd", "dt",
         "img",
         "a",
-        "sub", "sup",
-        "noscript"
+        "sub", "sup"
     ]
     markdown_attrs = {
         "*": ["id", "class"],
-        "img": ["src", "data-src", "alt", "title"],
+        "img": ["src", "alt", "title"],
         "a": ["href", "alt", "title"],
     }
     # clean html
