@@ -31,7 +31,7 @@ sitemaps = {
 
 # url search order: favicon, sitemap, homepage, modules, admin, shortener
 urlpatterns = [
-    path('favicon.ico', RedirectView.as_view(url=settings.STATIC_URL + 'icons/favicon.ico')),
+    path('favicon.ico', RedirectView.as_view(url=settings.STATIC_URL + 'img/favicon.ico')),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
     path('', include('homepage.urls')),
     path('blog/', include('blog.urls')),
