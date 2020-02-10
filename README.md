@@ -15,14 +15,15 @@ Create your personal website in minutes! Follow instructions below to set up.
 
 ## Features
 
-- Easy-to-manage and site content
+- Easy-to-manage site content
 - Markdown support throughout the site
 - Post blog articles
 - Create project cards
-- Video embed and images in blog articles and project cards
+- Embed code blocks in blog posts
+- Video and image embed in blog articles and project cards
 - Show social media links in footer
-- Serve PGP public key
 - Contact form and notification email
+- Link to PGP public key
 - URL shortener
 
 ## Before installing

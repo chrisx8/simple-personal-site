@@ -2,7 +2,8 @@
 {% block pagetitle %} Contact Me {% endblock %}
 {% block ogtitle %} Contact Me {% endblock %}
 {% block body %}
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="/static/css/fontawesome/fontawesome.min.css">
+<link rel="stylesheet" href="/static/css/fontawesome/solid.min.css">
 <div class="container side-padding">
 <h1 class="title">Contact Me</h1>
 <p class="subtitle">Send me a message, and I'll get back to you soon!</p>
@@ -12,14 +13,14 @@
 <label class="label" for="id_name">{{ form.name.label }}</label>
 <div class="control has-icons-left">
 {{ form.name }}
-<span class="icon is-small is-left"><i class="material-icons">person</i></span>
+<span class="icon is-small is-left"><i class="fas fa-user"></i></span>
 </div>
 {% if form.name.errors %}<article class="message is-danger"><div class="form-error"><strong>{{ form.name.errors }}</strong></div></article>{% endif %}
 </div>
 <div class="field">
 <label class="label" for="id_email">{{ form.email.label }}</label>
 <div class="control has-icons-left">
-<span class="icon is-small is-left"><i class="material-icons">email</i></span>
+<span class="icon is-small is-left"><i class="fas fa-envelope"></i></span>
 {{ form.email }}
 </div>
 {% if form.email.errors %}<article class="message is-danger"><div class="form-error"><strong>{{ form.email.errors }}</strong></div></article>{% endif %}
@@ -34,7 +35,7 @@
 {{ form.url }}
 </div>
 <div class="field is-grouped">
-<div class="control"><button class="button is-link" type="submit">Send</button></div>
+<div class="control"><button class="button is-link" type="submit"><i class="fas fa-paper-plane"></i>&nbsp; Send</button></div>
 </div>
 </form>
 {% if pgp_fingerprint and pgp_url %}

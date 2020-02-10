@@ -26,7 +26,7 @@ admin.site.register(GoogleAnalytics, SingletonModelAdmin)
 @admin.register(SocialMediaLink)
 class SocialMediaLinkAdmin(admin.ModelAdmin):
     ordering = ['platform']
-    list_display = ['platform', 'username']
+    list_display = ['platform', 'url']
 
 
 @admin.register(SiteInfo)

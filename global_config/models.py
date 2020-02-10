@@ -42,12 +42,11 @@ class GoogleAnalytics(SingletonModel):
 
 class SocialMediaLink(models.Model):
     platform = models.CharField(max_length=50, default='', null=False, help_text='Name of the social media platform')
-    username = models.CharField(max_length=100, default='', null=False)
-    url = models.URLField(default='', null=False, help_text='Link to profile page')
+    url = models.URLField(default='', null=False, verbose_name='URL', help_text='Link to profile page')
 
     class Meta:
-        ordering = ['platform', 'username']
+        ordering = ['platform']
         verbose_name = 'Social Media Link'
 
     def __str__(self):
-        return f'{self.platform} - {self.username}'
+        return self.platform

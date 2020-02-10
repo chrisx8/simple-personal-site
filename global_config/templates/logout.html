@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
 {% block pagetitle %} Log out {% endblock %}
 {% block body %}
+<link rel="stylesheet" href="/static/css/fontawesome/fontawesome.min.css">
+<link rel="stylesheet" href="/static/css/fontawesome/solid.min.css">
 <div class="container side-padding">
 <h1 class="title">Log out</h1>
 <p class="subtitle">You're now logged out!</p>
-<a class="button is-link" href="/">Homepage</a>
+<a class="button is-link" href="/"><i class="fas fa-home"></i>&nbsp; Homepage</a>
 </div>
 {% endblock %}
