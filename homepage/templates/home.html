@@ -46,16 +46,14 @@
 {% if latest_projects %}
 <h1 class="title">My Projects</h1>
 <p class="subtitle is-5"><a href="{% url 'projects' %}">View all projects</a></p>
-{% for project in latest_projects %}
-{% if forloop.counter0|divisibleby:2 %}
 <div class="columns">
-{% endif %}
+{% for project in latest_projects %}
 <div class="column is-half">
 <div class="card">
 {% if project.embed %}
-{{ project.embed.html|safe }}
+<div class="noprint">{{ project.embed.html|safe }}</div>
 {% if project.image %}
-<div class="card-image printonly"><figure class="image is-16by9" ><img src="{{ project.image.image.url }}" alt="{{ project.title }}"></figure></div>
+<div class="printonly"><div class="card-image"><figure class="image is-16by9" ><img src="{{ project.image.image.url }}" alt="{{ project.title }}"></figure></div></div>
 {% endif %}
 {% elif project.image %}
 <div class="card-image"><figure class="image is-16by9" >
@@ -73,10 +71,8 @@
 </div>
 </div>
 </div>
-{% if forloop.counter|divisibleby:2 or forloop.last %}
-</div>
-{% endif %}
 {% endfor %}
+</div>
 {% endif %}
 </div>
 {% endblock %}
