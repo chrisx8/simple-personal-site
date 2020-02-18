@@ -1,9 +1,7 @@
 FROM python:3.8-alpine
 
 RUN apk add --no-cache postgresql-dev mariadb-connector-c-dev jpeg-dev zlib-dev freetype-dev && \
-    echo 'nameserver 127.0.0.11' > /etc/resolv.conf && \
-    echo 'nameserver 1.1.1.1' >> /etc/resolv.conf && \
-    echo 'nameserver 8.8.8.8' >> /etc/resolv.conf
+    echo 'nameserver 127.0.0.11' > /etc/resolv.conf
 
 COPY requirements.txt /tmp/requirements.txt
 RUN apk add --no-cache build-base gcc musl-dev && \
