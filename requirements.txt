@@ -14,7 +14,7 @@ Pygments==2.5.2
 python-dotenv==0.11.0
 pytz==2019.3
 six==1.14.0
-soupsieve==1.9.5
+soupsieve==2.0
 sqlparse==0.3.0
 webencodings==0.5.1
 whitenoise==5.0.1
