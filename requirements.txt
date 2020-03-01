@@ -11,7 +11,7 @@ mysqlclient==1.4.6
 Pillow==7.0.0
 psycopg2==2.8.4
 Pygments==2.5.2
-python-dotenv==0.11.0
+python-dotenv==0.12.0
 pytz==2019.3
 six==1.14.0
 soupsieve==2.0
