@@ -1,6 +1,7 @@
 # Simple Personal Site <!-- omit in toc -->
 
-[![Build Status](https://travis-ci.com/chrisx8/simple-personal-site.svg?branch=master)](https://travis-ci.com/chrisx8/simple-personal-site "Travis CI Build Status")
+[![Build Status](https://travis-ci.com/chrisx8/simple-personal-site.svg?branch=master)](https://travis-ci.com/chrisx8/simple-personal-site)
+[![Docker Image Commit](https://images.microbadger.com/badges/commit/chrisx8/simple-personal-site.svg)](https://microbadger.com/images/chrisx8/simple-personal-site)
 
 Create your personal website in minutes! Follow instructions below to set up.
 

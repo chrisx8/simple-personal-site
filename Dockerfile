@@ -1,5 +1,9 @@
 FROM python:3.8-alpine
 
+ARG VCS_REF
+LABEL org.label-schema.vcs-ref=$VCS_REF \
+      org.label-schema.vcs-url="https://github.com/chrisx8/simple-personal-site"
+
 RUN apk add --no-cache postgresql-dev mariadb-connector-c-dev jpeg-dev zlib-dev freetype-dev && \
     echo 'nameserver 127.0.0.11' > /etc/resolv.conf
 
