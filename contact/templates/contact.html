@@ -2,8 +2,6 @@
 {% block pagetitle %} Contact Me {% endblock %}
 {% block ogtitle %} Contact Me {% endblock %}
 {% block body %}
-<link rel="stylesheet" href="/static/css/fontawesome/fontawesome.min.css">
-<link rel="stylesheet" href="/static/css/fontawesome/solid.min.css">
 <div class="container side-padding">
 <h1 class="title">Contact Me</h1>
 <p class="subtitle">Send me a message, and I'll get back to you soon!</p>
@@ -23,7 +21,7 @@
 </div>
 {% endif %}
 <div class="field">
-<div class="control"><button class="button is-link" type="submit"><i class="fas fa-paper-plane"></i>&nbsp; Send</button></div>
+<div class="control"><button class="button is-link" type="submit">Send</button></div>
 </div>
 </form>
 {% if pgp_fingerprint and pgp_url %}

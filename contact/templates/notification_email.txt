@@ -5,4 +5,5 @@ You received a message from {{ msg.name }} ({{ msg.email }}).
 
 {{ msg.message|linebreaks }}
 
+-------------------------------------------------------
 To respond to this message, simply reply to this email.
