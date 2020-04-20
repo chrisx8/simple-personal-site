@@ -9,32 +9,20 @@
 <p class="subtitle">Send me a message, and I'll get back to you soon!</p>
 <form method="POST">
 {% csrf_token %}
+{% for field in form %}
 <div class="field">
-<label class="label" for="id_name">{{ form.name.label }}</label>
-<div class="control has-icons-left">
-{{ form.name }}
-<span class="icon is-small is-left"><i class="fas fa-user"></i></span>
+<label class="label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+<div class="control">{{ field }}</div>
+{% if field.errors %}<article class="message is-danger"><div class="form-error"><strong>{{ field.errors }}</strong></div></article>{% endif %}
 </div>
-{% if form.name.errors %}<article class="message is-danger"><div class="form-error"><strong>{{ form.name.errors }}</strong></div></article>{% endif %}
-</div>
+{% endfor %}
+{% if hcaptcha_sitekey %}
 <div class="field">
-<label class="label" for="id_email">{{ form.email.label }}</label>
-<div class="control has-icons-left">
-<span class="icon is-small is-left"><i class="fas fa-envelope"></i></span>
-{{ form.email }}
+<script src="https://hcaptcha.com/1/api.js" async defer></script>
+<div class="h-captcha" data-sitekey="{{ hcaptcha_sitekey }}"></div>
 </div>
-{% if form.email.errors %}<article class="message is-danger"><div class="form-error"><strong>{{ form.email.errors }}</strong></div></article>{% endif %}
-</div>
+{% endif %}
 <div class="field">
-<label class="label" for="id_message">Message</label>
-<div class="control">{{ form.message }}</div>
-{% if form.message.errors %}<article class="message is-danger"><div class="form-error"><strong>{{ form.message.errors }}</strong></div></article>{% endif %}
-</div>
-<div class="field">
-<label class="contacturl" for="id_url">URL</label>
-{{ form.url }}
-</div>
-<div class="field is-grouped">
 <div class="control"><button class="button is-link" type="submit"><i class="fas fa-paper-plane"></i>&nbsp; Send</button></div>
 </div>
 </form>

@@ -1,6 +1,5 @@
 import datetime
 from global_config.models import Fathom, GoogleAnalytics, SiteInfo, SocialMediaLink
-from simple_personal_site.settings import NONCE
 
 
 # global site information
@@ -25,6 +24,4 @@ def global_tags(request):
         'YEAR': time.year,
         'social_links': social_links
     }
-    if NONCE:
-        context['NONCE'] = NONCE
     return context

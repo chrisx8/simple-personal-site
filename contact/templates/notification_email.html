@@ -7,8 +7,8 @@
 </head>
 <body>
 <h1>{{ SITE_NAME }}</h1>
-<p>New message from {{ msg.name }} ({{ msg.email }}):</p>
-<blockquote>{{ msg.message|linebreaks }}</blockquote>
-<p>To interact with {{ msg.name }}, simply reply to this email.</p>
+<p><strong>You received a message from {{ msg.name }} ({{ msg.email }}).</strong></p>
+<p>{{ msg.message|linebreaks }}</p>
+<p><strong>To respond to this message, simply reply to this email.</strong></p>
 </body>
 </html>

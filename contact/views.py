@@ -1,24 +1,22 @@
+import requests
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
-from django.http import Http404, HttpResponse, HttpResponseBadRequest, HttpResponseRedirect
+from django.forms.utils import ValidationError
 from django.shortcuts import render
 from django.urls import reverse
-from global_config.site_config import SITE_NAME
 from .forms import ContactForm
 from .models import ContactConfig, Message
 
 
-# message form
-def message(request):
-    try:
-        contact_config = ContactConfig.objects.get()
-        from_addr = f'{contact_config.from_name} <{contact_config.from_email}>'
-        pgp_fingerprint = contact_config.pgp_fingerprint
-        pgp_url = contact_config.pgp_url
-    except ContactConfig.DoesNotExist:
-        contact_config = None
-        pgp_fingerprint = None
-        pgp_url = None
+# message form and contact info
+def contact(request):
+    # get config`
+    contact_config = ContactConfig.objects.get_or_create()[0]
+    from_addr = f'{contact_config.from_name} <{contact_config.from_email}>'
+    pgp_fingerprint = contact_config.pgp_fingerprint
+    pgp_url = contact_config.pgp_url
+    hcaptcha_sitekey = contact_config.hcaptcha_site_key
+    hcaptcha_secret = contact_config.hcaptcha_secret_key
 
     # check if configs for sending emails exist
     def can_email():
@@ -37,7 +35,7 @@ def message(request):
         # build text email content
         mail_text = render(request, 'notification_email.txt', context=mail_context).content.decode("utf-8")
         # send email to site owner
-        email = EmailMultiAlternatives('New message from %s' % new_msg.name, mail_text, from_addr,
+        email = EmailMultiAlternatives('Message from %s' % new_msg.name, mail_text, from_addr,
                                        [contact_config.site_owner_email], reply_to=[msg_sender])
         email.attach_alternative(mail_html, "text/html")
         email.send(fail_silently=True)
@@ -56,33 +54,44 @@ def message(request):
         email.attach_alternative(mail_html, "text/html")
         email.send(fail_silently=True)
 
+    def hcaptcha_validate(response):
+        # pass check if not configured
+        if not hcaptcha_sitekey:
+            return True
+        # validate captcha with API
+        hcaptcha_req = requests.post('https://hcaptcha.com/siteverify',
+                                     data={'secret': hcaptcha_secret, 'response': response})
+        # check for success
+        return hcaptcha_req.json()['success']
+
     if request.method == 'POST':
         # get form data from post
         form = ContactForm(request.POST)
-        # check honeypot
         if form.is_valid():
-            form_data = form.cleaned_data
-            if form_data['url']:
-                return HttpResponseBadRequest()
-            # create message object
-            new_msg = Message(name=form_data['name'], email=form_data['email'], message=form_data['message'])
-            new_msg.save()
-            # send emails
-            email_sender()
-            email_site_owner(form_data['email'])
-            return HttpResponseRedirect(reverse('message_success'))
+            try:
+                # get captcha response
+                hcaptcha_resp = form.data['h-captcha-response']
+            except KeyError:
+                hcaptcha_resp = ''
+            # captcha validation
+            is_human = hcaptcha_validate(hcaptcha_resp)
+            if is_human:
+                data = form.cleaned_data
+                # save message
+                new_msg = Message(name=data['name'], email=data['email'], message=data['message'])
+                new_msg.save()
+                # send emails
+                email_sender()
+                email_site_owner(data['email'])
+                return render(request, 'contact_success.html')
     else:
         form = ContactForm()
 
     # render form
     context = {
         'form': form, 
+        'hcaptcha_sitekey': hcaptcha_sitekey,
         'pgp_fingerprint': pgp_fingerprint, 
         'pgp_url': pgp_url
     }
     return render(request, 'contact.html', context=context)
-
-
-# thank-you page
-def message_success(request):
-    return render(request, 'message_success.html')
