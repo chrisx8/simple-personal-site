@@ -11,6 +11,7 @@ Create your personal website in minutes! Follow instructions below to set up.
 - [Before installing](#before-installing)
 - [Install with Docker](#install-with-docker)
 - [Install in a virtualenv](#install-in-a-virtualenv)
+- [Using HTTPS](#using-https)
 - [Add content](#add-content)
 - [License](#license)
 
@@ -60,8 +61,9 @@ sudo chown -R nobody:nogroup static
 - Run Docker container.
 
 ```bash
-# Replace "0.0.0.0:80" with wherever you want the container to listen at
-docker run -d -p 0.0.0.0:80:8000 --env-file=.env -v media_files:/app/media_files/ -v $(pwd)/static:/app/static/ --restart unless-stopped --name simple-personal-site chrisx8/simple-personal-site:latest
+# Replace [ADDRESS]:[PORT] with whereever you want the container to listen at
+# When using a reverse proxy, make sure this container is NOT EXPOSED (e.g. listen on 127.0.0.1)!
+docker run -d -p [ADDRESS]:[PORT] --env-file=.env -v media_files:/app/media_files/ -v $(pwd)/static:/app/static/ --restart unless-stopped --name simple-personal-site chrisx8/simple-personal-site:latest
 ```
 
 - Create an admin account.
@@ -108,8 +110,9 @@ After=network.target
 Type=simple
 User=[YOUR USERNAME]
 WorkingDirectory=[PROJECT DIRECTORY]
-# Replace 0.0.0.0:80 with whereever you want the container to listen at
-ExecStart=[PROJECT DIRECTORY]/venv/bin/gunicorn simple_personal_site.wsgi:application -b 0.0.0.0:80
+# Replace [ADDRESS]:[PORT] with whereever you want the container to listen at
+# When using a reverse proxy, make sure this container is NOT EXPOSED (e.g. listen on 127.0.0.1)!
+ExecStart=[PROJECT DIRECTORY]/venv/bin/gunicorn simple_personal_site.wsgi:application -b [ADDRESS]:[PORT]
 Restart=on-failure
 
 [Install]
@@ -129,6 +132,15 @@ sudo systemctl start personal-site
 ```bash
 python3 manage.py createsuperuser
 ```
+
+## Using HTTPS
+
+Using HTTPS is optional but **highly recommended**. To use HTTPS:
+
+- Set up the site behind a reverse proxy.
+- For best security, make sure the reverse proxy strips incoming `X-Forwarded-Proto` header, and sets `X-Forwarded-Proto` header to `https` for HTTPS connections **only**.
+- Get an SSL certificate. [Let's Encrypt](https://letsencrypt.org/) offers free certificates to everyone.
+- In `.env`, set `USE_SSL=True`.
 
 ## Add content
 

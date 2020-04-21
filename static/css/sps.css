@@ -33,14 +33,6 @@
 	position: relative;
 	padding-bottom: 3em
 }
-.form-error {
-	border-color: #ff3860;
-	border-radius: 4px;
-	border-style: solid;
-	border-width: 0 0 0 4px;
-	color: #cd0930;
-	padding: .5em 1em
-}
 .setup-buttons {
 	line-height: 2.2em;
 	line-height: 1.5em

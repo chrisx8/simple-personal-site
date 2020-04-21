@@ -17,6 +17,7 @@ def contact(request):
     pgp_url = contact_config.pgp_url
     hcaptcha_sitekey = contact_config.hcaptcha_site_key
     hcaptcha_secret = contact_config.hcaptcha_secret_key
+    hcaptcha_fail = False
 
     # check if configs for sending emails exist
     def can_email():
@@ -84,12 +85,15 @@ def contact(request):
                 email_sender()
                 email_site_owner(data['email'])
                 return render(request, 'contact_success.html')
+            else:
+                hcaptcha_fail = True
     else:
         form = ContactForm()
 
     # render form
     context = {
-        'form': form, 
+        'form': form,
+        'hcaptcha_fail': hcaptcha_fail,
         'hcaptcha_sitekey': hcaptcha_sitekey,
         'pgp_fingerprint': pgp_fingerprint, 
         'pgp_url': pgp_url
