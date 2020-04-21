@@ -1,14 +1,17 @@
 from django.contrib import admin
 from django.contrib.auth.models import Group
 from global_config.forms import AuthForm
-from global_config.site_config import SITE_NAME
+from django.db.utils import OperationalError
 from solo.admin import SingletonModelAdmin
 from .models import SiteInfo, Fathom, GoogleAnalytics, SocialMediaLink
 
-# Customize admin page
 # set admin site title
-admin.site.site_title = SITE_NAME
-admin.site.site_header = 'Admin Panel // ' + SITE_NAME
+try:
+    site_info = SiteInfo.objects.get_or_create()[0]
+    admin.site.site_title = site_info.site_name
+    admin.site.site_header = 'Admin Panel // ' + site_info.site_name
+except (AttributeError, OperationalError):
+    pass
 
 # remove auth group
 admin.site.unregister(Group)

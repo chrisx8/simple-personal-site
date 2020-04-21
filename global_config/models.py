@@ -1,3 +1,4 @@
+from django.contrib import admin
 from django.db import models
 from solo.models import SingletonModel
 
@@ -5,8 +6,7 @@ from solo.models import SingletonModel
 class SiteInfo(SingletonModel):
     site_name = models.CharField(max_length=50, default='My Site', blank=False)
     site_url = models.URLField(default='http://example.com', blank=False, verbose_name='Site URL',
-                               help_text='Include "http://" or "https://". No trailing slashes. '
-                                         '<strong>Effective after restart</strong>')
+                               help_text='Include "http://" or "https://". No trailing slashes.')
     # meta description
     description = models.CharField(max_length=250, default='', blank=True,
                                    help_text='This field sets the global Meta Description tag.')
@@ -20,6 +20,11 @@ class SiteInfo(SingletonModel):
 
     class Meta:
         verbose_name = '# Site Info #'
+    
+    def save(self):
+        admin.site.site_title = self.site_name
+        admin.site.site_header = 'Admin Panel // ' + self.site_name
+        super(SiteInfo, self).save()
 
 
 class Fathom(SingletonModel):

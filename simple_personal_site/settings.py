@@ -44,10 +44,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'solo',
     # SPS Apps
+    'global_config.apps.GlobalConfigConfig',
+    'homepage.apps.HomepageConfig',
     'blog',
     'contact',
-    'global_config',
-    'homepage',
     'media',
     'projects',
     'url_shortener',
@@ -148,7 +148,8 @@ SECURE_REFERRER_POLICY = 'same-origin'
 X_FRAME_OPTIONS = 'DENY'
 
 # SSL settings
-if os.environ.get('SITE_SSL').lower() == 'true':
+SITE_SSL = os.environ.get('SITE_SSL')
+if isinstance(SITE_SSL, str) and SITE_SSL.lower() == 'true':
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
     CSRF_COOKIE_SECURE = True
     SESSION_COOKIE_SECURE = True
