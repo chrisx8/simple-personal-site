@@ -1,12 +1,10 @@
 from django.contrib.sitemaps import Sitemap
 from .models import Article, Tag
-from global_config.site_config import SITE_PROTOCOL
 
 
 class ArticleSitemap(Sitemap):
-    priority = 0.8
+    priority = 1.0
     changefreq = 'daily'
-    protocol = SITE_PROTOCOL
 
     def items(self):
         return Article.objects.all()
@@ -18,7 +16,6 @@ class ArticleSitemap(Sitemap):
 class TagSitemap(Sitemap):
     priority = 0.8
     changefreq = 'daily'
-    protocol = SITE_PROTOCOL
 
     def items(self):
         return Tag.objects.all()
