@@ -12,6 +12,8 @@ jobs:
       DOCKER_REPO: chrisx8/simple-personal-site:latest
     steps:
     - uses: actions/checkout@v2
+    - name: Pull image
+      run: docker pull $DOCKER_REPO | true
     - name: Build
       run: docker build --build-arg VCS_REF=`git rev-parse --short HEAD` -t $DOCKER_REPO .
     - name: Test
