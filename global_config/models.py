@@ -21,10 +21,10 @@ class SiteInfo(SingletonModel):
     class Meta:
         verbose_name = '# Site Info #'
     
-    def save(self):
+    def save(self, *args, **kwargs):
         admin.site.site_title = self.site_name
         admin.site.site_header = 'Admin Panel // ' + self.site_name
-        super(SiteInfo, self).save()
+        super(SiteInfo, self).save(*args, **kwargs)
 
 
 class Fathom(SingletonModel):

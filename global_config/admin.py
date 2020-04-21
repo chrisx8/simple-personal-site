@@ -10,7 +10,7 @@ try:
     site_info = SiteInfo.objects.get_or_create()[0]
     admin.site.site_title = site_info.site_name
     admin.site.site_header = 'Admin Panel // ' + site_info.site_name
-except (AttributeError, OperationalError):
+except OperationalError:
     pass
 
 # remove auth group
