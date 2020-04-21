@@ -3,7 +3,7 @@
 [![Build Status](https://github.com/chrisx8/simple-personal-site/workflows/build/badge.svg)](https://github.com/chrisx8/simple-personal-site/actions?query=workflow%3Abuild)
 [![Docker Image Commit](https://images.microbadger.com/badges/commit/chrisx8/simple-personal-site.svg)](https://microbadger.com/images/chrisx8/simple-personal-site)
 
-Create your personal website in minutes! Follow instructions below to set up.
+A fast and simple CMS custom built for developers. Follow instructions below to set up.
 
 ## Table of Contents <!-- omit in toc -->
 
