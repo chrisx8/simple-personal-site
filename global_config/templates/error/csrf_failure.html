@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block pagetitle %}Error 403{% endblock %}
+{% block body %}
+<div class="container side-padding">
+<h1 class="title is-1">Oops!</h1>
+<article class="message is-danger">
+<div class="message-body">
+<h1 class="title">403 - Forbidden</h1>
+<h2 class="subtitle">CSRF verification failed. Request aborted.</h2>
+</div>
+</article>
+<div class="content">
+<p>You are seeing this error because this site requires a "Referer" header to be sent by your browser, but none was sent. This header is required for security reasons, to ensure that your browser is not being hijacked by third parties.</p>
+<p>If you have configured your browser to disable “Referer” headers, please re-enable them, at least temporarily.</p>
+<p>If you want more granular control, you may enable "Referer" headers only for this site, or for HTTPS connections, or for "same-origin" requests.</p>    
+</div>
+<p><a class="button is-link" href="/">Homepage</a></p>
+</div>
+{% endblock %}

@@ -7,6 +7,7 @@ from django.shortcuts import render
 from django.urls import include, path
 from django.views.generic.base import RedirectView
 from blog.sitemaps import ArticleSitemap, TagSitemap
+from global_config.views import handler404, handler500
 from url_shortener.views import redirect
 from .sitemaps import SiteSitemap
 
@@ -30,13 +31,3 @@ urlpatterns = [
 # get admin url from config
 if settings.ADMIN_URL:
     urlpatterns.insert(-2, path(settings.ADMIN_URL, admin.site.urls))
-
-
-# 404 error page
-def handler404(request, *args, **argv):
-    return render(request, '404.html', status=404)
-
-
-# 500 error page
-def handler500(request, *args, **argv):
-    return render(request, '500.html', status=500)

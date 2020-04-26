@@ -23,7 +23,7 @@ class SiteInfo(SingletonModel):
     
     def save(self, *args, **kwargs):
         admin.site.site_title = self.site_name
-        admin.site.site_header = 'Admin Panel // ' + self.site_name
+        admin.site.site_header = self.site_name
         super(SiteInfo, self).save(*args, **kwargs)
 
 

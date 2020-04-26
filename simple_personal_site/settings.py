@@ -141,6 +141,7 @@ except (TypeError, ValueError):
     pass
 
 # Security settings
+CSRF_FAILURE_VIEW = 'global_config.views.csrf_failure'
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True

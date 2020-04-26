@@ -5,33 +5,32 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" type="image/png" sizes="32x32" href="/static/icons/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/static/icons/favicon-16x16.png">
-<link rel="shortcut icon" href="/static/icons/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/static/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/static/img/favicon-16x16.png">
+<link rel="shortcut icon" href="/static/img/favicon.ico">
 <!--[if lt IE 9]><script type="text/javascript" src="/static/js/html5shiv.js" nonce="{{ NONCE }}"></script><![endif]-->
 <link rel="stylesheet" href="/static/css/sps.css">
 <link rel="stylesheet" href="/static/css/bulma.min.css">
+<link rel="stylesheet" href="/static/css/bulma-prefers-dark.min.css">
 </head>
 <body>
-<div class="main">
 <div class="space-40"></div>
 <div class="container side-padding">
 <h1 class="title">Welcome!</h1>
 <h2 class="subtitle">Simple Personal Site by chrisx8</h2>
 <div class="content">
-<p>Welcome to your new site! Before continuing, please customize your site and add some content in the <a class="button is-small is-dark" href="{{ admin_url }}" target="_blank" rel="noopener noreferrer"><strong>Admin Panel</strong></a>.</p>
+<p>Welcome to your new site! Before continuing, please customize your site and add some content in the <a class="button is-small is-info" href="{{ admin_url }}" target="_blank" rel="noopener noreferrer"><strong>Admin Panel</strong></a>.</p>
 <p>Clicking on the buttons below opens sections of the Admin Panel in a new tab. To log in, you need the admin account created during install.</p>
-<p>First, make sure all the required items are set under <a class="button is-small is-dark" href="{{ admin_url }}global_config/siteinfo/" target="_blank" rel="noopener noreferrer"><strong># Site Info #</strong></a>.</p>
+<p>First, make sure all the required items are set under <a class="button is-small is-info" href="{{ admin_url }}global_config/siteinfo/" target="_blank" rel="noopener noreferrer"><strong># Site Info #</strong></a>.</p>
 <p>Then, you should add something to your homepage (it's blank otherwise). You can do this by adding any type of content.</p>
-<p class="setup-buttons"><a class="button is-small is-dark" href="{{ admin_url }}homepage/homepage/" target="_blank" rel="noopener noreferrer"><strong>Write a bio</strong></a>&nbsp;
-<a class="button is-small is-dark" href="{{ admin_url }}blog/article/add/" target="_blank" rel="noopener noreferrer"><strong>Add a blog article</strong></a>&nbsp;
-<a class="button is-small is-dark" href="{{ admin_url }}projects/project/add/" target="_blank" rel="noopener noreferrer"><strong>Add a project</strong></a></p>
+<p class="setup-buttons"><a class="button is-small is-info" href="{{ admin_url }}homepage/homepage/" target="_blank" rel="noopener noreferrer"><strong>Write a bio</strong></a>&nbsp;
+<a class="button is-small is-info" href="{{ admin_url }}blog/article/add/" target="_blank" rel="noopener noreferrer"><strong>Add a blog article</strong></a>&nbsp;
+<a class="button is-small is-info" href="{{ admin_url }}projects/project/add/" target="_blank" rel="noopener noreferrer"><strong>Add a project</strong></a></p>
 <p><a href="{% url 'skip_setup' %}">Skip and don't show again</a> </p>
 </div>
 <hr>
 <div class="content">
 <p><a href="https://github.com/chrisx8/simple-personal-site" target="_blank" rel="noopener noreferrer"><strong>Simple Personal Site</strong> on GitHub</a><br>
-<a href="https://github.com/chrisx8" target="_blank" rel="noopener noreferrer">More projects by <strong>chrisx8</strong></a></p>
 </div>
 </div>
 <div class="space-40"></div>
@@ -40,6 +39,5 @@
 &copy; {{ YEAR }} {{ FOOTER_COPYRIGHT }}
 </div>
 </footer>
-</div>
 </body>
 </html>

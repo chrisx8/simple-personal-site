@@ -6,7 +6,7 @@ on:
     - cron: '0 3 * * 0'
 jobs:
   build:
-    name: Build and test Docker image
+    name: Build Docker image
     runs-on: ubuntu-latest
     env:
       DOCKER_REPO: chrisx8/simple-personal-site:latest
