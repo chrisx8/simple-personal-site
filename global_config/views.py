@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 
-def csrf_failure(request):
+def csrf_failure(request, *args, **argv):
     return render(request, 'error/csrf_failure.html')
 
 
