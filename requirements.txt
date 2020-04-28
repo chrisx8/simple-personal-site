@@ -15,7 +15,7 @@ Pillow==7.1.2
 psycopg2==2.8.5
 Pygments==2.6.1
 python-dotenv==0.13.0
-pytz==2019.3
+pytz==2020.1
 requests==2.23.0
 six==1.14.0
 soupsieve==2.0
