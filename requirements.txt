@@ -1,6 +1,6 @@
 asgiref==3.2.7
 beautifulsoup4==4.9.0
-bleach==3.1.4
+bleach==3.1.5
 certifi==2020.4.5.1
 chardet==3.0.4
 Django==3.0.5
@@ -11,11 +11,13 @@ html5lib==1.0.1
 idna==2.9
 mistune==0.8.4
 mysqlclient==1.4.6
+packaging==20.3
 Pillow==7.1.2
 psycopg2==2.8.5
 Pygments==2.6.1
+pyparsing==2.4.7
 python-dotenv==0.13.0
-pytz==2019.3
+pytz==2020.1
 requests==2.23.0
 six==1.14.0
 soupsieve==2.0
