@@ -1,5 +1,4 @@
-from django.http import HttpResponseRedirect, Http404
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponseRedirect, Http404
 from blog.models import Article
 from projects.models import Project
 from simple_personal_site.settings import ADMIN_URL
@@ -20,13 +19,11 @@ def home(request):
         context = {'admin_url': ADMIN_URL}
         return render(request, 'setup.html', context=context)
     else:
-        # no homepage object if homepage doesn't exist
         context = {
+            'home': home_obj,
             'latest_articles': latest_articles,
             'latest_projects': latest_projects
         }
-        if home_obj:
-            context['home'] = home_obj
     return render(request, 'home.html', context=context)
 
 
@@ -38,3 +35,18 @@ def skip_setup(request):
         return HttpResponseRedirect('/')
     else:
         raise Http404
+
+
+# csrf failure page
+def csrf_failure(request, *args, **argv):
+    return render(request, 'error/csrf_failure.html', status=403)
+
+
+# 404 error page
+def handler404(request, *args, **argv):
+    return render(request, 'error/404.html', status=404)
+
+
+# 500 error page
+def handler500(request, *args, **argv):
+    return render(request, 'error/500.html', status=500)

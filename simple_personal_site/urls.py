@@ -7,7 +7,7 @@ from django.shortcuts import render
 from django.urls import include, path
 from django.views.generic.base import RedirectView
 from blog.sitemaps import ArticleSitemap, TagSitemap
-from global_config.views import handler404, handler500
+from home.views import handler404, handler500
 from url_shortener.views import redirect
 from .sitemaps import SiteSitemap
 
@@ -17,11 +17,11 @@ sitemaps = {
     'tags': TagSitemap,
 }
 
-# url search order: favicon, sitemap, homepage, modules, admin, shortener
+# url search order: favicon, sitemap, home, modules, admin, shortener
 urlpatterns = [
     path('favicon.ico', RedirectView.as_view(url=settings.STATIC_URL + 'img/favicon.ico')),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
-    path('', include('homepage.urls')),
+    path('', include('home.urls')),
     path('blog/', include('blog.urls')),
     path('contact/', include('contact.urls')),
     path('projects/', include('projects.urls')),

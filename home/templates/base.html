@@ -86,32 +86,6 @@
 &copy; {{ YEAR }} {{ FOOTER_COPYRIGHT }}
 </small></footer>
 <script async src="/static/js/sps.js" nonce="{{ NONCE }}"></script>
-{% if GA_TRACKING_ID or FATHOM_URL and FATHOM_SITE_ID %}
-<link rel="stylesheet" type="text/css" href="/static/css/cookieconsent.min.css">
-<script async src="/static/js/cookieconsent.min.js" nonce="{{ NONCE }}"></script>
-{% endif %}
-{% if FATHOM_URL and FATHOM_SITE_ID %}
-<script nonce="{{ NONCE }}">
-(function(f, a, t, h, o, m){
-a[h]=a[h]||function(){(a[h].q=a[h].q||[]).push(arguments)};
-o=f.createElement('script'),
-m=f.getElementsByTagName('script')[0];
-o.async=1; o.src=t; o.id='fathom-script';
-m.parentNode.insertBefore(o,m)
-})(document, window, '{{ FATHOM_URL }}', 'fathom');
-fathom('set', 'siteId', '{{ FATHOM_SITE_ID }}');
-fathom('trackPageview');
-</script>
-{% endif %}
-{% if GA_TRACKING_ID %}
-<script async src="https://www.googletagmanager.com/gtag/js?id={{ GA_TRACKING_ID }}" nonce="{{ NONCE }}"></script>
-<script nonce="{{ NONCE }}">
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', '{{ GA_TRACKING_ID }}');
-</script>
-{% endif %}
 </div>
 </body>
 </html>

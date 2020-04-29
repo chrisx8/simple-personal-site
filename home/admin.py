@@ -1,11 +1,10 @@
 from django.contrib import admin
-from django.contrib.auth.models import Group
-from global_config.forms import AuthForm
 from django.db.utils import OperationalError
 from solo.admin import SingletonModelAdmin
-from .models import SiteInfo, Fathom, GoogleAnalytics, SocialMediaLink
+from .models import Homepage, SiteInfo, SocialMediaLink
 
 # set admin site title
+admin.site.index_title = "Admin Panel"
 try:
     site_info = SiteInfo.objects.get_or_create()[0]
     admin.site.site_title = site_info.site_name
@@ -13,12 +12,7 @@ try:
 except OperationalError:
     pass
 
-# remove auth group
-admin.site.unregister(Group)
-
-# register global config models
-admin.site.register(Fathom, SingletonModelAdmin)
-admin.site.register(GoogleAnalytics, SingletonModelAdmin)
+admin.site.register(Homepage, SingletonModelAdmin)
 
 
 @admin.register(SocialMediaLink)
@@ -34,3 +28,4 @@ class SiteInfoAdmin(SingletonModelAdmin):
         ('Header', {'fields': ['header_title', 'header_subtitle']}),
         ('Footer', {'fields': ['footer_copyright']}),
     )
+

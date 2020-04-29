@@ -44,13 +44,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'solo',
     # SPS Apps
-    'global_config.apps.GlobalConfigConfig',
-    'homepage.apps.HomepageConfig',
+    'home.apps.HomeConfig',
     'blog',
     'contact',
     'media',
     'projects',
-    'url_shortener',
+    'url_shortener.apps.UrlShortenerConfig',
 ]
 
 MIDDLEWARE = [
@@ -141,7 +140,7 @@ except (TypeError, ValueError):
     pass
 
 # Security settings
-CSRF_FAILURE_VIEW = 'global_config.views.csrf_failure'
+CSRF_FAILURE_VIEW = 'home.views.csrf_failure'
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True

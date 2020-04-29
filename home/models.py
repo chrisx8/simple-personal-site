@@ -1,5 +1,7 @@
+import os
 from django.contrib import admin
 from django.db import models
+from django.dispatch import receiver
 from solo.models import SingletonModel
 
 
@@ -27,24 +29,6 @@ class SiteInfo(SingletonModel):
         super(SiteInfo, self).save(*args, **kwargs)
 
 
-class Fathom(SingletonModel):
-    fathom_url = models.URLField(blank=True, verbose_name='Fathom URL', help_text='Full URL to Fathom\'s "tracker.js". '
-                                                                                  'Leaving blank disables Fathom.')
-    site_id = models.CharField(max_length=5, blank=True, verbose_name='Site ID',
-                               help_text='Fathom Site ID. Leaving blank disables Fathom')
-
-    class Meta:
-        verbose_name = 'Fathom Analytics'
-
-
-class GoogleAnalytics(SingletonModel):
-    ga_tracking_id = models.CharField(max_length=15, blank=True, verbose_name='Tracking ID',
-                                      help_text='Google Analytics Tracking ID. Leaving blank disables Google Analytics')
-
-    class Meta:
-        verbose_name = 'Google Analytics'
-
-
 class SocialMediaLink(models.Model):
     platform = models.CharField(max_length=50, default='', null=False, help_text='Name of the social media platform')
     url = models.URLField(default='', null=False, verbose_name='URL', help_text='Link to profile page')
@@ -55,3 +39,37 @@ class SocialMediaLink(models.Model):
 
     def __str__(self):
         return self.platform
+
+
+class Homepage(SingletonModel):
+    about_me = models.TextField(verbose_name='About Me section', blank=True, help_text='Write in Markdown format')
+    resume = models.FileField(blank=True, help_text='Upload resume as a PDF for best compatibility')
+
+    def delete(self, *args, **kwargs):
+        # Delete the file if it exists
+        try:
+            storage, path = self.resume.storage, self.resume.path
+            storage.delete(path)
+        except ValueError:
+            pass
+        # Delete the model
+        super(Homepage, self).delete(*args, **kwargs)
+
+
+# delete old upload on save
+@receiver(models.signals.pre_save)
+def auto_delete_file_on_change(sender, instance, **kwargs):
+    if isinstance(instance, Homepage):
+        # check instance existence
+        if not instance.pk:
+            return False
+        # get old file
+        try:
+            old_file = sender.objects.get(pk=instance.pk).resume
+            # get new file
+            new_file = instance.resume
+            # remove if files are changed
+            if old_file != new_file and os.path.isfile(old_file.path):
+                os.remove(old_file.path)
+        except:
+            return False
