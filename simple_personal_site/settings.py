@@ -119,9 +119,9 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
-STATIC_ROOT = 'static'
-MEDIA_URL = '/media/'
-MEDIA_ROOT = 'media_files'
+MEDIA_URL = '/static/media/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+MEDIA_ROOT = os.path.join(STATIC_ROOT, 'media')
 
 # Configure SMTP server from env file
 try:
