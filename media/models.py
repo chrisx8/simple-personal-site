@@ -27,13 +27,17 @@ class Embed(models.Model):
     name = models.CharField(max_length=50, primary_key=True, blank=False, default='')
     embed_url = models.URLField(blank=False, default='', verbose_name='Embed URL',
                                 help_text='Enter the EMBED URL, not the URL to a webpage.')
+    allow_fullscreen = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['name']
 
     def html(self):
+        fullscreen = ''
+        if self.allow_fullscreen:
+            fullscreen = ' webkitallowfullscreen mozallowfullscreen allowfullscreen'
         return f'<div class="embed"><iframe class="frame" title="{self.name}" src="{self.embed_url}"' + \
-               'frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>'
+               f'frameborder="0" {fullscreen} ></iframe></div>'
 
     def __str__(self):
         return self.name

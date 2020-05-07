@@ -3,19 +3,20 @@ from django.db import models
 
 class ContactConfig(models.Model):
     hcaptcha_site_key = models.UUIDField(null=True, blank=True, verbose_name='hCaptcha Sitekey',
-                                         help_text='Leaving blank = no captcha on contact form')
+                                         help_text='Blank = no captcha on contact form')
     hcaptcha_secret_key = models.CharField(max_length=42, blank=True, verbose_name='hCaptcha secret key',
-                                         help_text='Leaving blank = no captcha on contact form')
+                                         help_text='Blank = no captcha on contact form')
     site_owner_email = models.EmailField(blank=True, verbose_name='Site owner\'s email address.',
-                                         help_text='Leaving blank = no notification emails to site owner')
+                                         help_text='Blank = no notification emails to site owner')
     from_name = models.CharField(max_length=50, blank=True, verbose_name='Name shown on outgoing emails',
-                                 help_text='Leaving blank = no emails')
+                                 help_text='Blank = no emails')
     from_email = models.EmailField(blank=True, verbose_name='Email address shown on outgoing emails',
-                                   help_text='Leaving blank = no emails')
+                                   help_text='Blank = no emails')
     subject = models.CharField(max_length=250, blank=True, verbose_name='Subject of outgoing emails',
-                               help_text='Leaving blank = no emails to message sender')
+                               help_text='Blank = no emails to message sender')
     pgp_fingerprint = models.CharField(max_length=50, blank=True, verbose_name='Public key fingerprint')
-    pgp_url = models.URLField(blank=True, verbose_name='Public key URL')
+    pgp_key = models.URLField(blank=True, verbose_name='Public key', 
+                              help_text='begins with "-----BEGIN PGP PUBLIC KEY BLOCK-----"')
 
     class Meta:
         verbose_name = '# Contact Config #'

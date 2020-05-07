@@ -34,7 +34,8 @@ class Article(models.Model):
     subtitle = models.CharField(max_length=250, default='', null=False, blank=True)
     tag = models.ManyToManyField(Tag, blank=True)
     image = models.ForeignKey(Image, blank=True, null=True, on_delete=models.CASCADE,
-                              help_text="If both are selected, only embedded media will show on screen.")
+                              help_text="<strong>When printing, only image will show.</strong><br>"
+                                        "If both are selected, only embedded media will show on screen.")
     embed = models.ForeignKey(Embed, blank=True, null=True, on_delete=models.CASCADE,
                               help_text="<strong>When printing, only image will show.</strong><br>"
                                         "If both are selected, only embedded media will show on screen.")
