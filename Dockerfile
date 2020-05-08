@@ -16,7 +16,7 @@ RUN apk add --no-cache build-base gcc musl-dev && \
 COPY . /app/
 WORKDIR /app
 
-RUN mkdir /app/media_files && \
+RUN mkdir /app/static/media && \
     chown nobody:nogroup -R /app && \
     cp example.env .env && \
     python3 manage.py test && \

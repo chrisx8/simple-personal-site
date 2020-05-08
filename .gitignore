@@ -63,6 +63,5 @@ venv.bak/
 # Dev
 .vscode/
 .idea/
-static/admin/
+static/static/admin/
 static/media/
-static/staticfiles.json

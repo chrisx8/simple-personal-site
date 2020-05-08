@@ -23,6 +23,7 @@ jobs:
         pip install -r requirements.txt
     - name: Test
       run: |
+        python3 manage.py collectstatic --noinput
         python3 manage.py migrate --run-syncdb
         python3 manage.py test
         gunicorn simple_personal_site.wsgi:application -b 127.0.0.1:8000 &
