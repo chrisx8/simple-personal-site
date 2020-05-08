@@ -28,10 +28,10 @@
 <div class="control"><button class="button is-link" type="submit">Send</button></div>
 </div>
 </form>
-{% if pgp_fingerprint and pgp_url %}
+{% if pgp_fingerprint and has_pgp_key %}
 <div class="space-20"></div>
 <div class="box">
-<a href="{{ pgp_url }}">PGP Public Key</a><br>
+<a href="{% url 'pgp_key' %}">PGP Public Key</a><br>
 Fingerprint: <code>{{ pgp_fingerprint }}</code>
 </div>
 {% endif %}

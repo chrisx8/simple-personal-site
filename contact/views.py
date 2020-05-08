@@ -1,9 +1,7 @@
 import requests
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
-from django.forms.utils import ValidationError
-from django.shortcuts import render
-from django.urls import reverse
+from django.shortcuts import render, HttpResponse, Http404
 from .forms import ContactForm
 from .models import ContactConfig, Message
 
@@ -14,7 +12,7 @@ def contact(request):
     contact_config = ContactConfig.objects.get_or_create()[0]
     from_addr = f'{contact_config.from_name} <{contact_config.from_email}>'
     pgp_fingerprint = contact_config.pgp_fingerprint
-    pgp_url = contact_config.pgp_url
+    has_pgp_key = bool(contact_config.pgp_key)
     hcaptcha_sitekey = contact_config.hcaptcha_site_key
     hcaptcha_secret = contact_config.hcaptcha_secret_key
     hcaptcha_fail = False
@@ -95,7 +93,16 @@ def contact(request):
         'form': form,
         'hcaptcha_fail': hcaptcha_fail,
         'hcaptcha_sitekey': hcaptcha_sitekey,
-        'pgp_fingerprint': pgp_fingerprint, 
-        'pgp_url': pgp_url
+        'pgp_fingerprint': pgp_fingerprint,
+        'has_pgp_key': has_pgp_key
     }
     return render(request, 'contact.html', context=context)
+
+
+def pgp_key(request):
+    contact_config = ContactConfig.objects.get_or_create()[0]
+    pgp_key = contact_config.pgp_key
+    if pgp_key:
+        return HttpResponse(pgp_key, content_type='text/plain')
+    else:
+        raise Http404
