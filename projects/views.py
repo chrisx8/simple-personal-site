@@ -6,13 +6,7 @@ from .models import Project, ProjectsConfig
 
 # all projects
 def projects(request):
-    try:
-        # get projects config
-        projects_config = ProjectsConfig.objects.get()
-    except ProjectsConfig.DoesNotExist:
-        # create blog config with defaults
-        projects_config = ProjectsConfig()
-        projects_config.save()
+    projects_config = ProjectsConfig.objects.get_or_create()[0]
     # exclude hidden projects
     all_projects = Project.objects.order_by('-posted', 'title')
     paginator = Paginator(all_projects, projects_config.projects_per_page)
@@ -36,6 +30,7 @@ def projects(request):
         'projects': projects_on_page,
         'page_range': display_page_range,
     }
+    # get meta description
     if projects_config.description:
         description = projects_config.description
         context['SITE_DESCRIPTION'] = description

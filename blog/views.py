@@ -2,17 +2,14 @@ from django.core.paginator import Paginator
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
+from home.models import SiteInfo
 from .models import Article, BlogConfig, Tag
 
 
 def blog(request):
-    try:
-        # get blog config
-        blog_config = BlogConfig.objects.get()
-    except BlogConfig.DoesNotExist:
-        # create blog config with defaults
-        blog_config = BlogConfig()
-        blog_config.save()
+    # get config
+    blog_config = BlogConfig.objects.get_or_create()[0]
+    site_info = SiteInfo.objects.get_or_create()[0]
     # exclude hidden articles
     articles = Article.objects.order_by('-last_edited', 'title')
     paginator = Paginator(articles, blog_config.articles_per_page)
@@ -32,14 +29,20 @@ def blog(request):
         display_page_range = paginator.page_range[int(page)-2:int(page)+1]
     else:
         display_page_range = paginator.page_range[:int(page)+1]
+    # get latest article
     try:
         latest_article = f'Check out my latest article: "{articles.first().title}"'
     except AttributeError:
         latest_article = ''
+    # get meta description
+    if blog_config.description:
+        meta_desc = blog_config.description
+    else:
+        meta_desc = site_info.description
     context = {
         'articles': articles_on_page,
         'page_range': display_page_range,
-        'SITE_DESCRIPTION': f'{blog_config.description} {latest_article}'
+        'SITE_DESCRIPTION': f'{meta_desc} {latest_article}'
     }
     return render(request, 'blog.html', context=context)
 
