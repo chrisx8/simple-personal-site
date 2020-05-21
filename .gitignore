@@ -61,7 +61,6 @@ env.bak/
 venv.bak/
 
 # Dev
-.vscode/
 .idea/
-static/static/admin/
-static/media/
+.vscode/
+static_serve/

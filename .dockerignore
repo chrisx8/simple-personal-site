@@ -61,20 +61,10 @@ env.bak/
 venv.bak/
 
 # Dev
-.vscode/
-.idea/
-config.env
-static/admin/
-static/staticfiles.json
-
-# Dev
 .git/
-.vscode/
 .idea/
-static/admin/
-static/staticfiles.json
-media_files/
-config.env
+.vscode/
+static_serve/
 Pipfile
 Pipfile.lock
 
@@ -82,4 +72,4 @@ Pipfile.lock
 Dockerfile
 .dockerignore
 .gitignore
-.travis.yml
+.github/

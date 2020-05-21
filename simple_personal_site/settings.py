@@ -2,7 +2,6 @@
 
 import os
 import secrets
-from django.core.exceptions import ImproperlyConfigured
 from dotenv import load_dotenv
 
 # Generate secret key
@@ -18,7 +17,7 @@ load_dotenv()
 try:
     ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(',')
 except AttributeError:
-    raise ImproperlyConfigured('ALLOWED_HOSTS is not configured')
+    pass
 
 # DEBUG defaults to False.
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -34,7 +33,6 @@ if isinstance(debug_env, str) and debug_env.upper() == 'TRUE':
 
 # Application definition
 INSTALLED_APPS = [
-    'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -55,7 +53,6 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.middleware.gzip.GZipMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -120,7 +117,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
-STATIC_BASE = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+STATIC_BASE = os.path.join(BASE_DIR, 'static_serve')
 STATIC_ROOT = os.path.join(STATIC_BASE, 'static')
 MEDIA_ROOT = os.path.join(STATIC_BASE, 'media')
 

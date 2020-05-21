@@ -9,8 +9,9 @@ A fast and simple CMS custom built for developers. Follow instructions below to 
 
 - [Features](#features)
 - [Before installing](#before-installing)
-- [Install with Docker](#install-with-docker)
-- [Install in a virtualenv](#install-in-a-virtualenv)
+- [Installation](#installation)
+  - [Install with Docker](#install-with-docker)
+  - [Install in a virtualenv](#install-in-a-virtualenv)
 - [Using HTTPS](#using-https)
 - [Add content](#add-content)
 - [License](#license)
@@ -24,8 +25,8 @@ A fast and simple CMS custom built for developers. Follow instructions below to 
 - Embed code blocks in blog posts
 - Video and image embed in blog articles and project cards
 - Show social media links in footer
-- Contact form and notification email
-- Link to PGP public key
+- Contact form
+- Host PGP public key
 - URL shortener
 
 ## Before installing
@@ -47,15 +48,18 @@ cp example.env .env
 - Edit `.env`, following instructions in the file.
 - Generate your own icons [here](https://realfavicongenerator.net). Download the generated Favicon package.
 - Unzip the downloaded package, and upload everything to `static/img/`, replacing ALL existing placeholder icon files.
-- Upload an image for `og:image` (`1280*640`, in `.png` format) to `static/img/`, replacing the existing `og-image.png`
+- Upload a banner image for `og:image` (`1280*640`, in `.png` format) to `static/img/`, replacing the existing `og-image.png`
 
-## Install with Docker
+## Installation
+
+### Install with Docker
 
 - Make sure your database is accessible from inside the container
-- Set permission
+- Create directory for static files
 
 ```bash
-sudo chown -R nobody:nogroup static
+mkdir -p static_serve/media staic_serve/static
+sudo chown -R nobody:nogroup static_serve
 ```
 
 - Run Docker container.
@@ -63,7 +67,7 @@ sudo chown -R nobody:nogroup static
 ```bash
 # Replace [ADDRESS]:[PORT] with whereever you want the container to listen at
 # When using a reverse proxy, make sure this container is NOT EXPOSED (e.g. listen on 127.0.0.1)!
-docker run -d -p [ADDRESS]:[PORT] --env-file=.env -v media_files:/app/media_files/ -v $(pwd)/static:/app/static/ --restart unless-stopped --name simple-personal-site chrisx8/simple-personal-site:latest
+docker run -d -p [ADDRESS]:[PORT] --env-file=.env -v $(pwd)/static_serve/media:/app/static_serve/media/ -v $(pwd)/static_serve/static:/app/static_serve/static/ -v $(pwd)/static:/app/static/ --restart unless-stopped --name simple-personal-site chrisx8/simple-personal-site:latest
 ```
 
 - Create an admin account.
@@ -72,7 +76,13 @@ docker run -d -p [ADDRESS]:[PORT] --env-file=.env -v media_files:/app/media_file
 docker exec -it simple-personal-site python3 manage.py createsuperuser
 ```
 
-## Install in a virtualenv
+- Set up a web server (such as Apache or Nginx) to serve static files.
+  - Serve `static_serve/media` at `/media/`
+  - Serve `static_serve/static` at `/static/`
+  - DO NOT serve `static/`
+  - [Sample Nginx config](sps-nginx.example.conf)
+
+### Install in a virtualenv
 
 - Make sure Python 3.6 (or newer) and `pip` is installed.
 - Install project dependencies.
@@ -93,38 +103,12 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-- Create system service
+- Start server
 
 ```bash
-sudo nano /etc/systemd/system/multi-user.target.wants/personal-site.service
-```
-
-Paste in the following, and edit accordingly
-
-```ini
-[Unit]
-Description=Simple Personal Site
-After=network.target
-
-[Service]
-Type=simple
-User=[YOUR USERNAME]
-WorkingDirectory=[PROJECT DIRECTORY]
 # Replace [ADDRESS]:[PORT] with whereever you want the container to listen at
 # When using a reverse proxy, make sure this container is NOT EXPOSED (e.g. listen on 127.0.0.1)!
-ExecStart=[PROJECT DIRECTORY]/venv/bin/gunicorn simple_personal_site.wsgi:application -b [ADDRESS]:[PORT]
-Restart=on-failure
-
-[Install]
-WantedBy=multi-user.target
-```
-
-- Activate and start service
-
-```bash
-sudo systemctl daemon-reload
-sudo systemctl enable personal-site
-sudo systemctl start personal-site
+gunicorn simple_personal_site.wsgi:application -b [ADDRESS]:[PORT]
 ```
 
 - Create an admin account.
@@ -133,11 +117,17 @@ sudo systemctl start personal-site
 python3 manage.py createsuperuser
 ```
 
+- Set up a web server (such as Apache or Nginx) to serve static files
+  - Serve `static_serve/media` at `/media/`
+  - Serve `static_serve/static` at `/static/`
+  - DO NOT serve `static/`
+  - [Sample Nginx config](sps-nginx.example.conf)
+
 ## Using HTTPS
 
 Using HTTPS is optional but **highly recommended**. To use HTTPS:
 
-- Set up the site behind a reverse proxy.
+- Set up the site behind a reverse proxy. [Sample Nginx config](sps-nginx.example.conf)
 - For best security, make sure the reverse proxy strips incoming `X-Forwarded-Proto` header, and sets `X-Forwarded-Proto` header to `https` for HTTPS connections **only**.
 - Get an SSL certificate. [Let's Encrypt](https://letsencrypt.org/) offers free certificates to everyone.
 - In `.env`, set `USE_SSL=True`.
