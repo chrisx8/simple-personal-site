@@ -69,6 +69,7 @@ Pipfile
 Pipfile.lock
 
 # Sample/build files
+sps-nginx.example.conf
 Dockerfile
 .dockerignore
 .gitignore

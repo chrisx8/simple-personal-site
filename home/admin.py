@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.db.utils import OperationalError
+from django.db.utils import OperationalError, ProgrammingError
 from solo.admin import SingletonModelAdmin
 from .models import Homepage, SiteInfo, SocialMediaLink
 
@@ -9,7 +9,7 @@ try:
     site_info = SiteInfo.objects.get_or_create()[0]
     admin.site.site_title = site_info.site_name
     admin.site.site_header = site_info.site_name
-except OperationalError:
+except (OperationalError, ProgrammingError):
     pass
 
 admin.site.register(Homepage, SingletonModelAdmin)
