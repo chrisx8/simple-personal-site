@@ -1,17 +1,19 @@
-FROM python:3.8-alpine
+FROM python:3.8-slim
 
 ARG VCS_REF
 LABEL org.label-schema.vcs-ref=$VCS_REF \
       org.label-schema.vcs-url="https://github.com/chrisx8/simple-personal-site"
 
-RUN apk add --no-cache postgresql-dev mariadb-connector-c-dev jpeg-dev zlib-dev freetype-dev && \
-    echo 'nameserver 127.0.0.11' > /etc/resolv.conf
+RUN echo 'nameserver 127.0.0.11' > /etc/resolv.conf
 
 COPY requirements.txt /tmp/requirements.txt
-RUN apk add --no-cache build-base gcc musl-dev && \
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends gcc libmariadb-dev libjpeg-dev && \
 	pip3 install --no-cache -r /tmp/requirements.txt && \
-    rm /tmp/requirements.txt && \
-    apk del build-base gcc musl-dev
+    apt-get purge -y gcc && \
+    apt-get autoremove -y --purge && \
+    apt-get autoclean && \
+    rm -rf /tmp/requirements.txt /var/log/apt /var/cache/apt/ /var/lib/apt/
 
 COPY . /app/
 WORKDIR /app
