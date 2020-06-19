@@ -6,8 +6,7 @@ LABEL org.label-schema.vcs-ref=$VCS_REF \
 
 COPY requirements.txt /tmp/requirements.txt
 
-RUN echo 'nameserver 127.0.0.11' > /etc/resolv.conf && \
-    apt-get update && \
+RUN apt-get update && \
     apt-get install -y --no-install-recommends gcc libmariadb-dev libjpeg-dev && \
 	pip3 install --no-cache -r /tmp/requirements.txt && \
     apt-get purge -y gcc && \
