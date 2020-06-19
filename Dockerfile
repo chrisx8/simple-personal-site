@@ -4,16 +4,16 @@ ARG VCS_REF
 LABEL org.label-schema.vcs-ref=$VCS_REF \
       org.label-schema.vcs-url="https://github.com/chrisx8/simple-personal-site"
 
-RUN echo 'nameserver 127.0.0.11' > /etc/resolv.conf
-
 COPY requirements.txt /tmp/requirements.txt
-RUN apt-get update && \
+
+RUN echo 'nameserver 127.0.0.11' > /etc/resolv.conf && \
+    apt-get update && \
     apt-get install -y --no-install-recommends gcc libmariadb-dev libjpeg-dev && \
 	pip3 install --no-cache -r /tmp/requirements.txt && \
     apt-get purge -y gcc && \
     apt-get autoremove -y --purge && \
     apt-get autoclean && \
-    rm -rf /tmp/requirements.txt /var/log/apt /var/cache/apt/ /var/lib/apt/
+    rm -rf /tmp/requirements.txt /var/log/apt /var/cache/apt /var/lib/apt
 
 COPY . /app/
 WORKDIR /app

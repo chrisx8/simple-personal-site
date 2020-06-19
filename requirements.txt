@@ -1,4 +1,4 @@
-asgiref==3.2.9
+asgiref==3.2.10
 beautifulsoup4==4.9.1
 bleach==3.1.5
 certifi==2020.4.5.2
@@ -18,7 +18,7 @@ Pygments==2.6.1
 pyparsing==2.4.7
 python-dotenv==0.13.0
 pytz==2020.1
-requests==2.23.0
+requests==2.24.0
 six==1.15.0
 soupsieve==2.0.1
 sqlparse==0.3.1
