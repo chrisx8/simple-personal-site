@@ -6,9 +6,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-<h1>{{ SITE_NAME }}</h1>
-<p>New message from {{ msg.name }} ({{ msg.email }}):</p>
-<p>{{ msg.message|linebreaks }}</p>
+<p>You received a message from {{ msg.name }} [{{ msg.email }}]</p>
+<hr>
+<p>{{ msg.message }}</p>
 <hr>
 <p>To respond to this message, simply reply to this email.</p>
 </body>

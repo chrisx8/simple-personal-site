@@ -24,9 +24,9 @@ def contact(request):
         contact_configured = contact_config and contact_config.from_name and contact_config.from_email
         return smtp_configured and contact_configured
 
-    def email_site_owner(msg_sender):
+    def send_notification_email(msg_sender):
         # check prereqs for emailing site owner
-        if not can_email() or not contact_config.site_owner_email:
+        if not can_email() or not contact_config.notification_recipient:
             return
         # build html email content
         mail_context = {'msg': new_msg}
@@ -34,22 +34,8 @@ def contact(request):
         # build text email content
         mail_text = render(request, 'notification_email.txt', context=mail_context).content.decode("utf-8")
         # send email to site owner
-        email = EmailMultiAlternatives('Message from %s' % new_msg.name, mail_text, from_addr,
-                                       [contact_config.site_owner_email], reply_to=[msg_sender])
-        email.attach_alternative(mail_html, "text/html")
-        email.send(fail_silently=True)
-
-    def email_sender():
-        # check prereqs for emailing sender
-        if not can_email() or not contact_config.subject:
-            return
-        # build html email content
-        mail_context = {'msg': new_msg}
-        mail_html = render(request, 'message_email.html', context=mail_context).content.decode("utf-8")
-        # build text email content
-        mail_text = render(request, 'message_email.txt', context=mail_context).content.decode("utf-8")
-        # send email to form submitter
-        email = EmailMultiAlternatives(contact_config.subject, mail_text, from_addr, [new_msg.email])
+        email = EmailMultiAlternatives('Message from ' + new_msg.name, mail_text, from_addr,
+                                       [contact_config.notification_recipient], reply_to=[msg_sender])
         email.attach_alternative(mail_html, "text/html")
         email.send(fail_silently=True)
 
@@ -79,9 +65,8 @@ def contact(request):
                 # save message
                 new_msg = Message(name=data['name'], email=data['email'], message=data['message'])
                 new_msg.save()
-                # send emails
-                email_sender()
-                email_site_owner(data['email'])
+                # send notification
+                send_notification_email(data['email'])
                 return render(request, 'contact_success.html')
             else:
                 hcaptcha_fail = True

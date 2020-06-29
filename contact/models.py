@@ -6,14 +6,12 @@ class ContactConfig(models.Model):
                                          help_text='Blank = no captcha on contact form')
     hcaptcha_secret_key = models.CharField(max_length=42, blank=True, verbose_name='hCaptcha secret key',
                                          help_text='Blank = no captcha on contact form')
-    site_owner_email = models.EmailField(blank=True, verbose_name='Site owner\'s email address.',
-                                         help_text='Blank = no notification emails to site owner')
     from_name = models.CharField(max_length=50, blank=True, verbose_name='Name shown on outgoing emails',
-                                 help_text='Blank = no emails')
+                                 help_text='Blank = no outgoing emails')
     from_email = models.EmailField(blank=True, verbose_name='Email address shown on outgoing emails',
-                                   help_text='Blank = no emails')
-    subject = models.CharField(max_length=250, blank=True, verbose_name='Subject of outgoing emails',
-                               help_text='Blank = no emails to message sender')
+                                   help_text='Blank = no outgoing emails')
+    notification_recipient = models.EmailField(blank=True, verbose_name='Notification recipient\'s email address',
+                                               help_text='Blank = no notification emails for new messages')
     pgp_fingerprint = models.CharField(max_length=50, blank=True, verbose_name='Public key fingerprint')
     pgp_key = models.TextField(blank=True, verbose_name='Public key', 
                                help_text='Begins with "-----BEGIN PGP PUBLIC KEY BLOCK-----"')

@@ -1,9 +1,7 @@
-{{ SITE_NAME }}
+You received a message from {{ msg.name }} [{{ msg.email }}]
 -------------------------------------------------------
 
-You received a message from {{ msg.name }} ({{ msg.email }}).
-
-{{ msg.message|linebreaks }}
+{{ msg.message }}
 
 -------------------------------------------------------
 To respond to this message, simply reply to this email.
