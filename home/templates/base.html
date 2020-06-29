@@ -78,12 +78,12 @@
 {% for link in social_links %}
 {% if forloop.counter != 1 %} &middot; {% endif %}<a href="{{ link.url }}">{{ link.platform }}</a>
 {% endfor %}<br>
-&copy; {{ YEAR }} {{ FOOTER_COPYRIGHT }}
+&copy; {% now "Y" %} {{ FOOTER_COPYRIGHT }}
 </div>
 </footer>
 <footer class="sps-print-footer"><small>
 <i>Printed from <a href="{{ SITE_URL }}">{{ SITE_URL }}</a></i><br>
-&copy; {{ YEAR }} {{ FOOTER_COPYRIGHT }}
+&copy; {% now "Y" %} {{ FOOTER_COPYRIGHT }}
 </small></footer>
 <script async src="/static/js/sps.js" nonce="{{ NONCE }}"></script>
 </div>

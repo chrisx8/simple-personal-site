@@ -1,6 +1,7 @@
 import requests
+from bleach import clean
 from django.conf import settings
-from django.core.mail import EmailMessage
+from django.core.mail import EmailMessage, send_mail
 from django.shortcuts import render, HttpResponse, Http404
 from .forms import ContactForm
 from .models import ContactConfig, Message
@@ -19,7 +20,6 @@ def contact(request):
 
     # check if configs for sending emails exist
     def can_email():
-        return True
         smtp_configured = settings.EMAIL_HOST and settings.EMAIL_PORT and \
                           settings.EMAIL_HOST_USER and settings.EMAIL_HOST_PASSWORD
         contact_configured = contact_config and contact_config.from_name and contact_config.from_email
