@@ -1,6 +1,6 @@
 import requests
 from django.conf import settings
-from django.core.mail import EmailMultiAlternatives
+from django.core.mail import EmailMessage
 from django.shortcuts import render, HttpResponse, Http404
 from .forms import ContactForm
 from .models import ContactConfig, Message
@@ -19,6 +19,7 @@ def contact(request):
 
     # check if configs for sending emails exist
     def can_email():
+        return True
         smtp_configured = settings.EMAIL_HOST and settings.EMAIL_PORT and \
                           settings.EMAIL_HOST_USER and settings.EMAIL_HOST_PASSWORD
         contact_configured = contact_config and contact_config.from_name and contact_config.from_email
@@ -28,15 +29,12 @@ def contact(request):
         # check prereqs for emailing site owner
         if not can_email() or not contact_config.notification_recipient:
             return
-        # build html email content
-        mail_context = {'msg': new_msg}
-        mail_html = render(request, 'notification_email.html', context=mail_context).content.decode("utf-8")
         # build text email content
+        mail_context = {'msg': new_msg}
         mail_text = render(request, 'notification_email.txt', context=mail_context).content.decode("utf-8")
-        # send email to site owner
-        email = EmailMultiAlternatives('Message from ' + new_msg.name, mail_text, from_addr,
-                                       [contact_config.notification_recipient], reply_to=[msg_sender])
-        email.attach_alternative(mail_html, "text/html")
+        # send email to notification recipient
+        email = EmailMessage('Message from ' + new_msg.name, mail_text, from_addr,
+                             [contact_config.notification_recipient], reply_to=[msg_sender])
         email.send(fail_silently=True)
 
     def hcaptcha_validate(response):

@@ -1,7 +1,7 @@
 You received a message from {{ msg.name }} [{{ msg.email }}]
--------------------------------------------------------
+--------------------
 
 {{ msg.message }}
 
--------------------------------------------------------
+--------------------
 To respond to this message, simply reply to this email.
