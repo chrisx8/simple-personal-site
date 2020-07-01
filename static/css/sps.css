@@ -1,6 +1,5 @@
 .article {
-	margin-top: -15px;
-	line-height: 1.5em
+	line-height: 1.5em;
 }
 .blog-date {
 	font-size: 16px
@@ -13,33 +12,29 @@
 }
 .center {
 	margin: auto;
-	padding-bottom: 20px
+	padding-bottom: 20px;
 }
 .embed {
 	padding: 56.25% 0 0 0;
-	position: relative
+	position: relative;
 }
 .frame {
 	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
-	height: 100%
+	height: 100%;
 }
 .main {
 	min-height: 100vh;
 	overflow: hidden;
 	display: block;
 	position: relative;
-	padding-bottom: 3em
-}
-.setup-buttons {
-	line-height: 2.2em;
-	line-height: 1.5em
+	padding-bottom: 3em;
 }
 .side-padding {
 	padding-left: 15px;
-	padding-right: 15px
+	padding-right: 15px;
 }
 .space-20 {
 	height: 20px
@@ -53,7 +48,7 @@
 	width: 100%;
 	bottom: 0;
 	padding-top: .6rem;
-	padding-bottom: .6rem
+	padding-bottom: .6rem;
 }
 @media print {
 	.noprint {
@@ -62,14 +57,9 @@
 	.embed {
 		display: none
 	}
-	.hero .is-dark .is-bold {
-		display: none
-	}
-	.hero-body {
-		display: none
-	}
-	.navbar {
-		display: none
+	.side-padding {
+		padding-left: 0px;
+		padding-right: 0px;
 	}
 	.space-20 {
 		display: none
@@ -81,7 +71,7 @@
 		display: none
 	}
 	.sps-print-footer {
-		padding-top: 20px
+		padding-top: 20px;
 	}
 }
 @media screen {
