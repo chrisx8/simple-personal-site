@@ -20,6 +20,7 @@ jobs:
       run: |
         cp example.env .env
         python -m pip install --upgrade pip
+        pip install wheel
         pip install -r requirements.txt
     - name: Test
       run: |
