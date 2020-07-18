@@ -4,5 +4,5 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('<str:alias>', views.redirect),
+    path('<str:alias>/', views.redirect),
 ]

@@ -17,7 +17,7 @@ sitemaps = {
 }
 
 # url search order: favicon, sitemap, home, modules, admin, shortener
-# media file is only served in DEBUG MODE1
+# media file is only served in DEBUG MODE
 urlpatterns = [
     path('favicon.ico', RedirectView.as_view(url=settings.STATIC_URL + 'img/favicon.ico')),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
