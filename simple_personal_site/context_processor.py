@@ -1,4 +1,3 @@
-from datetime import datetime
 from home.models import SiteInfo, SocialMediaLink
 
 
@@ -8,7 +7,6 @@ def global_tags(request):
     site_info = SiteInfo.objects.get_or_create()[0]
     social_links = SocialMediaLink.objects.order_by('platform')
     # build context
-    time = datetime.now()
     context = {
         'SITE_NAME': site_info.site_name,
         'SITE_DESCRIPTION': site_info.description,

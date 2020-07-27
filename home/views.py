@@ -42,6 +42,11 @@ def csrf_failure(request, *args, **argv):
     return render(request, 'error/csrf_failure.html', status=403)
 
 
+# 403 error page
+def handler403(request, *args, **argv):
+    return render(request, 'error/403.html', status=403)
+
+
 # 404 error page
 def handler404(request, *args, **argv):
     return render(request, 'error/404.html', status=404)

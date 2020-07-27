@@ -7,7 +7,7 @@ from django.contrib.sitemaps.views import sitemap
 from django.urls import include, path
 from django.views.generic.base import RedirectView
 from blog.sitemaps import ArticleSitemap, TagSitemap
-from home.views import handler404, handler500
+from home.views import handler403, handler404, handler500
 from .sitemaps import SiteSitemap
 
 sitemaps = {
