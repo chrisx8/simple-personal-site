@@ -82,3 +82,11 @@
 		display: none
 	}
 }
+@media screen and (min-width: 1024px) {
+    .is-navbar {
+        padding-left: 32px;
+        padding-right: 32px;
+        max-width: none;
+        width: 100%;
+    }
+}
