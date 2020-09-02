@@ -1,9 +1,5 @@
 FROM python:3.8-slim
 
-ARG VCS_REF
-LABEL org.label-schema.vcs-ref=$VCS_REF \
-      org.label-schema.vcs-url="https://github.com/chrisx8/simple-personal-site"
-
 COPY requirements.txt /tmp/requirements.txt
 
 RUN apt-get update && \
