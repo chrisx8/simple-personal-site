@@ -29,20 +29,9 @@ def blog(request):
         display_page_range = paginator.page_range[int(page)-2:int(page)+1]
     else:
         display_page_range = paginator.page_range[:int(page)+1]
-    # get latest article
-    try:
-        latest_article = f'Check out my latest article: "{articles.first().title}"'
-    except AttributeError:
-        latest_article = ''
-    # get meta description
-    if blog_config.description:
-        meta_desc = blog_config.description
-    else:
-        meta_desc = site_info.description
     context = {
         'articles': articles_on_page,
         'page_range': display_page_range,
-        'SITE_DESCRIPTION': f'{meta_desc} {latest_article}'
     }
     return render(request, 'blog.html', context=context)
 
@@ -80,15 +69,10 @@ def filter_by_tag(request, tag):
         display_page_range = paginator.page_range[int(page)-2:int(page)+1]
     else:
         display_page_range = paginator.page_range[:int(page)+1]
-    try:
-        latest_article = f'Check out my latest article: "{articles.first().title}"'
-    except AttributeError:
-        latest_article = ''
     context = {
         'articles': articles_on_page,
         'page_range': display_page_range,
         'tag': tag,
-        'SITE_DESCRIPTION': f'{blog_config.description} {latest_article}'
     }
     return render(request, 'filter_by_tag.html', context=context)
 
@@ -98,5 +82,8 @@ def view_article(request, id):
         article = Article.objects.get(id=id)
     except Article.DoesNotExist:
         raise Http404
-    context = {'article': article, 'SITE_DESCRIPTION': article.subtitle}
+    context = {
+        'article': article,
+        'SITE_DESCRIPTION': article.subtitle
+    }
     return render(request, 'view_article.html', context=context)

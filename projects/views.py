@@ -30,8 +30,4 @@ def projects(request):
         'projects': projects_on_page,
         'page_range': display_page_range,
     }
-    # get meta description
-    if projects_config.description:
-        description = projects_config.description
-        context['SITE_DESCRIPTION'] = description
     return render(request, 'projects.html', context=context)

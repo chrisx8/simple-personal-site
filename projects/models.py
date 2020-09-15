@@ -3,9 +3,6 @@ from media.models import Embed, Image
 
 
 class ProjectsConfig(models.Model):
-    description = models.CharField(max_length=250, default='', blank=True,
-                                   help_text='This field sets the Meta Description tag for /projects/. Leave blank to '
-                                             'use global Meta Description tag.')
     projects_per_page = models.IntegerField(blank=False, default=6)
 
     class Meta:
