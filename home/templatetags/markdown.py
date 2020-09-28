@@ -33,12 +33,6 @@ class SPSRenderer(mistune.Renderer):
         return f'<img {alt_text} {title} src="{mistune.escape(src)}">'
 
 
-class SPSPrintRenderer(SPSRenderer):
-    def header(self, text, level, raw=None):
-        # return header html without id
-        return f'\n<h{level}>{text}</h{level}>\n'
-
-
 def clean_html(html):
     # define allowed html tags and attributes
     markdown_tags = [
@@ -65,17 +59,6 @@ def clean_html(html):
 def markdown(value):
     # parse markdown
     renderer = SPSRenderer()
-    md = mistune.Markdown(renderer=renderer)
-    raw_html = md(value)
-    # clean html
-    cleaned_html = clean_html(raw_html)
-    return cleaned_html
-
-
-@register.filter
-def markdown_print(value):
-    # parse markdown
-    renderer = SPSPrintRenderer()
     md = mistune.Markdown(renderer=renderer)
     raw_html = md(value)
     # clean html
