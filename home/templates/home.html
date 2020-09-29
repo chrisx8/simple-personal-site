@@ -2,12 +2,18 @@
 {% block pagetitle %} Home {% endblock %}
 {% block ogtitle %} Home {% endblock %}
 {% block body %}
+{% load markdown %}
 <div class="container side-padding">
 {% if home.about_me %}
 <h1 class="title">About Me</h1>
 <div class="content">
-{% load markdown %}
 {{ home.about_me|markdown|safe }}
+</div>
+{% endif %}
+{% if home.skills %}
+<h1 class="title">My Skills</h1>
+<div class="content">
+{{ home.skills|markdown|safe }}
 </div>
 {% endif %}
 {% if home.resume %}
@@ -64,7 +70,6 @@
 {% else %}
 <p class="title">{{ project.title }}</p>
 {% endif %}
-{% load markdown %}
 <div class="content">{{ project.description|markdown|safe }}</div>
 </div>
 </div>
