@@ -4,6 +4,9 @@
 {% block body %}
 {% load markdown %}
 <div class="container side-padding">
+{% if home.resume %}
+<div class="content noprint"><a class="button is-medium is-link" href="{{ home.resume.url }}" target="_blank" rel="noopener noreferrer">Resume</a></div>
+{% endif %}
 {% if home.about_me %}
 <h1 class="title">About Me</h1>
 <div class="content">
@@ -15,9 +18,6 @@
 <div class="content">
 {{ home.skills|markdown|safe }}
 </div>
-{% endif %}
-{% if home.resume %}
-<div class="content noprint"><a class="button is-link" href="{{ home.resume.url }}" target="_blank" rel="noopener noreferrer">Resume</a></div>
 {% endif %}
 {% if latest_articles %}
 <h1 class="title">Blog</h1>
