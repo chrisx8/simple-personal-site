@@ -11,14 +11,18 @@
 <div class="field">
 <label class="label" for="{{ field.id_for_label }}">{{ field.label }}</label>
 <div class="control">{{ field }}</div>
-{% if field.errors %}<article class="message is-danger"><div class="message-header"><strong>{{ field.errors }}</strong></div></article>{% endif %}
+{% if field.errors %}
+<article class="message is-danger"><div class="message-header"><strong>{{ field.errors }}</strong></div></article>
+{% endif %}
 </div>
 {% endfor %}
 {% if hcaptcha_sitekey %}
 <div class="field">
 <script src="https://hcaptcha.com/1/api.js" async defer></script>
 <div class="h-captcha" id="h-captcha" data-sitekey="{{ hcaptcha_sitekey }}"></div>
-{% if hcaptcha_fail %}<article class="message is-danger"><div class="message-header"><strong>Verification failed. Please try again.</strong></div></article>{% endif %}
+{% if hcaptcha_fail %}
+<article class="message is-danger"><div class="message-header"><strong>Verification failed. Please try again.</strong></div></article>
+{% endif %}
 <noscript>
 <article class="message is-info"><div class="message-header"><strong>Please enable JavaScript to send messages.</strong></div></article>
 </noscript>
