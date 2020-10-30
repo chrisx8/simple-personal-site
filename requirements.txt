@@ -16,7 +16,7 @@ Pillow==8.0.1
 psycopg2-binary==2.8.6
 Pygments==2.7.2
 pyparsing==2.4.7
-python-dotenv==0.14.0
+python-dotenv==0.15.0
 pytz==2020.1
 requests==2.24.0
 six==1.15.0
