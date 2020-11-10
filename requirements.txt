@@ -1,4 +1,4 @@
-asgiref==3.3.0
+asgiref==3.3.1
 beautifulsoup4==4.9.3
 bleach==3.2.1
 certifi==2020.11.8
