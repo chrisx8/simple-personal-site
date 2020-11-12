@@ -8,7 +8,10 @@
 <h2 class="subtitle blog-subtitle">{{ article.subtitle }}</h2>
 <div class="content{% if not article.subtitle %} blog-nosub{% endif %}">
 {% if article.tag.all %}
-<p>{% for tag in article.tag.all %}<a href="{% url 'filter_by_tag' tag=tag %}"><span class="tag is-medium">{{ tag }}</span>&nbsp;</a>{% endfor %}<br>Last updated on <strong>{{ article.last_edited }}</strong></p>
+<p>
+{% for tag in article.tag.all %}<a href="{% url 'filter_by_tag' tag=tag %}"><span class="tag is-medium">{{ tag }}</span>&nbsp;</a>{% endfor %}<br>
+<i>Last updated on <strong>{{ article.last_edited }}</strong></i>
+</p>
 {% else %}
 <p><i>Last updated on <strong>{{ article.last_edited }}</strong></i></p>
 {% endif %}
