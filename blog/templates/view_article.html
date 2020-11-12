@@ -10,7 +10,7 @@
 {% if article.tag.all %}
 <p>{% for tag in article.tag.all %}<a href="{% url 'filter_by_tag' tag=tag %}"><span class="tag is-medium">{{ tag }}</span>&nbsp;</a>{% endfor %}<br>Last updated on <strong>{{ article.last_edited }}</strong></p>
 {% else %}
-<p>Last updated on <strong>{{ article.last_edited }}</strong></p>
+<p><i>Last updated on <strong>{{ article.last_edited }}</strong></i></p>
 {% endif %}
 </div>
 {% if article.embed %}

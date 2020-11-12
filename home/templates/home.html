@@ -36,7 +36,7 @@
 </div>
 <nav class="level">
 <div class="level-left">{% for tag in article.tag.all %}<a href="{% url 'filter_by_tag' tag=tag %}"><span class="tag is-medium">{{ tag }}</span>&nbsp;</a>{% endfor %}</div>
-<div class="level-right blog-date"><span class="level-item">{{ article.last_edited }}</span></div>
+<div class="level-right"><span class="level-item"><small>{{ article.last_edited }}</small></span></div>
 </nav>
 </div>
 </article>
