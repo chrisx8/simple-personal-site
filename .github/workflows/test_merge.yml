@@ -1,11 +1,11 @@
-name: test
+name: Test
 on:
   push:
     branches-ignore: master
   pull_request:
 jobs:
   test:
-    name: Test
+    name: Run Tests
     runs-on: ubuntu-latest
     strategy:
       matrix:
