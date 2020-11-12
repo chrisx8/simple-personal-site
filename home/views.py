@@ -13,7 +13,7 @@ def home(request):
         home_obj = None
     # get latest projects and articles
     latest_articles = Article.objects.order_by('-last_edited', 'title')[:2]
-    latest_projects = Project.objects.order_by('-posted', 'title')[:2]
+    latest_projects = Project.objects.order_by('order')[:2]
     if not home_obj and not len(latest_articles) and not len(latest_projects):
         # go to setup if homepage is empty
         context = {'admin_url': ADMIN_URL}
