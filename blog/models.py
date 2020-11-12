@@ -26,7 +26,7 @@ class Tag(models.Model):
 
 class Article(models.Model):
     id = models.SlugField(primary_key=True, verbose_name='Article ID')
-    title = models.CharField(max_length=250, default='', null=False)
+    title = models.CharField(max_length=250, default='', null=False, unique=True)
     subtitle = models.CharField(max_length=250, default='', null=False, blank=True)
     tag = models.ManyToManyField(Tag, blank=True)
     image = models.ForeignKey(Image, blank=True, null=True, on_delete=models.CASCADE,
