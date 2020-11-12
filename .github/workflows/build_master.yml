@@ -1,4 +1,4 @@
-name: Build
+name: build
 on:
   push:
     branches: master
@@ -6,15 +6,15 @@ on:
     - cron: '0 3 * * 0'
 jobs:
   build:
-    name: Build Docker image
+    name: Build Docker Image
     runs-on: ubuntu-latest
     env:
       DOCKER_REPO: chrisx8/simple-personal-site:latest
     steps:
     - uses: actions/checkout@v2
-    - name: Build
+    - name: Build image
       run: docker build -t $DOCKER_REPO .
-    - name: Test
+    - name: Run tests
       run: |
         docker run -p 127.0.0.1:8000:8000 --env-file example.env "$DOCKER_REPO" &
         sleep 5
