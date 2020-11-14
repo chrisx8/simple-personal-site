@@ -1,7 +1,7 @@
+from django.conf import settings
 from django.shortcuts import render, HttpResponseRedirect, Http404
 from blog.models import Article
 from projects.models import Project
-from simple_personal_site.settings import ADMIN_URL
 from .models import Homepage
 
 
@@ -16,7 +16,7 @@ def home(request):
     latest_projects = Project.objects.order_by('order')[:2]
     if not home_obj and not len(latest_articles) and not len(latest_projects):
         # go to setup if homepage is empty
-        context = {'admin_url': ADMIN_URL}
+        context = {'admin_url': settings.ADMIN_URL}
         return render(request, 'setup.html', context=context)
     else:
         context = {
@@ -37,21 +37,31 @@ def skip_setup(request):
         raise Http404
 
 
+# create context dict for error pages
+def create_error_page_context():
+    # override social links to show status page link
+    class StatusPageLink():
+        url = settings.STATUS_PAGE_URL
+        platform = 'System Status'
+    context = {'social_links': [StatusPageLink()]}
+    return context
+
+
 # csrf failure page
 def csrf_failure(request, *args, **argv):
-    return render(request, 'error/csrf_failure.html', status=403)
+    return render(request, 'error/csrf_failure.html', status=403, context=create_error_page_context())
 
 
 # 403 error page
 def handler403(request, *args, **argv):
-    return render(request, 'error/403.html', status=403)
+    return render(request, 'error/403.html', status=403, context=create_error_page_context())
 
 
 # 404 error page
 def handler404(request, *args, **argv):
-    return render(request, 'error/404.html', status=404)
+    return render(request, 'error/404.html', status=404, context=create_error_page_context())
 
 
 # 500 error page
 def handler500(request, *args, **argv):
-    return render(request, 'error/500.html', status=500)
+    return render(request, 'error/500.html', status=500, context=create_error_page_context())

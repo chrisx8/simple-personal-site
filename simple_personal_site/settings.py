@@ -21,19 +21,18 @@ except AttributeError:
 
 # DEBUG defaults to False.
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-HTML_MINIFY = True
-
 # Set environment variable DEBUG=TRUE to enable debug
 debug_env = os.environ.get('DEBUG')
 if isinstance(debug_env, str) and debug_env.upper() == 'TRUE':
     print('WARNING: Debug mode is enabled!')
     DEBUG = True
     HTML_MINIFY = False
+else:
+    DEBUG = False
+    HTML_MINIFY = True
 
 # Application definition
 INSTALLED_APPS = [
-    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -82,8 +81,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'simple_personal_site.wsgi.application'
-
-ADMIN_URL = os.environ.get('ADMIN_URL')
 
 # Database
 # Configure DB from env file
@@ -152,3 +149,11 @@ if isinstance(SITE_SSL, str) and SITE_SSL.lower() == 'true':
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
     CSRF_COOKIE_SECURE = True
     SESSION_COOKIE_SECURE = True
+
+# Site-specific config
+ADMIN_URL = os.environ.get('ADMIN_URL')
+STATUS_PAGE_URL = os.environ.get('STATUS_PAGE_URL')
+
+# Enable admin panel if admin url is set
+if (ADMIN_URL):
+    INSTALLED_APPS.append('django.contrib.admin')
