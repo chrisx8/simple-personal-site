@@ -1,7 +1,7 @@
 name: test
 on:
   push:
-    branches-ignore: master
+    branches-ignore: main
   pull_request:
 jobs:
   test:
