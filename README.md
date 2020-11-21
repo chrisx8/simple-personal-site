@@ -1,8 +1,8 @@
 # Simple Personal Site <!-- omit in toc -->
 
-![Build Status](https://github.com/chrisx8/simple-personal-site/workflows/build/badge.svg)]
+![Build Status](https://github.com/chrisx8/simple-personal-site/workflows/build/badge.svg)
 
-A fast and simple CMS custom built for developers. Follow instructions below to set up.
+A fast and minimalist Django-based CMS tailored to developers and tech enthusiasts.
 
 ## Table of Contents <!-- omit in toc -->
 
