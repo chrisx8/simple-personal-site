@@ -167,11 +167,10 @@ if environ.get('USE_OIDC') == 'True':
     MIDDLEWARE.append('mozilla_django_oidc.middleware.SessionRefresh')
     # Authentication backends. Enable OIDC
     AUTHENTICATION_BACKENDS = (
-        'mozilla_django_oidc.auth.OIDCAuthenticationBackend',
+        'simple_personal_site.oidc_backend.SPSOIDCAuthBackend',
         'django.contrib.auth.backends.ModelBackend'
     )
     # configure OIDC from environment variable
-    OIDC_USERNAME_ALGO = 'simple_personal_site.context_processor.generate_username'
     OIDC_RP_CLIENT_ID = environ.get('OIDC_RP_CLIENT_ID')
     OIDC_RP_CLIENT_SECRET = environ.get('OIDC_RP_CLIENT_SECRET')
     OIDC_OP_AUTHORIZATION_ENDPOINT = environ.get('OIDC_OP_AUTHORIZATION_ENDPOINT')
