@@ -25,10 +25,13 @@ urlpatterns = [
     path('blog/', include('blog.urls')),
     path('contact/', include('contact.urls')),
     path('projects/', include('projects.urls')),
-    path('openid-connect/', include('mozilla_django_oidc.urls')),
     path('', include('url_shortener.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-# get admin url from config
+# enable admin if url is configured
 if settings.ADMIN_URL:
     urlpatterns.insert(3, path(settings.ADMIN_URL, admin.site.urls))
+
+# enable OIDC if enabled
+if settings.USE_OIDC:
+    urlpatterns.insert(-2, path('openid-connect/', include('mozilla_django_oidc.urls')))

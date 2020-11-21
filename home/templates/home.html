@@ -78,4 +78,16 @@
 </div>
 {% endif %}
 </div>
+<div class="has-text-centered">
+{% if use_oidc %}
+{% if user.is_authenticated %}
+<form action="{% url 'oidc_logout' %}" method="post">
+{% csrf_token %}
+<button class="button is-small" type="submit">OIDC Logout</button>
+</form>
+{% else %}
+<a class="button is-small" href="{% url 'oidc_authentication_init' %}">OIDC Login</a>
+{% endif %}
+{% endif %}
+</div>
 {% endblock %}

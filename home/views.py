@@ -22,7 +22,8 @@ def home(request):
         context = {
             'home': home_obj,
             'latest_articles': latest_articles,
-            'latest_projects': latest_projects
+            'latest_projects': latest_projects,
+            'use_oidc': settings.USE_OIDC,
         }
     return render(request, 'home.html', context=context)
 

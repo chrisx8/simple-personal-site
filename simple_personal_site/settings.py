@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.sitemaps',
     'django.contrib.staticfiles',
-    'mozilla_django_oidc',
     'solo',
     # SPS Apps
     'home.apps.HomeConfig',
@@ -94,12 +93,6 @@ DATABASES = {
     }
 }
 
-# Authentication
-# Authentication backends. Enable OIDC
-AUTHENTICATION_BACKENDS = (
-    'mozilla_django_oidc.auth.OIDCAuthenticationBackend',
-    'django.contrib.auth.backends.ModelBackend'
-)
 # Password validators
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
@@ -162,14 +155,27 @@ ADMIN_URL = environ.get('ADMIN_URL')
 STATUS_PAGE_URL = environ.get('STATUS_PAGE_URL')
 
 # Enable admin panel if admin url is set
-if (ADMIN_URL):
+if ADMIN_URL:
     INSTALLED_APPS.append('django.contrib.admin')
 
-# OIDC SSO
-OIDC_RP_CLIENT_ID = environ.get('OIDC_RP_CLIENT_ID')
-OIDC_RP_CLIENT_SECRET = environ.get('OIDC_RP_CLIENT_SECRET')
-OIDC_OP_AUTHORIZATION_ENDPOINT = environ.get('OIDC_OP_AUTHORIZATION_ENDPOINT')
-OIDC_OP_JWKS_ENDPOINT = environ.get('OIDC_OP_JWKS_ENDPOINT')
-OIDC_OP_TOKEN_ENDPOINT = environ.get('OIDC_OP_TOKEN_ENDPOINT')
-OIDC_OP_USER_ENDPOINT = environ.get('OIDC_OP_USER_ENDPOINT')
-OIDC_RP_SIGN_ALGO = environ.get('OIDC_RP_SIGN_ALGO')
+# OpenID Connect SSO. Only use if explicitly enabled.
+USE_OIDC = False
+if environ.get('USE_OIDC') == 'True':
+    USE_OIDC = True
+    # install app
+    INSTALLED_APPS.append('mozilla_django_oidc')
+    MIDDLEWARE.append('mozilla_django_oidc.middleware.SessionRefresh')
+    # Authentication backends. Enable OIDC
+    AUTHENTICATION_BACKENDS = (
+        'mozilla_django_oidc.auth.OIDCAuthenticationBackend',
+        'django.contrib.auth.backends.ModelBackend'
+    )
+    # configure OIDC from environment variable
+    OIDC_USERNAME_ALGO = 'simple_personal_site.context_processor.generate_username'
+    OIDC_RP_CLIENT_ID = environ.get('OIDC_RP_CLIENT_ID')
+    OIDC_RP_CLIENT_SECRET = environ.get('OIDC_RP_CLIENT_SECRET')
+    OIDC_OP_AUTHORIZATION_ENDPOINT = environ.get('OIDC_OP_AUTHORIZATION_ENDPOINT')
+    OIDC_OP_JWKS_ENDPOINT = environ.get('OIDC_OP_JWKS_ENDPOINT')
+    OIDC_OP_TOKEN_ENDPOINT = environ.get('OIDC_OP_TOKEN_ENDPOINT')
+    OIDC_OP_USER_ENDPOINT = environ.get('OIDC_OP_USER_ENDPOINT')
+    OIDC_RP_SIGN_ALGO = environ.get('OIDC_RP_SIGN_ALGO')

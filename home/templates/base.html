@@ -71,16 +71,6 @@
 <div class="space-40"></div>
 {% block body %}{% endblock %}
 <div class="space-40"></div>
-<div class="has-text-centered">
-{% if user.is_authenticated %}
-<form action="{% url 'oidc_logout' %}" method="post">
-{% csrf_token %}
-<button class="button is-small" type="submit">Logout</button>
-</form>
-{% else %}
-<a class="button is-small" href="{% url 'oidc_authentication_init' %}">Login</a>
-{% endif %}
-</div>
 <footer class="sps-footer">
 <div class="content has-text-centered">
 {% for link in social_links %}

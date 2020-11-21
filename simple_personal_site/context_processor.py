@@ -17,3 +17,8 @@ def global_tags(request):
         'social_links': social_links
     }
     return context
+
+
+# set username = email for OIDC accounts
+def generate_username(email):
+    return email
