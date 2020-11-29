@@ -15,12 +15,12 @@ josepy==1.5.0
 mistune==0.8.4
 mozilla-django-oidc==1.2.4
 mysqlclient==2.0.1
-packaging==20.4
+packaging==20.7
 Pillow==8.0.1
 psycopg2-binary==2.8.6
 pycparser==2.20
 Pygments==2.7.2
-pyOpenSSL==19.1.0
+pyOpenSSL==20.0.0
 pyparsing==2.4.7
 python-dotenv==0.15.0
 pytz==2020.4
