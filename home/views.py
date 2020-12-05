@@ -39,6 +39,10 @@ def skip_setup(request):
 
 # create context dict for error pages
 def create_error_page_context():
+    # skip if status page url is not set
+    if not settings.STATUS_PAGE_URL:
+        return {'social_links': []}
+
     # override social links to show status page link
     class StatusPageLink():
         url = settings.STATUS_PAGE_URL
