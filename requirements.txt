@@ -14,7 +14,7 @@ mysqlclient==2.0.1
 packaging==20.7
 Pillow==8.0.1
 psycopg2-binary==2.8.6
-Pygments==2.7.2
+Pygments==2.7.3
 pyparsing==2.4.7
 python-dotenv==0.15.0
 pytz==2020.4
