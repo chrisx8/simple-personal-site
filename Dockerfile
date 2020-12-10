@@ -1,9 +1,9 @@
-FROM python:3.8-slim
+FROM python:3.9-slim
 
 COPY requirements.txt /tmp/requirements.txt
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends gcc libmariadb-dev libjpeg-dev && \
+    apt-get install -y --no-install-recommends gcc libmariadb-dev libjpeg-dev libpq-dev && \
 	pip3 install --no-cache -r /tmp/requirements.txt && \
     apt-get purge -y gcc && \
     apt-get autoremove -y --purge && \
