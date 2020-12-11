@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.8]
+        python-version: [3.8, 3.9]
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python ${{ matrix.python-version }}
@@ -19,7 +19,7 @@ jobs:
     - name: Install dependencies
       run: |
         cp example.env .env
-        python -m pip install --upgrade pip
+        python -m pip install -U pip
         pip install wheel
         pip install -r requirements.txt
     - name: Set up project
