@@ -11,7 +11,7 @@ html5lib==1.1
 idna==2.10
 mistune==0.8.4
 mysqlclient==2.0.2
-packaging==20.7
+packaging==20.8
 Pillow==8.0.1
 psycopg2==2.8.6
 Pygments==2.7.3
