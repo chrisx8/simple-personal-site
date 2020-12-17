@@ -157,6 +157,7 @@ STATUS_PAGE_URL = environ.get('STATUS_PAGE_URL')
 # Enable admin panel if admin url is set
 if ADMIN_URL:
     INSTALLED_APPS.append('django.contrib.admin')
+    LOGIN_REDIRECT_URL = '/' + ADMIN_URL
 
 # OpenID Connect SSO. Only use if explicitly enabled.
 USE_OIDC = False
