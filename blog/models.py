@@ -25,7 +25,7 @@ class Tag(models.Model):
 
 
 class Article(models.Model):
-    id = models.SlugField(primary_key=True, verbose_name='Article ID')
+    article_id = models.SlugField(primary_key=True, verbose_name='Article ID')
     title = models.CharField(max_length=250, default='', null=False, unique=True)
     subtitle = models.CharField(max_length=250, default='', null=False, blank=True)
     tag = models.ManyToManyField(Tag, blank=True)
@@ -42,17 +42,17 @@ class Article(models.Model):
         ordering = ['-last_edited', 'title']
 
     def get_absolute_url(self):
-        return reverse('view_article', kwargs={'id': self.id})
+        return reverse('view_article', kwargs={'article_id': self.article_id})
 
     def save(self):
-        old_id = self.id
+        old_id = self.article_id
         # slugify title, get first 250 characters
         new_id = slugify(self.title)[:250]
         # delete old if id changed
         if old_id != new_id:
-            self.id = new_id
+            self.article_id = new_id
             try:
-                Article.delete(Article.objects.get(id=old_id))
+                Article.delete(Article.objects.get(article_id=old_id))
             except self.DoesNotExist:
                 pass
         super(Article, self).save()

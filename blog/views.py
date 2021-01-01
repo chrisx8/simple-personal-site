@@ -77,9 +77,9 @@ def filter_by_tag(request, tag):
     return render(request, 'filter_by_tag.html', context=context)
 
 
-def view_article(request, id):
+def view_article(request, article_id):
     try:
-        article = Article.objects.get(id=id)
+        article = Article.objects.get(article_id=article_id)
     except Article.DoesNotExist:
         raise Http404
     context = {
