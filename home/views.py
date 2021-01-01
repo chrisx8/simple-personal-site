@@ -14,27 +14,27 @@ def home(request):
     # get latest projects and articles
     latest_articles = Article.objects.order_by('-last_edited', 'title')[:2]
     latest_projects = Project.objects.order_by('order')[:2]
-    if not home_obj and not len(latest_articles) and not len(latest_projects):
-        # go to setup if homepage is empty
+    # go to setup if homepage is empty
+    if not home_obj and not latest_articles and not latest_projects:
         context = {'admin_url': settings.ADMIN_URL}
         return render(request, 'setup.html', context=context)
-    else:
-        context = {
-            'home': home_obj,
-            'latest_articles': latest_articles,
-            'latest_projects': latest_projects
-        }
+    # render homepage
+    context = {
+        'home': home_obj,
+        'latest_articles': latest_articles,
+        'latest_projects': latest_projects
+    }
     return render(request, 'home.html', context=context)
 
 
 def skip_setup(request):
     # get/create homepage
     result = Homepage.objects.get_or_create()
-    # redirect if object created, 404 otherwise
-    if result[1]:
-        return HttpResponseRedirect('/')
-    else:
+    # 404 if object isn't created
+    if not result[1]:
         raise Http404
+    # redirect if object is created
+    return HttpResponseRedirect('/')
 
 
 # create context dict for error pages
