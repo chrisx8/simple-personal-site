@@ -48,7 +48,7 @@ def filter_by_tag(request, tag):
     try:
         tag_obj = Tag.objects.get(tag=tag)
         articles = Article.objects.filter(tag=tag_obj).order_by('-last_edited', 'title')
-        assert len(articles)
+        assert articles
     except (Tag.DoesNotExist, AssertionError):
         raise Http404
     # find by tag and exclude hidden articles
