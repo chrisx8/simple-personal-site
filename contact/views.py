@@ -16,7 +16,7 @@ def contact(request):
     has_pgp_key = bool(contact_config.pgp_key)
     hcaptcha_sitekey = contact_config.hcaptcha_site_key
     hcaptcha_secret = contact_config.hcaptcha_secret_key
-    hcaptcha_fail = False
+    hcaptcha_fail = True
 
     # check if configs for sending emails exist
     def can_email():
@@ -59,6 +59,7 @@ def contact(request):
             # captcha validation
             is_human = hcaptcha_validate(hcaptcha_resp)
             if is_human:
+                hcaptcha_fail = False
                 data = form.cleaned_data
                 # save message
                 new_msg = Message(name=data['name'], email=data['email'], message=data['message'])
@@ -66,8 +67,6 @@ def contact(request):
                 # send notification
                 send_notification_email(data['email'])
                 return render(request, 'contact_success.html')
-            else:
-                hcaptcha_fail = True
     else:
         form = ContactForm()
 
@@ -85,7 +84,7 @@ def contact(request):
 def pgp_key(request):
     contact_config = ContactConfig.objects.get_or_create()[0]
     pgp_key = contact_config.pgp_key
-    if pgp_key:
-        return HttpResponse(pgp_key, content_type='text/plain')
-    else:
+    # 404 if key isn't configured
+    if not pgp_key:
         raise Http404
+    return HttpResponse(pgp_key, content_type='text/plain')

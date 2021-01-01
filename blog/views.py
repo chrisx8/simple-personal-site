@@ -48,7 +48,7 @@ def filter_by_tag(request, tag):
     try:
         tag_obj = Tag.objects.get(tag=tag)
         articles = Article.objects.filter(tag=tag_obj).order_by('-last_edited', 'title')
-        assert len(articles)
+        assert articles
     except (Tag.DoesNotExist, AssertionError):
         raise Http404
     # find by tag and exclude hidden articles
@@ -77,9 +77,9 @@ def filter_by_tag(request, tag):
     return render(request, 'filter_by_tag.html', context=context)
 
 
-def view_article(request, id):
+def view_article(request, article_id):
     try:
-        article = Article.objects.get(id=id)
+        article = Article.objects.get(article_id=article_id)
     except Article.DoesNotExist:
         raise Http404
     context = {

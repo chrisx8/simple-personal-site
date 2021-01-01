@@ -28,4 +28,3 @@ class SiteInfoAdmin(SingletonModelAdmin):
         ('Header', {'fields': ['header_title', 'header_subtitle']}),
         ('Footer', {'fields': ['footer_copyright']}),
     )
-
