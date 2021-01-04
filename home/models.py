@@ -72,5 +72,5 @@ def auto_delete_file_on_change(sender, instance, **kwargs):
             # remove if files are changed
             if old_file != new_file and os.path.isfile(old_file.path):
                 os.remove(old_file.path)
-        except ValueError:
+        except (ValueError, Homepage.DoesNotExist):
             return False
