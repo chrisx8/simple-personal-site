@@ -145,7 +145,7 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 [GNU General Public License](LICENSE) for more details.
 
-Copyright (C) 2020 [Chris Xiao](https://github.com/chrisx8)
+Copyright (C) 2018-2021 [Chris Xiao](https://github.com/chrisx8)
 
 ---
 
