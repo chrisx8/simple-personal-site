@@ -1,6 +1,6 @@
 asgiref==3.3.1
 beautifulsoup4==4.9.3
-bleach==3.2.1
+bleach==3.2.2
 certifi==2020.12.5
 chardet==4.0.0
 Django==3.1.5
@@ -14,7 +14,7 @@ mysqlclient==2.0.3
 packaging==20.8
 Pillow==8.1.0
 psycopg2==2.8.6
-Pygments==2.7.3
+Pygments==2.7.4
 pyparsing==2.4.7
 python-dotenv==0.15.0
 pytz==2020.5
