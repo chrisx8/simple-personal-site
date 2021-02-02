@@ -7,8 +7,8 @@ from django.contrib.sitemaps.views import sitemap
 from django.urls import include, path
 from django.views.generic.base import RedirectView
 from blog.sitemaps import ArticleSitemap, TagSitemap
+from home.sitemaps import SiteSitemap
 from home.views import handler403, handler404, handler500
-from .sitemaps import SiteSitemap
 
 sitemaps = {
     'site': SiteSitemap,
@@ -28,6 +28,6 @@ urlpatterns = [
     path('', include('url_shortener.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-# get admin url from config
+# enable admin if url is configured
 if settings.ADMIN_URL:
     urlpatterns.insert(3, path(settings.ADMIN_URL, admin.site.urls))
