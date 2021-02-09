@@ -21,7 +21,7 @@ def contact(request):
     def can_email():
         smtp_configured = settings.EMAIL_HOST and settings.EMAIL_PORT and \
                           settings.EMAIL_HOST_USER and settings.EMAIL_HOST_PASSWORD
-        contact_configured = contact_config and contact_config.from_name and contact_config.from_email
+        contact_configured = contact_config and contact_config.from_email
         return smtp_configured and contact_configured
 
     def send_notification_email():
@@ -32,7 +32,7 @@ def contact(request):
         mail_context = {'msg': new_msg}
         mail_text = render(request, 'notification_email.txt', context=mail_context).content.decode("utf-8")
         # send email to notification recipient
-        from_addr = f"{new_msg.name} - {new_msg.email.replace('@', '[at]')} <{contact_config.from_email}>"
+        from_addr = f"{new_msg.name} - {new_msg.email.replace('@', ' at ')} <{contact_config.from_email}>"
         email = EmailMessage(f'Message from {new_msg.name}', mail_text, from_addr,
                              [contact_config.notification_recipient], reply_to=[new_msg.email])
         email.send(fail_silently=True)
