@@ -7,7 +7,7 @@ from .models import ContactConfig, Message
 class ContactConfigAdmin(SingletonModelAdmin):
     fieldsets = (
         ('hCaptcha on contact form', {'fields': ['hcaptcha_site_key', 'hcaptcha_secret_key']}),
-        ('Email Config', {'fields': ['from_name', 'from_email', 'notification_recipient']}),
+        ('Email Config', {'fields': ['from_email', 'notification_recipient']}),
         ('PGP Public Key', {'fields': ['pgp_fingerprint', 'pgp_key']})
     )
 

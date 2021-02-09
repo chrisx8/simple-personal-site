@@ -11,7 +11,6 @@ from .models import ContactConfig, Message
 def contact(request):
     # get config`
     contact_config = ContactConfig.objects.get_or_create()[0]
-    from_addr = f'{contact_config.from_name} <{contact_config.from_email}>'
     pgp_fingerprint = contact_config.pgp_fingerprint
     has_pgp_key = bool(contact_config.pgp_key)
     hcaptcha_sitekey = contact_config.hcaptcha_site_key
@@ -25,7 +24,7 @@ def contact(request):
         contact_configured = contact_config and contact_config.from_name and contact_config.from_email
         return smtp_configured and contact_configured
 
-    def send_notification_email(msg_sender):
+    def send_notification_email():
         # check prereqs for emailing site owner
         if not can_email() or not contact_config.notification_recipient:
             return
@@ -33,8 +32,9 @@ def contact(request):
         mail_context = {'msg': new_msg}
         mail_text = render(request, 'notification_email.txt', context=mail_context).content.decode("utf-8")
         # send email to notification recipient
-        email = EmailMessage('Message from ' + new_msg.name, mail_text, from_addr,
-                             [contact_config.notification_recipient], reply_to=[msg_sender])
+        from_addr = f"{new_msg.name} - {new_msg.email.replace('@', '[at]')} <{contact_config.from_email}>"
+        email = EmailMessage(f'Message from {new_msg.name}', mail_text, from_addr,
+                             [contact_config.notification_recipient], reply_to=[new_msg.email])
         email.send(fail_silently=True)
 
     def hcaptcha_validate(response):
@@ -63,8 +63,8 @@ def contact(request):
                 # save message
                 new_msg = Message(name=data['name'], email=data['email'], message=data['message'])
                 new_msg.save()
-                # send notification
-                send_notification_email(data['email'])
+                # send notification, fail silently
+                send_notification_email()
                 return render(request, 'contact_success.html')
             # failed captcha
             hcaptcha_fail = True

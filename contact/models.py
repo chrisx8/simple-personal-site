@@ -6,8 +6,6 @@ class ContactConfig(models.Model):
                                          help_text='Blank = no captcha on contact form')
     hcaptcha_secret_key = models.CharField(max_length=42, blank=True, verbose_name='hCaptcha secret key',
                                          help_text='Blank = no captcha on contact form')
-    from_name = models.CharField(max_length=50, blank=True, verbose_name='Name shown on outgoing emails',
-                                 help_text='Blank = no outgoing emails')
     from_email = models.EmailField(blank=True, verbose_name='Email address shown on outgoing emails',
                                    help_text='Blank = no outgoing emails')
     notification_recipient = models.EmailField(blank=True, verbose_name='Notification recipient\'s email address',
