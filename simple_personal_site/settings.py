@@ -154,5 +154,5 @@ ADMIN_URL = environ.get('ADMIN_URL')
 STATUS_PAGE_URL = environ.get('STATUS_PAGE_URL')
 
 # Enable admin panel if admin url is set
-if (ADMIN_URL):
+if ADMIN_URL:
     INSTALLED_APPS.append('django.contrib.admin')
