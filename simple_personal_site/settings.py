@@ -1,28 +1,28 @@
 # Django settings for simple_personal_site project.
 
-import os
 import secrets
 from dotenv import load_dotenv
+from os import environ, path
 
 # Generate secret key
 key_bytes = 128
 SECRET_KEY = secrets.token_urlsafe(key_bytes)
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# Build paths inside the project like this: path.join(BASE_DIR, ...)
+BASE_DIR = path.dirname(path.dirname(path.abspath(__file__)))
 
 # Load config into system env
 load_dotenv()
 
 try:
-    ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(',')
+    ALLOWED_HOSTS = environ.get('ALLOWED_HOSTS').split(',')
 except AttributeError:
     pass
 
 # DEBUG defaults to False.
 # SECURITY WARNING: don't run with debug turned on in production!
 # Set environment variable DEBUG=TRUE to enable debug
-debug_env = os.environ.get('DEBUG')
+debug_env = environ.get('DEBUG')
 if isinstance(debug_env, str) and debug_env.upper() == 'TRUE':
     print('WARNING: Debug mode is enabled!')
     DEBUG = True
@@ -86,12 +86,12 @@ WSGI_APPLICATION = 'simple_personal_site.wsgi.application'
 # Configure DB from env file
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.' + os.environ.get('DB_TYPE'),
-        'NAME': os.environ.get('DB_NAME'),
-        'HOST': os.environ.get('DB_HOST'),
-        'PORT': os.environ.get('DB_PORT'),
-        'USER': os.environ.get('DB_USERNAME'),
-        'PASSWORD': os.environ.get('DB_PASSWORD'),
+        'ENGINE': 'django.db.backends.' + environ.get('DB_TYPE'),
+        'NAME': environ.get('DB_NAME'),
+        'HOST': environ.get('DB_HOST'),
+        'PORT': environ.get('DB_PORT'),
+        'USER': environ.get('DB_USERNAME'),
+        'PASSWORD': environ.get('DB_PASSWORD'),
     }
 }
 
@@ -114,20 +114,19 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
-STATIC_BASE = os.path.join(BASE_DIR, 'static_serve')
-STATIC_ROOT = os.path.join(STATIC_BASE, 'static')
-MEDIA_ROOT = os.path.join(STATIC_BASE, 'media')
+STATIC_BASE = path.join(BASE_DIR, 'static_serve')
+STATIC_ROOT = path.join(STATIC_BASE, 'static')
+MEDIA_ROOT = path.join(STATIC_BASE, 'media')
 
 # Configure SMTP server from env file
 try:
-    EMAIL_HOST = str(os.environ.get('EMAIL_HOST'))
-    EMAIL_PORT = int(os.environ.get('EMAIL_PORT'))
-    EMAIL_HOST_USER = str(os.environ.get('EMAIL_HOST_USER'))
-    EMAIL_HOST_PASSWORD = str(os.environ.get('EMAIL_HOST_PASSWORD'))
-    if os.environ.get('EMAIL_USE_TLS').lower() == 'true':
+    EMAIL_HOST = str(environ.get('EMAIL_HOST'))
+    EMAIL_PORT = int(environ.get('EMAIL_PORT'))
+    EMAIL_HOST_USER = str(environ.get('EMAIL_HOST_USER'))
+    EMAIL_HOST_PASSWORD = str(environ.get('EMAIL_HOST_PASSWORD'))
+    if environ.get('EMAIL_USE_TLS').lower() == 'true':
         EMAIL_USE_TLS = True
-    elif os.environ.get('EMAIL_USE_SSL').lower() == 'true':
+    elif environ.get('EMAIL_USE_SSL').lower() == 'true':
         EMAIL_USE_SSL = True
     else:
         EMAIL_USE_TLS = False
@@ -144,15 +143,15 @@ SECURE_REFERRER_POLICY = 'same-origin'
 X_FRAME_OPTIONS = 'DENY'
 
 # SSL settings
-SITE_SSL = os.environ.get('SITE_SSL')
+SITE_SSL = environ.get('SITE_SSL')
 if isinstance(SITE_SSL, str) and SITE_SSL.lower() == 'true':
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
     CSRF_COOKIE_SECURE = True
     SESSION_COOKIE_SECURE = True
 
 # Site-specific config
-ADMIN_URL = os.environ.get('ADMIN_URL')
-STATUS_PAGE_URL = os.environ.get('STATUS_PAGE_URL')
+ADMIN_URL = environ.get('ADMIN_URL')
+STATUS_PAGE_URL = environ.get('STATUS_PAGE_URL')
 
 # Enable admin panel if admin url is set
 if (ADMIN_URL):
