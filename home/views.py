@@ -37,35 +37,53 @@ def skip_setup(request):
     return HttpResponseRedirect('/')
 
 
-# create context dict for error pages
-def create_error_page_context():
+# create social_link override for error pages
+def create_status_link():
     # skip if status page url is not set
     if not settings.STATUS_PAGE_URL:
-        return {'social_links': []}
+        return []
 
     # override social links to show status page link
     class StatusPageLink():
         url = settings.STATUS_PAGE_URL
         platform = 'System Status'
-    context = {'social_links': [StatusPageLink()]}
-    return context
+    return [StatusPageLink()]
 
 
 # csrf failure page
 def csrf_failure(request, *args, **argv):
-    return render(request, 'error/csrf_failure.html', status=403, context=create_error_page_context())
+    context = {'social_links': create_status_link()}
+    return render(request, 'csrf_failure.html', status=400, context=context)
 
 
 # 403 error page
 def handler403(request, *args, **argv):
-    return render(request, 'error/403.html', status=403, context=create_error_page_context())
+    context = {
+        'social_links': create_status_link(),
+        'code': 403,
+        'title': 'Access Denied',
+        'subtitle': 'Sorry, you\'re not permitted to access this page.'
+    }
+    return render(request, 'error.html', status=context['code'], context=context)
 
 
 # 404 error page
 def handler404(request, *args, **argv):
-    return render(request, 'error/404.html', status=404, context=create_error_page_context())
+    context = {
+        'social_links': create_status_link(),
+        'code': 404,
+        'title': 'Page Not Found',
+        'subtitle': 'The page you\'re looking for doesn\'t exist.'
+    }
+    return render(request, 'error.html', status=context['code'], context=context)
 
 
 # 500 error page
 def handler500(request, *args, **argv):
-    return render(request, 'error/500.html', status=500, context=create_error_page_context())
+    context = {
+        'social_links': create_status_link(),
+        'code': 500,
+        'title': 'Internal Server Error',
+        'subtitle': 'Sorry, the server could not process your request right now. Please try again later.'
+    }
+    return render(request, 'error.html', status=context['code'], context=context)

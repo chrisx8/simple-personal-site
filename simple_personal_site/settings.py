@@ -12,6 +12,7 @@ SECRET_KEY = secrets.token_urlsafe(key_bytes)
 BASE_DIR = path.dirname(path.dirname(path.abspath(__file__)))
 
 # Load config into system env
+# System environment variables ALWAYS TAKES PRECEDENCE
 load_dotenv()
 
 try:

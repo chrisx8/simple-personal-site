@@ -1,4 +1,4 @@
-{{ msg.message|safe }}
+{{ msg.message|linebreaks }}
 
 ----------------------------------------
 To respond to {{ msg.name }}'s message, simply reply to this email.
