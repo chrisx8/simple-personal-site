@@ -4,13 +4,6 @@ from django.utils.text import slugify
 from media.models import Embed, Image
 
 
-class BlogConfig(models.Model):
-    articles_per_page = models.IntegerField(blank=False, default=10)
-
-    class Meta:
-        verbose_name = '# Blog Config #'
-
-
 class Tag(models.Model):
     tag = models.CharField(max_length=50, default='', null=False, primary_key=True)
 

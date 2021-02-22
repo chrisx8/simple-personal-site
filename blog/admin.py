@@ -1,8 +1,7 @@
 from django.contrib import admin
 from solo.admin import SingletonModelAdmin
-from .models import Article, BlogConfig, Tag
+from .models import Article, Tag
 
-admin.site.register(BlogConfig, SingletonModelAdmin)
 admin.site.register(Tag)
 
 

@@ -1,18 +1,16 @@
+from django.conf import settings
 from django.core.paginator import Paginator
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from home.models import SiteInfo
-from .models import Article, BlogConfig, Tag
+from .models import Article, Tag
+
 
 
 def blog(request):
-    # get config
-    blog_config = BlogConfig.objects.get_or_create()[0]
-    site_info = SiteInfo.objects.get_or_create()[0]
-    # exclude hidden articles
     articles = Article.objects.order_by('-last_edited', 'title')
-    paginator = Paginator(articles, blog_config.articles_per_page)
+    paginator = Paginator(articles, settings.BLOG_ARTICLES_PER_PAGE)
     # get page numbers as url param. Default to page 1
     page = request.GET.get('page')
     if page is None:
@@ -37,13 +35,6 @@ def blog(request):
 
 
 def filter_by_tag(request, tag):
-    try:
-        # get blog config
-        blog_config = BlogConfig.objects.get()
-    except BlogConfig.DoesNotExist:
-        # create blog config with defaults
-        blog_config = BlogConfig()
-        blog_config.save()
     # query tag
     try:
         tag_obj = Tag.objects.get(tag=tag)
@@ -52,7 +43,7 @@ def filter_by_tag(request, tag):
     except (Tag.DoesNotExist, AssertionError):
         raise Http404
     # find by tag and exclude hidden articles
-    paginator = Paginator(articles, blog_config.articles_per_page)
+    paginator = Paginator(articles, settings.BLOG_ARTICLES_PER_PAGE)
     # get page numbers as url param. Default to page 1
     page = request.GET.get('page')
     if page is None:
