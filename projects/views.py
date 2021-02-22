@@ -1,15 +1,14 @@
+from django.conf import settings
 from django.core.paginator import Paginator
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, reverse
-from .models import Project, ProjectsConfig
+from .models import Project
 
 
 # all projects
 def projects(request):
-    projects_config = ProjectsConfig.objects.get_or_create()[0]
-    # exclude hidden projects
     all_projects = Project.objects.order_by('order')
-    paginator = Paginator(all_projects, projects_config.projects_per_page)
+    paginator = Paginator(all_projects, settings.PROJECTS_PER_PAGE)
     # get page numbers as url param. Default to page 1
     page = request.GET.get('page')
     if page is None:

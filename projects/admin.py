@@ -1,8 +1,6 @@
 from django.contrib import admin
 from solo.admin import SingletonModelAdmin
-from .models import ProjectsConfig, Project
-
-admin.site.register(ProjectsConfig, SingletonModelAdmin)
+from .models import Project
 
 
 @admin.register(Project)

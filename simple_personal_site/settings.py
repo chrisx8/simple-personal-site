@@ -154,7 +154,7 @@ if isinstance(SITE_SSL, str) and SITE_SSL.lower() == 'true':
 ADMIN_URL = environ.get('ADMIN_URL')
 STATUS_PAGE_URL = environ.get('STATUS_PAGE_URL')
 BLOG_ARTICLES_PER_PAGE = 10
-
+PROJECTS_PER_PAGE = 6
 
 # Enable admin panel if admin url is set
 if ADMIN_URL:
