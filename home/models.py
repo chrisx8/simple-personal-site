@@ -21,7 +21,7 @@ class SiteInfo(SingletonModel):
                                                   '"&copy; YEAR "')
 
     class Meta:
-        verbose_name = '# Site Info #'
+        verbose_name = '*Site Info*'
     
     def save(self, *args, **kwargs):
         admin.site.site_title = self.site_name

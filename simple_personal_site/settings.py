@@ -43,10 +43,10 @@ INSTALLED_APPS = [
     'solo',
     # SPS Apps
     'home.apps.HomeConfig',
-    'blog',
-    'contact',
-    'media',
-    'projects',
+    'blog.apps.BlogConfig',
+    'contact.apps.ContactConfig',
+    'media.apps.MediaConfig',
+    'projects.apps.ProjectsConfig',
     'url_shortener.apps.UrlShortenerConfig',
 ]
 

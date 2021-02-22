@@ -15,7 +15,7 @@ class ContactConfig(models.Model):
                                help_text='Begins with "-----BEGIN PGP PUBLIC KEY BLOCK-----"')
 
     class Meta:
-        verbose_name = '# Contact Config #'
+        verbose_name = '*Contact Config*'
 
 
 # contact form
