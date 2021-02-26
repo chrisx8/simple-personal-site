@@ -1,7 +1,8 @@
 from django.db import models
+from solo.models import SingletonModel
 
 
-class ContactConfig(models.Model):
+class ContactConfig(SingletonModel):
     hcaptcha_site_key = models.UUIDField(null=True, blank=True, verbose_name='hCaptcha Sitekey',
                                          help_text='Blank = no captcha on contact form')
     hcaptcha_secret_key = models.CharField(max_length=42, blank=True, verbose_name='hCaptcha secret key',

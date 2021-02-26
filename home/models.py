@@ -42,9 +42,9 @@ class SocialMediaLink(models.Model):
 
 
 class Homepage(SingletonModel):
+    resume = models.FileField(blank=True, help_text='Upload resume as a PDF for best compatibility')
     about_me = models.TextField(verbose_name='About Me section', blank=True, help_text='Write in Markdown format')
     skills = models.TextField(verbose_name='My Skills section', blank=True, help_text='Write in Markdown format')
-    resume = models.FileField(blank=True, help_text='Upload resume as a PDF for best compatibility')
 
     def delete(self, *args, **kwargs):
         # Delete the file if it exists

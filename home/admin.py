@@ -17,7 +17,6 @@ admin.site.register(Homepage, SingletonModelAdmin)
 
 @admin.register(SocialMediaLink)
 class SocialMediaLinkAdmin(admin.ModelAdmin):
-    ordering = ['platform']
     list_display = ['platform', 'url']
 
 

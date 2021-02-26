@@ -25,8 +25,7 @@ class MessageAdmin(admin.ModelAdmin):
     mark_read.short_description = 'Mark selected messages as read'
     mark_unread.short_description = 'Mark selected messages as unread'
 
-    ordering = ['read', 'timestamp', 'name']
-    list_display = ['name', 'email', 'read', 'timestamp']
+    list_display = ['name', 'email', 'timestamp', 'read']
     list_filter = ['read', 'timestamp']
     readonly_fields = ["name", "email", "message", "timestamp"]
     actions = [mark_read, mark_unread]

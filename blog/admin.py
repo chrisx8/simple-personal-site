@@ -1,5 +1,4 @@
 from django.contrib import admin
-from solo.admin import SingletonModelAdmin
 from .models import Article, Tag
 
 admin.site.register(Tag)
@@ -14,5 +13,5 @@ class ArticleAdmin(admin.ModelAdmin):
     )
     filter_horizontal = [('tag')]
     list_display = ['title', 'last_edited']
-    list_filter = ['last_edited']
+    list_filter = ['last_edited', 'tag']
     readonly_fields = ["article_id", "last_edited"]
