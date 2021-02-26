@@ -3,6 +3,7 @@ from bleach import clean
 from django.conf import settings
 from django.core.mail import EmailMessage, send_mail
 from django.shortcuts import render, HttpResponse, Http404
+from django.template.loader import render_to_string
 from .forms import ContactForm
 from .models import ContactConfig, Message
 
@@ -30,7 +31,7 @@ def contact(request):
             return
         # build text email content
         mail_context = {'msg': new_msg}
-        mail_text = render(request, 'notification_email.txt', context=mail_context).content.decode("utf-8")
+        mail_text = render_to_string('notification_email.txt', context=mail_context)
         # send email to notification recipient
         from_addr = f"{new_msg.name} - {new_msg.email.replace('@', ' at ')} <{contact_config.from_email}>"
         email = EmailMessage(f'Message from {new_msg.name}', mail_text, from_addr,
