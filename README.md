@@ -38,7 +38,7 @@ git clone https://github.com/chrisx8/simple-personal-site.git
 cd simple-personal-site
 ```
 
-- Generate a strong password [here](https://strongpasswordgenerator.com/) for database. Save it, as you'll need it during the setup process.
+- Generate a strong password [here](https://passwordsgenerator.net/) for database. Save it, as you'll need it during the setup process.
 - Create your env file for site config.
 
 ```bash
@@ -47,7 +47,7 @@ cp example.env .env
 
 - Edit `.env`, following instructions in the file.
 - Generate your own icons [here](https://realfavicongenerator.net). Download the generated Favicon package.
-- Unzip the downloaded package, and upload everything to `static/img/`, replacing ALL existing placeholder icon files.
+- Unzip the downloaded package and upload everything to `static/img/`, replacing ALL existing placeholder icon files.
 - Upload a banner image for `og:image` (`1280*640`, in `.png` format) to `static/img/`, replacing the existing `og-image.png`
 
 ## Installation
@@ -66,8 +66,8 @@ sudo chown -R nobody:nogroup static_serve
 
 ```bash
 # Replace [ADDRESS]:[PORT] with whereever you want the container to listen at
-# When using a reverse proxy, make sure this container is NOT EXPOSED (e.g. listen on 127.0.0.1)!
-docker run -d -p [ADDRESS]:[PORT] --env-file=.env -v $(pwd)/static_serve/media:/app/static_serve/media/ -v $(pwd)/static_serve/static:/app/static_serve/static/ -v $(pwd)/static:/app/static/ --restart unless-stopped --name simple-personal-site chrisx8/simple-personal-site:latest
+# When using a reverse proxy, make sure this container is NOT EXPOSED to the Internet! (e.g. listen on 127.0.0.1)
+docker run -d -p [ADDRESS]:[PORT] --env-file=.env -v $(pwd)/static_serve:/app/static_serve -v $(pwd)/static:/app/static/ --restart unless-stopped --name simple-personal-site chrisx8/simple-personal-site:latest
 ```
 
 - Create an admin account.
@@ -84,15 +84,18 @@ docker exec -it simple-personal-site python3 manage.py createsuperuser
 
 ### Install in a virtualenv
 
-- Make sure Python 3.6 (or newer) and `pip` is installed.
+- This site only supports Python 3.6 or newer. Make sure Python (3.6 or newer) and `pip` are installed.
 - Install project dependencies.
 
 ```bash
 # On Ubuntu/Debian
-sudo apt-get install python3-dev libmysqlclient-dev
+sudo apt-get install python3-dev libmariadb-dev libjpeg-dev libpq-dev
 
-# On CentOS
-sudo yum install rh-python36-python-devel mariadb-libs
+# On CentOS 7
+sudo yum install rh-python36-python-devel mariadb-libs libjpeg-turbo-devel postgresql-devel 
+
+# On CentOS 8/Stream
+sudo dnf install python36-devel mariadb-devel libjpeg-turbo-devel libpq-devel
 
 # Create virtualenv
 sudo pip3 install virtualenv
@@ -107,7 +110,7 @@ pip install -r requirements.txt
 
 ```bash
 # Replace [ADDRESS]:[PORT] with whereever you want the container to listen at
-# When using a reverse proxy, make sure this container is NOT EXPOSED (e.g. listen on 127.0.0.1)!
+# When using a reverse proxy, make sure this container is NOT EXPOSED to the Internet! (e.g. listen on 127.0.0.1)
 gunicorn simple_personal_site.wsgi:application -b [ADDRESS]:[PORT]
 ```
 
