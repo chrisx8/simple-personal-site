@@ -108,7 +108,7 @@ LOGOUT_REDIRECT_URL = '/'
 # Internationalization
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
-USE_I18N = True
+USE_I18N = False
 USE_L10N = True
 USE_TZ = True
 
@@ -134,6 +134,10 @@ try:
         EMAIL_USE_SSL = False
 except (TypeError, ValueError):
     pass
+
+# Cookie settings
+CSRF_COOKIE_SAMESITE = 'Strict'
+SESSION_COOKIE_SAMESITE = 'Strict'
 
 # Security settings
 CSRF_FAILURE_VIEW = 'home.views.csrf_failure'
