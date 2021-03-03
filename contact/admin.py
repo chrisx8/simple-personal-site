@@ -14,6 +14,13 @@ class ContactConfigAdmin(SingletonModelAdmin):
 
 @admin.register(Message)
 class MessageAdmin(admin.ModelAdmin):
-    list_display = ['__str__', 'timestamp']
+    def has_add_permission(self, request, obj=None):
+        return False
+
+    list_display = ['subject', 'name', 'timestamp']
     list_filter = ['timestamp']
-    readonly_fields = ['name', 'email', 'message', 'timestamp']
+    readonly_fields = ['name', 'email', 'subject', 'message', 'timestamp']
+    fieldsets = (
+        ('Information', {'fields': ['name', 'email', 'timestamp']}),
+        ('Message Content', {'fields': ['subject', 'message']}),
+    )

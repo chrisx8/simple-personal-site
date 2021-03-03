@@ -21,13 +21,20 @@ class ContactConfig(SingletonModel):
 
 # contact form
 class Message(models.Model):
-    name = models.CharField(max_length=100, default='', null=False)
-    email = models.EmailField(null=False)
-    message = models.TextField(null=False, default='')
+    name = models.CharField(max_length=100, default='', blank=False)
+    email = models.EmailField(blank=False)
+    subject = models.CharField(max_length=300, default='(no subject)', blank=False)
+    message = models.TextField(blank=False, default='')
     timestamp = models.DateTimeField(auto_now_add=True, null=False)
 
     class Meta:
         ordering = ['-timestamp']
 
+    def save(self):
+        # override subject if it's blank
+        if not self.subject:
+            self.subject = '(no subject)'
+        super().save(self)
+
     def __str__(self):
-        return f'{self.name} <{self.email}>'
+        return self.subject
