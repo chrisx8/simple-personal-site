@@ -14,18 +14,6 @@ class ContactConfigAdmin(SingletonModelAdmin):
 
 @admin.register(Message)
 class MessageAdmin(admin.ModelAdmin):
-    # mark selected as read
-    def mark_read(self, request, queryset):
-        queryset.update(read=True)
-
-    # mark selected as unread
-    def mark_unread(self, request, queryset):
-        queryset.update(read=False)
-
-    mark_read.short_description = 'Mark selected messages as read'
-    mark_unread.short_description = 'Mark selected messages as unread'
-
-    list_display = ['name', 'email', 'timestamp', 'read']
-    list_filter = ['read', 'timestamp']
-    readonly_fields = ["name", "email", "message", "timestamp"]
-    actions = [mark_read, mark_unread]
+    list_display = ['__str__', 'timestamp']
+    list_filter = ['timestamp']
+    readonly_fields = ['name', 'email', 'message', 'timestamp']
