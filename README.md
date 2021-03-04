@@ -1,7 +1,6 @@
 # Simple Personal Site <!-- omit in toc -->
 
 [![Build Status](https://github.com/chrisx8/simple-personal-site/workflows/build/badge.svg)](https://github.com/chrisx8/simple-personal-site/actions?query=workflow%3Abuild)
-[![CodeFactor](https://www.codefactor.io/repository/github/chrisx8/simple-personal-site/badge)](https://www.codefactor.io/repository/github/chrisx8/simple-personal-site)
 
 A fast and minimalist Django-based CMS tailored to developers and tech enthusiasts.
 
