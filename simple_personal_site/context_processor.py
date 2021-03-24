@@ -14,6 +14,6 @@ def global_tags(request):
         'HEADER_TITLE': site_info.header_title,
         'HEADER_SUBTITLE': site_info.header_subtitle,
         'FOOTER_COPYRIGHT': site_info.footer_copyright,
-        'social_links': social_links
+        'SOCIAL_LINKS': social_links
     }
     return context

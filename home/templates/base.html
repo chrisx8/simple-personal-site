@@ -68,7 +68,7 @@
 <div class="space-40"></div>
 <footer class="sps-footer">
 <div class="content has-text-centered">
-{% for link in social_links %}
+{% for link in SOCIAL_LINKS %}
 {% if forloop.counter != 1 %} &middot; {% endif %}<a href="{{ link.url }}">{{ link.platform }}</a>
 {% endfor %}<br>
 &copy; {% now "Y" %} {{ FOOTER_COPYRIGHT }}
