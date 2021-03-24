@@ -1,10 +1,9 @@
 {% extends 'base.html' %}
-{% block pagetitle %} Contact Me {% endblock %}
-{% block ogtitle %} Contact Me {% endblock %}
+{% block pagetitle %} Contact | {{ SITE_NAME }} {% endblock %}
+{% block ogtitle %} Contact | {{ SITE_NAME }} {% endblock %}
 {% block body %}
 <div class="container side-padding">
 <h1 class="title">Contact Me</h1>
-<p class="subtitle">Send me a message, and I'll get back to you soon!</p>
 <form method="POST">
 {% csrf_token %}
 {% for field in form %}
