@@ -1,6 +1,6 @@
 # Simple Personal Site <!-- omit in toc -->
 
-[![Build Status](https://github.com/chrisx8/simple-personal-site/workflows/build/badge.svg)](https://github.com/chrisx8/simple-personal-site/actions?query=workflow%3Abuild)
+[![build](https://github.com/chrisx8/simple-personal-site/actions/workflows/build_main.yml/badge.svg)](https://github.com/chrisx8/simple-personal-site/actions/workflows/build_main.yml)
 
 A fast and minimalist Django-based CMS tailored to developers and tech enthusiasts.
 
