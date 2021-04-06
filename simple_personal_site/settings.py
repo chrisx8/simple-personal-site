@@ -84,6 +84,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'simple_personal_site.wsgi.application'
 
 # Database
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 # Configure DB from env file
 DATABASES = {
     'default': {
