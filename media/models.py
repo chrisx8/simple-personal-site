@@ -35,9 +35,9 @@ class Embed(models.Model):
     def html(self):
         fullscreen = ''
         if self.allow_fullscreen:
-            fullscreen = ' webkitallowfullscreen mozallowfullscreen allowfullscreen'
+            fullscreen = 'webkitallowfullscreen mozallowfullscreen allowfullscreen'
         return f'<div class="embed"><iframe class="frame" title="{self.name}" src="{self.embed_url}"' + \
-               f'frameborder="0" {fullscreen} ></iframe></div>'
+               f'frameborder="0" {fullscreen}></iframe></div>'
 
     def __str__(self):
         return self.name

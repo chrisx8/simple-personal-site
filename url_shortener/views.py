@@ -7,8 +7,7 @@ def redirect(request, alias):
     # redirect if url exists
     try:
         url_obj = URL.objects.get(alias=alias)
-        target = url_obj.full_url
-        return HttpResponseRedirect(target)
+        return HttpResponseRedirect(url_obj.full_url)
     # 404 if not
     except URL.DoesNotExist:
         raise Http404

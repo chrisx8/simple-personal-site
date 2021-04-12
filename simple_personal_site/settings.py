@@ -104,7 +104,6 @@ AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
-LOGOUT_REDIRECT_URL = '/'
 
 # Internationalization
 LANGUAGE_CODE = 'en-us'
@@ -156,6 +155,7 @@ if isinstance(SITE_SSL, str) and SITE_SSL.lower() == 'true':
     SESSION_COOKIE_SECURE = True
 
 # Site-specific config
+LOGOUT_REDIRECT_URL = '/'
 ADMIN_URL = environ.get('ADMIN_URL')
 STATUS_PAGE_URL = environ.get('STATUS_PAGE_URL')
 BLOG_ARTICLES_PER_PAGE = 10

@@ -6,7 +6,7 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends gcc libmariadb-dev libjpeg-dev libpq-dev && \
 	pip3 install --no-cache -r /tmp/requirements.txt && \
     apt-get purge -y gcc && \
-    apt-get autoremove -y --purge && \
+    apt-get autopurge -y && \
     apt-get autoclean && \
     rm -rf /tmp/requirements.txt /var/log/apt /var/cache/apt /var/lib/apt
 
