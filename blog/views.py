@@ -10,8 +10,14 @@ from .models import Article, Tag
 def blog(request, tag=None):
     articles = Article.objects.order_by('-last_edited', 'title')
 
-    # determine articles list based on if we're filter by tag
-    if tag:
+    # validate tag: has to exist and have articles
+    valid_tag = tag and Tag.objects.filter(tag=tag)
+    has_articles_with_tag = valid_tag and articles.filter(tag=tag)
+    # 404 if tag doesn't exist
+    if tag and (not valid_tag or not has_articles_with_tag):
+        raise Http404
+    elif tag:
+        # tag is valid. get articles with tag
         articles = articles.filter(tag=tag)
 
     paginator = Paginator(articles, settings.BLOG_ARTICLES_PER_PAGE)
@@ -46,18 +52,6 @@ def blog(request, tag=None):
 
     # no tag, show normal blog page
     return render(request, 'blog.html', context=context)
-
-
-def filter_by_tag(request, tag):
-    # query and check tag
-    try:
-        tag_obj = Tag.objects.get(tag=tag)
-        article_count = Article.objects.filter(tag=tag_obj).count()
-        assert article_count > 0
-    except (Tag.DoesNotExist, AssertionError):
-        raise Http404
-
-    return blog(request, tag=tag_obj)
 
 
 def view_article(request, article_id):
