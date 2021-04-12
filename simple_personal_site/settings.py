@@ -1,8 +1,8 @@
 # Django settings for simple_personal_site project.
 
 import secrets
-from dotenv import load_dotenv
-from os import environ, path
+from os import path
+from .site_config import get_site_config
 
 # Generate secret key
 key_bytes = 128
@@ -11,21 +11,16 @@ SECRET_KEY = secrets.token_urlsafe(key_bytes)
 # Build paths inside the project like this: path.join(BASE_DIR, ...)
 BASE_DIR = path.dirname(path.dirname(path.abspath(__file__)))
 
-# Load config into system env
-# System environment variables ALWAYS TAKES PRECEDENCE
-load_dotenv()
+# read config from environment
+config = get_site_config()
 
-try:
-    ALLOWED_HOSTS = environ.get('ALLOWED_HOSTS').split(',')
-except AttributeError:
-    pass
+# 400 if request Host is not in ALLOWED_HOSTS
+ALLOWED_HOSTS = config['ALLOWED_HOSTS']
 
-# DEBUG defaults to False.
+# DEBUG defaults to False. Set environment variable DEBUG=TRUE to enable debug
 # SECURITY WARNING: don't run with debug turned on in production!
-# Set environment variable DEBUG=TRUE to enable debug
-debug_env = environ.get('DEBUG')
-if isinstance(debug_env, str) and debug_env.upper() == 'TRUE':
-    print('WARNING: Debug mode is enabled!')
+if config['DEBUG']:
+    print('\033[93m\033[1m' + 'WARNING: Debug mode is enabled!' + '\033[0m')
     DEBUG = True
     HTML_MINIFY = False
 else:
@@ -85,15 +80,14 @@ WSGI_APPLICATION = 'simple_personal_site.wsgi.application'
 
 # Database
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
-# Configure DB from env file
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.' + environ.get('DB_TYPE'),
-        'NAME': environ.get('DB_NAME'),
-        'HOST': environ.get('DB_HOST'),
-        'PORT': environ.get('DB_PORT'),
-        'USER': environ.get('DB_USERNAME'),
-        'PASSWORD': environ.get('DB_PASSWORD'),
+        'ENGINE': 'django.db.backends.' + config['DB_TYPE'],
+        'NAME': config['DB_NAME'],
+        'HOST': config['DB_HOST'],
+        'PORT': config['DB_PORT'],
+        'USER': config['DB_USERNAME'],
+        'PASSWORD': config['DB_PASSWORD'],
     }
 }
 
@@ -119,27 +113,20 @@ STATIC_BASE = path.join(BASE_DIR, 'static_serve')
 STATIC_ROOT = path.join(STATIC_BASE, 'static')
 MEDIA_ROOT = path.join(STATIC_BASE, 'media')
 
-# Configure SMTP server from env file
-try:
-    EMAIL_HOST = str(environ.get('EMAIL_HOST'))
-    EMAIL_PORT = int(environ.get('EMAIL_PORT'))
-    EMAIL_HOST_USER = str(environ.get('EMAIL_HOST_USER'))
-    EMAIL_HOST_PASSWORD = str(environ.get('EMAIL_HOST_PASSWORD'))
-    if environ.get('EMAIL_USE_TLS').lower() == 'true':
-        EMAIL_USE_TLS = True
-    elif environ.get('EMAIL_USE_SSL').lower() == 'true':
-        EMAIL_USE_SSL = True
-    else:
-        EMAIL_USE_TLS = False
-        EMAIL_USE_SSL = False
-except (TypeError, ValueError):
-    pass
+# SMTP server for email
+EMAIL_HOST = config['EMAIL_HOST']
+EMAIL_PORT = config['EMAIL_PORT']
+EMAIL_HOST_USER = config['EMAIL_HOST_USER']
+EMAIL_HOST_PASSWORD = config['EMAIL_HOST_PASSWORD']
+EMAIL_USE_TLS = config['EMAIL_USE_TLS']
+EMAIL_USE_SSL = config['EMAIL_USE_SSL']
 
 # Cookie settings
 CSRF_COOKIE_SAMESITE = 'Strict'
 SESSION_COOKIE_SAMESITE = 'Strict'
 
 # Security settings
+LOGOUT_REDIRECT_URL = '/'
 CSRF_FAILURE_VIEW = 'home.views.csrf_failure'
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 SECURE_BROWSER_XSS_FILTER = True
@@ -148,16 +135,15 @@ SECURE_REFERRER_POLICY = 'same-origin'
 X_FRAME_OPTIONS = 'DENY'
 
 # SSL settings
-SITE_SSL = environ.get('SITE_SSL')
-if isinstance(SITE_SSL, str) and SITE_SSL.lower() == 'true':
+SITE_SSL = config['SITE_SSL']
+if SITE_SSL:
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
     CSRF_COOKIE_SECURE = True
     SESSION_COOKIE_SECURE = True
 
-# Site-specific config
-LOGOUT_REDIRECT_URL = '/'
-ADMIN_URL = environ.get('ADMIN_URL')
-STATUS_PAGE_URL = environ.get('STATUS_PAGE_URL')
+# Site-specific options
+ADMIN_URL = config['ADMIN_URL']
+STATUS_PAGE_URL = config['STATUS_PAGE_URL']
 BLOG_ARTICLES_PER_PAGE = 10
 PROJECTS_PER_PAGE = 6
 
