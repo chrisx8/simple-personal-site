@@ -31,8 +31,6 @@ else:
 INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
     'django.contrib.sitemaps',
     'django.contrib.staticfiles',
     'solo',
@@ -48,11 +46,8 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.middleware.gzip.GZipMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'htmlmin.middleware.HtmlMinifyMiddleware',
     'htmlmin.middleware.MarkRequestMiddleware',
@@ -149,4 +144,15 @@ PROJECTS_PER_PAGE = 6
 
 # Enable admin panel if admin url is set
 if ADMIN_URL:
-    INSTALLED_APPS.append('django.contrib.admin')
+    ADD_APPS = [
+        'django.contrib.sessions',
+        'django.contrib.messages',
+        'django.contrib.admin',
+    ]
+    ADD_MIDDLEWARE = [
+        'django.contrib.sessions.middleware.SessionMiddleware',
+        'django.contrib.auth.middleware.AuthenticationMiddleware',
+        'django.contrib.messages.middleware.MessageMiddleware',
+    ]
+    INSTALLED_APPS.extend(ADD_APPS)
+    MIDDLEWARE.extend(ADD_MIDDLEWARE)
