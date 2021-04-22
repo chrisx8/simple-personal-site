@@ -6,7 +6,7 @@ on:
     - cron: '0 3 * * 0'
 jobs:
   build:
-    name: Build Docker Image
+    name: Build Container Image
     runs-on: ubuntu-latest
     steps:
       - name: Set up QEMU

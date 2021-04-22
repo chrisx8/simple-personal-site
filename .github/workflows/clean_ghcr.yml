@@ -1,26 +1,25 @@
-name: Clean up GHCR
+name: clean_ghcr
 on:
   push:
     branches: devel
+  schedule:
+    - cron: '0 2 * * 6'
 jobs:
   ghcr-cleanup:
-    name: Remove Untagged Docker Images from GHCR
+    name: Remove Untagged Images
     runs-on: ubuntu-latest
     steps:
       - uses: actions/github-script@v3
+        env:
+          PACKAGE_NAME: simple-personal-site
         with:
           github-token: ${{ secrets.GHCR_DELETE_TOKEN }}
           script: |
-            const response = await github.request("GET /user/packages/container/${{ env.PACKAGE_NAME }}/versions",
-              { per_page: ${{ env.PER_PAGE }}
-            });
+            const response = await github.request("GET /user/packages/container/${{ env.PACKAGE_NAME }}/versions");
             for(version of response.data) {
                 if (version.metadata.container.tags.length == 0) {
-                    console.log("[delete] " + version.id)
+                    console.log("[status] " + deleteResponse.status);
+                    console.log("Deleted version " + version.id);
                     const deleteResponse = await github.request("DELETE /user/packages/container/${{ env.PACKAGE_NAME }}/versions/" + version.id, { });
-                    console.log("[status] " + deleteResponse.status)
                 }
             }
-        env:
-          PACKAGE_NAME: simple-personal-site
-          PER_PAGE: 100
