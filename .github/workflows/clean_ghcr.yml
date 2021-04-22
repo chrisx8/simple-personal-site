@@ -1,7 +1,5 @@
 name: clean_ghcr
 on:
-  push:
-    branches: devel
   schedule:
     - cron: '0 2 * * 6'
 jobs:

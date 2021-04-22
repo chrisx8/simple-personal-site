@@ -66,7 +66,7 @@ sudo chown -R nobody:nogroup static_serve
 ```bash
 # Replace [ADDRESS]:[PORT] with whereever you want the container to listen at
 # When using a reverse proxy, make sure this container is NOT EXPOSED to the Internet! (e.g. listen on 127.0.0.1)
-docker run -d -p [ADDRESS]:[PORT] --env-file=.env -v $(pwd)/static_serve:/app/static_serve -v $(pwd)/static:/app/static/ --restart unless-stopped --name simple-personal-site chrisx8/simple-personal-site:latest
+docker run -d -p [ADDRESS]:[PORT] --env-file=.env -v $(pwd)/static_serve:/app/static_serve -v $(pwd)/static:/app/static/ --restart unless-stopped --name simple-personal-site ghcr.io/chrisx8/simple-personal-site:latest
 ```
 
 - Create an admin account.
