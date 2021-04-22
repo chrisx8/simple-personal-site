@@ -8,6 +8,8 @@ jobs:
   build:
     name: Build Container Image
     runs-on: ubuntu-latest
+    env:
+      PACKAGE_NAME: simple-personal-site
     steps:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
@@ -29,5 +31,18 @@ jobs:
         with:
           push: true
           tags: |
-            ${{ secrets.DOCKER_USERNAME }}/simple-personal-site:latest
-            ghcr.io/${{ github.repository_owner }}/simple-personal-site:latest
+            ${{ secrets.DOCKER_USERNAME }}/${{ env.PACKAGE_NAME }}:latest
+            ghcr.io/${{ github.repository_owner }}/${{ env.PACKAGE_NAME }}:latest
+      - name: Remove untagged images
+        uses: actions/github-script@v3
+        with:
+          github-token: ${{ secrets.GHCR_DELETE_TOKEN }}
+          script: |
+            const response = await github.request("GET /user/packages/container/${{ env.PACKAGE_NAME }}/versions");
+            for(version of response.data) {
+                if (version.metadata.container.tags.length == 0) {
+                    const deleteResponse = await github.request("DELETE /user/packages/container/${{ env.PACKAGE_NAME }}/versions/" + version.id, { });
+                    console.log("[status] " + deleteResponse.status);
+                    console.log("Deleted version " + version.id);
+                }
+            }
