@@ -152,8 +152,15 @@ if ADMIN_URL:
     ]
     ADD_MIDDLEWARE = [
         'django.contrib.sessions.middleware.SessionMiddleware',
-        'django.contrib.auth.middleware.AuthenticationMiddleware',
         'django.contrib.messages.middleware.MessageMiddleware',
+        'django.contrib.auth.middleware.AuthenticationMiddleware',
     ]
     INSTALLED_APPS.extend(ADD_APPS)
     MIDDLEWARE.extend(ADD_MIDDLEWARE)
+
+# Use REMOTE_USER header for authentication
+if ADMIN_URL and True:
+    REMOTE_USER_HEADER = config['REMOTE_USER_HEADER']
+    REMOTE_EMAIL_HEADER = config['REMOTE_EMAIL_HEADER']
+    AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.RemoteUserBackend']
+    MIDDLEWARE.append('simple_personal_site.middleware.HeaderAuthMiddleware')

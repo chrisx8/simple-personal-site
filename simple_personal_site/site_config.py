@@ -36,6 +36,8 @@ def get_site_config():
 		'EMAIL_USE_TLS': str_to_bool(environ.get('EMAIL_USE_TLS')),
 		'EMAIL_USE_SSL': str_to_bool(environ.get('EMAIL_USE_SSL')),
 		'ADMIN_URL': environ.get('ADMIN_URL'),
+		'REMOTE_USER_HEADER': environ.get('REMOTE_USER_HEADER'),
+		'REMOTE_EMAIL_HEADER': environ.get('REMOTE_EMAIL_HEADER'),
 		'STATUS_PAGE_URL': environ.get('STATUS_PAGE_URL'),
 	}
 
