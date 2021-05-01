@@ -159,8 +159,8 @@ if ADMIN_URL:
     MIDDLEWARE.extend(ADD_MIDDLEWARE)
 
 # Use REMOTE_USER header for authentication
-if ADMIN_URL and True:
-    REMOTE_USER_HEADER = config['REMOTE_USER_HEADER']
-    REMOTE_EMAIL_HEADER = config['REMOTE_EMAIL_HEADER']
+REMOTE_USER_HEADER = config['REMOTE_USER_HEADER']
+REMOTE_EMAIL_HEADER = config['REMOTE_EMAIL_HEADER']
+if ADMIN_URL and config['REVERSE_PROXY_AUTH']:
     AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.RemoteUserBackend']
     MIDDLEWARE.append('simple_personal_site.middleware.ProxyAuthMiddleware')
