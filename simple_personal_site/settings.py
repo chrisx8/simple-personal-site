@@ -163,4 +163,4 @@ if ADMIN_URL and True:
     REMOTE_USER_HEADER = config['REMOTE_USER_HEADER']
     REMOTE_EMAIL_HEADER = config['REMOTE_EMAIL_HEADER']
     AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.RemoteUserBackend']
-    MIDDLEWARE.append('simple_personal_site.middleware.HeaderAuthMiddleware')
+    MIDDLEWARE.append('simple_personal_site.middleware.ProxyAuthMiddleware')
