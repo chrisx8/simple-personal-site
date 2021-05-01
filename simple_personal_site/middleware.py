@@ -37,10 +37,12 @@ class ProxyAuthMiddleware(RemoteUserMiddleware):
 			email = ''
 
 		# update user email
-		user = User.objects.get(username=username)
-		if user:
+		try:
+			user = User.objects.get(username=username)
 			user.email = email
 			user.save()
+		except User.DoesNotExist:
+			pass
 
 		# pass on login request
 		super().process_request(request)
