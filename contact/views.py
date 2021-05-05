@@ -33,7 +33,7 @@ def contact(request):
         mail_context = {'msg': new_msg}
         mail_text = render_to_string('notification_email.txt', context=mail_context)
         # send email to notification recipient
-        from_addr = f"{new_msg.name} - {new_msg.email.replace('@', '{at}')} <{contact_config.from_email}>"
+        from_addr = f"{new_msg.name} - {new_msg.email.replace('@', ' at ')} <{contact_config.from_email}>"
         email = EmailMessage(f'[Contact Form] {new_msg.subject}', mail_text, from_addr,
                              [contact_config.notification_recipient], reply_to=[new_msg.email])
         email.send(fail_silently=True)
