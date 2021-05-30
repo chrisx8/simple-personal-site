@@ -1,4 +1,6 @@
 {{ msg.message|safe }}
 
 ----------------------------------------
+Message from {{ msg.name }} - {{ msg.email }}
+
 To respond to {{ msg.name }}'s message, simply reply to this email.
