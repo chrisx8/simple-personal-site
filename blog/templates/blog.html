@@ -10,28 +10,20 @@
 </article>
 {% endif %}
 {% for article in articles %}
-{% if forloop.counter0|divisibleby:2 %}
-<div class="columns">
-{% endif %}
-<div class="column is-half">
-<div class="box">
 <article class="media">
 <div class="media-content">
 <div class="content">
-<p class="title is-3"><a href="{% url 'view_article' article_id=article.article_id %}">{{ article.title }}</a></p>
-<p class="subtitle is-6">{{ article.subtitle }}</p>
+<p class="title is-4"><a href="{% url 'view_article' article_id=article.article_id %}">{{ article.title }}</a></p>
+{% if article.subtitle %}<p class="subtitle is-6">{{ article.subtitle }}</p>{% endif %}
 </div>
-<nav class="level">
-<div class="level-left">{% for tag in article.tag.all %}<a href="{% url 'filter_by_tag' tag=tag %}"><span class="tag is-medium">{{ tag }}</span>&nbsp;</a>{% endfor %}</div>
-<div class="level-right"><span class="level-item"><small>{{ article.last_edited }}</small></span></div>
-</nav>
+<div class="tags">
+<span class="tag">{{ article.last_edited }}</span> &nbsp;
+{% for tag in article.tag.all %}
+<a class="tag is-medium" href="{% url 'filter_by_tag' tag=tag %}">{{ tag }}</a>
+{% endfor %}
+</div>
 </div>
 </article>
-</div>
-</div>
-{% if forloop.counter|divisibleby:2 or forloop.last %}
-</div>
-{% endif %}
 {% endfor %}
 {% if articles.paginator.num_pages > 1 %}
 <div class="space-20"></div>

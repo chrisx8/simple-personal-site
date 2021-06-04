@@ -22,30 +22,24 @@
 {% if latest_articles %}
 <h1 class="title">Blog</h1>
 <p class="subtitle is-5"><a href="{% url 'blog' %}">View all articles</a></p>
-{% for article in latest_articles %}
-{% if forloop.counter0|divisibleby:2 %}
-<div class="columns">
-{% endif %}
-<div class="column is-half">
 <div class="box">
+{% for article in latest_articles %}
 <article class="media">
 <div class="media-content">
 <div class="content">
-<p class="title"><a href="{% url 'view_article' article_id=article.article_id %}">{{ article.title }}</a></p>
-<p class="subtitle blog-subtitle">{{ article.subtitle }}</p>
+<p class="title is-4"><a href="{% url 'view_article' article_id=article.article_id %}">{{ article.title }}</a></p>
+{% if article.subtitle %}<p class="subtitle is-6">{{ article.subtitle }}</p>{% endif %}
 </div>
-<nav class="level">
-<div class="level-left">{% for tag in article.tag.all %}<a href="{% url 'filter_by_tag' tag=tag %}"><span class="tag is-medium">{{ tag }}</span>&nbsp;</a>{% endfor %}</div>
-<div class="level-right"><span class="level-item"><small>{{ article.last_edited }}</small></span></div>
-</nav>
+<div class="tags">
+<span class="tag">{{ article.last_edited }}</span> &nbsp;
+{% for tag in article.tag.all %}
+<a class="tag is-medium" href="{% url 'filter_by_tag' tag=tag %}">{{ tag }}</a>
+{% endfor %}
+</div>
 </div>
 </article>
-</div>
-</div>
-{% if forloop.counter|divisibleby:2 or forloop.last %}
-</div>
-{% endif %}
 {% endfor %}
+</div>
 {% endif %}
 {% if latest_projects %}
 <h1 class="title">My Projects</h1>
