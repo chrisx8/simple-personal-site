@@ -8,22 +8,18 @@
 <span class="tag is-medium"><strong>{{ tag }}</strong></span>
 <a class="tag is-delete is-medium" href="{% url 'blog' %}"></a>
 </div>
-{% for article in articles %}
-<article class="media">
-<div class="media-content">
 <div class="content">
+{% for article in articles %}
 <p class="title is-4"><a href="{% url 'view_article' article_id=article.article_id %}">{{ article.title }}</a></p>
 {% if article.subtitle %}<p class="subtitle is-6">{{ article.subtitle }}</p>{% endif %}
-</div>
 <div class="tags">
 <span class="tag">{{ article.last_edited }}</span> &nbsp;
 {% for tag in article.tag.all %}
 <a class="tag is-medium" href="{% url 'filter_by_tag' tag=tag %}">{{ tag }}</a>
 {% endfor %}
 </div>
-</div>
-</article>
 {% endfor %}
+</div>
 {% if articles.paginator.num_pages > 1 %}
 <div class="space-20"></div>
 <nav class="pagination is-centered" role="navigation" aria-label="pagination">
