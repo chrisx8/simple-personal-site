@@ -53,6 +53,8 @@ cp example.env .env
 
 ### Install with Docker
 
+> **Note: `chrisx8/simple-personal-site` on Docker Hub has been REMOVED. Please switch to `ghcr.io/chrisx8/simple-personal-site`.**
+
 - Make sure your database is accessible from inside the container
 - Create directory for static files
 

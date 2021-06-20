@@ -1,12 +1,6 @@
 .article {
 	line-height: 1.5em;
 }
-.blog-nosub {
-	padding-top: 25px
-}
-.blog-subtitle {
-	font-size: 18px
-}
 .center {
 	margin: auto;
 	padding-bottom: 20px;
@@ -29,15 +23,8 @@
 	position: relative;
 	padding-bottom: 3em;
 }
-.side-padding {
-	padding-left: 15px;
-	padding-right: 15px;
-}
 .space-20 {
 	height: 20px
-}
-.space-40 {
-	height: 40px
 }
 .sps-footer {
 	position: absolute;
@@ -54,14 +41,7 @@
 	.embed {
 		display: none
 	}
-	.side-padding {
-		padding-left: 0;
-		padding-right: 0;
-	}
 	.space-20 {
-		display: none
-	}
-	.space-40 {
 		display: none
 	}
 	.sps-footer {

@@ -32,7 +32,6 @@
 </head>
 <body>
 <div class="main">
-<section class="hero is-dark">
 <nav class="navbar is-dark noprint">
 <div class="container is-max-desktop is-navbar">
 <div class="navbar-brand">
@@ -53,6 +52,7 @@
 </div>
 </div>
 </nav>
+<section class="hero is-dark">
 <div class="hero-body has-text-centered noprint">
 <h1 class="title is-2">{{ HEADER_TITLE }}</h1>
 <h2 class="subtitle">{{ HEADER_SUBTITLE }}</h2>
@@ -63,9 +63,9 @@
 <h2 class="subtitle is-6">{{ HEADER_SUBTITLE }}</h2>
 <p></p>
 </div>
-<div class="space-40"></div>
+<section class="section">
 {% block body %}{% endblock %}
-<div class="space-40"></div>
+</section>
 <footer class="sps-footer">
 <div class="content has-text-centered">
 {% for link in SOCIAL_LINKS %}

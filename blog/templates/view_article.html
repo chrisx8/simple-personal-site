@@ -3,17 +3,17 @@
 {% block ogtitle %} {{ article }} | {{ SITE_NAME }} {% endblock %}
 {% block body %}
 <link rel="stylesheet" href="/static/css/pygments.css">
-<div class="container side-padding article">
-<h1 class="title">{{ article.title }}</h1>
-<h2 class="subtitle blog-subtitle">{{ article.subtitle }}</h2>
-<div class="content{% if not article.subtitle %} blog-nosub{% endif %}">
-{% if article.tag.all %}
-<p>
-{% for tag in article.tag.all %}<a href="{% url 'filter_by_tag' tag=tag %}"><span class="tag is-medium">{{ tag }}</span>&nbsp;</a>{% endfor %}<br>
-<i>Last updated on <strong>{{ article.last_edited }}</strong></i>
-</p>
-{% else %}
+<div class="container article">
+<h1 class="title is-2">{{ article.title }}</h1>
+{% if article.subtitle %}<p class="subtitle">{{ article.subtitle }}</p>{% endif %}
 <p><i>Last updated on <strong>{{ article.last_edited }}</strong></i></p>
+<div class="content">
+{% if article.tag.all %}
+<div class="tags">
+{% for tag in article.tag.all %}
+<a class="tag is-medium" href="{% url 'filter_by_tag' tag=tag %}">{{ tag }}</a>
+{% endfor %}
+</div>
 {% endif %}
 </div>
 {% if article.embed %}
