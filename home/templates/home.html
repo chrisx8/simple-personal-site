@@ -56,9 +56,9 @@
 {% endif %}
 <div class="card-content">
 {% if project.url %}
-<p class="title"><a href="{{ project.url }}">{{ project.title }}</a></p>
+<p class="title is-4"><a href="{{ project.url }}">{{ project.title }}</a></p>
 {% else %}
-<p class="title">{{ project.title }}</p>
+<p class="title is-4">{{ project.title }}</p>
 {% endif %}
 <div class="content">{{ project.description|markdown|safe }}</div>
 </div>
