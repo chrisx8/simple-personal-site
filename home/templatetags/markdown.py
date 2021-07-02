@@ -41,6 +41,7 @@ def clean_html(html):
         "p", "br",
         "span", "div", "blockquote", "code", "hr", "pre",
         "ul", "ol", "li", "dd", "dt",
+        "table", "thead", "tbody", "tr", "th", "td",
         "img",
         "a",
         "sub", "sup"
