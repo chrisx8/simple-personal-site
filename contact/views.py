@@ -32,7 +32,7 @@ def contact(request):
         # build text email content
         mail_context = {'msg': new_msg}
         mail_text = render_to_string('notification_email.txt', context=mail_context)
-        mail_subj = '[Contact Form]' + new_msg.subject
+        mail_subj = f"[Contact Form] {new_msg.subject}"
         # send email to notification recipient
         from_addr = f"{new_msg.name} <{contact_config.from_email}>"
         email = EmailMessage(mail_subj, mail_text, from_addr, [contact_config.notification_recipient],
