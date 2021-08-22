@@ -5,7 +5,7 @@
 {% load markdown %}
 <div class="container">
 {% if home.resume %}
-<div class="content noprint"><a class="button is-medium is-link" href="{{ home.resume.url }}" target="_blank" rel="noopener noreferrer">Resume</a></div>
+<div class="content noprint"><a class="button is-medium is-link" href="{{ home.resume.url }}">Resume</a></div>
 {% endif %}
 {% if home.about_me %}
 <h1 class="title">About Me</h1>
@@ -56,9 +56,9 @@
 {% endif %}
 <div class="card-content">
 {% if project.url %}
-<p class="title"><a href="{{ project.url }}">{{ project.title }}</a></p>
+<p class="title is-4"><a href="{{ project.url }}">{{ project.title }}</a></p>
 {% else %}
-<p class="title">{{ project.title }}</p>
+<p class="title is-4">{{ project.title }}</p>
 {% endif %}
 <div class="content">{{ project.description|markdown|safe }}</div>
 </div>
