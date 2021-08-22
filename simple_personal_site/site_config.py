@@ -38,7 +38,6 @@ def get_site_config():
 		'ADMIN_URL': environ.get('ADMIN_URL'),
 		'REVERSE_PROXY_AUTH': str_to_bool(environ.get('REVERSE_PROXY_AUTH')),
 		'REMOTE_USER_HEADER': environ.get('REMOTE_USER_HEADER'),
-		'REMOTE_EMAIL_HEADER': environ.get('REMOTE_EMAIL_HEADER'),
 		'STATUS_PAGE_URL': environ.get('STATUS_PAGE_URL'),
 	}
 

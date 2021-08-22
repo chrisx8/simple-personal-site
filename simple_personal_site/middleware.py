@@ -17,32 +17,18 @@ class FLoCOptOutMiddleware:
 
 
 # Use headers or environment variables for SSO
-class ProxyAuthMiddleware(RemoteUserMiddleware):
+class SPSRemoteUserMiddleware(RemoteUserMiddleware):
 	header = settings.REMOTE_USER_HEADER
-	email_header = settings.REMOTE_EMAIL_HEADER
 
-	# extend process_request to store user email address
+	# extend process_request to only allow existing user
 	def process_request(self, request):
-		# read username header, skip everything if username doesn't exist
+		# read username header and check if user exists
+		# skip everything if username doesn't exist
 		try:
 			username = request.META[self.header]
+			user = User.objects.get(username=username)
 		except KeyError:
 			return
 
-		# read email header, remove email if header doesn't exist or email is invalid
-		try:
-			email = request.META[self.email_header]
-			validate_email(email)
-		except (KeyError, ValidationError):
-			email = ''
-
-		# update user email
-		try:
-			user = User.objects.get(username=username)
-			user.email = email
-			user.save()
-		except User.DoesNotExist:
-			pass
-
-		# pass on login request
+		# continue login request
 		super().process_request(request)

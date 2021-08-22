@@ -160,7 +160,6 @@ if ADMIN_URL:
 
 # Use REMOTE_USER header for authentication
 REMOTE_USER_HEADER = config['REMOTE_USER_HEADER']
-REMOTE_EMAIL_HEADER = config['REMOTE_EMAIL_HEADER']
 if ADMIN_URL and config['REVERSE_PROXY_AUTH']:
     AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.RemoteUserBackend']
-    MIDDLEWARE.append('simple_personal_site.middleware.ProxyAuthMiddleware')
+    MIDDLEWARE.append('simple_personal_site.middleware.SPSRemoteUserMiddleware')
