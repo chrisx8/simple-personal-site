@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.contrib.auth.middleware import RemoteUserMiddleware
 
 
 # Opt out of FLoC
