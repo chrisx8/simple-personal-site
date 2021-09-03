@@ -12,7 +12,7 @@ idna==3.2
 mistune==0.8.4
 mysqlclient==2.0.3
 packaging==21.0
-Pillow==8.3.1
+Pillow==8.3.2
 psycopg2-binary==2.9.1
 Pygments==2.10.0
 pyparsing==2.4.7
