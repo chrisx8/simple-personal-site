@@ -2,13 +2,13 @@ asgiref==3.4.1
 beautifulsoup4==4.10.0
 bleach==4.1.0
 certifi==2021.10.8
-charset-normalizer==2.0.6
+charset-normalizer==2.0.7
 Django==3.2.8
 django-htmlmin==0.11.0
 django-solo==1.2.0
 gunicorn==20.1.0
 html5lib==1.1
-idna==3.2
+idna==3.3
 mistune==0.8.4
 mysqlclient==2.0.3
 packaging==21.0
