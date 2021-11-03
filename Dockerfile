@@ -15,9 +15,9 @@ WORKDIR /app
 
 RUN mkdir -p /app/static_serve/media /app/static_serve/static && \
     chown nobody:nogroup -R /app && \
-    cp example.env .env && \
+    cp .env.example .env && \
     python3 manage.py test && \
-    rm .env example.env site.db
+    rm .env .env.example site.db
 
 EXPOSE 8000
 USER nobody

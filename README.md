@@ -41,7 +41,7 @@ cd simple-personal-site
 - Create your env file for site config.
 
 ```bash
-cp example.env .env
+cp .env.example .env
 ```
 
 - Edit `.env`, following instructions in the file.
