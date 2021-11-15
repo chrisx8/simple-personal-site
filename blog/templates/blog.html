@@ -14,9 +14,9 @@
 <p class="title is-4"><a href="{% url 'view_article' article_id=article.article_id %}">{{ article.title }}</a></p>
 {% if article.subtitle %}<p class="subtitle is-6">{{ article.subtitle }}</p>{% endif %}
 <div class="tags">
-<span class="tag">{{ article.last_edited }}</span> &nbsp;
+<span class="tag is-link">{{ article.last_edited }}</span> &nbsp;
 {% for tag in article.tag.all %}
-<a class="tag is-medium" href="{% url 'filter_by_tag' tag=tag %}">{{ tag }}</a>
+<a class="tag" href="{% url 'filter_by_tag' tag=tag %}">{{ tag }}</a>
 {% endfor %}
 </div>
 {% endfor %}
