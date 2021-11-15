@@ -13,9 +13,9 @@
 <p class="title is-4"><a href="{% url 'view_article' article_id=article.article_id %}">{{ article.title }}</a></p>
 {% if article.subtitle %}<p class="subtitle is-6">{{ article.subtitle }}</p>{% endif %}
 <div class="tags">
-<span class="tag">{{ article.last_edited }}</span> &nbsp;
+<a class="tag is-link">{{ article.last_edited }}</a> &nbsp;
 {% for tag in article.tag.all %}
-<a class="tag is-medium" href="{% url 'filter_by_tag' tag=tag %}">{{ tag }}</a>
+<a class="tag" href="{% url 'filter_by_tag' tag=tag %}">{{ tag }}</a>
 {% endfor %}
 </div>
 {% endfor %}
@@ -24,21 +24,21 @@
 <div class="space-20"></div>
 <nav class="pagination is-centered" role="navigation" aria-label="pagination">
 {% if articles.has_previous %}
-<a href="?page={{ articles.previous_page_number }}" class="button pagination-previous">Prev</a>
+<a href="?page={{ articles.previous_page_number }}" class="button pagination-previous is-link">Prev</a>
 {% else %}
 <a class="button pagination-previous" disabled>Prev</a>
 {% endif %}
 <ul class="pagination-list">
-{% for page in page_range %}
+{% for page in articles.paginator.page_range %}
 {% if articles.number == page %}
-<li><a class="button pagination-link is-current" aria-label="Page {{ page }}" aria-current="page">{{ page }}</a></li>
+<li><a class="button pagination-link is-dark" aria-label="Page {{ page }}" id="current-pager-btn">{{ page }}</a></li>
 {% else %}
-<li><a href="?page={{ page }}" class="button pagination-link" aria-label="Goto page {{ page }}">{{ page }}</a></li>
+<li><a href="?page={{ page }}" class="button pagination-link" aria-label="Go to page {{ page }}">{{ page }}</a></li>
 {% endif %}
 {% endfor %}
 </ul>
 {% if articles.has_next %}
-<a href="?page={{ articles.next_page_number }}" class="button pagination-next">Next</a>
+<a href="?page={{ articles.next_page_number }}" class="button pagination-next is-link">Next</a>
 {% else %}
 <a class="button pagination-next" disabled>Next</a>
 {% endif %}

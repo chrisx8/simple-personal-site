@@ -31,18 +31,11 @@ def blog(request, tag=None):
         assert(1 <= page <= paginator.num_pages)
     except (AssertionError, ValueError):
         return HttpResponseRedirect(reverse('blog'))
-
-    # one page number before/after current
-    if int(page)-2 >= 0:
-        display_page_range = paginator.page_range[int(page)-2:int(page)+1]
-    else:
-        display_page_range = paginator.page_range[:int(page)+1]
     # articles to show on page
     articles_on_page = paginator.get_page(page)
 
     context = {
         'articles': articles_on_page,
-        'page_range': display_page_range,
     }
 
     # tag specified, show filter by tag page
