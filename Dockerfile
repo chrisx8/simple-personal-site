@@ -14,10 +14,7 @@ COPY . /app/
 WORKDIR /app
 
 RUN mkdir -p /app/static_serve/media /app/static_serve/static && \
-    chown nobody:nogroup -R /app && \
-    cp .env.example .env && \
-    python3 manage.py test && \
-    rm .env .env.example site.db
+    chown nobody:nogroup -R /app
 
 EXPOSE 8000
 USER nobody

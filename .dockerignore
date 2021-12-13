@@ -72,5 +72,6 @@ Pipfile.lock
 sps-nginx.example.conf
 Dockerfile
 .dockerignore
+.env.example
 .gitignore
 .github/
