@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.db.utils import OperationalError, ProgrammingError
 from solo.admin import SingletonModelAdmin
-from .models import Homepage, SiteInfo, SocialMediaLink
+from .models import SiteInfo, SocialMediaLink
 
 # set admin site title
 admin.site.index_title = "Admin Panel"
@@ -11,8 +11,6 @@ try:
     admin.site.site_header = site_info.site_name
 except (OperationalError, ProgrammingError):
     pass
-
-admin.site.register(Homepage, SingletonModelAdmin)
 
 
 @admin.register(SocialMediaLink)

@@ -12,8 +12,6 @@ from .models import ContactConfig, Message
 def contact(request):
     # get config`
     contact_config = ContactConfig.objects.get_or_create()[0]
-    pgp_fingerprint = contact_config.pgp_fingerprint
-    has_pgp_key = bool(contact_config.pgp_key)
     hcaptcha_sitekey = contact_config.hcaptcha_site_key
     hcaptcha_secret = contact_config.hcaptcha_secret_key
     hcaptcha_fail = False
@@ -79,16 +77,5 @@ def contact(request):
         'form': form,
         'hcaptcha_fail': hcaptcha_fail,
         'hcaptcha_sitekey': hcaptcha_sitekey,
-        'pgp_fingerprint': pgp_fingerprint,
-        'has_pgp_key': has_pgp_key
     }
     return render(request, 'contact.html', context=context)
-
-
-def pgp_key(request):
-    contact_config = ContactConfig.objects.get_or_create()[0]
-    pgp_key = contact_config.pgp_key
-    # 404 if key isn't configured
-    if not pgp_key:
-        raise Http404
-    return HttpResponse(pgp_key, content_type='text/plain')

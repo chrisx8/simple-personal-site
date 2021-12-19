@@ -31,16 +31,11 @@ else:
 INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django.contrib.sitemaps',
     'django.contrib.staticfiles',
     'solo',
     # SPS Apps
     'home.apps.HomeConfig',
-    'blog.apps.BlogConfig',
     'contact.apps.ContactConfig',
-    'media.apps.MediaConfig',
-    'projects.apps.ProjectsConfig',
-    'url_shortener.apps.UrlShortenerConfig',
 ]
 
 MIDDLEWARE = [
@@ -103,10 +98,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
-MEDIA_URL = '/media/'
 STATIC_BASE = path.join(BASE_DIR, 'static_serve')
 STATIC_ROOT = path.join(STATIC_BASE, 'static')
-MEDIA_ROOT = path.join(STATIC_BASE, 'media')
 
 # SMTP server for email
 EMAIL_HOST = config['EMAIL_HOST']
@@ -138,9 +131,6 @@ if SITE_SSL:
 
 # Site-specific options
 ADMIN_URL = config['ADMIN_URL']
-STATUS_PAGE_URL = config['STATUS_PAGE_URL']
-BLOG_ARTICLES_PER_PAGE = 10
-PROJECTS_PER_PAGE = 6
 
 # Enable admin panel if admin url is set
 if ADMIN_URL:

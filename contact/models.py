@@ -11,9 +11,6 @@ class ContactConfig(SingletonModel):
                                    help_text='Blank = no outgoing emails')
     notification_recipient = models.EmailField(blank=True, verbose_name='Notification recipient\'s email address',
                                                help_text='Blank = no notification emails for new messages')
-    pgp_fingerprint = models.CharField(max_length=50, blank=True, verbose_name='Public key fingerprint')
-    pgp_key = models.TextField(blank=True, verbose_name='Public key', 
-                               help_text='Begins with "-----BEGIN PGP PUBLIC KEY BLOCK-----"')
 
     class Meta:
         verbose_name = '*Contact Config*'
