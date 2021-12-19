@@ -1,5 +1,4 @@
 import requests
-from bleach import clean
 from django.conf import settings
 from django.core.mail import EmailMessage, send_mail
 from django.shortcuts import render, HttpResponse, Http404
