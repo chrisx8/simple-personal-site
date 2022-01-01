@@ -44,8 +44,6 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'htmlmin.middleware.HtmlMinifyMiddleware',
-    'htmlmin.middleware.MarkRequestMiddleware',
     'simple_personal_site.middleware.FLoCOptOutMiddleware',
 ]
 
@@ -73,12 +71,8 @@ WSGI_APPLICATION = 'simple_personal_site.wsgi.application'
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.' + config['DB_TYPE'],
+        'ENGINE': 'django.db.backends.sqlite3',
         'NAME': config['DB_NAME'],
-        'HOST': config['DB_HOST'],
-        'PORT': config['DB_PORT'],
-        'USER': config['DB_USERNAME'],
-        'PASSWORD': config['DB_PASSWORD'],
     }
 }
 
