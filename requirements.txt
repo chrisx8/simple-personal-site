@@ -2,7 +2,7 @@ asgiref==3.4.1
 beautifulsoup4==4.10.0
 bleach==4.1.0
 certifi==2021.10.8
-charset-normalizer==2.0.9
+charset-normalizer==2.0.10
 Django==4.0.1
 django-htmlmin==0.11.0
 django-solo==2.0.0
@@ -14,10 +14,10 @@ mysqlclient==2.1.0
 packaging==21.3
 Pillow==9.0.0
 psycopg2-binary==2.9.3
-Pygments==2.11.1
+Pygments==2.11.2
 pyparsing==3.0.6
 python-dotenv==0.19.2
-requests==2.27.0
+requests==2.27.1
 six==1.16.0
 soupsieve==2.3.1
 sqlparse==0.4.2
