@@ -8,14 +8,12 @@ def home(request):
 
 # csrf failure page
 def csrf_failure(request, *args, **argv):
-    context = {'SOCIAL_LINKS': None}
-    return render(request, 'csrf_failure.html', status=400, context=context)
+    return render(request, 'csrf_failure.html', status=400)
 
 
 # 403 error page
 def handler403(request, *args, **argv):
     context = {
-        'SOCIAL_LINKS': None,
         'code': 403,
         'title': 'Access Denied',
         'subtitle': 'Sorry, you\'re not permitted to access this page.'
@@ -26,7 +24,6 @@ def handler403(request, *args, **argv):
 # 404 error page
 def handler404(request, *args, **argv):
     context = {
-        'SOCIAL_LINKS': None,
         'code': 404,
         'title': 'Page Not Found',
         'subtitle': 'The page you\'re looking for doesn\'t exist.'
@@ -37,7 +34,6 @@ def handler404(request, *args, **argv):
 # 500 error page
 def handler500(request, *args, **argv):
     context = {
-        'SOCIAL_LINKS': None,
         'code': 500,
         'title': 'Internal Server Error',
         'subtitle': 'Sorry, the server could not process your request right now. Please try again later.'
