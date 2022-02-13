@@ -2,7 +2,7 @@
 
 [![build](https://github.com/chrisx8/simple-personal-site/actions/workflows/build_main.yml/badge.svg)](https://github.com/chrisx8/simple-personal-site/actions/workflows/build_main.yml)
 
-A fast and minimalist Django-based CMS tailored to developers and tech enthusiasts.
+A fast and minimalist Django-based CMS for developers and tech enthusiasts.
 
 ## Table of Contents <!-- omit in toc -->
 
@@ -37,7 +37,8 @@ git clone https://github.com/chrisx8/simple-personal-site.git
 cd simple-personal-site
 ```
 
-- Generate a strong password [here](https://passwordsgenerator.net/) for database. Save it, as you'll need it during the setup process.
+- Generate a strong password [here](https://passwordsgenerator.net/) for
+  database. Save it, as you'll need it during the setup process.
 - Create your env file for site config.
 
 ```bash
@@ -45,15 +46,19 @@ cp .env.example .env
 ```
 
 - Edit `.env`, following instructions in the file.
-- Generate your own icons [here](https://realfavicongenerator.net). Download the generated Favicon package.
-- Unzip the downloaded package and upload everything to `static/img/`, replacing ALL existing placeholder icon files.
-- Upload a banner image for `og:image` (`1280*640`, in `.png` format) to `static/img/`, replacing the existing `og-image.png`
+- Generate your own icons [here](https://realfavicongenerator.net). Download the
+  generated Favicon package.
+- Unzip the downloaded package and upload everything to `static/img/`, replacing
+  ALL existing placeholder icon files.
+- Upload a banner image for `og:image` (`1280*640`, in `.png` format) to
+  `static/img/`, replacing the existing `og-image.png`
 
 ## Installation
 
 ### Install with Docker
 
-> **Note: `chrisx8/simple-personal-site` on Docker Hub has been REMOVED. Please switch to `ghcr.io/chrisx8/simple-personal-site`.**
+> **Note: `chrisx8/simple-personal-site` on Docker Hub has been REMOVED. Please
+> switch to `ghcr.io/chrisx8/simple-personal-site`.**
 
 - Make sure your database is accessible from inside the container
 - Create directory for static files
@@ -67,8 +72,15 @@ sudo chown -R nobody:nogroup static_serve
 
 ```bash
 # Replace [ADDRESS]:[PORT] with whereever you want the container to listen at
-# When using a reverse proxy, make sure this container is NOT EXPOSED to the Internet! (e.g. listen on 127.0.0.1)
-docker run -d -p [ADDRESS]:[PORT] --env-file=.env -v $(pwd)/static_serve:/app/static_serve -v $(pwd)/static:/app/static/ --restart unless-stopped --name simple-personal-site ghcr.io/chrisx8/simple-personal-site:latest
+# When using a reverse proxy, make sure this container is NOT EXPOSED to the
+# Internet! (e.g. listen on 127.0.0.1)
+docker run -d -p [ADDRESS]:[PORT] \
+  --env-file=.env \
+  -v $(pwd)/static_serve:/app/static_serve \
+  -v $(pwd)/static:/app/static/ \
+  --restart unless-stopped \
+  --name simple-personal-site \
+  ghcr.io/chrisx8/simple-personal-site:latest
 ```
 
 - Create an admin account.
@@ -85,22 +97,13 @@ docker exec -it simple-personal-site python3 manage.py createsuperuser
 
 ### Install in a virtualenv
 
-- This site only supports Python 3.6 or newer. Make sure Python (3.6 or newer) and `pip` are installed.
+- This site only supports Python 3.8 or newer. Make sure Python (3.8 or newer)
+  and `pip` are installed.
 - Install project dependencies.
 
 ```bash
-# On Ubuntu/Debian
-sudo apt-get install python3-dev libmariadb-dev libjpeg-dev libpq-dev
-
-# On CentOS 7
-sudo yum install rh-python36-python-devel mariadb-libs libjpeg-turbo-devel postgresql-devel 
-
-# On CentOS 8/Stream
-sudo dnf install python36-devel mariadb-devel libjpeg-turbo-devel libpq-devel
-
 # Create virtualenv
-sudo pip3 install virtualenv
-virtualenv -p $(which python3) venv
+python3 -m venv venv
 
 # Activate virtualenv and install dependencies
 source venv/bin/activate
@@ -111,7 +114,8 @@ pip install -r requirements.txt
 
 ```bash
 # Replace [ADDRESS]:[PORT] with whereever you want the container to listen at
-# When using a reverse proxy, make sure this container is NOT EXPOSED to the Internet! (e.g. listen on 127.0.0.1)
+# When using a reverse proxy, make sure this container is NOT EXPOSED to the
+# Internet! (e.g. listen on 127.0.0.1)
 gunicorn simple_personal_site.wsgi:application -b [ADDRESS]:[PORT]
 ```
 
@@ -131,9 +135,13 @@ python3 manage.py createsuperuser
 
 Using HTTPS is optional but **highly recommended**. To use HTTPS:
 
-- Set up the site behind a reverse proxy. [Sample Nginx config](sps-nginx.example.conf)
-- For best security, make sure the reverse proxy strips incoming `X-Forwarded-Proto` header, and sets `X-Forwarded-Proto` header to `https` for HTTPS connections **only**.
-- Get an SSL certificate. [Let's Encrypt](https://letsencrypt.org/) offers free certificates to everyone.
+- Set up the site behind a reverse proxy.
+  [Sample Nginx config](sps-nginx.example.conf)
+- For best security, make sure the reverse proxy strips incoming
+  `X-Forwarded-Proto` header, and sets `X-Forwarded-Proto` header to `https` for
+  HTTPS connections **only**.
+- Get an SSL certificate. [Let's Encrypt](https://letsencrypt.org/) offers free
+  certificates to everyone.
 - In `.env`, set `USE_SSL=True`.
 
 ## Add content
