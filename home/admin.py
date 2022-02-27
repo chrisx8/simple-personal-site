@@ -18,6 +18,7 @@ admin.site.register(Homepage, SingletonModelAdmin)
 @admin.register(SocialMediaLink)
 class SocialMediaLinkAdmin(admin.ModelAdmin):
     list_display = ['platform', 'url']
+    search_fields = ['platform', 'url']
 
 
 @admin.register(SiteInfo)

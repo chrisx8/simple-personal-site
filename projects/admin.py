@@ -10,3 +10,4 @@ class ProjectAdmin(admin.ModelAdmin):
         ('URL', {'fields': ['url']}),
     )
     list_display = ['title', 'order']
+    search_fields = ['title', 'description']

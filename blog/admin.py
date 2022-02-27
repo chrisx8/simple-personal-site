@@ -1,8 +1,6 @@
 from django.contrib import admin
 from .models import Article, Tag
 
-admin.site.register(Tag)
-
 
 @admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin):
@@ -15,3 +13,9 @@ class ArticleAdmin(admin.ModelAdmin):
     list_display = ['title', 'last_edited']
     list_filter = ['last_edited', 'tag']
     readonly_fields = ["article_id", "last_edited"]
+    search_fields = ['title', 'subtitle', 'tag__tag', 'content']
+
+
+@admin.register(Tag)
+class TagAdmin(admin.ModelAdmin):
+    search_fields = ['tag']

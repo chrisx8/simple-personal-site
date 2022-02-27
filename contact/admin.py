@@ -20,6 +20,7 @@ class MessageAdmin(admin.ModelAdmin):
     list_display = ['subject', 'name', 'timestamp']
     list_filter = ['timestamp']
     readonly_fields = ['name', 'email', 'subject', 'message', 'timestamp']
+    search_fields = ['subject', 'name', 'email', 'message']
     fieldsets = (
         ('Information', {'fields': ['name', 'email', 'timestamp']}),
         ('Message Content', {'fields': ['subject', 'message']}),
