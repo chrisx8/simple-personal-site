@@ -9,7 +9,7 @@ class ArticleAdmin(admin.ModelAdmin):
         ('Media', {'fields': ['image', 'embed']}),
         ('Content', {'fields': ['content']})
     )
-    filter_horizontal = [('tag')]
+    autocomplete_fields = ['tag', 'image', 'embed']
     list_display = ['title', 'last_edited']
     list_filter = ['last_edited', 'tag']
     readonly_fields = ["article_id", "last_edited"]
