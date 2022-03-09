@@ -2,7 +2,8 @@
 {% block pagetitle %} {{ article }} | {{ SITE_NAME }} {% endblock %}
 {% block ogtitle %} {{ article }} | {{ SITE_NAME }} {% endblock %}
 {% block body %}
-<link rel="stylesheet" href="/static/css/pygments.css">
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/pygments.css' %}">
 <div class="container article">
 <h1 class="title is-2">{{ article.title }}</h1>
 {% if article.subtitle %}<p class="subtitle">{{ article.subtitle }}</p>{% endif %}
