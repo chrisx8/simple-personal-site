@@ -64,7 +64,7 @@ venv.bak/
 .git/
 .idea/
 .vscode/
-static_serve/
+static/
 Pipfile
 Pipfile.lock
 

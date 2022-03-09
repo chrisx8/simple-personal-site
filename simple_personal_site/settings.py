@@ -91,9 +91,7 @@ USE_I18N = False
 USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
-STATIC_URL = '/static/'
-STATIC_BASE = path.join(BASE_DIR, 'static_serve')
-STATIC_ROOT = path.join(STATIC_BASE, 'static')
+STATIC_ROOT = path.join(BASE_DIR, 'static')
 
 # SMTP server for email
 EMAIL_HOST = config['EMAIL_HOST']

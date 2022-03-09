@@ -13,7 +13,7 @@ RUN apt-get update && \
 COPY . /app/
 WORKDIR /app
 
-RUN mkdir -p /app/static_serve/media /app/static_serve/static && \
+RUN mkdir -p /app/static && \
     chown nobody:nogroup -R /app
 
 EXPOSE 8000

@@ -63,4 +63,4 @@ venv.bak/
 # Dev
 .idea/
 .vscode/
-static_serve/
+static/

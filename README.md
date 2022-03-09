@@ -64,8 +64,8 @@ cp .env.example .env
 - Create directory for static files
 
 ```bash
-mkdir -p static_serve/media staic_serve/static
-sudo chown -R nobody:nogroup static_serve
+mkdir -p static
+sudo chown -R nobody:nogroup static
 ```
 
 - Run Docker container.
@@ -76,7 +76,6 @@ sudo chown -R nobody:nogroup static_serve
 # Internet! (e.g. listen on 127.0.0.1)
 docker run -d -p [ADDRESS]:[PORT] \
   --env-file=.env \
-  -v $(pwd)/static_serve:/app/static_serve \
   -v $(pwd)/static:/app/static/ \
   --restart unless-stopped \
   --name simple-personal-site \
@@ -90,9 +89,7 @@ docker exec -it simple-personal-site python3 manage.py createsuperuser
 ```
 
 - Set up a web server (such as Apache or Nginx) to serve static files.
-  - Serve `static_serve/media` at `/media/`
-  - Serve `static_serve/static` at `/static/`
-  - DO NOT serve `static/`
+  - Serve `static/` at `/static/`
   - [Sample Nginx config](sps-nginx.example.conf)
 
 ### Install in a virtualenv
@@ -126,9 +123,7 @@ python3 manage.py createsuperuser
 ```
 
 - Set up a web server (such as Apache or Nginx) to serve static files
-  - Serve `static_serve/media` at `/media/`
-  - Serve `static_serve/static` at `/static/`
-  - DO NOT serve `static/`
+  - Serve `static` at `/static/`
   - [Sample Nginx config](sps-nginx.example.conf)
 
 ## Using HTTPS
