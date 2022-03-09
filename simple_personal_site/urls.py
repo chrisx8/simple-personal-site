@@ -11,7 +11,6 @@ from home.views import handler403, handler404, handler500
 # media file is only served in DEBUG MODE
 urlpatterns = [
     path('favicon.ico', RedirectView.as_view(url=settings.STATIC_URL + 'img/favicon.ico')),
-    path('', include('home.urls')),
     path('contact/', include('contact.urls')),
 ]
 

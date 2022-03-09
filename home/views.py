@@ -1,11 +1,6 @@
 from django.shortcuts import render
 
 
-# blank home page
-def home(request):
-    return render(request, 'home.html')
-
-
 # csrf failure page
 def csrf_failure(request, *args, **argv):
     return render(request, 'csrf_failure.html', status=400)
