@@ -1,4 +1,4 @@
-name: test
+name: dependency review
 on:
   pull_request:
 jobs:
