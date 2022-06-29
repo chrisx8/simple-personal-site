@@ -9,7 +9,7 @@ django-solo==2.0.0
 gunicorn==20.1.0
 html5lib==1.1
 idna==3.3
-mistune==2.0.2
+mistune==2.0.3
 mysqlclient==2.1.1
 packaging==21.3
 Pillow==9.1.1
