@@ -1,7 +1,7 @@
 asgiref==3.5.2
 beautifulsoup4==4.11.1
 bleach==5.0.1
-certifi==2022.6.15
+certifi==2022.6.15.1
 charset-normalizer==2.1.1
 Django==4.1.1
 django-htmlmin==0.11.0
