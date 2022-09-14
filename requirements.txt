@@ -8,7 +8,7 @@ django-htmlmin==0.11.0
 django-solo==2.0.0
 gunicorn==20.1.0
 html5lib==1.1
-idna==3.3
+idna==3.4
 mistune==2.0.4
 mysqlclient==2.1.1
 packaging==21.3
