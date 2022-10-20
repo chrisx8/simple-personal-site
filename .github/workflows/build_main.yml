@@ -27,7 +27,7 @@ jobs:
           push: true
           tags: ghcr.io/${{ github.repository_owner }}/${{ env.PACKAGE_NAME }}:latest
       - name: Remove untagged images
-        uses: actions/github-script@v3
+        uses: actions/github-script@v6
         with:
           github-token: ${{ secrets.GHCR_DELETE_TOKEN }}
           script: |
