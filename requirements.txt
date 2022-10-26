@@ -13,7 +13,7 @@ mistune==2.0.4
 mysqlclient==2.1.1
 packaging==21.3
 Pillow==9.2.0
-psycopg2-binary==2.9.4
+psycopg2-binary==2.9.5
 Pygments==2.13.0
 pyparsing==3.0.6
 python-dotenv==0.21.0
