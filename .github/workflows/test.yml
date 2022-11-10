@@ -9,26 +9,26 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ['3.8', '3.9', '3.10']
+        python-version: ["3.8", "3.9", "3.10", "3.11"]
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v4
-      with:
-        python-version: ${{ matrix.python-version }}
-    - name: Install dependencies
-      run: |
-        cp .env.example .env
-        python -m pip install -U pip
-        pip install wheel
-        pip install -r requirements.txt
-    - name: Set up project
-      run: |
-        python3 manage.py collectstatic --noinput
-        python3 manage.py migrate --run-syncdb
-    - name: Run tests
-      run: |
-        python3 -Wa manage.py test
-        gunicorn simple_personal_site.wsgi:application -b 127.0.0.1:8000 &
-        sleep 3
-        curl -Lf localhost:8000
+      - uses: actions/checkout@v3
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          cp .env.example .env
+          python -m pip install -U pip
+          pip install wheel
+          pip install -r requirements.txt
+      - name: Set up project
+        run: |
+          python3 manage.py collectstatic --noinput
+          python3 manage.py migrate --run-syncdb
+      - name: Run tests
+        run: |
+          python3 -Wa manage.py test
+          gunicorn simple_personal_site.wsgi:application -b 127.0.0.1:8000 &
+          sleep 3
+          curl -Lf localhost:8000
