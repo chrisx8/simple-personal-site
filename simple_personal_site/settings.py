@@ -51,7 +51,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'htmlmin.middleware.HtmlMinifyMiddleware',
     'htmlmin.middleware.MarkRequestMiddleware',
-    'simple_personal_site.middleware.FLoCOptOutMiddleware',
 ]
 
 ROOT_URLCONF = 'simple_personal_site.urls'
