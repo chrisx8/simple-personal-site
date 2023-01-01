@@ -154,7 +154,7 @@ Congratulations! Now you have your personal site!
 
 [MIT License](LICENSE)
 
-Copyright (C) 2018-2022 [Chris Xiao](https://github.com/chrisx8)
+Copyright (C) 2018-2023 [Chris Xiao](https://github.com/chrisx8)
 
 ---
 
