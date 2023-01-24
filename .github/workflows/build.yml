@@ -6,8 +6,8 @@ on:
     - cron: "0 3 * * 0"
   workflow_dispatch:
 jobs:
-  build:
-    name: Build Container Image
+  build_container:
+    name: Build container image
     runs-on: ubuntu-latest
     env:
       PACKAGE_NAME: simple-personal-site
@@ -26,16 +26,3 @@ jobs:
       - name: Push to GHCR
         run: |
           docker push ghcr.io/${{ github.repository_owner }}/${{ env.PACKAGE_NAME }}:latest
-      - name: Remove untagged images
-        uses: actions/github-script@v6
-        with:
-          github-token: ${{ secrets.GHCR_DELETE_TOKEN }}
-          script: |
-            const response = await github.request("GET /user/packages/container/${{ env.PACKAGE_NAME }}/versions");
-            for(version of response.data) {
-                if (version.metadata.container.tags.length == 0) {
-                    const deleteResponse = await github.request("DELETE /user/packages/container/${{ env.PACKAGE_NAME }}/versions/" + version.id, { });
-                    console.log("[status] " + deleteResponse.status);
-                    console.log("Deleted version " + version.id);
-                }
-            }
