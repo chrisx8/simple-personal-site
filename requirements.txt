@@ -20,5 +20,5 @@ idna==3.4
 six==1.16.0
 soupsieve==2.4
 sqlparse==0.4.3
-urllib3==1.26.14
+urllib3==1.26.15
 webencodings==0.5.1
