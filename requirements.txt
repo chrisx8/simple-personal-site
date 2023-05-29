@@ -11,7 +11,7 @@ Pygments==2.15.1
 python-dotenv==1.0.0
 requests==2.31.0
 ## The following requirements were added by pip freeze:
-asgiref==3.7.1
+asgiref==3.7.2
 beautifulsoup4==4.12.2
 certifi==2023.5.7
 charset-normalizer==3.1.0
