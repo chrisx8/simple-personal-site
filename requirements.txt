@@ -3,7 +3,7 @@ Django==4.2.2
 django-htmlmin==0.11.0
 django-solo==2.1.0
 gunicorn==20.1.0
-mistune==2.0.5
+mistune==3.0.0
 mysqlclient==2.1.1
 Pillow==9.5.0
 psycopg2-binary==2.9.6
