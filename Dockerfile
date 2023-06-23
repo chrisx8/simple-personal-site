@@ -3,11 +3,19 @@ FROM python:3.11-slim
 COPY requirements.txt /tmp/requirements.txt
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends gcc libmariadb-dev libjpeg-dev libpq-dev && \
+    apt-get install -y --no-install-recommends \
+        build-essential \
+        libmariadb-dev \
+        libjpeg-dev \
+        libpq-dev \
+        pkg-config && \
 	pip3 install --no-cache -r /tmp/requirements.txt && \
-    apt-get purge -y gcc && \
+    apt-get purge -y \
+        build-essential \
+        pkg-config && \
     apt-get autopurge -y && \
     apt-get autoclean && \
+    apt-get clean && \
     rm -rf /tmp/requirements.txt /var/log/apt /var/cache/apt /var/lib/apt
 
 COPY . /app/
