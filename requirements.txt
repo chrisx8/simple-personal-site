@@ -14,7 +14,7 @@ requests==2.31.0
 asgiref==3.7.2
 beautifulsoup4==4.12.2
 certifi==2023.5.7
-charset-normalizer==3.1.0
+charset-normalizer==3.2.0
 html5lib==1.1
 idna==3.4
 six==1.16.0
