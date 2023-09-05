@@ -19,7 +19,7 @@ jobs:
       PACKAGE_NAME: simple-personal-site
     steps:
       - name: Check out repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Login to GHCR
         uses: docker/login-action@v2
         with:
