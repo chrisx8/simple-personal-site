@@ -1,3 +1,4 @@
+---
 name: build
 
 on:
@@ -16,19 +17,21 @@ jobs:
     name: Build container image
     runs-on: ubuntu-latest
     env:
-      PACKAGE_NAME: simple-personal-site
+      IMAGE_TAG: latest
     steps:
       - name: Check out repo
         uses: actions/checkout@v4
-      - name: Login to GHCR
-        uses: docker/login-action@v2
+      - name: Build container image
+        uses: redhat-actions/buildah-build@v2
         with:
-          registry: ghcr.io
+          image: ${{ github.event.repository.name }}
+          tags: ${{ env.IMAGE_TAG }}
+          containerfiles: ./Dockerfile
+      - name: Push to ghcr.io
+        uses: redhat-actions/push-to-registry@v2
+        with:
+          image: ${{ github.event.repository.name }}
+          tags: ${{ env.IMAGE_TAG }}
+          registry: ghcr.io/${{ github.repository_owner }}
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Build image
-        run: |
-          docker build -t ghcr.io/${{ github.repository_owner }}/${{ env.PACKAGE_NAME }}:latest .
-      - name: Push to GHCR
-        run: |
-          docker push ghcr.io/${{ github.repository_owner }}/${{ env.PACKAGE_NAME }}:latest
