@@ -13,7 +13,7 @@ requests==2.31.0
 ## The following requirements were added by pip freeze:
 asgiref==3.7.2
 beautifulsoup4==4.12.2
-certifi==2023.7.22
+certifi==2023.11.17
 charset-normalizer==3.3.2
 html5lib==1.1
 idna==3.4
