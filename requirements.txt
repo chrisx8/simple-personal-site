@@ -11,7 +11,7 @@ PyMySQL==1.1.0
 python-dotenv==1.0.1
 requests==2.31.0
 ## The following requirements were added by pip freeze:
-asgiref==3.7.2
+asgiref==3.8.0
 beautifulsoup4==4.12.3
 certifi==2024.2.2
 charset-normalizer==3.3.2
