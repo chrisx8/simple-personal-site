@@ -2,7 +2,7 @@ bleach==6.1.0
 Django==4.2.11
 django-htmlmin==0.11.0
 django-solo==2.2.0
-gunicorn==21.2.0
+gunicorn==22.0.0
 mistune==3.0.2
 pillow==10.3.0
 psycopg2-binary==2.9.9
