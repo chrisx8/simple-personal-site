@@ -1,5 +1,5 @@
 bleach==6.1.0
-Django==4.2.12
+Django==4.2.13
 django-htmlmin==0.11.0
 django-solo==2.2.0
 gunicorn==22.0.0
