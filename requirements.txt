@@ -9,7 +9,7 @@ psycopg2-binary==2.9.9
 Pygments==2.18.0
 PyMySQL==1.1.1
 python-dotenv==1.0.1
-requests==2.31.0
+requests==2.32.2
 ## The following requirements were added by pip freeze:
 asgiref==3.8.1
 beautifulsoup4==4.12.3
