@@ -1,9 +1,11 @@
 ---
 name: test
-on:
+
+on: # yamllint disable-line rule:truthy
   push:
     branches-ignore: main
   pull_request:
+
 jobs:
   test:
     name: Run tests
@@ -14,6 +16,7 @@ jobs:
           - "3.9"
           - "3.10"
           - "3.11"
+          - "3.12"
     steps:
       - name: Check out repo
         uses: actions/checkout@v4
