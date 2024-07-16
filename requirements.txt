@@ -20,6 +20,6 @@ idna==3.7
 packaging==24.1
 six==1.16.0
 soupsieve==2.5
-sqlparse==0.5.0
+sqlparse==0.5.1
 urllib3==2.2.2
 webencodings==0.5.1
