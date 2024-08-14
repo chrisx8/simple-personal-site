@@ -19,7 +19,7 @@ html5lib==1.1
 idna==3.7
 packaging==24.1
 six==1.16.0
-soupsieve==2.5
+soupsieve==2.6
 sqlparse==0.5.1
 urllib3==2.2.2
 webencodings==0.5.1
