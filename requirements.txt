@@ -16,10 +16,10 @@ beautifulsoup4==4.12.3
 certifi==2024.8.30
 charset-normalizer==3.3.2
 html5lib==1.1
-idna==3.8
+idna==3.10
 packaging==24.1
 six==1.16.0
 soupsieve==2.6
 sqlparse==0.5.1
-urllib3==2.2.2
+urllib3==2.2.3
 webencodings==0.5.1
