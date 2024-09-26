@@ -7,29 +7,48 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Embed',
+            name="Embed",
             fields=[
-                ('name', models.CharField(default='', max_length=50, primary_key=True, serialize=False)),
-                ('embed_url', models.URLField(default='', help_text='Enter the EMBED URL, not the URL to a webpage.', verbose_name='Embed URL')),
-                ('allow_fullscreen', models.BooleanField(default=False)),
+                (
+                    "name",
+                    models.CharField(
+                        default="", max_length=50, primary_key=True, serialize=False
+                    ),
+                ),
+                (
+                    "embed_url",
+                    models.URLField(
+                        default="",
+                        help_text="Enter the EMBED URL, not the URL to a webpage.",
+                        verbose_name="Embed URL",
+                    ),
+                ),
+                ("allow_fullscreen", models.BooleanField(default=False)),
             ],
             options={
-                'ordering': ['name'],
+                "ordering": ["name"],
             },
         ),
         migrations.CreateModel(
-            name='Image',
+            name="Image",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('image', models.ImageField(upload_to='', verbose_name='Image')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("image", models.ImageField(upload_to="", verbose_name="Image")),
             ],
             options={
-                'ordering': ['image'],
+                "ordering": ["image"],
             },
         ),
     ]

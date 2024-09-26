@@ -1,13 +1,14 @@
 import os
+
 from django.db import models
 from django.dispatch import receiver
 
 
 class Image(models.Model):
-    image = models.ImageField(verbose_name='Image', blank=False)
+    image = models.ImageField(verbose_name="Image", blank=False)
 
     class Meta:
-        ordering = ['image']
+        ordering = ["image"]
 
     def delete(self, *args, **kwargs):
         # Delete the file if it exists
@@ -24,20 +25,26 @@ class Image(models.Model):
 
 
 class Embed(models.Model):
-    name = models.CharField(max_length=50, primary_key=True, blank=False, default='')
-    embed_url = models.URLField(blank=False, default='', verbose_name='Embed URL',
-                                help_text='Enter the EMBED URL, not the URL to a webpage.')
+    name = models.CharField(max_length=50, primary_key=True, blank=False, default="")
+    embed_url = models.URLField(
+        blank=False,
+        default="",
+        verbose_name="Embed URL",
+        help_text="Enter the EMBED URL, not the URL to a webpage.",
+    )
     allow_fullscreen = models.BooleanField(default=False)
 
     class Meta:
-        ordering = ['name']
+        ordering = ["name"]
 
     def html(self):
-        fullscreen = ''
+        fullscreen = ""
         if self.allow_fullscreen:
-            fullscreen = 'webkitallowfullscreen mozallowfullscreen allowfullscreen'
-        return f'<div class="embed"><iframe class="frame" title="{self.name}" src="{self.embed_url}"' + \
-               f'frameborder="0" {fullscreen}></iframe></div>'
+            fullscreen = "webkitallowfullscreen mozallowfullscreen allowfullscreen"
+        return (
+            f'<div class="embed"><iframe class="frame" title="{self.name}" src="{self.embed_url}"'
+            + f'frameborder="0" {fullscreen}></iframe></div>'
+        )
 
     def __str__(self):
         return self.name

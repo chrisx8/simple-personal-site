@@ -6,13 +6,19 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('url_shortener', '0001_initial'),
+        ("url_shortener", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='url',
-            name='alias',
-            field=models.CharField(default='', help_text="Example: XYZ is the alias in shortened URL example.com/XYZ<br><strong>Alias can't be one of the built-in paths (blog, contact, projects, media, static, favicon.ico, sitemap.xml)", max_length=50, primary_key=True, serialize=False),
+            model_name="url",
+            name="alias",
+            field=models.CharField(
+                default="",
+                help_text="Example: XYZ is the alias in shortened URL example.com/XYZ<br><strong>Alias can't be one of the built-in paths (blog, contact, projects, media, static, favicon.ico, sitemap.xml)",
+                max_length=50,
+                primary_key=True,
+                serialize=False,
+            ),
         ),
     ]

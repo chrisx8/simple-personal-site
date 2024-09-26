@@ -1,0 +1,54 @@
+---
+minimum_pre_commit_version: 3.6.0
+
+repos:
+  - repo: https://github.com/Lucas-C/pre-commit-hooks
+    rev: v1.5.5
+    hooks:
+      - id: remove-crlf
+      - id: remove-tabs
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: check-json
+      - id: check-yaml
+      - id: check-added-large-files
+      - id: check-case-conflict
+      - id: check-executables-have-shebangs
+      - id: check-shebang-scripts-are-executable
+      - id: check-merge-conflict
+      - id: check-symlinks
+      - id: check-vcs-permalinks
+      - id: detect-private-key
+      - id: destroyed-symlinks
+      - id: mixed-line-ending
+  - repo: https://github.com/jumanjihouse/pre-commit-hooks
+    rev: 3.0.0
+    hooks:
+      - id: forbid-binary
+        exclude: ^home/static/img/.+$
+      - id: shellcheck
+  - repo: local
+    hooks:
+      - id: black
+        name: black
+        language: script
+        entry: /usr/bin/env uv tool run black
+        files: ^.+\.py$
+      - id: isort
+        name: isort
+        language: script
+        entry: /usr/bin/env uv tool run isort
+        args:
+          - --profile=black
+        files: ^.+\.py$
+      - id: ruff
+        name: ruff
+        language: script
+        entry: /usr/bin/env uv tool run ruff
+        args:
+          - check
+          - --fix
+        files: ^.+\.py$

@@ -7,19 +7,27 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='URL',
+            name="URL",
             fields=[
-                ('alias', models.CharField(default='', help_text='Example: XYZ is the alias in shortened URL example.com/XYZ', max_length=50, primary_key=True, serialize=False)),
-                ('full_url', models.URLField(default='')),
+                (
+                    "alias",
+                    models.CharField(
+                        default="",
+                        help_text="Example: XYZ is the alias in shortened URL example.com/XYZ",
+                        max_length=50,
+                        primary_key=True,
+                        serialize=False,
+                    ),
+                ),
+                ("full_url", models.URLField(default="")),
             ],
             options={
-                'verbose_name': 'URL',
-                'ordering': ['alias'],
+                "verbose_name": "URL",
+                "ordering": ["alias"],
             },
         ),
     ]

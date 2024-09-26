@@ -1,241 +1,241 @@
 .highlight .hll {
-	background-color: #ffc
+    background-color: #ffc
 }
 .highlight {
     background: #fff
 }
 .highlight .c {
-	color: #888
+    color: #888
 }
 .highlight .err {
-	color: red;
-	background-color: #faa
+    color: red;
+    background-color: #faa
 }
 .highlight .k {
-	color: #080;
-	font-weight: 700
+    color: #080;
+    font-weight: 700
 }
 .highlight .o {
-	color: #333
+    color: #333
 }
 .highlight .ch {
-	color: #888
+    color: #888
 }
 .highlight .cm {
-	color: #888
+    color: #888
 }
 .highlight .cp {
-	color: #579
+    color: #579
 }
 .highlight .cpf {
-	color: #888
+    color: #888
 }
 .highlight .c1 {
-	color: #888
+    color: #888
 }
 .highlight .cs {
-	color: #c00;
-	font-weight: 700
+    color: #c00;
+    font-weight: 700
 }
 .highlight .gd {
-	color: #a00000
+    color: #a00000
 }
 .highlight .ge {
-	font-style: italic
+    font-style: italic
 }
 .highlight .gr {
-	color: red
+    color: red
 }
 .highlight .gh {
-	color: navy;
-	font-weight: 700
+    color: navy;
+    font-weight: 700
 }
 .highlight .gi {
-	color: #00a000
+    color: #00a000
 }
 .highlight .go {
-	color: #888
+    color: #888
 }
 .highlight .gp {
-	color: #c65d09;
-	font-weight: 700
+    color: #c65d09;
+    font-weight: 700
 }
 .highlight .gs {
-	font-weight: 700
+    font-weight: 700
 }
 .highlight .gu {
-	color: purple;
-	font-weight: 700
+    color: purple;
+    font-weight: 700
 }
 .highlight .gt {
-	color: #04d
+    color: #04d
 }
 .highlight .kc {
-	color: #080;
-	font-weight: 700
+    color: #080;
+    font-weight: 700
 }
 .highlight .kd {
-	color: #080;
-	font-weight: 700
+    color: #080;
+    font-weight: 700
 }
 .highlight .kn {
-	color: #080;
-	font-weight: 700
+    color: #080;
+    font-weight: 700
 }
 .highlight .kp {
-	color: #038;
-	font-weight: 700
+    color: #038;
+    font-weight: 700
 }
 .highlight .kr {
-	color: #080;
-	font-weight: 700
+    color: #080;
+    font-weight: 700
 }
 .highlight .kt {
-	color: #339;
-	font-weight: 700
+    color: #339;
+    font-weight: 700
 }
 .highlight .m {
-	color: #60e;
-	font-weight: 700
+    color: #60e;
+    font-weight: 700
 }
 .highlight .s {
-	background-color: #fff0f0
+    background-color: #fff0f0
 }
 .highlight .na {
-	color: #00c
+    color: #00c
 }
 .highlight .nb {
-	color: #007020
+    color: #007020
 }
 .highlight .nc {
-	color: #b06;
-	font-weight: 700
+    color: #b06;
+    font-weight: 700
 }
 .highlight .no {
-	color: #036;
-	font-weight: 700
+    color: #036;
+    font-weight: 700
 }
 .highlight .nd {
-	color: #555;
-	font-weight: 700
+    color: #555;
+    font-weight: 700
 }
 .highlight .ni {
-	color: #800;
-	font-weight: 700
+    color: #800;
+    font-weight: 700
 }
 .highlight .ne {
-	color: red;
-	font-weight: 700
+    color: red;
+    font-weight: 700
 }
 .highlight .nf {
-	color: #06b;
-	font-weight: 700
+    color: #06b;
+    font-weight: 700
 }
 .highlight .nl {
-	color: #970;
-	font-weight: 700
+    color: #970;
+    font-weight: 700
 }
 .highlight .nn {
-	color: #0e84b5;
-	font-weight: 700
+    color: #0e84b5;
+    font-weight: 700
 }
 .highlight .nt {
-	color: #070
+    color: #070
 }
 .highlight .nv {
-	color: #963
+    color: #963
 }
 .highlight .ow {
-	color: #000;
-	font-weight: 700
+    color: #000;
+    font-weight: 700
 }
 .highlight .w {
-	color: #bbb
+    color: #bbb
 }
 .highlight .mb {
-	color: #60e;
-	font-weight: 700
+    color: #60e;
+    font-weight: 700
 }
 .highlight .mf {
-	color: #60e;
-	font-weight: 700
+    color: #60e;
+    font-weight: 700
 }
 .highlight .mh {
-	color: #058;
-	font-weight: 700
+    color: #058;
+    font-weight: 700
 }
 .highlight .mi {
-	color: #00d;
-	font-weight: 700
+    color: #00d;
+    font-weight: 700
 }
 .highlight .mo {
-	color: #40e;
-	font-weight: 700
+    color: #40e;
+    font-weight: 700
 }
 .highlight .sa {
-	background-color: #fff0f0
+    background-color: #fff0f0
 }
 .highlight .sb {
-	background-color: #fff0f0
+    background-color: #fff0f0
 }
 .highlight .sc {
-	color: #04d
+    color: #04d
 }
 .highlight .dl {
-	background-color: #fff0f0
+    background-color: #fff0f0
 }
 .highlight .sd {
-	color: #d42
+    color: #d42
 }
 .highlight .s2 {
-	background-color: #fff0f0
+    background-color: #fff0f0
 }
 .highlight .se {
-	color: #666;
-	font-weight: 700;
-	background-color: #fff0f0
+    color: #666;
+    font-weight: 700;
+    background-color: #fff0f0
 }
 .highlight .sh {
-	background-color: #fff0f0
+    background-color: #fff0f0
 }
 .highlight .si {
-	background-color: #eee
+    background-color: #eee
 }
 .highlight .sx {
-	color: #d20;
-	background-color: #fff0f0
+    color: #d20;
+    background-color: #fff0f0
 }
 .highlight .sr {
-	color: #000;
-	background-color: #fff0ff
+    color: #000;
+    background-color: #fff0ff
 }
 .highlight .s1 {
-	background-color: #fff0f0
+    background-color: #fff0f0
 }
 .highlight .ss {
-	color: #a60
+    color: #a60
 }
 .highlight .bp {
-	color: #007020
+    color: #007020
 }
 .highlight .fm {
-	color: #06b;
-	font-weight: 700
+    color: #06b;
+    font-weight: 700
 }
 .highlight .vc {
-	color: #369
+    color: #369
 }
 .highlight .vg {
-	color: #d70;
-	font-weight: 700
+    color: #d70;
+    font-weight: 700
 }
 .highlight .vi {
-	color: #33b
+    color: #33b
 }
 .highlight .vm {
-	color: #963
+    color: #963
 }
 .highlight .il {
-	color: #00d;
-	font-weight: 700
+    color: #00d;
+    font-weight: 700
 }

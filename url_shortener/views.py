@@ -1,4 +1,5 @@
 from django.shortcuts import Http404, HttpResponseRedirect
+
 from .models import URL
 
 

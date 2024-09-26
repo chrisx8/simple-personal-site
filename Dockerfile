@@ -9,7 +9,7 @@ RUN apt-get update && \
         libjpeg-dev \
         libpq-dev \
         pkg-config && \
-	pip3 install --no-cache -r /tmp/requirements.txt && \
+    pip3 install --no-cache -r /tmp/requirements.txt && \
     apt-get purge -y \
         build-essential \
         pkg-config && \
