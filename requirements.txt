@@ -4,7 +4,7 @@ django-htmlmin==0.11.0
 django-solo==2.3.0
 gunicorn==23.0.0
 mistune==3.0.2
-pillow==10.4.0
+pillow==11.0.0
 psycopg2-binary==2.9.9
 Pygments==2.18.0
 PyMySQL==1.1.1
