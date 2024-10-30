@@ -1,4 +1,4 @@
-bleach==6.1.0
+bleach==6.2.0
 Django==4.2.16
 django-htmlmin==0.11.0
 django-solo==2.4.0
