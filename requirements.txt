@@ -18,7 +18,7 @@ charset-normalizer==3.4.0
 html5lib==1.1
 idna==3.10
 packaging==24.2
-six==1.16.0
+six==1.17.0
 soupsieve==2.6
 sqlparse==0.5.2
 urllib3==2.2.3
