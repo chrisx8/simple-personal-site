@@ -12,7 +12,7 @@ python-dotenv==1.0.1
 requests==2.32.3
 ## The following requirements were added by pip freeze:
 asgiref==3.8.1
-beautifulsoup4==4.12.3
+beautifulsoup4==4.13.1
 certifi==2025.1.31
 charset-normalizer==3.4.1
 html5lib==1.1
@@ -21,5 +21,6 @@ packaging==24.2
 six==1.17.0
 soupsieve==2.6
 sqlparse==0.5.3
+typing_extensions==4.12.2
 urllib3==2.2.3
 webencodings==0.5.1
