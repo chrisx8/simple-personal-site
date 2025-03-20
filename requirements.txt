@@ -3,7 +3,7 @@ Django==4.2.20
 django-htmlmin==0.11.0
 django-solo==2.4.0
 gunicorn==23.0.0
-mistune==3.1.2
+mistune==3.1.3
 pillow==11.1.0
 psycopg2-binary==2.9.10
 Pygments==2.19.1
