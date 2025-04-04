@@ -21,6 +21,6 @@ packaging==24.2
 six==1.17.0
 soupsieve==2.6
 sqlparse==0.5.3
-typing_extensions==4.12.2
-urllib3==2.2.3
+typing_extensions==4.13.1
+urllib3==2.3.0
 webencodings==0.5.1
