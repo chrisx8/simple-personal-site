@@ -97,8 +97,8 @@ docker exec -it simple-personal-site python3 manage.py createsuperuser
 
 ### Install in a virtualenv
 
-- This site only supports Python 3.9 or newer.
-- Make sure Python (3.9 or newer) and `pip` are installed.
+- This site only supports Python 3.10 or newer.
+- Make sure Python (3.10 or newer) and `pip` are installed.
 - Install project dependencies.
 
 ```bash

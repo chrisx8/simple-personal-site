@@ -26,12 +26,12 @@ class SPSRenderer(mistune.HTMLRenderer):
         # return header html with id
         return f'\n<h{level} id="{id_tag}">{text}</h{level}>\n'
 
-    def image(self, src, alt="", title=None):
+    def image(self, text, url, title=None):
         if title:
             title = f'title="{mistune.escape(title)}"'
-        if alt:
-            alt = f'alt="{mistune.escape(alt)}"'
-        return f'<img {alt} {title} src="{mistune.escape(src)}">'
+        if text:
+            text = f'alt="{mistune.escape(text)}"'
+        return f'<img {text} {title} src="{mistune.escape(url)}">'
 
 
 def clean_html(html):

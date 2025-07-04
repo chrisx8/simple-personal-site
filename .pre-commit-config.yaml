@@ -44,11 +44,3 @@ repos:
         args:
           - --profile=black
         files: ^.+\.py$
-      - id: ruff
-        name: ruff
-        language: script
-        entry: /usr/bin/env uv tool run ruff
-        args:
-          - check
-          - --fix
-        files: ^.+\.py$
