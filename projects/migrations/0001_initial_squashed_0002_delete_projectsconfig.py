@@ -5,7 +5,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     replaces = [
         ("projects", "0001_initial"),
         ("projects", "0002_delete_projectsconfig"),

@@ -59,7 +59,7 @@ class Article(models.Model):
                 Article.delete(Article.objects.get(article_id=old_id))
             except self.DoesNotExist:
                 pass
-        super(Article, self).save()
+        super().save()
 
     def __str__(self):
         return self.title

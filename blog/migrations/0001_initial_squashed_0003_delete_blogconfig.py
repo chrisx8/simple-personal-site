@@ -5,7 +5,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     replaces = [
         ("blog", "0001_initial"),
         ("blog", "0002_auto_20210101_2157"),

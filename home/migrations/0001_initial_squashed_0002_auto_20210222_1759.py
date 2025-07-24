@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     replaces = [("home", "0001_initial"), ("home", "0002_auto_20210222_1759")]
 
     dependencies = []

@@ -18,9 +18,9 @@ def get_site_config():
     assert environ.get("ALLOWED_HOSTS"), "ALLOWED_HOSTS is not configured"
     # DB_TYPE must be 'sqlite3', 'mysql', or 'postgresql'
     SUPPORTED_DB = set(("sqlite3", "mysql", "postgresql"))
-    assert (
-        environ.get("DB_TYPE") in SUPPORTED_DB
-    ), f"DB_TYPE must be one of {SUPPORTED_DB}"
+    assert environ.get("DB_TYPE") in SUPPORTED_DB, (
+        f"DB_TYPE must be one of {SUPPORTED_DB}"
+    )
 
     # build config dict
     config = {

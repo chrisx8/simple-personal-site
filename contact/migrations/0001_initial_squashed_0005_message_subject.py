@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     replaces = [
         ("contact", "0001_initial"),
         ("contact", "0002_remove_contactconfig_from_name"),

@@ -30,17 +30,10 @@ repos:
       - id: forbid-binary
         exclude: ^home/static/img/.+$
       - id: shellcheck
-  - repo: local
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.12.4
     hooks:
-      - id: black
-        name: black
-        language: script
-        entry: /usr/bin/env uv tool run black
-        files: ^.+\.py$
-      - id: isort
-        name: isort
-        language: script
-        entry: /usr/bin/env uv tool run isort
+      - id: ruff-check
         args:
-          - --profile=black
-        files: ^.+\.py$
+          - --fix
+      - id: ruff-format

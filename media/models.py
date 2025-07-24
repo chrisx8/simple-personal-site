@@ -18,7 +18,7 @@ class Image(models.Model):
         except ValueError:
             pass
         # Delete the model
-        super(Image, self).delete(*args, **kwargs)
+        super().delete(*args, **kwargs)
 
     def __str__(self):
         return str(self.image)

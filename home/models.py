@@ -38,7 +38,7 @@ class SiteInfo(SingletonModel):
     def save(self, *args, **kwargs):
         admin.site.site_title = self.site_name
         admin.site.site_header = self.site_name
-        super(SiteInfo, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
 
 class SocialMediaLink(models.Model):
@@ -83,7 +83,7 @@ class Homepage(SingletonModel):
         except ValueError:
             pass
         # Delete the model
-        super(Homepage, self).delete(*args, **kwargs)
+        super().delete(*args, **kwargs)
 
 
 # delete old upload on save
