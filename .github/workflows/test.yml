@@ -19,6 +19,8 @@ jobs:
           python-version: "3.12"
       - name: Set up uv
         uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: false
       - name: Run pre-commit checks
         run: |
           uv tool run pre-commit run --all --verbose
@@ -41,6 +43,9 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Set up uv
         uses: astral-sh/setup-uv@v6
+        with:
+          activate-environment: true
+          enable-cache: false
       - name: Install dependencies
         run: |
           uv venv
@@ -48,13 +53,13 @@ jobs:
       - name: Set up project
         run: |
           cp .env.example .env
-          uv run manage.py collectstatic --noinput
-          uv run manage.py migrate --run-syncdb
+          python3 manage.py collectstatic --noinput
+          python3 manage.py migrate --run-syncdb
       - name: Run tests
         run: |
-          uv run python3 -Wa manage.py test
+          python3 -Wa manage.py test
       - name: Test gunicorn server
         run: |
-          uv run gunicorn simple_personal_site.wsgi:application -b 127.0.0.1:8000 &
+          gunicorn simple_personal_site.wsgi:application -b 127.0.0.1:8000 &
           sleep 3
           curl -Lf localhost:8000
