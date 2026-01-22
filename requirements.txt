@@ -17,7 +17,7 @@ certifi==2026.1.4
 charset-normalizer==3.4.4
 html5lib==1.1
 idna==3.11
-packaging==25.0
+packaging==26.0
 six==1.17.0
 soupsieve==2.8.3
 sqlparse==0.5.5
