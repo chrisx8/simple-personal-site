@@ -21,7 +21,7 @@ jobs:
         uses: astral-sh/setup-uv@v7
       - name: Run pre-commit checks
         run: |
-          uv tool run pre-commit run --all --verbose
+          uvx prek run --all-files --verbose
 
   test:
     name: Run tests
