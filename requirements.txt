@@ -14,7 +14,7 @@ requests==2.32.5
 asgiref==3.11.1
 beautifulsoup4==4.14.3
 certifi==2026.2.25
-charset-normalizer==3.4.5
+charset-normalizer==3.4.6
 html5lib==1.1
 idna==3.11
 packaging==26.0
