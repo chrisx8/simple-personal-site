@@ -1,7 +1,7 @@
 import re
 
 import mistune
-from bleach import clean
+import nh3
 from django import template
 from django.utils.text import slugify
 from pygments import highlight
@@ -36,7 +36,7 @@ class SPSRenderer(mistune.HTMLRenderer):
 
 def clean_html(html):
     # define allowed html tags and attributes
-    markdown_tags = [
+    markdown_tags = {
         "h1",
         "h2",
         "h3",
@@ -71,14 +71,14 @@ def clean_html(html):
         "a",
         "sub",
         "sup",
-    ]
+    }
     markdown_attrs = {
-        "*": ["id", "class"],
-        "img": ["src", "alt", "title"],
-        "a": ["href", "alt", "title"],
+        "*": {"id", "class"},
+        "img": {"src", "alt", "title"},
+        "a": {"href", "alt", "title"},
     }
     # clean html
-    cleaned = clean(html, markdown_tags, markdown_attrs)
+    cleaned = nh3.clean(html, tags=markdown_tags, attributes=markdown_attrs)
     return cleaned
 
 

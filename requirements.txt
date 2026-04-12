@@ -1,9 +1,9 @@
-bleach==6.3.0
 Django==5.2.13
 django-minify-html==1.14.0
 django-solo==2.5.1
 gunicorn==25.3.0
 mistune==3.2.0
+nh3==0.3.4
 pillow==12.2.0
 psycopg2-binary==2.9.11
 Pygments==2.20.0
@@ -12,15 +12,10 @@ python-dotenv==1.2.2
 requests==2.33.1
 ## The following requirements were added by pip freeze:
 asgiref==3.11.1
-beautifulsoup4==4.14.3
 certifi==2026.2.25
 charset-normalizer==3.4.7
 idna==3.11
 minify_html==0.18.1
 packaging==26.0
-six==1.17.0
-soupsieve==2.8.3
 sqlparse==0.5.5
-typing_extensions==4.15.0
 urllib3==2.6.3
-webencodings==0.5.1
