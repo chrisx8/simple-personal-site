@@ -20,16 +20,6 @@ config = get_site_config()
 # 400 if request Host is not in ALLOWED_HOSTS
 ALLOWED_HOSTS = config["ALLOWED_HOSTS"]
 
-# DEBUG defaults to False. Set environment variable DEBUG=TRUE to enable debug
-# SECURITY WARNING: don't run with debug turned on in production!
-if config["DEBUG"]:
-    print("\033[93m\033[1m" + "WARNING: Debug mode is enabled!" + "\033[0m")
-    DEBUG = True
-    HTML_MINIFY = False
-else:
-    DEBUG = False
-    HTML_MINIFY = True
-
 # Application definition
 INSTALLED_APPS = [
     "django.contrib.auth",
@@ -52,8 +42,6 @@ MIDDLEWARE = [
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "htmlmin.middleware.HtmlMinifyMiddleware",
-    "htmlmin.middleware.MarkRequestMiddleware",
 ]
 
 ROOT_URLCONF = "simple_personal_site.urls"
@@ -162,6 +150,15 @@ if ADMIN_URL:
     ]
     INSTALLED_APPS.extend(ADD_APPS)
     MIDDLEWARE.extend(ADD_MIDDLEWARE)
+
+# DEBUG defaults to False. Set environment variable DEBUG=TRUE to enable debug
+# SECURITY WARNING: don't run with debug turned on in production!
+if config["DEBUG"]:
+    DEBUG = True
+else:
+    DEBUG = False
+    INSTALLED_APPS.append("django_minify_html")
+    MIDDLEWARE.append("django_minify_html.middleware.MinifyHtmlMiddleware")
 
 # Use REMOTE_USER header for authentication
 REMOTE_USER_HEADER = config["REMOTE_USER_HEADER"]

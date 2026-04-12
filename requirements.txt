@@ -1,6 +1,6 @@
 bleach==6.3.0
 Django==5.2.13
-django-htmlmin==0.11.0
+django-minify-html==1.14.0
 django-solo==2.5.1
 gunicorn==25.3.0
 mistune==3.2.0
@@ -15,8 +15,8 @@ asgiref==3.11.1
 beautifulsoup4==4.14.3
 certifi==2026.2.25
 charset-normalizer==3.4.7
-html5lib==1.1
 idna==3.11
+minify_html==0.18.1
 packaging==26.0
 six==1.17.0
 soupsieve==2.8.3
