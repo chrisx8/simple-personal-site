@@ -16,6 +16,6 @@ certifi==2026.2.25
 charset-normalizer==3.4.7
 idna==3.11
 minify_html==0.18.1
-packaging==26.0
+packaging==26.1
 sqlparse==0.5.5
 urllib3==2.6.3
