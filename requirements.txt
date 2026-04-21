@@ -5,7 +5,7 @@ gunicorn==25.3.0
 mistune==3.2.0
 nh3==0.3.4
 pillow==12.2.0
-psycopg2-binary==2.9.11
+psycopg2-binary==2.9.12
 Pygments==2.20.0
 PyMySQL==1.1.2
 python-dotenv==1.2.2
