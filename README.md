@@ -97,17 +97,16 @@ docker exec -it simple-personal-site python3 manage.py createsuperuser
 
 ### Install in a virtualenv
 
-- This site only supports Python 3.10 or newer.
-- Make sure Python (3.10 or newer) and `pip` are installed.
+- This site supports Python 3.10-3.14.
+- Make sure Python and `uv` are installed.
 - Install project dependencies.
 
 ```bash
-# Create virtualenv
-python3 -m venv venv
+# Bootstrap virtualenv and install dependencies with uv
+uv sync
 
-# Activate virtualenv and install dependencies
-source venv/bin/activate
-pip install -r requirements.txt
+# Activate virtualenv
+source .venv/bin/activate
 ```
 
 - Start server

@@ -47,7 +47,7 @@ jobs:
           activate-environment: true
       - name: Install dependencies
         run: |
-          uv pip install -r requirements.txt
+          uv sync --locked
       - name: Set up project
         run: |
           cp .env.example .env
@@ -58,7 +58,11 @@ jobs:
           python3 -Wa manage.py test
       - name: Test gunicorn server
         run: |
-          gunicorn simple_personal_site.wsgi:application -D -b 127.0.0.1:8000 -p /tmp/gunicorn.pid
+          gunicorn simple_personal_site.wsgi:application \
+            --daemon \
+            --no-control-socket \
+            --bind 127.0.0.1:8000 \
+            --pid /tmp/gunicorn.pid
           sleep 3
           curl -Lf localhost:8000
           kill "$(cat /tmp/gunicorn.pid)"
