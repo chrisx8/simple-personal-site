@@ -13,15 +13,8 @@ jobs:
     steps:
       - name: Check out repo
         uses: actions/checkout@v7
-      - name: Set up Python 3.13
-        uses: actions/setup-python@v6
-        with:
-          python-version: "3.13"
-      - name: Set up uv
-        uses: astral-sh/setup-uv@v7
       - name: Run pre-commit checks
-        run: |
-          uvx prek run --all-files --verbose
+        uses: j178/prek-action@v2
 
   test:
     name: Run tests
