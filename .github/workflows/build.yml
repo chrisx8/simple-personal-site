@@ -22,7 +22,7 @@ jobs:
       - name: Check out repo
         uses: actions/checkout@v7
       - name: Build container image
-        uses: redhat-actions/buildah-build@v2
+        uses: redhat-actions/buildah-build@v3
         with:
           image: ${{ github.event.repository.name }}
           tags: ${{ env.IMAGE_TAG }}
