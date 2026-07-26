@@ -53,7 +53,7 @@ class SocialMediaLink(models.Model):
     )
 
     class Meta:
-        ordering = ["platform"]
+        ordering = ("platform",)
         verbose_name = "Social Media Link"
 
     def __str__(self):

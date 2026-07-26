@@ -14,7 +14,7 @@ class URL(models.Model):
     full_url = models.URLField(default="", null=False)
 
     class Meta:
-        ordering = ["alias"]
+        ordering = ("alias",)
         verbose_name = "URL"
 
     def __str__(self):

@@ -9,7 +9,7 @@ class Tag(models.Model):
     tag = models.CharField(max_length=50, default="", null=False, primary_key=True)
 
     class Meta:
-        ordering = ["tag"]
+        ordering = ("tag",)
 
     def get_absolute_url(self):
         return reverse("filter_by_tag", kwargs={"tag": self.tag})
@@ -43,7 +43,7 @@ class Article(models.Model):
     last_edited = models.DateField(auto_now=True)
 
     class Meta:
-        ordering = ["-last_edited", "title"]
+        ordering = ("-last_edited", "title")
 
     def get_absolute_url(self):
         return reverse("view_article", kwargs={"article_id": self.article_id})

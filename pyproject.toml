@@ -19,3 +19,12 @@ dependencies = [
 
 [tool.uv]
 exclude-newer = "P3D"
+
+[tool.ruff]
+target-version = "py310"
+
+[tool.ruff.lint]
+extend-select = ["I", "UP"]
+
+[tool.ruff.lint.per-file-ignores]
+"**/migrations/*" = ["RUF012"]

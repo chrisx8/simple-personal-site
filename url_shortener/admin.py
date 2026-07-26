@@ -5,5 +5,5 @@ from .models import URL
 
 @admin.register(URL)
 class URLAdmin(admin.ModelAdmin):
-    list_display = ["alias", "full_url"]
-    search_fields = ["alias", "full_url"]
+    list_display = ("alias", "full_url")
+    search_fields = ("alias", "full_url")

@@ -38,7 +38,7 @@ class Project(models.Model):
     )
 
     class Meta:
-        ordering = ["order", "title"]
+        ordering = ("order", "title")
 
     def __str__(self):
         return self.title

@@ -8,7 +8,7 @@ class Image(models.Model):
     image = models.ImageField(verbose_name="Image", blank=False)
 
     class Meta:
-        ordering = ["image"]
+        ordering = ("image",)
 
     def delete(self, *args, **kwargs):
         # Delete the file if it exists
@@ -35,7 +35,7 @@ class Embed(models.Model):
     allow_fullscreen = models.BooleanField(default=False)
 
     class Meta:
-        ordering = ["name"]
+        ordering = ("name",)
 
     def html(self):
         fullscreen = ""

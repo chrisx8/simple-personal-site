@@ -47,7 +47,7 @@ class Message(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True, null=False)
 
     class Meta:
-        ordering = ["-timestamp"]
+        ordering = ("-timestamp",)
 
     def save(self):
         # override subject if it's blank

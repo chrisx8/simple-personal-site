@@ -10,6 +10,6 @@ class ProjectAdmin(admin.ModelAdmin):
         ("Media", {"fields": ["image", "embed"]}),
         ("URL", {"fields": ["url"]}),
     )
-    autocomplete_fields = ["image", "embed"]
-    list_display = ["title", "order"]
-    search_fields = ["title", "description"]
+    autocomplete_fields = ("image", "embed")
+    list_display = ("title", "order")
+    search_fields = ("title", "description")
