@@ -14,7 +14,7 @@ jobs:
       - name: Check out repo
         uses: actions/checkout@v7
       - name: Run pre-commit checks
-        uses: j178/prek-action@v2
+        uses: j178/prek-action@v2.0.6
 
   test:
     name: Run tests
