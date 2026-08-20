@@ -13,7 +13,7 @@ dependencies = [
     "psycopg2-binary>=2.9.12,<3.0.0",
     "pygments>=2.20.0,<3.0.0",
     "pymysql>=1.2.0,<2.0.0",
-    "python-dotenv>=1.2.2,<2.0.0",
+    "python-dotenv>=1.2.3,<2.0.0",
     "requests>=2.34.2,<3.0.0",
 ]
 
