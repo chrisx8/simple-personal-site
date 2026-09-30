@@ -20,16 +20,16 @@ jobs:
       IMAGE_TAG: latest
     steps:
       - name: Check out repo
-        uses: actions/checkout@v7
+        uses: actions/checkout@v7.0.1
       - name: Build container image
-        uses: redhat-actions/buildah-build@v3
+        uses: redhat-actions/buildah-build@v3.1.0
         with:
           image: ${{ github.event.repository.name }}
           tags: ${{ env.IMAGE_TAG }}
           containerfiles: ./Dockerfile
           squash: false
       - name: Push to ghcr.io
-        uses: redhat-actions/push-to-registry@v3
+        uses: redhat-actions/push-to-registry@v3.0.0
         with:
           image: ${{ github.event.repository.name }}
           tags: ${{ env.IMAGE_TAG }}

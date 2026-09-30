@@ -12,9 +12,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repo
-        uses: actions/checkout@v7
+        uses: actions/checkout@v7.0.1
       - name: Run pre-commit checks
-        uses: j178/prek-action@v2
+        uses: j178/prek-action@v3.0.0
 
   test:
     name: Run tests
@@ -29,13 +29,13 @@ jobs:
           - "3.14"
     steps:
       - name: Check out repo
-        uses: actions/checkout@v7
+        uses: actions/checkout@v7.0.1
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v7
+        uses: actions/setup-python@v7.0.0
         with:
           python-version: ${{ matrix.python-version }}
       - name: Set up uv
-        uses: astral-sh/setup-uv@v7
+        uses: astral-sh/setup-uv@v10.2.0
         with:
           activate-environment: true
       - name: Install dependencies
