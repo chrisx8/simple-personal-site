@@ -1,7 +1,7 @@
 [project]
 name = "simple-personal-site"
 version = "1.0.0"
-requires-python = ">=3.10,<3.15"
+requires-python = ">=3.11,<3.15"
 dependencies = [
     "django~=5.2.18",
     "django-minify-html~=1.14.0",
@@ -21,7 +21,7 @@ dependencies = [
 exclude-newer = "P3D"
 
 [tool.ruff]
-target-version = "py310"
+target-version = "py311"
 
 [tool.ruff.lint]
 extend-select = ["I", "UP"]

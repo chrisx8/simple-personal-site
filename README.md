@@ -94,7 +94,7 @@ docker exec -it simple-personal-site python3 manage.py createsuperuser
 
 ### Install in a virtualenv
 
-- This site supports Python 3.10-3.14.
+- This site supports Python 3.11-3.14.
 - Make sure Python and `uv` are installed.
 - Install project dependencies.
 
