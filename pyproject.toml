@@ -5,7 +5,7 @@ requires-python = ">=3.11,<3.15"
 dependencies = [
     "django~=5.2.19",
     "django-minify-html~=1.14.0",
-    "django-solo~=2.6.0",
+    "django-solo~=2.7.0",
     "gunicorn>=26.2.0,<27.0.0",
     "mistune~=3.4.0",
     "nh3~=0.3.7",
