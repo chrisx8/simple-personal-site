@@ -172,14 +172,14 @@ wheels = [
 
 [[package]]
 name = "django-solo"
-version = "2.7.0"
+version = "2.8.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "django" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/96/5f/89c435205c7465eba4f0c34fd3a340c9a2de9db9309d8045fb2836ac5311/django_solo-2.7.0.tar.gz", hash = "sha256:1dcd7e870c07fe1bc69d8b11f3be011db84817c7335766e497b5d169e9b575ef", size = 14824, upload-time = "2026-11-09T12:46:25.62Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/8a/cd/a2e2103aabde67f4814a2768bc8cfd5a07c1b4c94b2daede45a166336456/django_solo-2.8.0.tar.gz", hash = "sha256:e739c8e04065608c4dae52f7564acce3abebba19dfcc09f5b54a91493a8162c0", size = 17139, upload-time = "2026-11-17T13:38:16.828Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/d8/60/f8461b39fa1cebaffe46100b1a13b6af1e85568913318c0718b5d25901f9/django_solo-2.7.0-py3-none-any.whl", hash = "sha256:7490d673f66a2981fedc7d493e007e184684c0a8241b74aec739fa7febd9d062", size = 17814, upload-time = "2026-11-09T12:46:24.7Z" },
+    { url = "https://files.pythonhosted.org/packages/22/39/6b7476217a8caecfee12bc31cd6abe3e83fff16b3b4793d0310ee27cf55c/django_solo-2.8.0-py3-none-any.whl", hash = "sha256:79b5d05d6a9fd077254ac6b38163a42f82ecde8033962d74bc068fa4755ff1d7", size = 20395, upload-time = "2026-11-17T13:38:15.494Z" },
 ]
 
 [[package]]
@@ -465,7 +465,7 @@ dependencies = [
 requires-dist = [
     { name = "django", specifier = "~=5.2.19" },
     { name = "django-minify-html", specifier = "~=1.14.0" },
-    { name = "django-solo", specifier = "~=2.7.0" },
+    { name = "django-solo", specifier = "~=2.8.0" },
     { name = "gunicorn", specifier = ">=27.0.1,<28.0.0" },
     { name = "mistune", specifier = "~=3.4.0" },
     { name = "nh3", specifier = "~=0.3.7" },
